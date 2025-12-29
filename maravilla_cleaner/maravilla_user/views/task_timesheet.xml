@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_task_timesheet_button" inherit_id="hr_timesheet.portal_my_task" name="Add Timesheet Button">
+        <xpath expr="//div[@id='task-nav']" position="before">
+            <div class="text-center my-3">
+                <button id="btn_add_timesheet" type="button" class="btn btn-primary" onclick="showTimesheetPopup()">
+                    <i class="fa fa-plus me-2"></i>Add Timesheet
+                </button>
+                   <button class="btn btn-success" id="startTimer" t-att-data-task="task.id" onclick="startTimerRPC()">Start</button>
+                    <button class="btn btn-danger d-none" id="stopTimer" data-timesheet="" onclick="stopTimerRPC()">Stop</button>
+
+                   <script>
+                    <![CDATA[
+                    // ===============================
+                    // ODOO 19 JSON-RPC TIMER FUNCTIONS
+                    // ===============================
+
+                    // ✅ START TIMER using JSON-RPC
+                    async function startTimerRPC() {
+                        console.log("Start timer clicked (JSON-RPC)");
+
+                        const startBtn = document.getElementById('startTimer');
+                        const stopBtn = document.getElementById('stopTimer');
+                        const taskId = startBtn.dataset.task || "12";
+
+                        console.log("Task ID:", taskId);
+
+                        if (!taskId) {
+                            alert("Task ID missing");
+                            return;
+                        }
+
+                        try {
+                            // Show loading state
+                            startBtn.disabled = true;
+                            startBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i>Starting...';
+
+                            // JSON-RPC 2.0 format
+                            const payload = {
+                                jsonrpc: "2.0",
+                                method: "call",
+                                params: {
+                                    task_id: parseInt(taskId)
+                                },
+                                id: Math.floor(Math.random() * 1000)
+                            };
+
+                            console.log("Sending JSON-RPC request:", payload);
+
+                            const response = await fetch('/website/task/start', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(payload)
+                            });
+
+                            console.log("Response status:", response.status);
+
+                            const result = await response.json();
+                            console.log("JSON-RPC response:", result);
+
+                            // Check for JSON-RPC error
+                            if (result.error) {
+                                throw new Error(result.error.message || "JSON-RPC error");
+                            }
+
+                            // Success
+                            const data = result.result;
+                            console.log("Success data:", data);
+
+                            startBtn.classList.add('d-none');
+                            stopBtn.classList.remove('d-none');
+                            stopBtn.disabled = false;
+
+                            if (data.timesheet_id) {
+                                stopBtn.dataset.timesheet = data.timesheet_id;
+                            }
+
+                            console.log("Timer started successfully");
+                            alert("✅ Timer started successfully!");
+
+                        } catch (error) {
+                            console.error("Start Error:", error);
+                            alert("❌ Failed to start timer: " + error.message);
+
+                            // Reset button
+                            startBtn.innerHTML = '<i class="fa fa-play me-2"></i>Start';
+                            startBtn.disabled = false;
+                        }
+                    }
+
+                    // ✅ STOP TIMER using JSON-RPC
+                    async function stopTimerRPC() {
+                        console.log("Stop timer clicked (JSON-RPC)");
+
+                        const startBtn = document.getElementById('startTimer');
+                        const stopBtn = document.getElementById('stopTimer');
+                        const taskId = startBtn.dataset.task || "12";
+                        const timesheetId = stopBtn.dataset.timesheet;
+
+                        if (!taskId) {
+                            alert("Task ID missing");
+                            return;
+                        }
+
+                        try {
+                            // Show loading state
+                            stopBtn.disabled = true;
+                            stopBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i>Stopping...';
+
+                            // JSON-RPC 2.0 format
+                            const payload = {
+                                jsonrpc: "2.0",
+                                method: "call",
+                                params: {
+                                    task_id: parseInt(taskId),
+                                    timesheet_id: timesheetId ? parseInt(timesheetId) : null
+                                },
+                                id: Math.floor(Math.random() * 1000)
+                            };
+
+                            console.log("Sending JSON-RPC request:", payload);
+
+                            const response = await fetch('/website/task/stop', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(payload)
+                            });
+
+                            console.log("Response status:", response.status);
+
+                            const result = await response.json();
+                            console.log("JSON-RPC response:", result);
+
+                            // Check for JSON-RPC error
+                            if (result.error) {
+                                throw new Error(result.error.message || "JSON-RPC error");
+                            }
+
+                            // Success
+                            const data = result.result;
+                            console.log("Success data:", data);
+
+                            stopBtn.classList.add('d-none');
+                            startBtn.classList.remove('d-none');
+                            startBtn.disabled = false;
+
+                            console.log("Timer stopped successfully");
+                            const hours = data.hours || 0;
+                            alert(`✅ Timer stopped! Time logged: ${hours} hours`);
+
+                            // Refresh page
+                            setTimeout(() => location.reload(), 1500);
+
+                        } catch (error) {
+                            console.error("Stop Error:", error);
+                            alert("❌ Failed to stop timer: " + error.message);
+
+                            // Reset button
+                            stopBtn.innerHTML = '<i class="fa fa-stop me-2"></i>Stop';
+                            stopBtn.disabled = false;
+                        }
+                    }
+
+                    // Test JSON-RPC endpoint
+                    function testJSONRPC() {
+                        console.log("Testing JSON-RPC endpoint...");
+
+                        const payload = {
+                            jsonrpc: "2.0",
+                            method: "call",
+                            params: {task_id: 12},
+                            id: 1
+                        };
+
+                        fetch('/website/task/start', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify(payload)
+                        })
+                        .then(r => r.json())
+                        .then(data => {
+                            console.log("Test response:", data);
+                            if (data.error) {
+                                console.error("Test error:", data.error);
+                            } else {
+                                console.log("Test success:", data.result);
+                            }
+                        })
+                        .catch(e => console.error("Test fetch error:", e));
+                    }
+
+                    // Initialize
+                    document.addEventListener('DOMContentLoaded', function() {
+                        console.log("JSON-RPC timer buttons initialized");
+
+                        // Get task ID from URL
+                        const pathParts = window.location.pathname.split('/');
+                        const taskId = pathParts[pathParts.length - 1];
+                        const startBtn = document.getElementById('startTimer');
+
+                        if (startBtn && taskId && !isNaN(parseInt(taskId))) {
+                            startBtn.dataset.task = taskId;
+                            console.log("Auto-set task ID to:", taskId);
+                        }
+
+                        // Test endpoints on load (optional)
+                        // setTimeout(testJSONRPC, 1000);
+                    });
+                    ]]>
+                </script>
+            </div>
+        </xpath>
+    </template>
+</odoo>

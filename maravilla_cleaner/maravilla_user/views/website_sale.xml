@@ -1,0 +1,58 @@
+<odoo>
+    <template id="add_fields_in_checkout" inherit_id="website_sale.address">
+
+        <xpath expr="//form" position="inside">
+
+            <!-- Room Number -->
+            <div class="form-group mt-2">
+                <label>Room Number</label>
+                <input type="text"
+                       name="room_number"
+                       class="form-control"/>
+            </div>
+
+            <!-- Room Type -->
+            <div class="form-group mt-2">
+                <label>Room Type</label>
+                <input type="text"
+                       name="room_type"
+                       class="form-control"/>
+            </div>
+
+            <!-- Check In -->
+            <div class="form-group mt-2">
+                <label>Check In</label>
+                <input type="date"
+                       name="check_in"
+                       class="form-control"/>
+            </div>
+
+            <!-- Check Out -->
+            <div class="form-group mt-2">
+                <label>Check Out</label>
+                <input type="date"
+                       name="check_out"
+                       class="form-control"/>
+            </div>
+
+            <!-- Number of Persons -->
+            <div class="form-group mt-2">
+                <label>Number of Persons</label>
+                <input type="number"
+                       name="num_person"
+                       class="form-control"
+                       min="1"/>
+            </div>
+
+            <!-- Remarks -->
+            <div class="form-group mt-2">
+                <label>Remarks</label>
+                <textarea name="remarks"
+                          class="form-control"
+                          rows="3"></textarea>
+            </div>
+
+        </xpath>
+
+    </template>
+</odoo>

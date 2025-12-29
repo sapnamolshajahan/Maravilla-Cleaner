@@ -1,0 +1,231 @@
+<odoo>
+    <template id="dashboard_page" name="Website Dashboard">
+        <t t-call="website.layout">
+
+            <div class="container my-5">
+                <h4 class="mb-4 dash-title">
+                    <span id="dashboard-title">Task Summary</span>
+                    <small id="date-range-label" class="text-muted ms-2" style="display: none;"></small>
+                </h4>
+
+                <div class="row">
+                    <!-- LEFT SIDE — TASK CARDS CONTAINER (2 parts) -->
+                    <div class="col-12 col-lg-8">
+                        <div class="card-container shadow-sm p-4 h-100">
+                            <div class="row g-4">
+                                <div class="col-12 col-md-4">
+                                    <div class="dash-card dash-upcoming h-100">
+                                        <h3 id="upcoming-count" class="fw-bold mb-2"><t t-esc="upcoming"/></h3>
+                                        <p class="mb-0">Upcoming</p>
+                                        <p class="mb-3">Task</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="dash-card dash-progress h-100">
+                                        <h3 id="in-progress-count" class="fw-bold mb-2"><t t-esc="in_progress"/></h3>
+                                        <p class="mb-0">In Progress</p>
+                                        <p class="mb-3">Task</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="dash-card dash-completed h-100">
+                                        <h3 id="completed-count" class="fw-bold mb-2"><t t-esc="completed"/></h3>
+                                        <p class="mb-0">Completed</p>
+                                        <p class="mb-3">Task</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE — CALENDAR CONTAINER (1 part) -->
+                    <div class="col-12 col-lg-4">
+                        <div class="calendar-box shadow-sm p-4 h-100">
+                            <div id="task_calendar" class="calendar-placeholder">
+                                <!-- Calendar will be rendered here by JavaScript -->
+                            </div>
+
+                        </div>
+                        <div class="text-center mt-3">
+                                <button id="reset-date" class="btn btn-sm btn-outline-secondary" style="display: none;">
+                                    Reset to All Tasks
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load FullCalendar JS -->
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+            <script type="text/javascript"><![CDATA[
+            // Store original task counts - SIMPLER APPROACH
+            // Let the browser render the values first, then capture them
+            document.addEventListener('DOMContentLoaded', function() {
+                // Capture original values from the DOM after they're rendered
+                window.originalUpcoming = document.getElementById('upcoming-count').textContent;
+                window.originalInProgress = document.getElementById('in-progress-count').textContent;
+                window.originalCompleted = document.getElementById('completed-count').textContent;
+
+                console.log("Original values captured:", window.originalUpcoming, window.originalInProgress, window.originalCompleted);
+
+                // Setup reset button event listener
+                var resetBtn = document.getElementById('reset-date');
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', resetDashboard);
+                }
+
+                // Initialize calendar
+                setTimeout(initCalendar, 100);
+            });
+
+            // Wait for everything to load
+            function initCalendar() {
+                console.log("Calendar initialization started");
+
+                if (typeof FullCalendar === 'undefined') {
+                    console.error("FullCalendar not loaded. Retrying in 500ms...");
+                    setTimeout(initCalendar, 500);
+                    return;
+                }
+
+                var calendarEl = document.getElementById('task_calendar');
+                if (!calendarEl) {
+                    console.error("Calendar element not found");
+                    return;
+                }
+
+                try {
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        // Basic view
+                        initialView: 'dayGridMonth',
+
+                        // Show ONLY month/year title and navigation buttons
+                        headerToolbar: {
+                            left: 'prev',
+                            center: 'title',
+                            right: 'next'
+                        },
+
+                        // Optional: Customize button text
+                        buttonText: {
+                            prev: '<',
+                            next: '>',
+                            today: 'Today'
+                        },
+
+                        // Remove navigation links
+                        navLinks: false,
+
+                        // Disable date selection
+                        selectable: false,
+
+                        // Auto height
+                        height: 'auto',
+
+                        // Don't limit events
+                        dayMaxEvents: false,
+
+                        // ENABLE date clicking for task logic
+                        dateClick: function(info) {
+                            console.log('Date clicked: ' + info.dateStr);
+                            fetchTasksByDate(info.dateStr);
+                        },
+
+                        // Remove other interactive features
+                        editable: false,
+                        selectMirror: false,
+                        eventClick: null
+                    });
+
+                    calendar.render();
+                    console.log("Calendar Rendered Successfully");
+
+                } catch (error) {
+                    console.error("Calendar Error:", error);
+                    calendarEl.innerHTML = '<div class="alert alert-danger">Error loading calendar</div>';
+                }
+            }
+
+            // Function to fetch tasks by date range
+            function fetchTasksByDate(endDate) {
+                console.log("Fetching tasks for date range ending on:", endDate);
+
+                // Show loading state
+                document.getElementById('upcoming-count').textContent = '0';
+                document.getElementById('in-progress-count').textContent = '0';
+                document.getElementById('completed-count').textContent = '0';
+
+                // Make AJAX call to Odoo
+                // Odoo provides a built-in jQuery instance
+                $.ajax({
+                    url: '/website/dashboard/tasks_by_date',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        jsonrpc: "2.0",
+                        method: "call",
+                        params: {
+                            end_date: endDate
+                        },
+                        id: new Date().getTime()
+                    }),
+                    success: function(response) {
+                        console.log("Task data received:", response);
+
+                        if (response.result) {
+                            const res = response.result;
+
+                            if (res.upcoming !== undefined)
+                                document.getElementById('upcoming-count').textContent = res.upcoming;
+
+                            if (res.in_progress !== undefined)
+                                document.getElementById('in-progress-count').textContent = res.in_progress;
+
+                            if (res.completed !== undefined)
+                                document.getElementById('completed-count').textContent = res.completed;
+
+                            if (res.date_range) {
+                                document.getElementById('date-range-label').textContent = res.date_range;
+                                document.getElementById('date-range-label').style.display = 'inline';
+                            }
+
+                            document.getElementById('reset-date').style.display = 'inline-block';
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error fetching tasks:', error);
+                        resetDashboard();
+                    }
+                });
+
+            }
+
+            // Function to reset to all tasks
+            function resetDashboard() {
+                // Reset to original values
+                document.getElementById('upcoming-count').textContent = window.originalUpcoming || "0";
+                document.getElementById('in-progress-count').textContent = window.originalInProgress || "0";
+                document.getElementById('completed-count').textContent = window.originalCompleted || "0";
+
+                // Hide date range label
+                document.getElementById('date-range-label').style.display = 'none';
+
+                // Hide reset button
+                document.getElementById('reset-date').style.display = 'none';
+            }
+        ]]></script>
+        </t>
+    </template>
+
+    <!-- Add Dashboard Menu in Website -->
+    <record id="website_dashboard_menu" model="website.menu">
+        <field name="name">Dashboard</field>
+        <field name="url">/website/dashboard</field>
+        <field name="website_id" ref="website.default_website"/>
+        <field name="parent_id" eval="4"/>
+    </record>
+</odoo>

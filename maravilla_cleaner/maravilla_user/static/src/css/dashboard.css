@@ -1,0 +1,177 @@
+/* Style for the card container */
+.card-container {
+    background: #fff;
+    border-radius: 12px;
+    min-height: 250px; /* Adjust as needed */
+}
+
+/* Make dash cards consistent height */
+.dash-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    height: 100%; /* Take full height of column */
+}
+
+
+.dash-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dash-upcoming {
+    background: #F9C7B7; /* Blue */
+}
+
+.dash-progress {
+    background:#A7DBF9; /* Yellow */
+
+}
+
+.dash-completed {
+    background: #F9E27A; /* Green */
+}
+
+.dash-title {
+    font-size: 45px;
+    font-weight: 800;
+}
+
+
+.calendar-box {
+    background: #ffffff;
+    border-radius: 14px;
+    min-height: 380px;
+}
+
+.calendar-placeholder {
+    height: 300px;
+    border: None;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-size: 16px;
+}
+
+
+
+/* calendar.css */
+.calendar-box {
+    background: white;
+    border-radius: 8px;
+}
+
+.calendar-placeholder {
+    min-height: 400px;
+}
+
+/* FullCalendar custom styles */
+.fc {
+    font-size: 0.9em;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.fc .fc-button {
+    font-size: 0.85em;
+    padding: 0.3em 0.6em;
+}
+
+.fc .fc-daygrid-day-number {
+    font-size: 0.85em;
+}
+
+.fc .fc-event {
+    font-size: 0.8em;
+    padding: 2px 4px;
+}
+
+
+/* Assuming your calendar container has a class like .calendar-header */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* This creates more space */
+  padding: 0 20px; /* Add horizontal padding */
+}
+
+/* Style for navigation buttons */
+.prev-button, .next-button {
+  background: none; /* Remove background */
+  border: none; /* Remove border if any */
+  color: #333; /* Set text color */
+  font-size: 20px; /* Adjust size as needed */
+  cursor: pointer;
+  padding: 5px 15px; /* Add horizontal padding for more space */
+  margin: 0 10px; /* Add more margin for distance */
+}
+
+/* Style for month/year display */
+.month-year {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 20px; /* Add horizontal margin */
+}
+
+/* Alternatively, if you want specific spacing */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.prev-button {
+  position: absolute;
+  left: 30px; /* Move farther left */
+}
+
+.next-button {
+  position: absolute;
+  right: 30px; /* Move farther right */
+}
+
+.month-year {
+  text-align: center;
+}
+
+
+/* Add this to your stylesheet or in a <style> tag */
+.fc .fc-toolbar {
+    justify-content: space-between !important;
+    padding: 0 20px !important; /* Add horizontal spacing */
+}
+
+.fc .fc-toolbar-title {
+    margin: 0 30px !important; /* Add more space around the title */
+    font-size: 1.5em !important; /* Optional: adjust font size */
+}
+
+.fc .fc-button {
+    background: none !important; /* Remove background */
+    border: none !important; /* Remove border */
+    color: #000 !important; /* Set text color */
+    font-size: 1.5em !important; /* Make buttons larger */
+    padding: 5px 15px !important; /* Add horizontal padding */
+    box-shadow: none !important; /* Remove shadow */
+}
+
+.fc .fc-button:hover {
+    background: rgba(0, 0, 0, 0.05) !important; /* Light hover effect */
+}
+
+/* Optional: Further customize just the prev/next buttons */
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    min-width: 40px !important; /* Ensure minimum width */
+    margin: 0 10px !important; /* Add margin */
+}

@@ -1,0 +1,13 @@
+<odoo>
+    <record id="portal_project_read_rule" model="ir.rule">
+        <field name="name">Portal Project Read</field>
+        <field name="model_id" ref="project.model_project_project"/>
+        <field name="global" eval="False"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+</odoo>
