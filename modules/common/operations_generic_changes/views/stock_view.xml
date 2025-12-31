@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add Description into the Stock moves form and tree view -->
+    <record id="view_move_tree" model="ir.ui.view">
+        <field name="name">stock.move.tree</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="attributes">
+                <attribute name="default_order">id desc</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="replace">
+                <field name='date'/>
+            </xpath>
+            <xpath expr="//field[@name='product_uom_qty']" position="after">
+                <field name='price_unit'/>
+                <field name='has_tracking'/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.actions.act_window.view" id="stock.action_stock_move_tree_all">
+            <field name="sequence" eval="1"/>
+        </record>
+    <record model="ir.actions.act_window.view" id="stock.action_stock_move_pivot_all">
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record id="view_move_picking_tree" model="ir.ui.view">
+        <field name="name">stock.move.picking.tree</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="/list/field[@name='location_dest_id']" position="before">
+                <field name="picking_type_code" invisible="1"/>
+                <field name="origin"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- In case views_global_changes is installed -->
+    <record id="operations_views_stock_move_line_operation_tree" model="ir.ui.view">
+        <field name="name">operations.views.stock.move.line.operations.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="attributes">
+                <attribute name="options">{'allow_create': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="warehouse_form" model="ir.ui.view">
+        <field name="name">Warehouse Form</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="company_partner" invisible="1"/>
+                <field name="exclude_in_avail_stock"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_move_line_company_rule" model="ir.rule">
+        <field name="name">Stock Move Line Company Rule</field>
+        <field name="model_id" ref="stock.model_stock_move_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+<!--    <menuitem id="menu_valuation_change" name="Valuation" parent="stock.menu_warehouse_report" sequence="250" action="stock_account.stock_valuation_layer_action"/>-->
+<!--    <menuitem id="stock_account.menu_valuation" name="Valuation" parent="stock.menu_warehouse_report" sequence="250" action="stock_account.stock_valuation_layer_action" active="False"/>-->
+
+    <menuitem id="stock.stock_move_menu"
+              action="stock.stock_move_action"
+              parent="stock.menu_warehouse_report"/>
+
+</odoo>

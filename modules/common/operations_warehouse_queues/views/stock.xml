@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="warehouse_form" model="ir.ui.view">
+        <field name="name">Warehouse Printers Configuration</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group[1]/group[1]/field[@name='code']" position="after">
+                <field name="packing_printer"/>
+                <field name="picking_printer"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

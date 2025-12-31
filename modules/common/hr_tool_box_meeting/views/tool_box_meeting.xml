@@ -1,0 +1,81 @@
+<odoo>
+    <record id="view_tool_box_meeting_form" model="ir.ui.view">
+        <field name="name">tool.box.meeting.form</field>
+        <field name="model">tool.box.meeting</field>
+        <field name="arch" type="xml">
+            <form string="Tool Box Meeting" create="true" edit="true">
+                <header>
+                    <button name="action_done" type="object" string="Done" invisible="state in 'done'"
+                            class="btn-primary"/>
+                    <button name="action_draft" type="object" string="Reset to Draft"
+                            invisible="state in 'draft'" class="btn-secondary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="company_id" readonly="state in 'done'"/>
+                            <field name="date" readonly="state in 'done'"/>
+                            <field name="time" readonly="state in 'done'"/>
+                        </group>
+                        <group>
+                            <field name="site_location_id" readonly="state in 'done'"/>
+                            <field name="employee_lead_id" readonly="state in 'done'"/>
+                            <field name="attending_employee_ids" widget="many2many_tags" readonly="state in 'done'"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <separator string="Today's Topics"/>
+                            <field name="todays_topics" readonly="state in 'done'"/>
+                            <field name="hazards_risk" readonly="state in 'done'"/>
+                            <field name="staff_feedback" readonly="state in 'done'"/>
+                            <field name="wrap_up_points" readonly="state in 'done'"/>
+                        </group>
+                        <group>
+                            <separator string="Closing"/>
+                            <field name="time_of_closing" readonly="state in 'done'"/>
+                            <field name="manager_id" readonly="state in 'done'"/>
+                            <field name="manager_sign" widget="signature"
+                                   readonly="state in 'done'"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tool_box_meeting_list" model="ir.ui.view">
+        <field name="name">tool.box.meeting.list</field>
+        <field name="model">tool.box.meeting</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="site_location_id"/>
+                <field name="time"/>
+                <field name="employee_lead_id"/>
+                <field name="attending_employee_ids" widget="many2many_tags"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_tool_box_meeting" model="ir.actions.act_window">
+        <field name="name">Tool Box Meetings</field>
+        <field name="res_model">tool.box.meeting</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_tool_box_meeting_root"
+              name="Tool Box Meetings"
+              parent="hr_hazard.menu_hr_health_and_safety"
+              sequence="97"/>
+
+    <menuitem id="menu_tool_box_meeting"
+              name="Tool Box Meetings"
+              parent="menu_tool_box_meeting_root"
+              action="action_tool_box_meeting"/>
+
+</odoo>

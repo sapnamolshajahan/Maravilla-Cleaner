@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_partner_form_po_price_option" model="ir.ui.view">
+        <field name="name">Partner Form with PO Price Option</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="purchase" position="inside">
+                <field name="purchase_report_pricing"/>
+            </group>
+        </field>
+    </record>
+</odoo>

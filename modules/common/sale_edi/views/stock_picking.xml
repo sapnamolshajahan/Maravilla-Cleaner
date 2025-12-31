@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_picking_form_inherit_edi" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.edi.sent</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <field name="origin" position="after">
+                <field name="edi_sent" readonly="1"/>
+            </field>
+
+            <xpath expr="//page[@name='extra']/group" position="inside">
+                <group string="Cartons and Pallets" name="group_cartons_pallets" colspan="2">
+                    <field name="carton_qty"/>
+                    <field name="pallet_qty"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

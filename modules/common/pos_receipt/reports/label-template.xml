@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Label Template reports require:
+            - report_file=label.printer.template
+            - report_type=qweb-text
+            - report_name=${latest active label.printer.template:name to use}
+      -->
+    <record id="pos_receipt_label" model="ir.actions.report">
+        <field name="name">POS Receipt (Label Template)</field>
+        <field name="report_name">pos_receipt.pos_receipt_label</field>
+        <field name="report_file">label.printer.template</field>
+        <field name="report_type">qweb-text</field>
+        <field name="model">pos.order</field>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+    </record>
+
+    <!--
+        A Sample Label using ESC/POS
+      -->
+    <record id="pos_receipt_label_template" model="label.printer.template">
+        <field name="name">pos_receipt.pos_receipt_label</field>
+        <field name="description"><![CDATA[Sample POS Receipt, used by pos_receipt module.
+The template name "pos_receipt.pos_receipt_label" is significant, so do not change it unless you know what you're doing.
+]]></field>
+        <field name="flavour">escpos</field>
+        <field name="model">pos.order</field>
+        <field name="content"><![CDATA[{<ESC>}@
+{# Header #}
+{{obj.company_id.name}}
+{% if obj.company_id.phone %}
+{{obj.company_id.phone}}
+{% endif %}
+{% if obj.company_id.vat %}
+{{obj.company_id.country_id.vat_label}}: {{obj.company_id.vat}}
+{% endif %}
+{% if obj.company_id.website %}
+{{obj.company_id.website}}
+{% endif %}
+{% if obj.company_id.email %}
+{{obj.company_id.email}}
+{% endif %}
+
+{# POS Order Details #}
+{{obj.name}}
+Date: {{obj.date}}
+Cashier: {{obj.user_id.partner_id.name or 'Administrator'}}
+{# POS Lines #}
+{% for l in obj.lines %}
+{{l.full_product_name}}
+{{l.qty}} @ ${{l.price_unit}}
+${{l.price_subtotal_incl}}
+{% endfor %}
+
+{# POS Totals #}
+{% set untaxed_amount = obj.amount_total - obj.amount_tax %}
+Untaxed Amount: {{untaxed_amount}}
+{{obj.company_id.country_id.vat_label}} : {{obj.amount_tax}}
+Total: {{obj.amount_total}}
+Paid: {{obj.amount_paid}}
+{{obj.config_id.name}}
+Thank You. Please Visit Again!
+{# Drawer and cut #}
+{<ESC>}p{{"\x00\x02\x14"}}{<GS>}V{{"\x00"}}
+]]></field>
+    </record>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    	Add Multi-company support
+      -->
+	<record id="account_commitment_rule" model="ir.rule">
+		<field name="name">Account Commitments Multi Company</field>
+		<field name="model_id" ref="model_account_commitment_report"/>
+		<field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+	</record>
+
+	<record id="account_commitment_detailed_rule" model="ir.rule">
+		<field name="name">Account Commitments Detailed Multi Company</field>
+		<field name="model_id" ref="model_account_commitment_report_detailed"/>
+		<field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+	</record>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product.action_product_template_print_labels" model="ir.actions.server">
+            <field name="binding_model_id" eval="False"/>
+        </record>
+
+         <record id="product.action_product_print_labels" model="ir.actions.server">
+            <field name="binding_model_id" eval="False"/>
+        </record>
+
+        <record id="product_product_tree_view_label" model="ir.ui.view">
+            <field name="name">product_product_tree_view_label</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//list" position="inside">
+                    <header>
+                        <button string="Print Labels" type="object" name="action_print_labels"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_tree_view_label" model="ir.ui.view">
+            <field name="name">product_template_tree_view_label</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//list" position="inside">
+                    <header>
+                        <button string="Print Labels" type="object" name="action_print_labels"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

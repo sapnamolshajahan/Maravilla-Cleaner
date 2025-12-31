@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_outwork_form" model="ir.ui.view">
+            <field name="name">res.config.settings.outwork</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="35"/>
+            <field name="inherit_id" ref="mrp.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//setting[@id='mrp_byproduct']" position="after">
+                    <div class="col-lg-6 col-12 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="aggregate_po"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="aggregate_po"/>
+                            <div class="text-muted">
+                                Add new outwork to existing draft PO for the supplier.
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

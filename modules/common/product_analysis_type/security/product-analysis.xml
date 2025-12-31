@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="product_analysis_type" model="ir.model.access">
+		<field name="name">product.analysis.type</field>
+		<field name="model_id" ref="model_product_analysis_type"/>
+		<field name="group_id" ref="base.group_user"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="False" />
+	</record>
+</odoo>

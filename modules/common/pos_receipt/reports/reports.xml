@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        ESC/POS reports require:
+            - report_file=escpos
+            - report_type=qweb-text
+            - report_name=${xml reference to a template}
+      -->
+    <record id="pos_receipt_report" model="ir.actions.report">
+        <field name="name">POS Receipt (ESC/POS)</field>
+        <field name="report_name">pos_receipt.pos_receipt_escpos</field>
+        <field name="report_file">escpos</field>
+        <field name="report_type">qweb-text</field>
+        <field name="model">pos.order</field>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+    </record>
+
+    <!--
+        ESC/POS reports are defined using a template.
+        The top-level iterable object is "docs" which maps to the ${model}.
+      -->
+    <template id="pos_receipt_escpos">
+        <t t-foreach="docs" t-as="o">
+            <escpos>
+                <header align="center">
+                    <div t-if="o.company_id.pos_logo">
+                        <img t-att-src="image_data_uri(o.company_id.pos_logo)"/>
+                        <br/>
+                    </div>
+                    <div align="center" bold="on" font="a">
+                        <t t-esc="o.company_id.name"/>
+                    </div>
+                    <div t-if="o.company_id.phone" font="b">
+                        Tel: <t t-esc="o.company_id.phone"/>
+                    </div>
+                    <div t-if="o.company_id.website" font="b">
+                        <t t-esc="o.company_id.website"/>
+                    </div>
+                </header>
+                <!-- POS Order details -->
+                <br/>
+                <p font="a" align="center">
+                    <t t-esc="o.name"/>
+                </p>
+                <line line-ratio="0.4">
+                    <left>Date:</left>
+                    <right>
+                        <t t-esc="o.date_order" t-options="{'widget': 'datetime', 'format': 'd MMM Y HH:mm'}"/>
+                    </right>
+                </line>
+                <line line-ratio="0.4">
+                    <left>Cashier:</left>
+                    <right><t t-esc="o.user_id.partner_id.name or 'Administrator'"/></right>
+                </line>
+
+                <!-- POS Lines -->
+                <br/>
+                <t t-foreach="o.lines" t-as="l">
+                    <p>
+                        <t t-esc="l.full_product_name"/>
+                    </p>
+                    <line line-ratio="0.7" indent="2">
+                        <left>
+                            <value value-autoint="on"><t t-esc="l.qty"/></value>
+                        </left>
+                        <left><pre> @ </pre></left>
+                        <left>
+                            <value value-decimals="2" value-symbol="$" value-symbol-position="before">
+                                <t t-esc="l.price_unit"/>
+                            </value>
+                        </left>
+                        <right>
+                            <value value-decimals="2" value-symbol="$" value-symbol-position="before">
+                                <t t-esc="l.price_subtotal_incl"/>
+                            </value>
+                        </right>
+                    </line>
+                </t>
+                <!-- Totals -->
+                <hr/>
+                <line line-ration="0.6" bold="on" font="a" size="double-height">
+                    <left>Total:</left>
+                    <right font="a">
+                        <value value-decimals="2" value-symbol="$" value-symbol-position="before">
+                            <t t-esc="o.amount_total"/>
+                        </value>
+                    </right>
+                </line>
+                <br/>
+                <line line-ration="0.6" bold="on" font="a">
+                    <left>Paid:</left>
+                    <right font="a">
+                        <value value-decimals="2" value-symbol="$" value-symbol-position="before">
+                            <t t-esc="o.amount_paid"/>
+                        </value>
+                    </right>
+                </line>
+
+                <br/>
+                <footer align="center">
+                    <p><t t-esc="o.config_id.name"/></p>
+                    <p>Thank You. Please Visit Again!</p>
+                </footer>
+            </escpos>
+        </t>
+    </template>
+</odoo>

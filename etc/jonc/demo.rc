@@ -1,0 +1,48 @@
+[options]
+
+addons_path = enterprise,odoo/addons,modules/common,modules/common-enterprise,modules/community
+
+admin_passwd = 48f27119-020d-4016-a931-591c664bafce
+
+db_user = demo
+data_dir = /tmp/data-dir/demo
+
+# Logging
+log_level = debug
+#log_handler = odoo.sql_db:DEBUG
+
+# modules offering multi-db support
+server_wide_modules = base,web
+
+#
+# Default email sender
+#
+email_from = jonathan.chen@demo.nz
+
+# Disable timeouts
+limit_time_real = 0
+
+# Increased Limits: 8 * 1024 * 1024 * 1024 (8Gb)
+limit_memory_soft = 8589934592
+limit_memory_hard = 8589934592
+
+[queue_job]
+#
+# Base capacity of 5, with 2 sub-channels, "light", "heavy"
+# "light" allows 4 active jobs, "heavy" allows 1 active job; for total of possibly 5 active jobs at any time
+#
+# Other options:
+# S:1:sequential - channel "S", capacity=1, sequential, ie: failed job will block pending jobs on channel
+# T:3:throttle=2 - channel "T", capacity=3, with 2 second cooldown time per job
+channels = root:5, root.light:4, root.heavy:1
+
+[remote_print_mqtt]
+
+broker = mqtt://broker.emqx.io
+topic_base = remote_print_mqtt/daemonblade
+remote_public_keys = etc/jonc/remote_print_mqtt/print-public.pem
+
+[site_ribbon]
+
+name = jonc
+background = rgba(76,205,67,.6)

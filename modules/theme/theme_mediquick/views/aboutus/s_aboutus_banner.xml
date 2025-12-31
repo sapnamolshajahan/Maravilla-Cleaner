@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_aboutus_banner" name="AboutUs Banner"> 
+        <section class="s_striped_center_top s_aboutus_banner o_colored_level o_cc o_cc5 pb0" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Origins/04_001&quot;,&quot;colors&quot;:{&quot;c3&quot;:&quot;#FFF5F9&quot;},&quot;flip&quot;:[&quot;y&quot;],&quot;showOnMobile&quot;:true,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;}" data-snippet="s_striped_center_top" data-name="Striped Center Top" style="background-color: rgb(48, 38, 109); position: relative;">
+            <div class="o_we_shape o_web_editor_Origins_04_001 o_shape_show_mobile" style="background-image: url(&quot;/web_editor/shape/web_editor%2FOrigins%2F04_001.svg?c3=%23FFF5F9&amp;flip=y&quot;); background-position: 50% 100%;"/>
+    
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 pt56 o_colored_level pb24 col-lg-9">
+                        <h2 style="text-align: center;"><font class="text-o-color-3"><strong>Transforming Healthcare Vision into Reality</strong></font></h2>
+                        <p class="lead" style="text-align: center; margin-bottom: 0px;">We provide cutting-edge medical solutions that not only address your healthcare needs but also go beyond expectations—delivering compassionate care, improved outcomes, and long-term well-being.</p><p><br/></p>
+                        <p style="text-align: center;">
+                            <a class="btn btn-secondary btn-lg" href="/contactus">Get started</a>
+                        </p>
+                    </div>
+                    <div class="col-lg-12 o_colored_level pb0" style="text-align: center;">
+                        <figure class="figure">
+                            <img src="/theme_mediquick/static/src/img/image1.png" alt="" class="figure-img img-fluid rounded img o_we_custom_image" data-mimetype="image/webp" data-original-id="1554" data-original-src="/theme_mediquick/static/src/img/image1.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

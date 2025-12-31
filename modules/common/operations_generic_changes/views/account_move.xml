@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record model="ir.ui.view" id="invoice_form_ops">
+		<field name="name">Generic Invoice Quicklinks</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_move_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//div[@name='button_box']" position="inside">
+				<button type="object"
+					name="action_view_stock_picking"
+					class="oe_stat_button,oe_highlight"
+					icon="fa-cubes"
+					invisible = "picking_count == 0"
+					groups="base.group_user">
+					<field name="picking_count" widget="statinfo" string="Pickings"/>
+				</button>
+			</xpath>
+		</field>
+	</record>
+</odoo>

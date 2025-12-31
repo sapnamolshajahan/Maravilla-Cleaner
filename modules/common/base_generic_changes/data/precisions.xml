@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!--
+        Precision Definitions
+      -->
+    <record forcecreate="True" id="sale_price_precision" model="decimal.precision">
+        <field name="name">Sale Price Precision</field>
+        <field name="digits">2</field>
+    </record>
+    <record forcecreate="True" id="decimal_purchase_price" model="decimal.precision">
+        <field name="name">Purchase Price</field>
+        <field name="digits">3</field>
+    </record>
+    <record forcecreate="True" id="decimal_accounting" model="decimal.precision">
+        <field name="name">Accounting</field>
+        <field name="digits">2</field>
+    </record>
+</odoo>
+
+

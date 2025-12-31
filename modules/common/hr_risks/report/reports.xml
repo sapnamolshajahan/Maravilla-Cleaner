@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hazard_risk_register_report" model="ir.actions.report">
+        <field name="name">Risk register Report</field>
+        <field name="model">hr.risk</field>
+        <field name="report_name">hr_risks.hazard_risk_register_report</field>
+        <field name="viaduct_helper">
+            odoo.addons.hr_risks.report.hazard_risk_register_report_helper.HazardRiskRegisterReportHelper
+        </field>
+        <field name="report_file">hr_risks/report/hazard-risk-register-report.jrxml</field>
+        <field name="binding_model_id" ref="model_hr_risk"/>
+        <field name="print_report_name">'Risks Report'</field>
+    </record>
+</odoo>

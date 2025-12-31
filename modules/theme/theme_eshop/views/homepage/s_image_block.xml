@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_image_block" name="Image Block">
+        <section class="s_masonry_block s_image_block pt48 pb48" data-vcss="001" data-vxml="001" data-snippet="s_masonry_block" data-name="Masonry">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="8" style="gap: 16px;">
+                    <div class="o_grid_item g-height-8 g-col-lg-6 col-lg-6 rounded-3 s_parallax_no_overflow_hidden oe_img_bg o_bg_img_center o_bg_img_origin_border_box rounded justify-content-start o_colored_level"  data-name="Block" 
+                        style="z-index: 1; grid-area: 1 / 1 / 9 / 7; --grid-item-padding-y: 30px; --grid-item-padding-x: 30px; background-image: url(/theme_eshop/static/src/img/Frame1.png); --box-border-bottom-left-radius: 0px; --box-border-bottom-right-radius: 0px; --box-border-top-right-radius: 0px; --box-border-top-left-radius: 0px;" 
+                        data-attachment-id="1439" data-format-mimetype="image/webp" data-scroll-background-ratio="0" data-original-id="1439" data-original-src="/theme_eshop/static/src/img/Frame1.png" data-mimetype-before-conversion="image/png" data-resize-width="610" data-mimetype="image/webp" data-quality="100">
+                    </div>
+                    <div class="o_grid_item g-height-8 g-col-lg-6 col-lg-6 justify-content-start rounded-3 oe_img_bg o_bg_img_center o_colored_level o_bg_img_origin_border_box rounded" data-name="Block" 
+                        style="z-index: 2; grid-area: 1 / 7 / 9 / 13; --grid-item-padding-y: 30px; --grid-item-padding-x: 30px; --box-border-bottom-left-radius: 0px; --box-border-bottom-right-radius: 0px; --box-border-top-right-radius: 0px; --box-border-top-left-radius: 0px; background-image: url(/theme_eshop/static/src/img/Frame2.jpg);" 
+                        data-attachment-id="1438" data-format-mimetype="image/webp" data-original-id="1438" data-original-src="/theme_eshop/static/src/img/Frame2.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="610" data-mimetype="image/webp" data-quality="100"><br/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.model.access" id="access_plastic_bom_die_change">
+        <field name="name">access.plastic.bom.die.change</field>
+        <field name="model_id" ref="model_plastic_bom_die_change"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record model="ir.model.access" id="access_plastic_bom_workcentre">
+        <field name="name">access.plastic.bom.workcentre</field>
+        <field name="model_id" ref="model_plastic_bom_workcentre"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="access_plastic_bom_builder">
+        <field name="name">access.plastic.bom.builder</field>
+        <field name="model_id" ref="model_plastic_bom_builder"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+    <record model="ir.model.access" id="access_plastic_bom_labour_loading">
+        <field name="name">access.plastic.bom.labour.loading</field>
+        <field name="model_id" ref="model_plastic_bom_labour_loading"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,18 @@
+[options]
+
+addons_path = odoo/addons,enterprise,modules/common,modules/common-enterprise,modules/community
+
+log_level = error
+
+#
+# Odoo will open the http_port for tests, even with --no-http;
+# so each config needs to define unique ports per rc file
+# across *ALL* tested Odoo versions.
+#
+http_port = 9002
+gevent_port = 9003
+
+#
+# Default email sender
+#
+email_from = support@odooplus.nz

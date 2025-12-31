@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_product_colour" model="ir.actions.act_window">
+        <field name="name">Colours</field>
+        <field name="res_model">product.colour</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_product_group" model="ir.actions.act_window">
+        <field name="name">Groups</field>
+        <field name="res_model">product.group</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_product_size" model="ir.actions.act_window">
+        <field name="name">Sizes</field>
+        <field name="res_model">product.size</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <menuitem id="menu_product_details_custom"
+              name="Product Details"
+              parent="stock.menu_stock_config_settings"
+              sequence="100"/>
+
+    <menuitem id="menu_product_colour"
+              name="Colours"
+              parent="menu_product_details_custom"
+              action="action_product_colour"/>
+
+    <menuitem id="menu_product_group"
+              name="Groups"
+              parent="menu_product_details_custom"
+              action="action_product_group"/>
+
+    <menuitem id="menu_product_size"
+              name="Sizes"
+              parent="menu_product_details_custom"
+              action="action_product_size"/>
+
+
+
+
+    <!-- Colour -->
+    <record id="view_product_colour_list" model="ir.ui.view">
+        <field name="name">product.colour.list</field>
+        <field name="model">product.colour</field>
+        <field name="arch" type="xml">
+            <list string="Colours">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_colour_form" model="ir.ui.view">
+        <field name="name">product.colour.form</field>
+        <field name="model">product.colour</field>
+        <field name="arch" type="xml">
+            <form string="Colour">
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Group -->
+    <record id="view_product_group_list" model="ir.ui.view">
+        <field name="name">product.group.list</field>
+        <field name="model">product.group</field>
+        <field name="arch" type="xml">
+            <list string="Groups">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_group_form" model="ir.ui.view">
+        <field name="name">product.group.form</field>
+        <field name="model">product.group</field>
+        <field name="arch" type="xml">
+            <form string="Group">
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Size -->
+    <record id="view_product_size_list" model="ir.ui.view">
+        <field name="name">product.size.list</field>
+        <field name="model">product.size</field>
+        <field name="arch" type="xml">
+            <list string="Sizes">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_size_form" model="ir.ui.view">
+        <field name="name">product.size.form</field>
+        <field name="model">product.size</field>
+        <field name="arch" type="xml">
+            <form string="Size">
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_move_form_auto_reverse" model="ir.ui.view">
+        <field name="name">view.move.form.auto.reverse</field>
+        <field name="model">account.move</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account_generic_changes.general_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='header_right_group']/field[@name='journal_id']" position="after">
+                <field name="auto_reverse" readonly="state != 'draft'" invisible="move_type != 'entry'"/>
+                <field name="reversal_accounting_date" invisible="auto_reverse == False or move_type != 'entry'"/>
+                <field name="reverse_move_id" readonly="1"
+                       invisible="reverse_move_id == False or move_type != 'entry'"/>
+                <field name="reversal_of_move_id" readonly="1" invisible="reversal_of_move_id == False or move_type != 'entry'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_tree_auto_reverse" model="ir.ui.view">
+        <field name="name">view.move.tree.auto.reverse</field>
+        <field name="model">account.move</field>
+        <field name="type">list</field>
+        <field name="inherit_id" ref="account.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="reversal_of_move_id" optional="show"/>
+                <field name="reverse_move_id" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_total_signed']" position="attributes">
+                <attribute name="string">Amount</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

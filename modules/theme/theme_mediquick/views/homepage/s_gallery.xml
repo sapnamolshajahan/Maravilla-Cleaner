@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_gallery" name="Our Hospital">
+        <section class="s_gallery">
+            <section class="s_title o_colored_level pb0 pt32" data-vcss="001" data-snippet="s_title" data-name="Title" style="background-color: rgb(255, 245, 249);">
+                <div class="s_allow_columns container">
+                    <h3 style="text-align: center;"><strong><font class="text-o-color-1">Our Hospital&amp;nbsp;</font></strong><br/></h3>
+                </div>
+            </section>
+            <section class="s_image_gallery o_spc-small pt24 pb24 o_colored_level o_masonry" data-vcss="002" data-columns="3" style="overflow: hidden; position: relative; background-color: rgb(255, 245, 249);" data-snippet="s_images_wall" data-name="Images Wall">
+                <div class="container">
+                    <div class="row s_nb_column_fixed"> 
+                        <div class="o_masonry_col o_snippet_not_selectable col-lg-4">   
+                            <img src="/theme_mediquick/static/src/img/image1.png" alt="" class="img img-fluid d-block rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1554" data-original-src="/theme_mediquick/static/src/img/image1.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                            <img src="/theme_mediquick/static/src/img/image4.png" alt="" class="img img-fluid d-block rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1609" data-original-src="/theme_mediquick/static/src/img/image4.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                        </div>
+                        <div class="o_masonry_col o_snippet_not_selectable col-lg-4">
+                            <img src="/theme_mediquick/static/src/img/image2.png" alt="" class="img img-fluid d-block rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1575" data-original-src="/theme_mediquick/static/src/img/image2.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                            <img src="/theme_mediquick/static/src/img/image5.png" alt="" class="img img-fluid d-block rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1608" data-original-src="/theme_mediquick/static/src/img/image5.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                        </div>
+                        <div class="o_masonry_col o_snippet_not_selectable col-lg-4">
+                            <img src="/theme_mediquick/static/src/img/image3.png" alt="" class="img img-fluid d-block rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1610" data-original-src="/theme_mediquick/static/src/img/image3.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/> 
+                            <img src="/theme_mediquick/static/src/img/image6.png" alt="" class="img img-fluid d-block rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1577" data-original-src="/theme_mediquick/static/src/img/image6.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </template>
+</odoo>

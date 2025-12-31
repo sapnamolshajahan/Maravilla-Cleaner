@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="supplier_pricelist_import_wizard" model="ir.ui.view">
+        <field name="name">Supplier Pricelist CSV Import</field>
+        <field name="model">supplier.pricelist.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="alert alert-info" role="alert">
+                    <h5>Xlsx Format:</h5>
+                    <h5>Product Code | Unit Price | Min QTY | Vendor Code | Lead Time(days) | Preferred
+                        Supplier(Y/N)
+                    </h5>
+                    <span>Vendor Code, Lead Time, Preferred Supplier is optional.</span>
+                    <br/>
+                </div>
+                <group>
+                    <field name="supplier"
+                           domain="[
+                            ('supplier', '=', True),
+                            ('is_company', '=', True)
+                        ] "/>
+                    <field name="currency"/>
+                    <field name="start"/>
+                    <field name="update_normal_buy_price" invisible="1"/>
+                    <field name="file"/>
+                    <field name="company_parent" invisible="1"/>
+                    <field name="company" invisible="import_for_all == True"/>
+                    <field name="import_for_all"  invisible="company_parent == False"/>
+                    <field name="notes"/>
+                </group>
+                <footer>
+                    <button special="cancel" string="Cancel" class="btn-default"/>
+                    <button name="button_import" type="object" string="Import" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="supplier_pricelist_action" model="ir.actions.act_window">
+        <field name="name">Import Price List</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">supplier.pricelist.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="supplier_pricelist_import_menu"
+              action="supplier_pricelist_action"
+              parent="purchase.menu_procurement_management"
+              groups="group_supplier_pricelist_import"
+              sequence="90"/>
+</odoo>

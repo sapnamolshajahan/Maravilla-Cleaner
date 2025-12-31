@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="edi_confirmation_view" model="ir.ui.view">
+        <field name="name">EDI Confirmation Email Configuration</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='companies']" position="after">
+                <h2>EDI Monitoring Settings</h2>
+                    <div class="row mt16 o_settings_container" id="logos_general_settings">
+                        <div class="col-12 col-lg-6 o_setting_box" id="logos_settings">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane" name="logos_right_pane">
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="unconfirmed_edi_notify_email" string="Email to notify for unconfirmed EDI"
+                                               class="col-3 col-lg-3"/>
+                                        <field name="unconfirmed_edi_notify_email" class="float-start oe_avatar bg-view"/>
+                                    </div>
+                                    <div class="row mt16">
+                                        <label for="unconfirmed_edi_period" string="Period (Hours) before notification is sent"
+                                               class="col-3 col-lg-3"/>
+                                        <field name="unconfirmed_edi_period" class="float-start oe_avatar bg-view"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

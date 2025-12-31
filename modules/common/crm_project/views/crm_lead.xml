@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_project_form" model="ir.ui.view">
+        <field name="name">crm.project.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="e_stat_button"
+                        type="object" name="action_view_project" icon="fa-puzzle-piece"
+                        invisible="type == 'lead'"
+                        string="Project"/>
+                <button name="action_tasks" type="object"
+                    class="oe_stat_button" icon="fa-tasks"
+                    invisible="type == 'lead'">
+                    <div class="o_stat_info">
+                        <field name="task_count" class="o_stat_value"/>
+                        <span class="o_stat_text"  invisible="task_count &lt;2"> Tasks</span>
+                        <span class="o_stat_text"  invisible="task_count &gt;1"> Task</span>
+                    </div>
+                </button>
+                <button name="action_timesheets" type="object"
+                    class="oe_stat_button" icon="fa-clock-o"
+                    invisible="type == 'lead'">
+                    <div class="o_stat_info">
+                        <field name="line_count" class="o_stat_value"/>
+                        <span class="o_stat_text" invisible="line_count &lt;2"> Timesheets</span>
+                        <span class="o_stat_text" invisible="line_count &gt;1"> Timesheet</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <field name="project" invisible="1"/>
+                <button name="create_project" type="object" string="New Project" invisible="project"/>
+            </xpath>
+        </field>
+    </record>
+
+   </odoo>

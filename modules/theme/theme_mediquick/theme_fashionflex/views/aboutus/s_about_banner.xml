@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_about_banner" name="Aboutus - Banner">
+        <section class="s_banner o_colored_level pt0 pb112" data-snippet="s_banner" data-name="Banner" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Blobs/06&quot;,&quot;colors&quot;:{&quot;c1&quot;:&quot;#2D3142&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;}"><div class="o_we_shape o_web_editor_Blobs_06" style="background-image: url(&quot;/web_editor/shape/web_editor%2FBlobs%2F06.svg?c1=%232D3142&quot;);"/>
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="13">
+                    <div class="o_grid_item o_colored_level g-col-lg-5 g-height-8 col-lg-5" data-name="Box" style="z-index: 1; grid-area: 3 / 1 / 11 / 6;">
+                        <h1 class="display-3">Bringing You Style<br/>and Comfort</h1><p class="lead"><br/>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.<br/><br/></p>
+                        <p>
+                            <a class="btn btn-custom bg-o-color-5 flat btn-lg" href="/contactus" style="border-width: 1px; border-style: solid;">Start Now <span class="fa fa-angle-right ms-2"/></a>
+                        </p>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-height-11 g-col-lg-5 col-lg-5" style="z-index: 2; grid-area: 3 / 7 / 14 / 12;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/16931.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1307" data-original-src="/web/image/1307-84196c12/16931.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

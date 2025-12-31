@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
+<!-- 2020-03-02T11:18:43 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Incident Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0ca35c-13f9-4878-a0fb-13d1a7a75f7a">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<parameter name="viaduct-report-ids" class="java.util.List">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+  id "accident-id",
+  name,
+  work_zone,
+  location,
+  relationship,
+  injured_person,
+  birth_date,
+  sex,
+  residential_address,
+  occupation,
+  shift,
+  event_datetime "when",
+  hours_worked,
+  lost_time,
+  description,
+  environment_damage "damage",
+  investigated,
+  action_reqd "action",
+  hazard,
+  partner,
+  address,
+  manager,
+  date,
+  state
+from hr_accident_accident
+where $X{IN, id, viaduct-report-ids}
+order by id]]>
+	</queryString>
+	<field name="accident-id" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="work_zone" class="java.lang.String">
+		<fieldDescription><![CDATA[Work Zone]]></fieldDescription>
+	</field>
+	<field name="location" class="java.lang.String">
+		<fieldDescription><![CDATA[Location]]></fieldDescription>
+	</field>
+	<field name="relationship" class="java.lang.String">
+		<fieldDescription><![CDATA[Relationship to injured]]></fieldDescription>
+	</field>
+	<field name="injured_person" class="java.lang.String">
+		<fieldDescription><![CDATA[Injured Person]]></fieldDescription>
+	</field>
+	<field name="birth_date" class="java.sql.Date">
+		<fieldDescription><![CDATA[Date of Birth]]></fieldDescription>
+	</field>
+	<field name="sex" class="java.lang.String">
+		<fieldDescription><![CDATA[Sex]]></fieldDescription>
+	</field>
+	<field name="residential_address" class="java.lang.String">
+		<fieldDescription><![CDATA[Residential Address]]></fieldDescription>
+	</field>
+	<field name="occupation" class="java.lang.String">
+		<fieldDescription><![CDATA[Occupation]]></fieldDescription>
+	</field>
+	<field name="shift" class="java.lang.String">
+		<fieldDescription><![CDATA[Shift]]></fieldDescription>
+	</field>
+	<field name="when" class="java.sql.Timestamp"/>
+	<field name="hours_worked" class="java.lang.Double">
+		<fieldDescription><![CDATA[Hours worked since arrival at work]]></fieldDescription>
+	</field>
+	<field name="lost_time" class="java.lang.Double">
+		<fieldDescription><![CDATA[Lost Time (days off work)]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String"/>
+	<field name="damage" class="java.lang.String"/>
+	<field name="investigated" class="java.lang.String">
+		<fieldDescription><![CDATA[Investigation carried out]]></fieldDescription>
+	</field>
+	<field name="action" class="java.lang.String">
+		<fieldDescription><![CDATA[Synchronisation direction]]></fieldDescription>
+	</field>
+	<field name="hazard" class="java.lang.String">
+		<fieldDescription><![CDATA[Significant hazard involved]]></fieldDescription>
+	</field>
+	<field name="partner" class="java.lang.String">
+		<fieldDescription><![CDATA[How do you call a Customer]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[Address]]></fieldDescription>
+	</field>
+	<field name="manager" class="java.lang.String">
+		<fieldDescription><![CDATA[Manager]]></fieldDescription>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[Date End]]></fieldDescription>
+	</field>
+	<field name="state" class="java.lang.String"/>
+	<group name="accident" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{accident-id}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="555" height="20" uuid="e99bf8c8-0b61-4a85-8cb9-cd548ff65da6"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Incident Report " + $F{name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="350" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="12" uuid="a44d36ae-794b-48b0-912e-5195da830b67"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Created]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="0" width="120" height="12" uuid="58996b18-58f2-4637-a586-7610a7fc4d0a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Injured/Affected]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="12" width="120" height="12" uuid="4bd57d0a-71d0-4c03-9817-1f50e460a1ce"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Work Zone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="12" width="120" height="12" uuid="513f550b-c62f-4858-952f-ef44fbeb38ec"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Birth]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="24" width="120" height="12" uuid="ea8da1f9-57c9-4ed8-ab15-4adbfdeb19b1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Location]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="24" width="120" height="12" uuid="41e9c892-5be9-4261-b9bc-8f08feccbdc6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Residential Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="64" width="120" height="12" uuid="acbc9ef0-f86d-4853-8263-d363a97b15fe"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relationship]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="64" width="120" height="12" uuid="8f7cb829-864a-44c6-8493-0e49360c2acf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gender]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="76" width="120" height="12" uuid="dc89e1b5-7dc2-4f49-ab14-592b5300bb75"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Period of Employment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="76" width="120" height="12" uuid="682b5b41-c152-4d29-8635-87a2e9ed290d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Occupation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="88" width="120" height="12" uuid="d56cefe3-20f4-45cf-9d80-62c6bf1b8d33"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Incident Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="88" width="120" height="12" uuid="db907723-c56e-4f69-8a6b-e0d73e577b75"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Treatment of Injury]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="120" height="12" uuid="79d1830e-fa6d-4328-8737-d688951d4200"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Incident Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="100" width="120" height="12" uuid="320c28fb-d391-4767-b813-d51997d67ad5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Shift]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="112" width="120" height="12" uuid="dde1bf4c-6d8c-42f3-b7aa-617903258be1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hours Worked]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="112" width="120" height="12" uuid="22dfa2ff-aeb3-4bbe-9570-306d983e88ce"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Event Mechanism]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="124" width="120" height="12" uuid="c346b927-2fe1-4b8a-a789-67fcfabc018b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lost Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="124" width="120" height="12" uuid="89dc426a-fd93-4176-b020-c7d324c3cf1a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Event Agency]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd-MMM-yyyy hh:mm aaa" isBlankWhenNull="true">
+				<reportElement x="120" y="0" width="150" height="12" uuid="0264ac91-1a96-4c91-9804-0f287024d19f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("created")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="0" width="150" height="12" uuid="39aa5856-e4a1-41c9-a51b-586d8a535716"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{injured_person}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="12" width="150" height="12" uuid="3285f358-a40c-498c-be3e-6bea3d689cb5"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{work_zone}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="24" width="150" height="40" uuid="ee12afa9-7e44-4ece-9094-5acba1fea06f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{residential_address}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="24" width="150" height="40" uuid="334b5d20-5ec4-4785-8b4f-bab614439460"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="395" y="12" width="150" height="12" uuid="3439cc98-f9e4-4d00-9fa1-545737d39d4f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{birth_date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="64" width="150" height="12" uuid="259e1749-921e-4a0d-9c20-693b23a7d3ce"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{relationship}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="64" width="150" height="12" uuid="700d0024-47c5-465d-af4b-1bafc60f0d26"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sex}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="76" width="150" height="12" uuid="4cca44f2-d4ee-48dd-9902-1875f49ce34a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("period")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="76" width="150" height="12" uuid="ea824a56-5c5a-4a7e-a319-512832ceb9bc"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{occupation}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="88" width="150" height="12" uuid="318cb857-ab74-4974-848f-90a7aadc0838"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("incident-type")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="88" width="150" height="12" uuid="f2a46dfe-d3c0-4476-b8ad-8b2fbef5cd01"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("treatment")]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy HH:mm aaa" isBlankWhenNull="true">
+				<reportElement x="120" y="100" width="150" height="12" uuid="a513531f-9549-4966-a0fe-1462ea153c51"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{when}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="100" width="150" height="12" uuid="fe4cc848-9527-47ea-9fa0-21b436bf2052"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shift}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="112" width="150" height="12" uuid="4f8ec4cc-8e5d-45d7-a24a-6630566ef74a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hours_worked}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="112" width="150" height="12" uuid="e5dbdf60-04ec-43b2-a26f-a8c36c0f7170"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("mechanism")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="124" width="150" height="12" uuid="31448fd6-1906-4a83-9a37-3cdbc1f15fa0"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lost_time}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="395" y="124" width="150" height="12" uuid="c80d769f-666b-487a-a0fc-cf4711f4d19c"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("agency")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="136" width="120" height="12" uuid="43dcf0a7-11e1-422f-9263-d83863d17eb8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Body Part]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="120" y="136" width="150" height="12" uuid="fa25b3e8-e5b1-4f77-91fe-940a8033e330"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("body-part")]]></textFieldExpression>
+			</textField>
+			<subreport runToBottom="false">
+				<reportElement style="Base" x="0" y="146" width="555" height="12" isRemoveLineWhenBlank="true" uuid="d31ca0a7-0f76-41f9-b480-780811772d03"/>
+				<subreportParameter name="accident-id">
+					<subreportParameterExpression><![CDATA[$F{accident-id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="viaduct">
+					<subreportParameterExpression><![CDATA[$P{viaduct}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="viaduct-directory">
+					<subreportParameterExpression><![CDATA[$P{viaduct-directory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{viaduct-directory} + "/incident-report-nature.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="158" width="120" height="12" uuid="4168a6d0-7536-486c-8162-8dd7bceada75"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description of Event]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="120" y="158" width="425" height="80" uuid="9ee4df25-feb0-42fd-bbdb-472741fe8923"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="238" width="120" height="12" uuid="99fec760-45ea-4d4f-9b50-b67814d6d16e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Environmental Damage]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="120" y="238" width="150" height="12" uuid="de55afb3-c9d1-4556-bfca-f445ca8a9292"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{damage}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="275" y="238" width="120" height="12" uuid="46397319-a27f-4f9c-aaee-d8b2b2bbdae5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Investigation]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="395" y="238" width="150" height="12" uuid="acb89915-9033-4b82-aef8-c71c93d062b5"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{investigated}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="250" width="120" height="12" uuid="cdbecf48-ff64-454c-a345-21bab21f786b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Action Required]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="120" y="250" width="150" height="12" uuid="60efcbc3-3af5-46b1-b79b-a7a76013467b"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{action}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="275" y="250" width="120" height="12" uuid="71c5e680-bcf1-4774-8f61-78823cb79fde"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hazard]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="395" y="250" width="150" height="12" uuid="6d0b72e8-71c0-4336-a001-37cb6128797a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hazard}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="274" width="120" height="12" uuid="36901ec9-1900-4a13-868a-8c2d1be3319e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partner]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="275" y="274" width="120" height="12" uuid="f40a6aa5-ae4d-47db-8a55-1ffc6c8ae14e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="286" width="120" height="12" uuid="81108930-5ceb-4fad-b7dd-7305718f9d82"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Manager]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="120" y="274" width="150" height="12" uuid="2d9cd5e3-7d9b-4fee-946e-8d67e0afaa5e"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="395" y="274" width="150" height="36" uuid="4db69753-fc12-492e-9f5c-ea7e1ab6d5eb"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="120" y="286" width="150" height="12" uuid="7c2e9e60-e7dd-4660-aca0-7c28d7b55ee3"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{manager}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="298" width="120" height="12" uuid="514c7439-5a13-4027-82aa-4f751b0d8067"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="120" y="298" width="150" height="12" uuid="0e90c9b4-53ba-4cb9-a535-abecaef8e8c4"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="310" width="120" height="12" uuid="6ec71892-5f2e-40b9-8272-904e0e576c10"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Company]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="275" y="310" width="120" height="12" uuid="0fce96c7-afe2-4f25-a5e9-98eac7bf1235"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[State]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="120" y="310" width="150" height="12" uuid="053fedb6-ccd8-44d5-a14d-660f4a5de180"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("accident", $F{accident-id})
+  .get ("company")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="395" y="310" width="150" height="12" uuid="5fa55015-aaa4-4402-ac65-81d3106e971e"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

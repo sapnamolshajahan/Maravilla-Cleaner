@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Sale order form -->
+        <record model="ir.ui.view" id="sale_bg_confirm_sale_form">
+            <field name="name">Sale Background Confirm Sale Order Form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field eval="101" name="priority"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_confirm']" position="replace"/>
+
+                <xpath expr="//button[@name='action_confirm']" position="replace">
+                    <button name="action_confirm_queued"
+                            string="Confirm Sale"
+                            type="object"
+                            invisible="state in ('cancel','done','sale')"
+                    />
+                </xpath>
+
+                <xpath expr="//div[hasclass('oe_title')]" position="before">
+                    <field name="queued_state" invisible="1"/>
+
+                    <div class="alert alert-info"
+                         role="alert"
+                         style="margin-bottom:0px;"
+                         invisible="queued_state in 'processed' or queued_state == False"
+                    >
+                        <strong>Sale Order queued for processing, do not make any changes. Check back later to see if it
+                            has been processed.
+                        </strong>
+                        <br/>
+                        <span style="margin-right:1em;">Task state:</span>
+                        <strong>
+                            <field name="bg_task_state" readonly="1" nolabel="1"/>
+                        </strong>
+                        <br/>
+                        <button name="action_reset_queued_processing" string="Reset" type="object"
+                                invisible="bg_task_state not in ('Error',False, 'Failed')"/>
+                    </div>
+                </xpath>
+
+                <xpath expr="//header" position="attributes">
+                    <attribute name="invisible">queued_state in 'queued'</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Recurring Scheduled Task. -->
+    <record id="cron_purchase_reorder_line" forcecreate="True" model="ir.cron">
+        <field name="name">Purchase Reorder</field>
+        <field name="model_id" ref="model_purchase_reorder_line"/>
+        <field name="state">code</field>
+        <field name="code">model.run_purchase_reorder_create()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="test_remote_print_form" model="ir.ui.view">
+        <field name="name">Remote Print Test</field>
+        <field name="model">remote.print.mqtt.test</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="info" col="4">
+                    <p colspan="4">
+                        Upload a file and send to a print-queue. Ensure that the
+                        remote print-agents are already up and running.
+                    </p>
+                </group>
+                <group>
+                    <group>
+                        <field name="queue"/>
+                    </group>
+                    <group>
+                        <field name="content" filename="filename"/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button special="cancel" string="Close" class="btn-default"/>
+                    <button name="button_print" string="Print" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="test_remote_print_action" model="ir.actions.act_window">
+        <field name="name">Test Remote Print</field>
+        <field name="res_model">remote.print.mqtt.test</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_remote_print" name="Remote Print" parent="base.menu_administration" sequence="100">
+        <menuitem id="test_remote_print_menu" action="test_remote_print_action"/>
+    </menuitem>
+
+    <!-- Wizard Access -->
+    <record id="test_wizard_access" model="ir.model.access">
+        <field name="name">Remote Test Wizard</field>
+        <field name="model_id" ref="model_remote_print_mqtt_test"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

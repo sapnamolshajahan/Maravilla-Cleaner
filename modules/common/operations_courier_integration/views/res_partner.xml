@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+	<record model="ir.ui.view" id="partner_form">
+		<field name="name">Delivery Changes Partner Form</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="model">res.partner</field>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='street']" position="before">
+				<field name="building" placeholder="Unit 1, level 9, Stark Tower" class="o_address_street" readonly="type == 'contact' and parent_id == False"/>
+			</xpath>
+
+			<xpath expr="//field[@name='street']" position="before">
+				<field name="building" placeholder="Unit 1, level 9, Stark Tower" class="o_address_street" />
+			</xpath>
+		</field>
+	</record>
+</odoo>

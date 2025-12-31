@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_dynamic_snippet_two" name="Dynamic Snippet Two">
+        <section class="s_ecomm_categories_showcase s_dynamic_snippet_two first-large-layout o_cc o_cc1 pt48 pb48 o_colored_level" data-snippet="s_ecomm_categories_showcase" data-name="Categories Showcase">
+            <div class="container">
+                <div class="s_ecomm_categories_showcase_wrapper d-flex gap-4">
+                    <div class="s_ecomm_categories_showcase_block o_cc o_cc5 oe_img_bg o_colored_level rounded-2 o_bg_img_center o_bg_img_origin_border_box" data-name="Block" style="background-image: url('/theme_eshop/static/src/img/Phones.png'); background-position: 15% 50%;" 
+                        data-mimetype="image/webp" data-quality="100">
+                        <div class="o_we_bg_filter bg-black-25"/>
+                        <div class="s_ecomm_categories_showcase_row d-flex">
+                            <div class="s_ecomm_categories_showcase_content d-flex flex-column text-start justify-content-between">
+                                <h2 class="h3-fs">Phones</h2>
+                                <p>
+                                    <a href="#" role="button" class="btn btn-secondary o_translate_inline">View All</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s_ecomm_categories_showcase_block o_cc o_cc5 oe_img_bg o_colored_level rounded-2 o_bg_img_center o_bg_img_origin_border_box" data-name="Block" style="background-image: url('/theme_eshop/static/src/img/Cameras.png'); background-position: 15% 50%;" 
+                        data-mimetype="image/webp" data-quality="100">
+                        <div class="o_we_bg_filter bg-black-25"/>
+                        <div class="s_ecomm_categories_showcase_row d-flex">
+                            <div class="s_ecomm_categories_showcase_content d-flex flex-column text-start justify-content-between">
+                                <h2 class="h3-fs">Cameras</h2>
+                                <p>
+                                    <a href="#" role="button" class="btn btn-secondary o_translate_inline">View All</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s_ecomm_categories_showcase_block o_cc o_cc5 oe_img_bg o_colored_level rounded-2 o_bg_img_center o_bg_img_origin_border_box" data-name="Block" style="background-image: url('/theme_eshop/static/src/img/Laptops.png'); background-position: 15% 50%;" 
+                        data-mimetype="image/webp" data-quality="100">
+                        <div class="o_we_bg_filter bg-black-25"/>
+                        <div class="s_ecomm_categories_showcase_row d-flex">
+                            <div class="s_ecomm_categories_showcase_content d-flex flex-column text-start justify-content-between">
+                                <h2 class="h3-fs">Laptops</h2>
+                                <p>
+                                    <a href="#" role="button" class="btn btn-secondary o_translate_inline">View All</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s_ecomm_categories_showcase_block o_cc o_cc5 oe_img_bg o_colored_level o_bg_img_center o_bg_img_origin_border_box rounded-2" data-name="Block" style="background-image: url(/theme_eshop/static/src/img/Iphones.png); background-position: 15% 50%;" 
+                        data-mimetype="image/webp" data-quality="100" data-original-id="971" data-original-src="/theme_eshop/static/src/img/Iphones.png" data-mimetype-before-conversion="image/webp" data-attachment-id="971">
+                        <div class="o_we_bg_filter bg-black-25"/>
+                        <div class="s_ecomm_categories_showcase_row d-flex">
+                            <div class="s_ecomm_categories_showcase_content d-flex flex-column text-start justify-content-between">
+                                <h2 class="h3-fs">Iphones</h2>
+                                <p>
+                                    <a href="#" role="button" class="btn btn-secondary o_translate_inline">View All</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

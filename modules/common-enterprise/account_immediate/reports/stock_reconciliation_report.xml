@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_stock_reconciliation" model="ir.actions.client">
+        <field name="name">Stock Reconciliation</field>
+        <field name="tag">stock_reconciliation_report</field>
+        <field name="res_model">account_immediate.stock.reconciliation.report</field>
+        <field name="path">stock-reconciliation-closing</field>
+        <field name="context">{'model': 'account_immediate.stock.reconciliation.report'}</field>
+    </record>
+</odoo>

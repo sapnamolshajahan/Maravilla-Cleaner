@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record model="ir.ui.view" id="view_account_recurring_tree" >
+		<field name="name">Recurring Journals List</field>
+		<field name="type">list</field>
+		<field name="model">account.recurring</field>
+		<field name="arch" type="xml">
+			<list>
+				<field name="name"/>
+				<field name="move"/>
+				<field name="interval"/>
+				<field name="frequency"/>
+				<field name="monthly_value"/>
+				<field name="start_date" required="1"/>
+				<field name="end_date"/>
+				<field name="last_run_date"/>
+				<field name="posted"/>
+			</list>
+		</field>
+	</record>
+
+	<record id="view_account_recurring_form" model="ir.ui.view">
+		<field name="name">Recurring Journal Form</field>
+		<field name="model">account.recurring</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Recurring Journals">
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button name="toggle_active" type="object"
+								class="oe_stat_button" icon="fa-archive">
+							<field name="active" widget="boolean_button"
+								options='{"terminology": "archive"}'/>
+						</button>
+					</div>
+					<h1>
+						<field name="name" placeholder="Entry Name"/>
+					 </h1>
+					<group >
+						<group>
+							<field name="move" options="{'no_create': True}"/>
+							<field name="interval"/>
+							<field name="frequency"/>
+							<field name="start_date" required="1"/>
+							<field name="end_date"/>
+							<field name="posted"/>
+						</group>
+					</group>
+					<group invisible="interval != 'month'">
+						<field name="monthly_day"/>
+						<field name="monthly_value"/>
+					</group>
+					<group>
+						<field name="last_run_date" readonly="1"/>
+					</group>
+					<field name ="lines" mode="list" nolabel="1" readonly="1">
+						<list string="Lines">
+							<field name="date"/>
+							<field name="move"/>
+						</list>
+					</field>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_account_recurring_view" model="ir.actions.act_window">
+		<field name="name">Recurring Journals</field>
+		<field name="res_model">account.recurring</field>
+		<field name="view_mode">list,form</field>
+	</record>
+
+	<menuitem id="menu_account_recurring_view"
+		action="action_account_recurring_view"
+		parent="account.menu_finance_entries"
+		groups="account.group_account_user"/>
+</odoo>

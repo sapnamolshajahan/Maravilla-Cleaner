@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="forward_exchange_tree_view">
+        <field name="name">Forward Exchange Tree</field>
+        <field name="model">account.forward.exchange</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Forward Exchange">
+                <field name="name"/>
+                <field name="contract_no"/>
+                <field name="reference"/>
+                <field name="contract_enter_date"/>
+                <field name="due_date"/>
+                <field name="rate"/>
+                <field name="currency"/>
+                <field name="amount"/>
+                <field name="amount_committed"/>
+                <field name="amount_local"/>
+                <field name="amount_committed_local"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="forward_exchange_form_view" model="ir.ui.view">
+        <field name="name">Forward Exchange Form</field>
+        <field name="model">account.forward.exchange</field>
+        <field name="arch" type="xml">
+            <form string="Forward Exchange">
+                <header>
+                    <button name="action_in_progress" invisible="state != 'complete'" string="RESET TO IN-PROGRESS"
+                            type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="contract_no"/>
+                            <field name="reference"/>
+                            <field name="contract_enter_date"/>
+                            <field name="currency"/>
+                        </group>
+                        <group>
+                            <field name="due_date"/>
+                            <field name="rate"/>
+                            <field name="amount"/>
+                            <field name="amount_committed"/>
+                            <field name="amount_local"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="invoices" string="Invoices">
+                            <field name="account_move_fec_lines" readonly="1">
+                                <list>
+                                    <field name="invoice"/>
+                                    <field name="invoice_state"/>
+                                    <field name="invoice_total" sum="Invoice Totals"/>
+                                    <field name="amount_allocated" string="Committed" sum="Total FEC Committed"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="purchase_orders" string="Purchase Orders">
+                            <field name="purchase_order_fec_lines" readonly="1">
+                                <list>
+                                    <field name="purchase_order"/>
+                                    <field name="purchase_state"/>
+                                    <field name="purchase_total" sum="Purchase Totals"/>
+                                    <field name="amount_allocated" string="Committed" sum="Total FEC Committed"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name='contracts' string='Contract Updates'>
+                            <field name="forward_exchange_updates" nolabel="1" widget="one2many" mode="list">
+                                <list string="Update Lines" editable="top">
+                                    <field name="name"/>
+                                    <field name="contract_no"/>
+                                    <field name="due_date"/>
+                                    <field name="rate"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and menu for Forward Exchange -->
+    <record model="ir.actions.act_window" id="forward_exchange_list_action">
+        <field name="name">Forward Exchange</field>
+        <field name="res_model">account.forward.exchange</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="forward_exchange_menu"
+              name="Forward Exchange"
+              parent="account.menu_finance_entries"
+              groups="account_forward_exchange.group_fec_user"
+              sequence="100"/>
+
+    <menuitem id="forward_exchange"
+              name="Forward Exchange"
+              action="forward_exchange_list_action"
+              parent="forward_exchange_menu"
+              sequence="10"/>
+</odoo>

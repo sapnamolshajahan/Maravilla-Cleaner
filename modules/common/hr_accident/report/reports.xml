@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="generic_incident_report" model="ir.actions.report">
+        <field name="name">Incident Report</field>
+        <field name="model">hr.accident.accident</field>
+        <field name="report_name">hr_accident.generic_incident_report</field>
+        <field name="viaduct_helper">odoo.addons.hr_accident.report.incident_report_helper.IncidentReportHelper</field>
+        <field name="binding_model_id" ref="model_hr_accident_accident"/>
+        <field name="report_file">hr_accident/report/incident-report.jrxml</field>
+    </record>
+
+    <record id="detailed_report_with_analysis" model="ir.actions.report">
+        <field name="name">Incident Report(with analysis)</field>
+        <field name="model">hr.accident.accident</field>
+        <field name="report_name">hr_accident.detailed_report_with_analysis</field>
+        <field name="viaduct_helper">odoo.addons.hr_accident.report.incident_report_helper.IncidentReportHelper</field>
+        <field name="binding_model_id" ref="model_hr_accident_accident"/>
+        <field name="report_file">hr_accident/report/detailed-incident-report.jrxml</field>
+    </record>
+</odoo>

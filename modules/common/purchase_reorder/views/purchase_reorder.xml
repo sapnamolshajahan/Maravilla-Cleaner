@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_purchase_reorder_line_tree">
+        <field name="name">purchase.reorder.line.tree</field>
+        <field name="model">purchase.reorder.line</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <list editable="bottom"
+                  create="false" edit="true" delete="false" import="false">
+                 <header>
+                    <button name="action_purchase_order" type="object" string="Create Purchase Order"/>
+                </header>
+                <field name="product_id"  options="{'no_create':True}" readonly="1"/>
+                <field name="on_hand" readonly="1"/>
+                <field name="committed" readonly="1"/>
+                <field name="available" readonly="1"/>
+                <field name="on_order" readonly="1"/>
+                <field name="minimum" readonly="1"/>
+                <field name="maximum" readonly="1"/>
+                <field name="multiple" readonly="1"/>
+                <field name="suggested_qty"/>
+                <field name="supplier_id" options="{'no_create':True}"/>
+                <field name="purchase_order_id" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_purchase_reorder_line_search" model="ir.ui.view">
+        <field name="name">purchase.reorder.line.search</field>
+        <field name="model">purchase.reorder.line</field>
+        <field name="arch" type="xml">
+            <search string="Search purchase reorder">
+                <field name="product_id" string="product"/>
+                <field name="supplier_id" string="Supplier"/>
+                <separator/>
+                <group>
+                    <filter string="Product" name="product_id" domain="[]" context="{'group_by': 'product_id'}"/>
+                    <filter string="Supplier" name="supplier_id" domain="[]" context="{'group_by': 'supplier_id'}"/>
+                </group>
+             </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="view_purchase_reorder_line_action">
+        <field name="name">Purchase Reorder</field>
+        <field name="res_model">purchase.reorder.line</field>
+        <field name="search_view_id" ref="view_purchase_reorder_line_search"/>
+        <field name="view_mode">list</field>
+    </record>
+
+
+    <menuitem id="view_purchase_reorder_line_menu"
+              name="Purchase Reorder"
+              action="view_purchase_reorder_line_action"
+              parent="purchase.menu_procurement_management"
+              sequence="150"/>
+
+
+</odoo>

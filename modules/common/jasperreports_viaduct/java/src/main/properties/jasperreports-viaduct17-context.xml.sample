@@ -1,0 +1,22 @@
+<!--
+    Example Servlet Context for webapp.
+
+    For Tomcat deployment, this file should be copied to:
+      ${catalina.base}/conf/Catalina/localhost/${warName}.xml
+  -->
+<Context>
+  <Parameter
+    name="bootLogging"
+    value="/usr/local/etc/viaduct-log4j2.properties"/>
+
+  <!--
+	Optional throttling parameters:
+
+	throttler.max.active: maximum concurrent jasperreports
+	throttler.default.limit: default limit per database
+	throttler.db.limits: whitespace separated tokens of $dbname:$limit
+    -->
+  <Parameter name="throttler.max.active" value="0"/>
+  <Parameter name="throttler.default.limit" value="0"/>
+  <Parameter name="throttler.db.limits" value=""/>
+</Context>

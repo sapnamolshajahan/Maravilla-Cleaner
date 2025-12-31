@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_inventory_adjustment_name_form_view_inherited" model="ir.ui.view">
+            <field name="name">stock.inventory.adjustment.name.form.inherited</field>
+            <field name="model">stock.inventory.adjustment.name</field>
+            <field name="inherit_id" ref="stock.stock_inventory_adjustment_name_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='inventory_adjustment_name']" position="after">
+                    <field name="currency_id" invisible="1"/>
+                    <field name="adjusted_amount" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
+                </xpath>
+                <xpath expr="//button[@name='action_apply']" position="replace">
+                    <field name="state" invisible="1"/>
+                    <button name="action_apply" string="Apply" type="object" class="btn-primary" data-hotkey="q"
+                            invisible="state !='waiting'"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

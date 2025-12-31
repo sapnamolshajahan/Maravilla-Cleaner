@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="quant_move_form" model="ir.ui.view">
+        <field name="name">Quant/Moves Discrepancy Report</field>
+        <field name="model">operations.moves.quants.report</field>
+        <field name="arch" type="xml">
+            <form string="Quant/Moves Discrepancy Report">
+                <p>
+                    The report runs as a task; results available at:
+                    <b>Inventory</b> &gt; <b>Reporting</b> &gt; <b>Task Queue</b>
+                </p>
+                <footer>
+                    <button name="schedule_report" string="Submit Report" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_quant_move_report" model="ir.actions.act_window">
+        <field name="name">Quant/Moves Discrepancy Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">operations.moves.quants.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_quant_move_report"
+        action="action_quant_move_report"
+        parent="stock.menu_warehouse_report"
+        groups="stock.group_stock_manager"
+        sequence="90"/>
+</odoo>

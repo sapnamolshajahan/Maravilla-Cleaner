@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_coa_upgrade_form" model="ir.ui.view">
+            <field name="name">coa.upgrade.form</field>
+            <field name="model">coa.upgrade</field>
+            <field name="arch" type="xml">
+                <form string="Import Data">
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                        Filename is the import file saved as XLSX format.
+                        This is a one-time process to fix the standard COA to the customer COA
+                        Input columns - Code | Name | Type
+                        Make sure code in unique with valid format.
+                        Make sure type is changed to standard Odoo types
+                    </div>
+                    <group>
+                        <field name="file" filename="filename"/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="import_file" string="Process" type="object"
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <menuitem id="menu_coa_upgrade"
+              name="COA Upgrade"
+                  parent="account.menu_account_config" sequence="30"/>
+
+    <record id="action_coa_upgrade" model="ir.actions.act_window">
+        <field name="name">COA Upgrade</field>
+        <field name="res_model">coa.upgrade</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_coa_upgrade_form"/>
+    </record>
+
+
+        <menuitem id="menu_action_coa_upgrade"
+                  action="action_coa_upgrade"
+                  parent="menu_coa_upgrade"
+                  sequence="10"/>
+
+</odoo>

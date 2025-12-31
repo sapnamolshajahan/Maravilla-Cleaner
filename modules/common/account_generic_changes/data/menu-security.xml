@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function model="account.move.line" name="_module_install_set_menu_security"/>
+</odoo>

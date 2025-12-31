@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config" model="ir.ui.view">
+        <field name="name">POS Config Invoice Queue</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="pos_receipt.pos_config"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='remote_print_config']" position="inside">
+                <group name="remote_print_config_left">
+                    <field name="pos_invoice_queue"/>
+                </group>
+                <group name="remote_print_config_right">
+                    <field name="autoprint_receipt"/>
+                    <field name="autoprint_invoice"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='pos_invoice_queue']" position="before">
+                <field name="pos_receipt_queue" position="move"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

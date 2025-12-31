@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="currency_action" model="ir.actions.act_window">
+        <field name="name">Currency</field>
+        <field name="res_model">res.currency</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="currency_menu" action="currency_action" parent="base_data_menu"/>
+</odoo>

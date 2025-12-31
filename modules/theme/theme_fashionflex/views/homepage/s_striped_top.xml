@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_striped_top" name="Future of Innovation">
+        <section class="s_striped_top pt56 o_colored_level pb56 o_cc o_cc3" data-oe-shape-data="{'shape':'web_editor/Origins/04_001','colors':{'c3': '#FFFFFF'},'flip':['y'], 'showOnMobile':true}" data-snippet="s_striped_top" data-name="Striped Top" style="background-color: rgb(246, 233, 233);">
+            <div class="o_we_shape o_web_editor_Origins_04_001 o_shape_show_mobile" style="background-image: url(&quot;/web_editor/shape/web_editor%2FOrigins%2F04_001.svg?c3=%23FFFFFF&amp;flip=y&quot;); background-position: 50% 100%;"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 pt24 pb24 order-lg-0 o_colored_level" style="order: 2;">
+                        <img src="/theme_fashionflex/static/src/img/1260.jpg" alt="" class="img img-fluid o_we_custom_image" data-mimetype="image/jpeg" data-original-id="1329" data-original-src="/web/image/1329-eca7f104/1260.jpg" data-mimetype-before-conversion="image/jpeg" loading="lazy"/>
+                    </div>
+                    <div class="col-lg-6 pt24 pb24 order-lg-0 o_colored_level" style="order: 1;">
+                        <h1><font>Experience the Future of Innovation in Every In​teraction</font></h1>
+                        <p class="lead"><font class="text-o-color-5">Innovation transforms possibilities into reality.</font></p>
+                        <a class="btn btn-custom bg-black flat" href="/contactus" style="border-width: 1px; border-style: solid;">Discover</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

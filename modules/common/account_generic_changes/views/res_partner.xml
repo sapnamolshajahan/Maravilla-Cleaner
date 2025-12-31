@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="act_account_partner_account_move_all" model="ir.actions.act_window">
+        <field name="name">Receivables &amp; Payables</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">list</field>
+        <field name="context">{
+            'search_default_partner_id': [active_id],
+            'default_partner_id': active_id,
+            'receivables_and_payables': True,
+        }</field>
+        <field name="domain">[('account_id.account_type', 'in', ['asset_receivable', 'liability_payable']),
+                              ('move_id.state', '=', 'posted'),
+                              ]</field>
+        <field name="search_view_id" ref="account.view_account_move_line_filter"/>
+        <field name="view_id" ref="view_rec_and_pay_line_tree"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+    </record>
+
+    <record id="act_account_partner_account_move_unreconciled" model="ir.actions.act_window">
+        <field name="name">Unreconciled</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">list</field>
+        <field name="context">{
+            'search_default_partner_id': [active_id],
+            'default_partner_id': active_id,
+            'default_unreconciled': True,
+        }</field>
+        <field name="domain">[
+            ('account_id.account_type', 'in', ['asset_receivable', 'liability_payable']),
+            ('move_id.state', '=', 'posted'), ('full_reconcile_id', '=', False),
+            ('reconciled', '!=', True)
+        ]</field>
+        <field name="search_view_id" ref="account.view_account_move_line_filter"/>
+        <field name="view_id" ref="view_rec_and_pay_line_tree"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+    </record>
+
+    <record id="partner_form" model="ir.ui.view">
+        <field name="name">Partner Form View</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="action"
+                        name="%(account_generic_changes.act_account_partner_account_move_all)d"
+                        invisible="is_company == False"
+                        icon="fa-usd" string="All AR or AP">
+                </button>
+                <button class="oe_stat_button" type="action"
+                        name="%(account_generic_changes.act_account_partner_account_move_unreconciled)d"
+                        invisible="is_company == False"
+                        icon="fa-usd" string="Unreconciled">
+                </button>
+            </xpath>
+
+            <xpath expr="//div[hasclass('flex-column')]" position="inside">
+                <group name="partner-classifications" invisible="is_company == False">
+                    <group name="partner-classifications-1">
+                        <field name="customer"/>
+                        <field name="supplier"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action for Customers -->
+    <record id="action_res_partner_customers" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('customer_rank', '>', 0)]</field>
+    </record>
+    <record id="action_res_partner_suppliers" model="ir.actions.act_window">
+        <field name="name">Suppliers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('supplier_rank', '>', 0)]</field>
+    </record>
+
+    <menuitem id="menu_account_customers"
+              parent="account.menu_finance_receivables"
+              action="action_res_partner_customers"
+              name="Customers &amp; Contacts" sequence="20"/>
+
+    <menuitem id="menu_account_suppliers"
+              parent="account.menu_finance_payables"
+              action="action_res_partner_suppliers"
+              name="Suppliers &amp; Contacts" sequence="20"/>
+
+</odoo>

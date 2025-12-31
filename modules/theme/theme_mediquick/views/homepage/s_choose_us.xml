@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_choose_us" name="Why Choose Us">
+        <section class="s_showcase s_choose_us pt48 pb48 o_colored_level" data-vcss="003" data-snippet="s_showcase" data-name="Showcase" style="position: relative;" 
+            data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/01&quot;,&quot;colors&quot;:{&quot;c1&quot;:&quot;#F9669D&quot;,&quot;c2&quot;:&quot;#30266D&quot;,&quot;c3&quot;:&quot;#F3F2F2&quot;,&quot;c4&quot;:&quot;#FFFFFF&quot;,&quot;c5&quot;:&quot;#F9669D&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;,&quot;animated&quot;:&quot;true&quot;}">
+            <div class="o_we_shape o_web_editor_Floats_01 o_we_animated" 
+                style="background-image: url(/theme_mediquick/static/src/img/Floats_01.svg?c1=%23F9669D&amp;c2=%2330266D&amp;c3=%23F3F2F2&amp;c4=%23FFFFFF&amp;c5=%23F9669D&quot;);"/>
+            
+            <div class="container">
+                <div class="row align-items-stretch">
+                    <div class="col-lg-6 o_colored_level">
+                        <div class="row">
+                            <div class="col-12 pb32 o_colored_level">
+                                <h3><strong><font class="text-o-color-1">Why Choose Us</font></strong></h3>
+                                <p class="lead">A features section highlights your product’s key attributes, engaging visitors and boosting conversions.</p>
+                            </div>
+                            <div class="col-12 pt8 pb8 o_colored_level" data-name="Feature">
+                                <i class="s_showcase_icon fa fa-star-o me-auto rounded float-start bg-o-color-3" role="img"/>
+                                <div class="d-flex flex-column">
+                                    <h5 class="s_showcase_title">
+                                        <strong>Expert Medical Team</strong>
+                                    </h5>
+                                    <p>Our highly qualified doctors and staff provide compassionate, world-class care tailored to your needs.</p>
+                                </div>
+                            </div>
+                            <div class="col-12 pt8 pb8 o_colored_level" data-name="Feature">
+                                <i class="s_showcase_icon fa fa-user-o me-auto rounded float-start bg-o-color-3" role="img"/>
+                                <div class="d-flex flex-column">
+                                    <h5 class="s_showcase_title">
+                                        <strong>Advanced Technology</strong>
+                                    </h5>
+                                    <p>We use state-of-the-art equipment and modern techniques to ensure accurate diagnosis and effective treatment.</p>
+                                </div>
+                            </div>
+                            <div class="col-12 pt8 pb8 o_colored_level" data-name="Feature">
+                                <i class="s_showcase_icon fa fa-heart-o me-auto rounded float-start bg-o-color-3" role="img"/>
+                                <div class="d-flex flex-column">
+                                    <h5 class="s_showcase_title">
+                                        <strong>24/7 Emergency Care</strong>
+                                    </h5>
+                                    <p>Our dedicated emergency services are available round-the-clock to assist you in critical moments.</p>
+                                </div>
+                            </div>
+                            <div class="col-12 pt8 pb8 o_colored_level" style="text-align: left;">
+                                <div class="s_hr pt0 pb16" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                                <a href="#">Discover all the features</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 o_snippet_mobile_invisible d-lg-block d-none o_colored_level" data-invisible="1">
+                        <img src="/theme_mediquick/static/src/img/Group.png" alt="" class="img img-fluid ms-auto rounded float-end o_we_custom_image" data-mimetype="image/webp" data-original-id="1551" data-original-src="/theme_mediquick/static/src/img/Group.png" data-mimetype-before-conversion="image/png" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

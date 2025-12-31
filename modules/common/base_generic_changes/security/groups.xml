@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!--
+    	The following group is used to hide menu-items.
+
+    	In general, menu-items should not be deleted, as this may cause
+    	install/upgrade issues when modules look for menuitems that
+    	no longer exist.
+      -->
+    <record id="group_base_hidden_menus" model="res.groups">
+        <field name="name">Hidden Menus</field>
+    </record>
+
+    <!--
+        group below allows employee group to be selected for non-employees so they can see back end screens
+        and actual employees who need HR will be given access below.
+     -->
+    <record id="privilege_employee" model="res.groups.privilege">
+        <field name="name">Employee Privilege</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <record id="group_base_actual_employee" model="res.groups">
+        <field name="name">Employee</field>
+        <field name="privilege_id" ref="privilege_employee"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+</odoo>

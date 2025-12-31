@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_form_with_bin">
+            <field name="name">product.form.with.bin</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Bins" name="p_bins">
+                        <field string="Bins" colspan="4" name="bin_ids" nolabel="1">
+                            <list string="Warehouse Bins" editable="bottom">
+                                <field name="warehouse_id"/>
+                                <field name="name"/>
+                                <field name="min"/>
+                                <field name="max"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_only_form_with_bin" model="ir.ui.view">
+            <field name="name">product.template.product.form.with.bin</field>
+            <field name="model">product.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[last()]" position="after">
+                    <page name="t_bins" string="Bins (Template)">
+                        <field string="Bins" colspan="4" name="bin_ids" nolabel="1">
+                            <list string="Warehouse Bins" editable="bottom">
+                                <field name="warehouse_id"/>
+                                <field name="name"/>
+                                <field name="min"/>
+                                <field name="max"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

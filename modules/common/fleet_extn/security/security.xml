@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="fleet_group_vehicle_user" model="res.groups">
+            <field name="name">Vehicle User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="fleet.fleet_vehicles" model="ir.ui.menu">
+            <field name="group_ids" eval="[(4, ref('fleet_group_vehicle_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

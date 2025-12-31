@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	Spring Configuration file for WebMVC.
+
+	This file is picked up by Spring via the "servlet-name" tag in web.xml:
+		WEB-INF/${servlet-name}-servlet.xml
+
+  -->
+<beans
+	xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!--
+
+		Enable Autodetection of Web Annotations.
+
+	  -->
+	<context:component-scan
+		base-package="nz.optimysme.viaduct.frontend"/>
+	<mvc:annotation-driven/>
+
+	<!--
+		Use JSTL enabled JSPs, with the files embedded as internal resources
+		under WEB-INF/jsp.
+
+		Every view name returned from a handler will be translated to a JSP
+		resource (eg: "myView" -> "/WEB-INF/views/myView.jsp").
+	  -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+		<property name="exposeContextBeansAsAttributes" value="true"/>
+	</bean>
+</beans>

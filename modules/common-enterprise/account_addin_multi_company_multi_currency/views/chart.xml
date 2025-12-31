@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Form-->
+    <record id="view_addin_chart_multicompany_form" model="ir.ui.view">
+        <field name="name">Addin Chart MulticompanyForm</field>
+        <field name="model">addin.report.chart</field>
+        <field name="inherit_id" ref="account_addin_financial_reporting.view_addin_chart_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='analytic_account']" position="after">
+                <field name="company_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="all_subsidiaries"/>
+            </xpath>
+            <xpath expr="//field[@name='account_group_id']" position="after">
+                <field name="include_coy_name"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_addin_financial_report_chart_account_multicompany_form" model="ir.ui.view">
+        <field name="name">Addin Account Group Chart Multicompany Form</field>
+        <field name="model">addin.report.account.group</field>
+        <field name="inherit_id" ref="account_addin_financial_reporting.view_account_group_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='print_accounts']" position="after">
+                <field name="consolidate_multi_company"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

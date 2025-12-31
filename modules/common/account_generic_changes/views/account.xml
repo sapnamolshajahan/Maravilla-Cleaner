@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- for res_partner_reports etc -->
+    <menuitem id="menu_res_partner_reports"
+              name="Printed Partner Reports"
+              groups="account.group_account_user"
+              parent="account_generic_changes.account_additional_reports"
+              sequence="1"/>
+
+    <record id="partner_search" model="ir.ui.view">
+        <field name="name">Supper/Customer Name tweaks</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.res_partner_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='supplier']" position="attributes">
+                <attribute name="string">Vendors</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='customer']" position="attributes">
+                <attribute name="string">Customer</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

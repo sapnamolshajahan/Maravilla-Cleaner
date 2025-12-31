@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_server_import_transfers" model="ir.actions.server">
+        <field name="name">Import Transfers</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_import_transfers()</field>
+    </record>
+
+    <record model="ir.ui.view" id="import_transfer_csv_form">
+        <field name="name">import.transfer.csv</field>
+        <field name="model">import.transfers.csv</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Import Transfer Lines">
+                <div class="alert alert-info" role="alert">
+                    <h5>Excel Format:</h5>
+                    <h5>Product Code | Quantity</h5>
+                    <span>File must have a header row.</span>
+                </div>
+                <group colspan="4">
+                    <field name="picking"/>
+                    <field name="source_location_id"/>
+                    <field name="dest_location_id"/>
+                    <field name="delimiter" invisible="1"/>
+                    <field name="file"/>
+                    <field name="notes" colspan="4" invisible="1"/>
+                </group>
+                <footer>
+                    <button special="cancel" string="Cancel"/>
+                    <button name="button_import" type="object" string="Import"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

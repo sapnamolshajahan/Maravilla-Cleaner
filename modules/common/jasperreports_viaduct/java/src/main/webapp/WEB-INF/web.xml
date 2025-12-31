@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="https://jakarta.ee/xml/ns/jakartaee"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+	metadata-complete="false"
+	version="5.0">
+
+	<display-name>JasperReports Viaduct</display-name>
+	<absolute-ordering/>
+
+	<description>
+        A Simple JasperReports Service, Viaduct enabled.
+	</description>
+
+	<context-param>
+		<description>
+    		Spring's root application context configuration file.
+    		Used by ContextLoaderListener.
+		</description>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+            /WEB-INF/applicationContext.xml
+        </param-value>
+	</context-param>
+
+	<filter>
+		<description>
+			Reads request input using UTF-8 encoding
+		</description>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <listener>
+		<description>Kickstart Logging.</description>
+        <listener-class>nz.optimysme.viaduct.BootLogging</listener-class>
+    </listener>
+    <listener>
+		<description>Load Spring's application context file at startup.</description>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+	<servlet>
+		<servlet-name>viaduct</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viaduct</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+</web-app>

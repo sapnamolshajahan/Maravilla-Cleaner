@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sale_sale_budget_tree_view" model="ir.ui.view">
+            <field name="name">sale.sale.budget.list.view</field>
+            <field name="model">sale.sale.budget</field>
+            <field name="type">list</field>
+            <field name="priority">16</field>
+            <field name="arch" type="xml">
+                <list string="Sales Budget" editable="top">
+                    <field name="date" colspan="1"/>
+                    <field name="partner_id" options="{'no_create': True}"/>
+                    <field name="budget"/>
+                    <field name="margin"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="sale_sale_budget_pivot" model="ir.ui.view">
+            <field name="name">sale.sale.budget.pivot</field>
+            <field name="model">sale.sale.budget</field>
+            <field name="arch" type="xml">
+                <pivot string="Budgets" disable_linking="True">
+                    <field name="date" interval="month" type="col"/>
+                    <field name="partner_id" type="row"/>
+                    <field name="budget" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="sale_sale_budget_search_view" model="ir.ui.view">
+            <field name="name">sale.sale.budget.search.view</field>
+            <field name="model">sale.sale.budget</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_sale_sale_budget" model="ir.actions.act_window">
+            <field name="name">Budget by Salesperson</field>
+            <field name="res_model">sale.sale.budget</field>
+            <field name="view_mode">list,form,pivot</field>
+            <field name="view_id" ref="sale_sale_budget_tree_view"/>
+        </record>
+
+
+        <menuitem id="menu_sale_sale_budget"
+                  name="Budget by Salesperson"
+                  action="action_sale_sale_budget"
+                  parent="sale.menu_sale_config"/>
+
+    </data>
+</odoo>

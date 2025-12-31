@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_quotes_carousel" name="Quotes Carousel">
+        <section class="s_quotes_carousel s_quotes_carousel_wrapper" data-vxml="001" data-vcss="002" data-snippet="s_quotes_carousel_minimal" data-name="Quotes Minimal">
+            <div class="s_quotes_carousel s_carousel_default carousel slide o_colored_level carousel-dark" data-bs-ride="true" data-bs-interval="10000" id="myCarousel1749202508901">
+                <div class="carousel-inner">         
+                    <div class="carousel-item pt80 pb80 o_colored_level active" data-name="Slide" style="">
+                        <blockquote data-name="Blockquote" data-snippet="s_blockquote" class="s_blockquote s_blockquote_with_icon o_animable position-relative d-flex flex-column gap-4 w-75 mx-auto my-4 p-5 fst-normal o_colored_level" data-vcss="001">
+                            <div class="s_blockquote_line_elt position-absolute top-0 start-0 bottom-0 bg-o-color-1"/>
+                            <div class="s_blockquote_wrap_icon position-absolute top-0 start-50 translate-middle w-100">
+                                <i class="s_blockquote_icon fa fa-quote-right fa-3x d-block mx-auto" role="img"/>
+                            </div>
+                            <p class="s_blockquote_quote my-auto h3-fs o_default_snippet_text" style="text-align:center;">" This company transformed our business. <br/>Their solutions are innovative and reliable. "</p>
+                            <div class="s_blockquote_infos d-flex gap-2 flex-column align-items-center w-100 text-center">
+                                <img src="/web/image/website.s_quotes_carousel_demo_image_3" class="s_blockquote_avatar img rounded-circle" alt="" loading="lazy" data-mimetype="image/jpeg" data-original-id="860" data-original-src="/website/static/src/img/snippets_demo/s_team_member_3.jpg" data-mimetype-before-conversion="image/jpeg"/>
+                                <div class="s_blockquote_author">
+                                    <span class="o_small">
+                                        <strong class="o_default_snippet_text">Jane DOE</strong><br/>
+                                        <span class="text-muted o_default_snippet_text">CEO of MyCompany</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    
+                    <div class="carousel-item pt80 pb80 o_colored_level" data-name="Slide" style="">
+                        <blockquote data-name="Blockquote" data-snippet="s_blockquote" class="s_blockquote s_blockquote_with_icon o_animable position-relative d-flex flex-column gap-4 w-75 mx-auto my-4 p-5 fst-normal o_colored_level" data-vcss="001">
+                            <div class="s_blockquote_line_elt position-absolute top-0 start-0 bottom-0 bg-o-color-1"/>
+                            <div class="s_blockquote_wrap_icon position-absolute top-0 start-50 translate-middle w-100">
+                                <i class="s_blockquote_icon fa fa-quote-right fa-3x d-block mx-auto" role="img"/>
+                            </div>
+                            <p class="s_blockquote_quote my-auto h3-fs o_default_snippet_text" style="text-align:center;">" A trusted partner for growth. <br/>Professional, efficient, and always ahead of the curve. "</p>
+                            <div class="s_blockquote_infos d-flex gap-2 flex-column align-items-center w-100 text-center">
+                                <img src="/web/image/website.s_quotes_carousel_demo_image_4" class="s_blockquote_avatar img rounded-circle" alt="" loading="lazy" data-mimetype="image/jpeg" data-original-id="861" data-original-src="/website/static/src/img/snippets_demo/s_team_member_2.jpg" data-mimetype-before-conversion="image/jpeg"/>
+                                <div class="s_blockquote_author">
+                                    <span class="o_small">
+                                        <strong class="o_default_snippet_text">John DOE</strong><br/>
+                                        <span class="text-muted o_default_snippet_text">CCO of MyCompany</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    
+                    <div class="carousel-item pt80 pb80 o_colored_level" data-name="Slide" style="">
+                        <blockquote data-name="Blockquote" data-snippet="s_blockquote" class="s_blockquote s_blockquote_with_icon o_animable position-relative d-flex flex-column gap-4 w-75 mx-auto my-4 p-5 fst-normal o_colored_level" data-vcss="001">
+                            <div class="s_blockquote_line_elt position-absolute top-0 start-0 bottom-0 bg-o-color-1"/>
+                            <div class="s_blockquote_wrap_icon position-absolute top-0 start-50 translate-middle w-100">
+                                <i class="s_blockquote_icon fa fa-quote-right fa-3x d-block mx-auto" role="img"/>
+                            </div>
+                            <p class="s_blockquote_quote my-auto h3-fs o_default_snippet_text" style="text-align:center;">" Outstanding service and results! <br/>They exceeded our expectations in every project. "</p>
+                            <div class="s_blockquote_infos d-flex gap-2 flex-column align-items-center w-100 text-center">
+                                <img src="/web/image/website.s_quotes_carousel_demo_image_5" class="s_blockquote_avatar img rounded-circle" alt="" loading="lazy" data-mimetype="image/jpeg" data-original-id="862" data-original-src="/website/static/src/img/snippets_demo/s_team_member_4.jpg" data-mimetype-before-conversion="image/jpeg"/>
+                                <div class="s_blockquote_author">
+                                    <span class="o_small">
+                                        <strong class="o_default_snippet_text">Iris DOE</strong><br/>
+                                        <span class="text-muted o_default_snippet_text">Manager of MyCompany</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+                
+                <button class="carousel-control-prev o_not_editable o_we_no_overlay" aria-label="Previous" title="Previous" data-bs-target="#myCarousel1749202508901" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"/>
+                        <span class="visually-hidden o_default_snippet_text">Previous</span>
+                </button>
+                <button class="carousel-control-next o_not_editable o_we_no_overlay" aria-label="Next" title="Next" data-bs-target="#myCarousel1749202508901" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"/>
+                    <span class="visually-hidden o_default_snippet_text">Next</span>
+                </button>
+                
+                <div class="carousel-indicators s_carousel_indicators_dots o_we_no_overlay">
+                    <button type="button" aria-label="Carousel indicator" data-bs-target="#myCarousel1749202508901" class="active" data-bs-slide-to="0" aria-current="true"/>
+                    <button type="button" aria-label="Carousel indicator" data-bs-target="#myCarousel1749202508901" data-bs-slide-to="1"/>
+                    <button type="button" aria-label="Carousel indicator" data-bs-target="#myCarousel1749202508901" data-bs-slide-to="2"/>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

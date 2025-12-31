@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="forecast_generate_purchase_order_form" model="ir.ui.view">
+        <field name="name">Generate Purchase Order</field>
+        <field name="model">forecast.generate.purchase</field>
+        <field name="arch" type="xml">
+            <form string="Generate PO">
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                    The assumption with purchase order create is that the currency of the supplier is the same
+                    as the currency for this supplier on the products.
+                </div>
+                <group>
+                    <field name="forecast_data"/>
+                </group>
+                <field name="lines" mode="list">
+                    <list string="Suppliers" editable="bottom" create="false" delete="false">
+                        <field name="supplier"/>
+                        <field name="select"/>
+                    </list>
+                </field>
+                <footer>
+                    <button name="button_generate" string="Process" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--
+        Wizard Access
+      -->
+    <record id="generate_access" model="ir.model.access">
+        <field name="name">Header</field>
+        <field name="model_id" ref="model_forecast_generate_purchase"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="generate_line_access" model="ir.model.access">
+        <field name="name">Line</field>
+        <field name="model_id" ref="model_forecast_generate_purchase_line"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,51 @@
+# Odoo specific files and directories
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+*.pyc
+*.pyo
+
+# Log files
+*.log
+
+# Database files
+*.db
+
+# Environment files
+.venv/
+env/
+ENV/
+venv/
+*.env
+
+# Local configuration files
+*.local
+*.config
+
+# IDE/editor directories
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+
+# Compiled files
+*.mo
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db

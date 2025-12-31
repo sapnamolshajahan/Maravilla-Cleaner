@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="partner_form" model="ir.ui.view">
+		<field name="name">Partner Document Email</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+			<xpath expr="//notebook" position="inside">
+				<page string="Document Emailing">
+					<field name="email_documents">
+						<list editable="bottom">
+							<field name="email_doc_type"/>
+							<field name="email"/>
+							<field name="disabled"/>
+						</list>
+					</field>
+				</page>
+			</xpath>
+		</field>
+	</record>
+
+	<!--
+        Invoke Bulk Invoice Mailout with selected partners
+      -->
+    <record id="create_bulk_customer_mailout" model="ir.actions.server">
+        <field name="name">Bulk Invoice Dispatch</field>
+        <field name="group_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_bulk_customer_invoice_wizard()
+        </field>
+    </record>
+</odoo>

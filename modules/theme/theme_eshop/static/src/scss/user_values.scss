@@ -1,0 +1,13 @@
+$o-user-website-values: map-merge($o-user-website-values, o-map-omit((
+    'header-links-style': default,
+    'menu-gradient': 'NULL',
+    '': null,
+    'font': 'Inter',
+    'google-fonts': ('Prompt'),
+    'google-local-fonts': null,
+    'uploaded-local-fonts': null,
+    'headings-font': 'Prompt',
+    'footer-gradient': 'NULL',
+    'logo-height': 5rem,
+    // -- hook --
+)));

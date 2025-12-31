@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_product_list" name="Expertise &amp; Specializations">
+        <section class="s_product_list o_colored_level pb4 pt56" data-vcss="001" data-snippet="s_product_list" data-name="Items">
+            <div class="container">
+                <div class="row s_nb_column_fixed">
+                    <div class="col-lg-12">
+                        <h2 style="text-align: center;"><span class="o_text_highlight o_translate_inline o_text_highlight_scribble_2 o_text_highlight_fill" style="--text-highlight-width: 4px;"><strong><font class="text-o-color-1">Expertise &amp;amp; specializations</font></strong></span></h2>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper mb-0">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_mediquick/static/src/img/icon1.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top rounded" data-mimetype="image/jpeg" data-original-id="1619" data-original-src="/theme_mediquick/static/src/img/icon1.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="192" data-quality="100" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;">cardiology</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_mediquick/static/src/img/icon2.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/jpeg" data-original-id="1620" data-original-src="/theme_mediquick/static/src/img/icon2.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="192" data-quality="100" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#">Neurology</a></h3><p class="card-title h5-fs" style="text-align: center;"><br/></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_mediquick/static/src/img/icon3.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/jpeg" data-original-id="1621" data-original-src="/theme_mediquick/static/src/img/icon3.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="192" data-quality="100" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;">ENT&amp;nbsp;</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_mediquick/static/src/img/icon4.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/jpeg" data-original-id="1622" data-original-src="/theme_mediquick/static/src/img/icon4.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="192" data-quality="100" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#">Pediatric</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card o_card_img_top card o_cc o_cc1 o_colored_level border" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_mediquick/static/src/img/icon5.png" alt="" class="o_card_img card-img-top img img-fluid o_we_custom_image" data-mimetype="image/webp" data-original-id="1623" data-original-src="/theme_mediquick/static/src/img/icon5.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" data-quality="100" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;">Gastroenterologist</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_mediquick/static/src/img/icon6.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/webp" data-original-id="1624" data-original-src="/theme_mediquick/static/src/img/icon6.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" data-quality="100" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;">Orthopedic</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

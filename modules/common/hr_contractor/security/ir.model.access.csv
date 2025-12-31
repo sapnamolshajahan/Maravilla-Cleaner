@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_induction_questions,access_induction_questions,model_induction_questions,,1,1,1,1
+access_visitor_type,access_visitor_type,model_visitor_type,,1,1,1,1
+access_visitor_log,access_visitor_log,model_visitor_log,,1,1,1,1

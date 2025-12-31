@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_kit_stock_picking_form_view" model="ir.ui.view">
+        <field name="name">sale_stock.stock.picking.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <field name="kit_delivery_warning" invisible="1"/>
+                <div class="alert alert-warning text-center"
+                     invisible="kit_delivery_warning in (False, None, 'no_kits') or state in ('done','cancel')"
+                     role="alert">
+                    <span class="o_form_label">There is not enough components to fulfil the total number of kits.
+                        Processing this picking will create a backorder.</span>
+                </div>
+                <div class="alert alert-danger text-center"
+                     invisible="kit_delivery_warning in (False, None, 'some_kits') or state in ('done','cancel')"
+                     role="alert">
+                    <span class="o_form_label">There is not enough components to fulfil even a single kit. You should
+                        order more components first.</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

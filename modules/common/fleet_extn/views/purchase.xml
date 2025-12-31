@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="purchase_order_form_fleet_extension">
+            <field name="name">purchase.order.form.fleet.extension</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[1]/field/list/field[@name='price_unit']" position="after">
+                    <field name="fleet_id" groups="fleet.fleet_group_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_purchase_order_line_fleet_tree" model="ir.ui.view">
+            <field name="name">purchase.order.line.fleet.tree</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase_generic_changes.purchase_order_lines_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/list/field[@name='product_qty']" position="after">
+                    <field name="fleet_id" groups="fleet.fleet_group_user"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

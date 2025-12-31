@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_quant_tree_inventory_editable_inherited" model="ir.ui.view">
+            <field name="name">stock.quant.form.inherited</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable" />
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="request_approval" type="object" string="Request Approval"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="state"/>
+                    <field name="user_id" string="User" required="state == 'waiting'"/>
+                </xpath>
+                <xpath expr="//field[@name='inventory_diff_quantity']" position="after">
+                    <field name="adjustment_value" required="inventory_quantity_set == False"
+                           sum="Total value"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="operations_adjustment_reason"/>
+                </xpath>
+                <xpath expr="//button[@name='action_apply_inventory']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="quant_search_view" model="ir.ui.view">
+            <field name="name">stock.quant.search</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.quant_search_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='internal_loc']" position="before">
+                    <filter name="adjusted" string="Adjusted" domain="[('inventory_quantity_set', '=', True)]"/>
+                    <separator/>
+                </xpath>
+                <xpath expr="//filter[@name='productgroup']" position="before">
+                    <filter string="User" name="user" domain="[]" context="{'group_by': 'user_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

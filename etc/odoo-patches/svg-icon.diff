@@ -1,0 +1,33 @@
+diff --git a/odoo/odoo/modules/module.py b/odoo/odoo/modules/module.py
+index 8fa296091..ec822f999 100644
+--- a/odoo/odoo/modules/module.py
++++ b/odoo/odoo/modules/module.py
+@@ -382,17 +382,19 @@ def get_module_icon(module: str) -> str:
+     if manifest and 'icon' in manifest.__dict__:
+         # we have a value in the cached property
+         return manifest.icon
+-    fpath = ''
++    fpaths = []
+     if manifest:
+         fpath = manifest.raw_value('icon') or ''
+-        fpath = fpath.lstrip('/')
+-    if not fpath:
+-        fpath = f"{module}/static/description/icon.png"
+-    try:
+-        tools.file_path(fpath)
+-        return "/" + fpath
+-    except FileNotFoundError:
+-        return "/base/static/description/icon.png"
++        fpaths.append(fpath.lstrip('/'))
++    fpaths.append(f"{module}/static/description/icon.svg")
++    fpaths.append(f"{module}/static/description/icon.png")
++    for p in fpaths:
++        try:
++            tools.file_path(p)
++            return "/" + p
++        except FileNotFoundError:
++            pass
++    return "/base/static/description/icon.png"
+ 
+ 
+ def load_manifest(module: str, mod_path: str | None = None) -> dict:

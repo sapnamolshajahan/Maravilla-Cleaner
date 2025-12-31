@@ -1,0 +1,10 @@
+<odoo>
+    <record model="ir.model.access" id="access_letter_template_wizard">
+        <field name="name">access.letter.template.wizard</field>
+        <field name="model_id" ref="model_letter_template_report_wizard"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">1</field>
+    </record>
+</odoo>

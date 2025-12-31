@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.model.access" id="access_report_pdf">
+			<field name="name">Report PDF</field>
+			<field name="model_id" ref="model_pdf_create"/>
+			<field name="perm_read" eval="True" />
+			<field name="perm_write" eval="True" />
+			<field name="perm_create" eval="True" />
+			<field name="perm_unlink" eval="True" />
+		</record>
+	</data>
+</odoo>

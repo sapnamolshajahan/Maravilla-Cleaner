@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="access_xero_error_log" model="ir.model.access">
+		<field name="name">access.xero.error.log</field>
+		<field name="model_id" ref="model_xero_error_log"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+    <record id="access_xero_import_type" model="ir.model.access">
+		<field name="name">access.xero.import.type</field>
+		<field name="model_id" ref="model_xero_import_type"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+    <record id="access_xero_import" model="ir.model.access">
+		<field name="name">access.xero.import</field>
+		<field name="model_id" ref="model_xero_import"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_xero_tax_type" model="ir.model.access">
+		<field name="name">access.xero.tax.type</field>
+		<field name="model_id" ref="model_xero_tax_type"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_xero_account_account" model="ir.model.access">
+		<field name="name">access.xero.account.account</field>
+		<field name="model_id" ref="model_xero_account_account"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+    <record id="access_xero_authenticate" model="ir.model.access">
+		<field name="name">access.xero.authenticate</field>
+		<field name="model_id" ref="model_xero_authenticate"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+    <record id="access_xero_refresh_token" model="ir.model.access">
+		<field name="name">access.xero.refresh.token</field>
+		<field name="model_id" ref="model_xero_refresh_token"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_xero_token" model="ir.model.access">
+		<field name="name">access.xero.token</field>
+		<field name="model_id" ref="model_xero_token"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+
+	<record id="access_res_company_message" model="ir.model.access">
+		<field name="name">access.res.company.message</field>
+		<field name="model_id" ref="model_res_company_message"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+</odoo>

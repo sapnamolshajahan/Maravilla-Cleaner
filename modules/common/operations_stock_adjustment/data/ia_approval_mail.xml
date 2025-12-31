@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="ia_approval_mail_new" model="mail.template">
+            <field name="name">Inventory Adjustment Approval</field>
+            <field name="model_id" ref="base.model_res_company"/>
+            <field name="subject">Approval for inventory adjustment</field>
+            <field name="email_from">"{{ user.name }}" &lt;{{ (user.email or user.email_formatted) }}&gt;</field>
+            <field name="email_to">{{ object.adjustment_approver.partner_id.email or object.adjustment_approver.email_formatted }}</field>
+            <field name="lang">{{ object.adjustment_approver.partner_id.lang }}</field>
+            <field name="description">Approval for inventory adjustment</field>
+            <field name="body_html" type="html">
+<div>
+    <p>
+        Hello <t t-out="object.adjustment_approver.partner_id.name or ''"></t>,<br/><br/>
+                Some inventory adjustments needs your approval.
+    </p>
+    <br/>
+    Thank you
+</div>
+            </field>
+            <field name="lang">{{ object.adjustment_approver.partner_id.lang }}</field>
+        </record>
+    </data>
+</odoo>

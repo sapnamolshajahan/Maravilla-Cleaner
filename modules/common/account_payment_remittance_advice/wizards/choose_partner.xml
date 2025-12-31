@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_choose_partner" model="ir.ui.view">
+        <field name="name">Remittance Advise Partner Selection</field>
+        <field name="model">remittance.advice.choose.partner</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Report">
+                <group>
+                    <field name="lines" nolabel="1" colspan="2">
+                        <list editable="bottom">
+                            <field name="print_it"/>
+                            <field name="partner_id"/>
+                            <field name="email"/>
+                        </list>
+                    </field>
+                </group>
+                <footer>
+                    <button special="cancel" string="Cancel" colspan="2"/>
+                    <button name="print_reports" string="Print" type="object" default_focus="1"/>
+                    <button name="email_reports" string="Email" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

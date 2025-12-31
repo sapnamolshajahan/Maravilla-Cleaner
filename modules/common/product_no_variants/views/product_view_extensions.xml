@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- We provide a search form to override to default-->
+        <record model="ir.ui.view" id="search_form_view_no_variants">
+            <field name="name">search.form.view.no.variants</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="default_code" context="{'default_code': self}"
+                           filter_domain="['|','|',('default_code','ilike',self),('name','ilike',self),('barcode','ilike',self)]"/>
+                </field>
+                <field name="attribute_line_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- all -->
+        <record id="product_normal_action_product" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="search_view_id" ref="search_form_view_no_variants"/>
+            <field name="view_id" ref="product.product_template_tree_view"/>
+        </record>
+
+        <!-- sellable -->
+        <record id="product_normal_action_product_sellable" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="search_view_id" ref="search_form_view_no_variants"/>
+            <field name="context">{'search_default_filter_to_sell': 1}</field>
+            <field name="view_id" ref="product.product_template_tree_view"/>
+        </record>
+
+        <!-- purchasable -->
+        <record id="product_normal_action_product_purchasable" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="search_view_id" ref="search_form_view_no_variants"/>
+            <field name="context">{'search_default_filter_to_purchase': 1}</field>
+            <field name="view_id" ref="product.product_template_tree_view"/>
+        </record>
+
+    </data>
+</odoo>

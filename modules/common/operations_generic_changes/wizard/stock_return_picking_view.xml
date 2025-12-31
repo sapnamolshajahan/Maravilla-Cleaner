@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_return_picking_form" model="ir.ui.view">
+            <field name="name">Return lines</field>
+            <field name="model">stock.return.picking</field>
+            <field name="inherit_id" ref="stock.view_stock_return_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_return_moves']" position="after">
+                    <field name="is_parts_return" invisible="1"/>
+                </xpath>
+<!--                <xpath expr="//group[1]" position="attributes">-->
+<!--                    <attribute name="invisible">is_parts_return == True</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="///field[@name='product_id']" position="after">
+                    <field name="move_name"/>
+                </xpath>
+                <xpath expr="//field[@name='product_return_moves']" position="after">
+                    <field name="part_lines" nolabel="1" invisible="is_parts_return == False">
+                        <list editable="bottom" create="1">
+                            <field name="product_id" options="{'no_create': True, 'no_open': True}" width="330px"/>
+                            <field name="move_name" invisible="1"/>
+                            <field name="quantity" width="110px"/>
+                            <field name="uom_id" readonly="1" groups="uom.group_uom" width="110px"/>
+                            <field name="to_refund" width="110px"/>
+                        </list>
+                    </field>
+                </xpath>
+                <xpath expr="//footer/button[@name='action_create_returns']" position="after">
+                    <button name="set_zero_quantity" string="Zero Quantity" type="object" class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

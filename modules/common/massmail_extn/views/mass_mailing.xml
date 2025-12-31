@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mailing_mailing_view_form_extension" model="ir.ui.view">
+        <field name="name">mailing.mailing.form.extn</field>
+        <field name="model">mailing.mailing</field>
+        <field name="priority" eval="60"/>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="marketing_mail_server"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

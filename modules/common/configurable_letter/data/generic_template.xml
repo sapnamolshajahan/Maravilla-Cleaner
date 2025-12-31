@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="letter_generic_template" model="mail.template">
+            <field name="name">Letter Generic template</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="subject">Title</field>
+            <field name="model_id" ref="model_letter_template_report_wizard"/>
+            <field name="body_html" type="html">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr height="37" style="height:22.5pt;">
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#0095C8;padding:0;">
+                                <span style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;height:22.5pt;background-color:#0095C8;padding:0;">
+                                <span style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#0095C8;padding:0;">
+                                <span style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50" style="width:30pt;background-color:#0095C8;padding:0;">
+                                <span
+                                        style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;background-color:#0095C8;padding:0;">
+                                <span
+                                        style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <img data-imagetype="External"
+                                                     src="https://dcnz.org.nz/_resources/themes/dentalcouncil/images/logo.png"
+                                                     width="170" alt="Dental Council logo"
+                                                     id="_x0000_i1025"/>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;background-color:#0095C8;padding:0;">
+                                <span
+                                        style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr height="37" style="height:22.5pt;">
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#0095C8;padding:0;">
+                                <span style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;height:22.5pt;background-color:#0095C8;padding:0;">
+                                <span style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#0095C8;padding:0;">
+                                <span style="background-color:#0095C8;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr height="3" style="height:2.25pt;">
+                            <td width="50" style="width:30pt;height:2.25pt;background-color:#363536;padding:0;">
+                                <span style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;height:2.25pt;background-color:#363536;padding:0;">
+                                <span style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;height:2.25pt;background-color:#363536;padding:0;">
+                                <span style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50" style="width:30pt;background-color:#363536;padding:0;">
+                                <span
+                                        style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="white">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;background-color:#363536;padding:0;">
+                                <span
+                                        style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="white">
+                                                    <span style="font-size:10.5pt;">
+                                                        <b>
+                                                            <t t-out="format_date(object.partner_id.current_date, '%d %B %Y')"/>
+                                                        </b>
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;background-color:#363536;padding:0;">
+                                <span
+                                        style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr height="3" style="height:2.25pt;">
+                            <td width="50" style="width:30pt;height:2.25pt;background-color:#363536;padding:0;">
+                                <span style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;height:2.25pt;background-color:#363536;padding:0;">
+                                <span style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;height:2.25pt;background-color:#363536;padding:0;">
+                                <span style="background-color:#363536;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50" style="width:30pt;background-color:#EEEEEE;padding:0;">
+                                <span
+                                        style="background-color:#EEEEEE;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;background-color:#EEEEEE;padding:0;">
+                                <span
+                                        style="background-color:#EEEEEE;">
+                                    <div style="margin-right:0;margin-bottom:7.5pt;margin-left:0;">
+                                        <font
+                                                face="Times New Roman,serif" size="5">
+                                            <span style="font-size:18pt;">
+                                                <b>
+                                                    <font
+                                                            face="Helvetica,sans-serif" size="6" color="#464646">
+                                                        <span
+                                                                style="font-size:22.5pt;font-weight:normal;">
+                                                        </span>
+                                                    </font>
+                                                </b>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:14pt 0 7.5pt 0;">
+                                        <font face="Times New Roman,serif" size="5">
+                                            <span
+                                                    style="font-size:18pt;">
+                                                <b>
+                                                    <font face="Arial,sans-serif" size="6"
+                                                          color="#464646">
+                                                        <span
+                                                                style="font-size:22.5pt;font-weight:normal;">
+                                                            Title
+                                                        </span>
+                                                    </font>
+                                                </b>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                                        <tbody>
+                                            <tr>
+                                                <td width="125"
+                                                    style="width:75pt;padding:0;border-style:solid none none none;border-top-width:4.5pt;border-top-color:#363536;">
+                                                    <div style="margin-right:0;margin-bottom:7.5pt;margin-left:0;">
+                                                        <font
+                                                                face="Times New Roman,serif" size="3">
+                                                            <span
+                                                                    style="font-size:12pt;">
+                                                                <font face="Helvetica,sans-serif" size="2"
+                                                                      color="#333333">
+                                                                    <span style="font-size:10.5pt;"/>
+                                                                </font>
+                                                            </span>
+                                                        </font>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        Paragraph #1
+                                                    </span>
+                                                </font>
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        Paragraph #2
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        Please feel free to contact the Council at
+                                                    </span>
+                                                </font>
+                                                <a
+                                                        href="mailto:inquiries@dcnz.org.nz" target="_blank"
+                                                        rel="noopener noreferrer">
+                                                    <font face="Helvetica,sans-serif" size="2">
+                                                        <span
+                                                                style="font-size:10.5pt;">
+                                                            <font face="Arial,sans-serif" color="#645974">
+                                                                <b>
+                                                                    inquiries@dcnz.org.nz
+                                                                </b>
+                                                            </font>
+                                                        </span>
+                                                    </font>
+                                                </a>
+                                                <font face="Arial,sans-serif"
+                                                      size="2"
+                                                      color="#333333">
+                                                    <span
+                                                            style="font-size:10.5pt;">
+                                                        or 04 499 4820 if you have any further questions.
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:14pt 0 12pt 0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div align="justify" style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        Marie Warner
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div align="justify" style="margin:0 0 12pt 0;">
+                                        <font face="Times New Roman,serif"
+                                              size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        Chief Executive
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;background-color:#EEEEEE;padding:0;">
+                                <span
+                                        style="background-color:#EEEEEE;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr height="18" style="height:11.25pt;">
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#D1F0EC;padding:0;">
+                                <span style="background-color:#D1F0EC;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;height:22.5pt;background-color:#D1F0EC;padding:0;">
+                                <span style="background-color:#D1F0EC;"/>
+                            </td>
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#D1F0EC;padding:0;">
+                                <span style="background-color:#D1F0EC;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50" style="width:30pt;background-color:#D1F0EC;padding:0;">
+                                <span
+                                        style="background-color:#D1F0EC;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;background-color:#D1F0EC;padding:0;">
+                                <span
+                                        style="background-color:#D1F0EC;">
+                                    <div style="margin:3pt 0 0 0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2" color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        <b>Dental Council</b>
+                                                    </span>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:3pt 0 0 0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2" color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        <b>Phone:</b>
+                                                    </span>
+                                                </font>
+                                                <font face="Arial,sans-serif" size="2" color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                                <a href="http://dcnz.org.nz/" target="_blank" rel="noopener noreferrer">
+                                                    <font face="Helvetica,sans-serif" size="2">
+                                                        <span style="font-size:10.5pt;">
+                                                            <font face="Arial,sans-serif" color="#0095C8">
+                                                                <b>+64 4 499
+                                                                    4820
+                                                                </b>
+                                                            </font>
+                                                        </span>
+                                                    </font>
+                                                </a>
+                                            </span>
+                                        </font>
+                                    </div>
+                                    <div style="margin:3pt 0 0 0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span style="font-size:12pt;">
+                                                <font face="Arial,sans-serif" size="2" color="#333333">
+                                                    <span style="font-size:10.5pt;">
+                                                        <b>Email</b>
+                                                    </span>
+                                                </font>
+                                                <font face="Helvetica,sans-serif" size="2" color="black">
+                                                    <span style="font-size:10.5pt;">
+                                                        <b>:</b>
+                                                    </span>
+                                                </font>
+                                                <font face="Arial,sans-serif" size="2" color="#0095C8">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                                <a href="mailto:inquiries@dcnz.org.nz" target="_blank"
+                                                   rel="noopener noreferrer">
+                                                    <font face="Helvetica,sans-serif" size="2">
+                                                        <span style="font-size:10.5pt;">
+                                                            <font face="Arial,sans-serif" color="#0095C8">
+                                                                <b>
+                                                                    inquiries@dcnz.org.nz
+                                                                </b>
+                                                            </font>
+                                                        </span>
+                                                    </font>
+                                                </a>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="50" style="width:30pt;background-color:#D1F0EC;padding:0;">
+                                <span
+                                        style="background-color:#D1F0EC;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2" color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr height="18" style="height:11.25pt;">
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#D1F0EC;padding:0;">
+                                <span style="background-color:#D1F0EC;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                            <td width="650" style="width:390pt;height:22.5pt;background-color:#D1F0EC;padding:0;">
+                                <span style="background-color:#D1F0EC;"/>
+                            </td>
+                            <td width="50" style="width:30pt;height:22.5pt;background-color:#D1F0EC;padding:0;">
+                                <span style="background-color:#D1F0EC;">
+                                    <div style="margin:0;">
+                                        <font face="Times New Roman,serif" size="3">
+                                            <span
+                                                    style="font-size:12pt;">
+                                                <font face="Helvetica,sans-serif" size="2"
+                                                      color="#333333">
+                                                    <span style="font-size:10.5pt;"/>
+                                                </font>
+                                            </span>
+                                        </font>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </field>
+        </record>
+    </data>
+</odoo>

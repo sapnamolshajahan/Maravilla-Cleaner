@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="migration_user" model="ir.model.access">
+            <field name="name">COA Update User</field>
+            <field name="model_id" ref="model_coa_upgrade"/>
+            <field name="group_id" ref="account.group_account_manager"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	Maven Build for Viaduct; a JasperReports to OpenERP bridge.
+
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!--
+		The Basics.
+	  -->
+	<groupId>nz.optimysme.viaduct</groupId>
+	<artifactId>jasperreports-viaduct19</artifactId>
+	<version>1</version>
+	<packaging>war</packaging>
+
+	<name>Viaduct</name>
+	<inceptionYear>2013</inceptionYear>
+	<description>
+		A JasperReports to Odoo bridge.
+	</description>
+
+	<organization>
+		<name>OptimySME Ltd</name>
+		<url>http://www.optimysme.nz/</url>
+	</organization>
+
+	<scm>
+		<connection>
+			scm:git:ssh://git@github.com:optimysme/odoo19.git
+		</connection>
+		<developerConnection>
+			scm:git:ssh://git@github.com:optimysme/odoo19.git
+		</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>jaspersoft-third-party</id>
+			<url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+		</repository>
+	</repositories>
+
+	<!-- Specify hard-coded project properties here -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Changeable properties via command line -->
+		<debug.port>8000</debug.port>
+
+		<!--
+			Versions of dependencies
+		  -->
+		<apache-io.version>2.21.0</apache-io.version>
+		<barcode4j.version>2.1</barcode4j.version>
+		<batik.version>1.19</batik.version>
+		<jackson.version>2.20.1</jackson.version>
+		<jackson.annotations.version>2.20</jackson.annotations.version>
+		<jasperreports.version>6.21.5</jasperreports.version>
+		<log4j.version>2.25.2</log4j.version>
+		<poi.version>5.4.1</poi.version>
+		<postgresql.version>42.7.8</postgresql.version>
+		<servlet-api.version>6.0.0</servlet-api.version>
+		<springframework.version>6.2.12</springframework.version>
+
+	</properties>
+
+	<dependencies>
+
+		<!--
+			Database Driver
+		-->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- JasperReports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasperreports.version}</version>
+			<!--
+				Bug in jasperreports requires an exclusion
+				https://stackoverflow.com/questions/71351249/spring-rest-controller-returns-xml-instead-of-json-after-jasperreports-update
+			  -->
+			<exclusions>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.dataformat</groupId>
+					<artifactId>jackson-dataformat-xml</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<!-- Barcode support -->
+			<groupId>net.sf.barcode4j</groupId>
+			<artifactId>barcode4j</artifactId>
+			<version>${barcode4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+		<groupId>org.apache.xmlgraphics</groupId>
+			<!-- Report SVG rendering -->
+			<artifactId>batik-bridge</artifactId>
+			<version>${batik.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<!-- XLS support -->
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--
+			Useful
+		  -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${apache-io.version}</version>
+		</dependency>
+
+		<!--
+			Spring Framework
+		  -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${springframework.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- JSON support -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.annotations.version}</version>
+		</dependency>
+
+		<!--
+			Servlet API (container provided)
+		  -->
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- map jcl onto log4j2 (for Spring) -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- map slf4j onto log4j2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+
+			<!-- Support for embedding build details into the package. -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<revisionOnScmFailure>unknown</revisionOnScmFailure>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+					<configuration>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<BuildTimestamp>${timestamp}</BuildTimestamp>
+								<BuildCommit>${buildNumber}</BuildCommit>
+							</manifestEntries>
+						</archive>
+				</configuration>
+			</plugin>
+
+			<!-- Cargo : invoke a container -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven3-plugin</artifactId>
+				<version>1.10.25</version>
+				<configuration>
+					<container>
+						<containerId>tomcat11x</containerId>
+						<dependencies>
+							<dependency>
+								<groupId>org.postgresql</groupId>
+								<artifactId>postgresql</artifactId>
+							</dependency>
+						</dependencies>
+					</container>
+					<configuration>
+						<configfiles>
+							<!-- enable basic logging for local run -->
+							<configfile>
+								<file>src/main/properties/log4j2.properties</file>
+								<todir>common/classes</todir>
+							</configfile>
+							<!-- copy context file to simulate producton run -->
+							<!--
+							<configfile>
+								<file>${user.home}/.${project.artifactId}.xml</file>
+								<todir>conf/Catalina/localhost</todir>
+								<tofile>${project.artifactId}.xml</tofile>
+							</configfile>
+							  -->
+						</configfiles>
+						<properties>
+							<!-- enable remote debugging -->
+							<cargo.start.jvmargs>
+								-Xdebug
+								-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${debug.port}
+								-Xnoagent
+								-Djava.compiler=NONE
+							</cargo.start.jvmargs>
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+
+			<!-- Releases -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.0-M6</version>
+				<configuration>
+					<goals>package</goals>
+				</configuration>
+			</plugin>
+
+			<!-- Required for project-info-reports plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+
+			<!-- Required for project-info-reports plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>4.0.0-M3</version>
+			</plugin>
+
+			<!-- Java compiler version -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<release>21</release>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<!-- Enable Javadocs -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.4.1</version>
+			</plugin>
+
+			<!-- Reports for surefire-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M7</version>
+			</plugin>
+
+			<!-- Disable waits on dependency checks -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.4.1</version>
+				<configuration>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+</project>

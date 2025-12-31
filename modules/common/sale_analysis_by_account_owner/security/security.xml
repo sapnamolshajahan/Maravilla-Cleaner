@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="access_sale_analysis_report" model="ir.model.access">
+		<field name="name">access.sale.analysis.report</field>
+		<field name="model_id" ref="model_sale_analysis_report"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="access_monthly_sale_analysis_report_base" model="ir.model.access">
+		<field name="name">access.monthly.sale.analysis.report.base</field>
+		<field name="model_id" ref="model_monthly_sale_analysis_report_base"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="access_sale_analysis_report_categorygroup" model="ir.model.access">
+		<field name="name">access.sale.analysis.report.category.group</field>
+		<field name="model_id" ref="model_sale_analysis_report_categorygroup"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="access_sale_analysis_report_nogroup" model="ir.model.access">
+		<field name="name">access.sale.analysis.report.nogroup</field>
+		<field name="model_id" ref="model_sale_analysis_report_nogroup"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="access_quarterly_sale_analysis_report_base" model="ir.model.access">
+		<field name="name">access.sale.analysis.report.quarterly.base</field>
+		<field name="model_id" ref="model_quarterly_sale_analysis_report_base"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="access_quarterly_sale_analysis_report_categorygroup" model="ir.model.access">
+		<field name="name">access.sale.analysis.report.quarterly.category</field>
+		<field name="model_id" ref="model_quarterly_sale_analysis_report_categorygroup"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="access_quarterly_sale_analysis_report_nogroup" model="ir.model.access">
+		<field name="name">access.sale.analysis.report.quarterly.no.group</field>
+		<field name="model_id" ref="model_quarterly_sale_analysis_report_nogroup"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+
+</odoo>

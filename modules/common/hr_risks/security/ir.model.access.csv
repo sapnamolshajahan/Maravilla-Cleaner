@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+access_hr_risk,hr.risk,model_hr_risk,hr.group_hr_user,1,1,1,1
+access_hr_risk_manager,hr.risk,model_hr_risk,hr_hazard.res_groups_hazard_manager,1,1,1,1
+access_hr_risk_type,hr.risk.type,model_hr_risk_type,hr_hazard.res_groups_hazard_manager,1,1,1,1

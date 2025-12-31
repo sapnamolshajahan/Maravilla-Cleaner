@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="packing_slip" model="email.doc.type">
+        <field name="name">packing_slip</field>
+        <field name="model_name">stock.picking</field>
+        <field name="template" ref="template_packing_slip"/>
+    </record>
+    <record id="sale_order" model="email.doc.type">
+        <field name="name">sale_order</field>
+        <field name="model_name">sale.order</field>
+        <field name="template" ref="template_sale_order"/>
+    </record>
+</odoo>

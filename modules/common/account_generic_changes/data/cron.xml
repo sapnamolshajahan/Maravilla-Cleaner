@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="cron_fix_invoice_paid_state" model="ir.cron">
+        <field name="name">Check and Update paid state on invoices</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">model.calc_payment_status()</field>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>days</field>
+        <field name='nextcall'>2022-12-14 20:15:00</field>
+    </record>
+</odoo>

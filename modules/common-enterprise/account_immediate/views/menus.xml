@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_action_stock_account_report_stock_reconciliation"
+                name="Stock Reconciliation"
+                action="account_immediate.action_report_stock_reconciliation"
+                parent="account_reports.account_audit_inventory_entries_menu"
+                sequence="10"/>
+</odoo>

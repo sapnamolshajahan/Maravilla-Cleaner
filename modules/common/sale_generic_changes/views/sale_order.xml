@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_sale_order_advance_invoice" model="ir.actions.act_window">
+        <field name="name">Advance Invoice</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.advance.payment.inv</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'advance_invoice': True}</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form</field>
+    </record>
+
+    <record id="sale_order_form" model="ir.ui.view">
+        <field name="name">Sales Form Generic</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="action_recalculate_stock" string="Recalculate Available" type="object"
+                        invisible="state != 'draft'"/>
+                <button name="action_set_prices" type="object"
+                        string=" Set Prices"
+                        help="Will set prices and discounts on each line. Any quantity or pricelist changes will not affect the existing prices"
+                        confirm="This will set prices and discounts for all lines."
+                        invisible="state in ['sale', 'done', 'cancel']"/>
+            </xpath>
+            <xpath expr="//button[@id='create_invoice']" position="before">
+                <button id="create_invoice_always" name="%(sale_generic_changes.action_sale_order_advance_invoice)d"
+                        string="Create Invoice"
+                        type="action" class="btn-primary" data-hotkey="q"
+                        invisible="state not in ['sale', 'sent']"/>
+
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button name="action_force_warehouse" invisible="state not in ['sale', 'sent']" type="object"
+                        string="Force Line Warehouses"/>
+            </xpath>
+            <xpath expr="//button[@id='create_invoice']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@id='create_invoice_percentage']" position="replace"/>
+            <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                <attribute name="domain">[('parent_id', '=', partner_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="domain">[('parent_id', '=', partner_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="groups">base.group_user</attribute>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="groups">base.group_user</attribute>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="tag_ids"
+                       widget="many2many_tags" options="{'no_create':True}"
+                       groups="base.group_user"/>
+            </xpath>
+            <xpath expr="//field[@name='validity_date']" position="after">
+                <field name="commitment_date"/>
+            </xpath>
+            <xpath expr="//group[@name='sale_shipping']" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="attributes">
+                <attribute name="groups">base.group_user</attribute>
+            </xpath>
+            <xpath expr="//field[@name='price_unit']" position="before">
+                <field name="route_ids" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">['|', ('supplier_rank', '=', 0), ('customer_rank', '>', 0),
+                    ('is_company', '=', True)]
+                </attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                <attribute name="domain">[
+                    '|',
+                    ('id', '=', partner_id),
+                    '&amp;',
+                    ('parent_id', '=', partner_id),
+                    ('type', '=', 'invoice')
+                    ]
+                </attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="domain">[
+                    '|',
+                    ('id', '=', partner_id),
+                    '&amp;',
+                    ('parent_id', '=', partner_id),
+                    ('type', '=', 'delivery')
+                    ]
+                </attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="contact_partner"
+                       context="{
+                        'default_type': 'contact',
+                        'default_parent_id': partner_id,
+                        'tracking_disable': True,
+                        'form_view_ref': 'base.view_partner_simple_form'}"
+                       domain="[('parent_id', '=', partner_id), ('type', '=', 'contact')]"/>
+            </xpath>
+            <xpath expr="//label[@for='pricelist_id']" position="before">
+                <field name="warehouse_id"
+                       options="{'no_create': True}"
+                       groups="stock.group_stock_multi_locations"/>
+            </xpath>
+
+            <!-- xpath expr="//field[@name='origin']" position="after">
+                <field name="campaign_id" groups="base.group_user"/>
+                <field name="medium_id" groups="base.group_user"/>
+                <field name="source_id" groups="base.group_user"/>
+                <field name="opportunity_id"
+                       help="Log in the chatter from which opportunity the order originates"
+                       groups="base.group_user"/>
+            </xpath-->
+            <xpath expr="//notebook/page[@name='order_lines']/field[@name='order_line']/list/field[@name='product_id']"
+                   position="attributes">
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='order_lines']/field[@name='order_line']/list/field[@name='product_template_id']"
+                   position="attributes">
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='price_subtotal']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">
+                <field name="stock_available" optional="show" readonly="1"/>
+                <field name="stock_available_all" optional="show" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='currency_id']" position="after">
+                <field name="price_changed" optional="show"/>
+                <field name="price_unit_original" column_invisible="1"/>
+                <field name="discount_original" column_invisible="1"/>
+            </xpath>
+
+            <!--Move Customer Reference from the "Other Information" tab into the SO header-->
+            <xpath expr="//field[@name='client_order_ref']" position="replace"/>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="client_order_ref"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_line_tree_inherit_sale_stock" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.sale.stock.location</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="before">
+                <field name="state"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Menu for Sale Order Lines under Sale | Orders-->
+    <record model="ir.actions.act_window" id="action_sale_order_line_view">
+        <field name="name">Sale Order Lines</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_order_line_tree_inherit_sale_stock"/>
+        <field name="search_view_id" ref="sale.view_sales_order_line_filter"/>
+    </record>
+
+    <menuitem id="menu_sale_order_line_menu_view"
+              action="action_sale_order_line_view"
+              parent="sale.sale_order_menu"
+              groups="sales_team.group_sale_salesman"
+              sequence="100"/>
+
+    <record model="ir.ui.view" id="sale_account_invoice_form_delivery">
+        <field name="name">Restrict Shipping Lookups</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="sale.account_invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="domain">[
+                    '|',
+                    ('id', '=', partner_id),
+                    ('parent_id', '=', partner_id),
+                    ('type', '=', 'delivery')
+                    ]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_view_order_tree_extra" model="ir.ui.view">
+        <field name="name">sale.order.view.order.tree.extra</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="client_order_ref"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_view_quote_tree_extra" model="ir.ui.view">
+        <field name="name">sale.quote.view.order.tree.extra</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="client_order_ref"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_action_sale_order_set_invoiced" model="ir.actions.server">
+        <field name="name">Set Sale Order Invoiced</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_sale_order_set_invoiced()</field>
+    </record>
+
+
+</odoo>

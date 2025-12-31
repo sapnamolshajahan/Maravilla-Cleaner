@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+		<record id="view_plastic_bom" model="ir.ui.view">
+		<field name="name">view.plastic.bom.form</field>
+		<field name="model">plastic.bom.builder</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<div class="oe_title">
+						<h1>
+							<group>
+								<field name="name" />
+								<field name="categ"/>
+                                <field name="quantity"/>
+							</group>
+						</h1>
+					</div>
+					<notebook>
+						<page >
+							<group col="2">
+								<group string="Weights">
+									<field name="shot_weight"/>
+									<field name="sprue_weight"/>
+									<field name="regrind_type"/>
+									<field name="regrind_pct"/>
+									<field name="sets_per_shot"/>
+									<field name="total_weight"/>
+									<field name="unit_weight"/>
+								</group>
+								<group string="Other Data">
+									<field name="plastic"/>
+									<field name="purge_kg"/>
+									<field name="box_type"/>
+									<field name="qty_per_box"/>
+									<field name="mats_efficiency"/>
+								</group>
+							</group>
+							<hr />
+							<group>
+								<field name="die_change_costs" nolabel="1" widget="one2many">
+                                    <list editable="bottom" string="Die Change Costs">
+                                        <field name="product"/>
+                                        <field name="minutes"/>
+                                    </list>
+                                </field>
+							</group>
+                            <group>
+								<field name="workcentres" nolabel="1" widget="one2many">
+                                    <list editable="bottom" string="Workcentres">
+                                        <field name="workcentre"/>
+                                        <field name="cycle_time"/>
+                                        <field name="machine_efficiency"/>
+                                        <field name="labour_loading"/>
+                                    </list>
+                                </field>
+							</group>
+							<group>
+								<field name="notes" widget="html"/>
+							</group>
+						</page>
+
+					</notebook>
+				</sheet>
+
+			</form>
+		</field>
+	</record>
+
+	<record id="action_view_plastic_bom" model="ir.actions.act_window">
+		<field name="name">BOM Builder</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">plastic.bom.builder</field>
+		<field name="view_mode">form</field>
+	</record>
+
+	<menuitem id="menu_view_plastic_bom"
+		name="BOM Builder"
+		parent="sale.menu_sale_order"
+		action="action_view_plastic_bom"
+		sequence="38"/>
+
+</odoo>

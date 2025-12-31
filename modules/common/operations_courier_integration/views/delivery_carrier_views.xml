@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+	<record model="ir.ui.view" id="view_delivery_carrier_tree">
+		<field name="name">Delivery Carrier</field>
+		<field name="inherit_id" ref="delivery.view_delivery_carrier_tree"/>
+		<field name="model">delivery.carrier</field>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='delivery_type']" position="after">
+				<field name="price_unit_rounding_digits" />
+			</xpath>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_delivery_carrier_form">
+		<field name="name">Delivery Carrier</field>
+		<field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+		<field name="model">delivery.carrier</field>
+		<field name="arch" type="xml">
+			<xpath expr="//group[@name='provider_details']/field[@name='company_id']" position="after">
+				<field name="price_unit_rounding_digits" />
+			</xpath>
+			<xpath expr="//field[@name='integration_level']" position="after">
+				<field name="ship_after_validation" invisible="delivery_type == 'fixed' or delivery_type == 'base_on_rule'"/>
+			</xpath>
+		</field>
+	</record>
+</odoo>

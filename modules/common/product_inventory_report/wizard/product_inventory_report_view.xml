@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_inventory_report_view">
+            <field name="name">Product Inventory Download</field>
+            <field name="model">product.inventory.download</field>
+            <field name="arch" type="xml">
+                <form string="Product Inventory Export">
+                    <group string="This function will produce a download of product real quantities and costs by location.
+                   	Select Suppliers and/or Product Categories to filter."/>
+                    <group string="If you do no select any parameters all products will be selected. This report runs as a background task"/>
+                    <notebook>
+                        <page string="Report Filters">
+                            <group col="4">
+                                <field name="as_at_date"/>
+                            </group>
+                            <group string="Suppliers"/>
+                            <field name="supplier_ids" nolabel="1"/>
+                            <group string="Product Categories"/>
+                            <field name="product_category_ids" nolabel="1"/>
+                            <group>
+                                <field name="exclude_zero_quantity"/>
+                            </group>
+                        </page>
+                        <page string="Locations">
+                            <group string="Locations to include (specify Include or Exclude locations)"/>
+                            <field name="include_location_ids" nolabel="1"/>
+
+                            <group string="Locations to excluded"/>
+                            <field name="exclude_location_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <div>
+                            <button name="button_process" string="Submit Download Run"
+                                    type="object" class="oe_highlight"
+                                    confirm="This will submit a background task to create the inventory file."/>
+                            or
+                            <button special="cancel" string="Cancel" class="oe_link"/>
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_product_inventory_report_view" model="ir.actions.act_window">
+            <field name="name">Product Inventory Download</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.inventory.download</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_product_inventory_report_view"
+                  id="menu_reports_product_inventory_report"
+                  parent="stock.menu_warehouse_report"
+                  groups="base.group_user"
+                  sequence="20"/>
+
+    </data>
+</odoo>

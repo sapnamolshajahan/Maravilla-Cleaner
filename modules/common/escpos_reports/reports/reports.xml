@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="escpos_test_report" model="ir.actions.report">
+        <field name="name">ESC/POS Test Report</field>
+        <field name="report_name">escpos_reports.escpos_test</field>
+        <field name="report_file">escpos</field>
+        <field name="report_type">qweb-text</field>
+        <field name="model">res.company</field>
+        <field name="binding_model_id" ref="base.model_res_company"/>
+    </record>
+
+    <template id="escpos_test">
+        <t t-foreach="docs" t-as="o">
+            <escpos align="center">
+                <h1>Test ESC/POS Report</h1>
+                <line line-ratio="0.5">
+                    <left><t t-esc="o.name"/></left>
+                    <right><t t-esc="o.email"/></right>
+                </line>
+            </escpos>
+        </t>
+    </template>
+</odoo>

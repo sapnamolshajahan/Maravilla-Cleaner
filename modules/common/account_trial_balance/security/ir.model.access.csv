@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_trial_balance_export,account.trial.balance.export,model_account_trial_balance_export,,1,1,1,1
+access_account_trial_balance_month_export,account.trial.balance.month.export,model_account_trial_balance_month_export,,1,1,1,1
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_purchase_form" model="ir.ui.view">
+        <field name="name">project.purchase.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button"
+                        type="object" name="action_view_po" icon="fa-arrows-v"
+                        string="Purchase Orders"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button type="object" name="action_create_po" string="New Purchase Order"/>
+            </xpath>
+        </field>
+    </record>
+
+   </odoo>

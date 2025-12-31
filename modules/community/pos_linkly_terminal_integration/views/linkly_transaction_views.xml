@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<odoo>
+    <record id="wk_pos_linkly_transaction_form_view" model="ir.ui.view">
+        <field name="name">EFTPOS Transaction</field>
+        <field name="model">linkly.transaction</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Transaction Form view" create="0" edit="0">
+                <header><field name="state" widget="statusbar" /></header>
+                <sheet>
+                    <group>
+                        <group col="4" colspan="4">
+                            <field name="order_ref"/>
+                            <field name="payment_method_id"/>
+                            <field name="amount"/>
+                            <field name="create_date" />
+                            <field name="txnType" />                            
+                            <field name="txnRef" />
+                            <field name="refundtxnRef" />
+                            <field name="pos_session_id" />
+                            <!-- <field name="transaction_id"/>
+                            <field name="return_data"/>
+                            <field name="request_url"/>
+                            <field name="request_data"/> -->
+                            <field name="uid" invisible="1"/>
+                            <field name='txnRef' invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record> 
+
+    <record id="wk_pos_linkly_transaction_search_view" model="ir.ui.view">
+        <field name="name">EFTPOS Transaction Search</field>
+        <field name="model">linkly.transaction</field>
+        <field name="arch" type="xml">
+            <search string="EFTPOS Transaction">
+                <separator/>
+                <filter string="State : Done" name="state_done" domain="[('state','=','done')]"/>
+                <filter string="State : Failed" name="state_fail" domain="[('state','=','failed')]"/>
+                <filter string="State : Cancel" name="state_cancel" domain="[('state','=','cancel')]"/>
+                <separator/>
+                <group>
+                    <filter string="State" name="state" context="{'group_by':'state'}"/>
+                    <filter string="Payment Method" name="payment_method_id" context="{'group_by':'payment_method_id'}"/>
+                    <filter string="Transaction Type" name="txnType" context="{'group_by':'txnType'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="wk_pos_linkly_transaction_tree_view" model="ir.ui.view">
+        <field name="name">EFTPOS Transaction</field>
+        <field name="model">linkly.transaction</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Transaction Form view" create="0" edit="0" default_order='create_date desc'>
+                <field name="order_ref"/>
+                <field name="payment_method_id"/>
+                <field name="amount"/>
+                <field name="txnType"/>
+                <field name="pos_session_id" />
+                <field name="state" />
+                <field name="create_date" />
+                <!-- <field name="txnRef" />
+                <field name="refundtxnRef" />
+                <field name="return_data"/>
+                <field name="request_data"/>
+                <field name="uid"/> -->
+            </list>
+        </field>
+    </record> 
+
+    <record id="wk_pos_linkly_transaction_action" model="ir.actions.act_window">
+        <field name="name">EFTPOS Transactions</field>
+        <field name="res_model">linkly.transaction</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="wk_pos_linkly_transaction" name="EFTPOS Transactions" parent="point_of_sale.menu_point_root"/>
+
+    <menuitem id="pos_linkly_transaction_record" name="EFTPOS Transactions Records"
+        action="pos_linkly_terminal_integration.wk_pos_linkly_transaction_action" parent="pos_linkly_terminal_integration.wk_pos_linkly_transaction"/>
+</odoo>

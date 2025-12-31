@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<templates id="template" xml:space="preserve">
+	    <t t-name="sale_pos_ecomm_loyalty.ControlButtons" t-inherit="point_of_sale.ControlButtons" t-inherit-mode="extension">
+	        <xpath expr="//t[@t-if='props.showRemainingButtons']/div/OrderlineNoteButton" position="after">
+	            <button 
+	                class="js_discount"
+	                t-att-class="buttonClass"
+	                t-on-click="() => this.clickRedeem()">
+	                <i class="fa fa-gift me-1"/>Redeem
+	            </button>
+	        </xpath>
+	    </t>
+
+	    <t t-name="OrderWidget" t-inherit="point_of_sale.OrderWidget" t-inherit-mode="extension" owl="1">
+			<xpath expr="//div[hasclass('order-summary')]" position="inside">
+				
+				<t t-if="partner and loyalty_points">
+					<t t-log="5555"/>
+					<div class='loyalty-items' style="padding-bottom: 10px;padding-left: 15px;"><i><b style="font-weight: bold;color: #017e84;font-size: 20px;">
+						+ <span><t t-out="loyalty_points"/></span> Loyalty Points.</b></i>
+					</div>
+				</t>
+			</xpath>
+		</t>
+
+		
+
+
+		<!-- PartnerListScreen -->
+		<t t-extend="PartnerList" t-inherit="point_of_sale.PartnerList" t-inherit-mode="extension" owl="1">
+			<xpath expr="//table//thead//tr" position="inside">
+				<th>Loyalty Points</th>
+			</xpath>
+		</t>
+
+		<!-- PartnerLine -->
+		<t t-extend="PartnerLine" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" owl="1">
+			<xpath expr="//tr/td[hasclass('edit-partner-button-cell')]" position="before">
+				<td class="text-center">
+					<center><t t-out='(props.partner.loyalty_pts) or "0"' /></center>
+				</td>
+			</xpath>
+		</t>
+
+
+
+
+
+
+		<!-- LoyaltyPopupWidget -->
+
+		<t t-name="sale_pos_ecomm_loyalty.LoyaltyPopupWidget">
+
+			<Dialog size="'md'">
+	            <t t-set-slot="header">
+	                <h4 class="modal-title text-break">
+	                    Loyalty Redemption
+	                </h4>
+	            </t>
+	            <div>
+					<p style="color: #875a7b;">Hello <b><t t-out="props.partner.name"/> !!! </b></p>
+					<p style="color: #875a7b;">Your Loyalty Points: <b><t t-out="(props.partner.loyalty_pts).toFixed(2)"/></b>Point(s) </p>
+					<p  style="color: #875a7b;">Your Loyalty Balance:
+						<t t-log="props.partner"/>
+						<b><t t-out="env.utils.formatCurrency(props.partner.loyalty_amount)"/></b>
+					</p>
+					<div>
+						<p style="color: #875a7b;">Enter number of points to Redeem: </p>
+						<input id ="entered_item_qty" type="text" placeholder="Enter points to redeem" class="input-field" name="code"></input>
+					</div>
+				</div>
+	            <t t-set-slot="footer">
+	                <button class="button btn btn-lg btn-primary"
+	                    t-on-click="redeemPoints">
+	                    Reedem Now
+	                </button>
+	                <button class="backend-button button btn btn-lg btn-secondary"
+	                    t-on-click="props.close">
+	                    Close
+	                </button>
+	            </t>
+	        </Dialog>
+		</t>
+
+		<t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        	<xpath expr="//div[hasclass('before-footer')]" position="before">
+				<table class='receipt-change' style="min-width: 100%;">
+					<t t-log="props.data"/>
+					<tr>
+						<td>Earned Loyalty Points:</td>
+						<td class="pos-right-align"><t t-out="props.data.total_loyalty.toFixed(2)"/></td>
+					</tr>
+					<t t-if="props.data.partner">
+						<tr>
+							<td>Total Loyalty Points:</td>
+							<td class="pos-right-align"><t t-out="props.data.partner.loyalty_pts.toFixed(2)"/></td>
+						</tr>
+					</t>
+				</table>
+			</xpath>
+		</t>
+	</templates>
+	
+	

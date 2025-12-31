@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequences for hr.accident.accident --> 
+        
+        <record id="seq_hr_accident_accident" model="ir.sequence">
+            <field name="name">Accident</field>
+            <field name="code">hr.accident.accident</field>
+            <field name="prefix">ACC</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

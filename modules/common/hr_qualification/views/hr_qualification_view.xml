@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--Qualification -->
+    <record id="open_view_qualifications_action" model="ir.actions.act_window">
+        <field name="name">Competencies</field>
+        <field name="res_model">hr.qualification.qualification</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_hr_qualification_tree">
+        <field name="name">hr.qualification.qualification.tree</field>
+        <field name="model">hr.qualification.qualification</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Competency Tree" editable='top'>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Qualification search view -->
+    <record id="hr_qualification_view_search" model="ir.ui.view">
+        <field name="name">hr.qualification.view.search</field>
+        <field name="model">hr.qualification.qualification</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search mission">
+                <group col='15' colspan='4'>
+                    <field name="active"/>
+                    <field name="name"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--Qualification Status -->
+    <record id="hr_qualification_status_action" model="ir.actions.act_window">
+        <field name="name">Competency Status</field>
+        <field name="res_model">hr.qualification.status</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_qualification_status_tree">
+        <field name="name">hr.qualification.status.tree</field>
+        <field name="model">hr.qualification.status</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Qualification Status List" editable='top'>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_employee_qualification_tree">
+        <field name="name">hr.employee.qualification.tree</field>
+        <field name="model">hr.employee.qualification</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Employee Competencies">
+                <field name="employee_id"/>
+                <field name="qualification_id"/>
+                <field name="department_id"/>
+                <field name="company_id"/>
+                <field name="status_id"/>
+                <field name="date_from"/>
+                <field name="date_expiry"/>
+                <field name="time_period"/>
+                <field name="is_expired"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hr_employee_qualification_form" model="ir.ui.view">
+        <field name="name">hr.employee.qualification.form</field>
+        <field name="model">hr.employee.qualification</field>
+        <field name="arch" type="xml">
+            <form string="Employee Competencies">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="employee_id" class="oe_edit_only"/>
+                        <h1><field name="employee_id" class="oe_inline"/></h1>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="qualification_id"/>
+                            <field name="company_id"/>
+                            <field name="department_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_expiry"/>
+                            <field name="time_period"/>
+                        </group>
+                        <group>
+                            <field name="notes"/>
+                        </group>
+                        <group>
+                            <field name="status_id"/>
+                            <field name="is_expired"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and menu for Qualification -->
+    <record model="ir.actions.act_window" id="hr_employee_qualification_action">
+        <field name="name">Employee Competencies</field>
+        <field name="res_model">hr.employee.qualification</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_hr_qualifications"
+              action="hr_employee_qualification_action"
+              parent="hr.menu_hr_root"
+              sequence="40"/>
+
+    <menuitem id="menu_qualifications"
+              action="open_view_qualifications_action"
+              parent="hr.menu_human_resources_configuration"/>
+
+    <menuitem id="menu_qualification_status" name="Competency Status List"
+              action="hr_qualification_status_action"
+              parent="hr.menu_human_resources_configuration"/>
+</odoo>

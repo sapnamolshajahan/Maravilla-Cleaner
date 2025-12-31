@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_company_show_hide_alt_po" model="ir.ui.view">
+            <field name="name">res.company.form.show.alt.address.on.po</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <data>
+	                 <page name="company_parameters" position="inside">
+	                       <group colspan="2" cols="4" string="Show Hide Alt Address on PO by Default">
+                                <field name="show_hide_alt_po_address" />
+                           </group>
+	                 </page>
+                 </data>
+            </field>
+        </record>
+    </data>
+</odoo>

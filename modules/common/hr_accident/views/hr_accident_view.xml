@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_hr_accident_reporting_mgt" parent="hr_hazard.menu_hr_health_and_safety_config"
+                  name="Incident Configuration"/>
+
+        <!--
+        =================
+        Employment Period
+        =================
+        -->
+        <record id="open_view_employment_period_form" model="ir.actions.act_window">
+            <field name="name">Period of Employment</field>
+            <field name="res_model">hr.accident.employment.period</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_employment_period_tree">
+            <field name="name">hr.accident.employment.period.tree</field>
+            <field name="model">hr.accident.employment.period</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Employment Period Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_employment_period_form" model="ir.ui.view">
+            <field name="name">hr.accident.employment.period.form</field>
+            <field name="model">hr.accident.employment.period</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Employment Period">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="employment_period_view_search" model="ir.ui.view">
+            <field name="name">hr.accident.employment.period.view.search</field>
+            <field name="model">hr.accident.employment.period</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search mission">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+        ================
+        Injury Treatment
+        ================
+        -->
+        <record id="open_view_injury_treatment_form" model="ir.actions.act_window">
+            <field name="name">Treatment of Injury</field>
+            <field name="res_model">hr.accident.injury.treatment</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_injury_treatment_tree">
+            <field name="name">hr.accident.injury.treatment.tree</field>
+            <field name="model">hr.accident.injury.treatment</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Injury Treatment Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_injury_treatment_form" model="ir.ui.view">
+            <field name="name">hr.accident.injury.treatment.form</field>
+            <field name="model">hr.accident.injury.treatment</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Injury Treatment">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="injury_treatment_view_search" model="ir.ui.view">
+            <field name="name">hr.accident.injury.treatment.view.search</field>
+            <field name="model">hr.accident.injury.treatment</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search mission">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+        ===============
+        Event Mechanism
+        ===============
+        -->
+        <record id="open_view_event_mechanism_form" model="ir.actions.act_window">
+            <field name="name">Mechanism of Event</field>
+            <field name="res_model">hr.accident.event.mechanism</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_event_mechanism_tree">
+            <field name="name">hr.accident.event.mechanism.tree</field>
+            <field name="model">hr.accident.event.mechanism</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Event Mechanism Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_event_mechanism_form" model="ir.ui.view">
+            <field name="name">hr.accident.event.mechanism.form</field>
+            <field name="model">hr.accident.event.mechanism</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Event Mechanism">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="event_mechanism_view_search" model="ir.ui.view">
+            <field name="name">hr.accident.event.mechanism.view.search</field>
+            <field name="model">hr.accident.event.mechanism</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search mission">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+        ============
+        Event Agency
+        ============
+        -->
+        <record id="open_view_event_agency_form" model="ir.actions.act_window">
+            <field name="name">Agency of Event</field>
+            <field name="res_model">hr.accident.event.agency</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_event_agency_tree">
+            <field name="name">hr.accident.event.agency.tree</field>
+            <field name="model">hr.accident.event.agency</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Event Agency Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_event_agency_form" model="ir.ui.view">
+            <field name="name">hr.accident.event.agency.form</field>
+            <field name="model">hr.accident.event.agency</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Event Agency">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="event_agency_view_search" model="ir.ui.view">
+            <field name="name">hr.accident.event.agency.view.search</field>
+            <field name="model">hr.accident.event.agency</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search mission">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+        =========
+        Body Part
+        =========
+        -->
+        <record id="open_view_body_part_form" model="ir.actions.act_window">
+            <field name="name">Body Part</field>
+            <field name="res_model">hr.accident.body.part</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_body_part_tree">
+            <field name="name">hr.accident.body.part.tree</field>
+            <field name="model">hr.accident.body.part</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Body Part Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_body_part_form" model="ir.ui.view">
+            <field name="name">hr.accident.body.part.form</field>
+            <field name="model">hr.accident.body.part</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Body Part">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="body_part_view_search" model="ir.ui.view">
+            <field name="name">hr.accident.body.part.view.search</field>
+            <field name="model">hr.accident.body.part</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search mission">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+        =========
+        Incident Type
+        =========
+        -->
+        <record id="open_view_incident_type_form" model="ir.actions.act_window">
+            <field name="name">Incident Type</field>
+            <field name="res_model">hr.incident.type</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_incident_type_tree">
+            <field name="name">hr.incident.type.tree</field>
+            <field name="model">hr.incident.type</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Incident Type Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_incident_type_form" model="ir.ui.view">
+            <field name="name">hr.incident.type.from</field>
+            <field name="model">hr.incident.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Incident Type">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="incident_type_view_search" model="ir.ui.view">
+            <field name="name">hr.incident.type..view.search</field>
+            <field name="model">hr.incident.type</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Incident">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+        ======
+        Nature
+        ======
+        -->
+        <record id="open_view_nature_form" model="ir.actions.act_window">
+            <field name="name">Nature of Injury or Disease</field>
+            <field name="res_model">hr.accident.nature</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_nature_tree">
+            <field name="name">hr.accident.nature.tree</field>
+            <field name="model">hr.accident.nature</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Nature Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_nature_form" model="ir.ui.view">
+            <field name="name">hr.accident.nature.form</field>
+            <field name="model">hr.accident.nature</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Nature">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="nature_search" model="ir.ui.view">
+            <field name="name">hr.accident.nature.view.search</field>
+            <field name="model">hr.accident.nature</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search mission">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <menuitem id="menu_employment_period" name="Period of Employment"
+                  action="open_view_employment_period_form" parent="menu_hr_accident_reporting_mgt"/>
+        <menuitem id="menu_injury_treatment" name="Treatment of Injury"
+                  action="open_view_injury_treatment_form" parent="menu_hr_accident_reporting_mgt"/>
+        <menuitem id="menu_event_mechanism" name="Mechanism of Event"
+                  action="open_view_event_mechanism_form" parent="menu_hr_accident_reporting_mgt"/>
+        <menuitem id="menu_event_agency" name="Agency of Event"
+                  action="open_view_event_agency_form" parent="menu_hr_accident_reporting_mgt"/>
+        <menuitem id="menu_body_part" name="Body Part" action="open_view_body_part_form"
+                  parent="menu_hr_accident_reporting_mgt"/>
+        <menuitem id="menu_nature" name="Nature of Injury or Disease"
+                  action="open_view_nature_form" parent="menu_hr_accident_reporting_mgt"/>
+        <menuitem id="menu_incident_type" name="Incident Type"
+                  action="open_view_incident_type_form" parent="menu_hr_accident_reporting_mgt"/>
+
+        <!--
+        ========
+        Accident
+        ========
+        -->
+        <record id="open_view_accident_form" model="ir.actions.act_window">
+            <field name="name">Incident</field>
+            <field name="res_model">hr.accident.accident</field>
+            <field name="view_mode">list,form,pivot,graph</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_accident_graph">
+            <field name="name">Accident Graph</field>
+            <field name="model">hr.accident.accident</field>
+            <field name="arch" type="xml">
+                <pivot string="Incident Graph" stacked="True">
+                    <field name="hr_incident_type_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_accident_pivot">
+            <field name="name">Accident Pivot</field>
+            <field name="model">hr.accident.accident</field>
+            <field name="arch" type="xml">
+                <pivot string="Incident Pivot" disable_linking="True">
+                    <field name="date" interval="month" type="col"/>
+                    <field name="hr_incident_type_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_accident_tree">
+            <field name="name">hr.accident.accident.tree</field>
+            <field name="model">hr.accident.accident</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Incident Tree">
+                    <field name="name"/>
+                    <field name="injured_person"/>
+                    <field name="event_datetime"/>
+                    <field name="work_zone"/>
+                    <field name="company_id"/>
+                    <field name="relationship"/>
+                    <field name="hr_accident_injury_treatment_id"/>
+                    <field name="shift"/>
+                    <field name="hr_accident_event_mechanism_id"/>
+                    <field name="hr_accident_body_part_id"/>
+                    <field name="lost_time"/>
+                    <field name="environment_damage"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_accident_form" model="ir.ui.view">
+            <field name="name">hr.accident.accident.form</field>
+            <field name="model">hr.accident.accident</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Incident">
+                    <header>
+                        <button name="mark_incident_done"
+                                type="object"
+                                string="Mark done"
+                                invisible="state != 'open'"/>
+
+                        <button name="mark_incident_open"
+                                type="object"
+                                string="Open Incident"
+                                invisible="state != 'open'"/>
+
+                        <field name="state"
+                               widget="statusbar"
+                               statusbar_visible="open,done"/>
+                    </header>
+                    <group col="2" >
+                        <group col="1">
+                            <field name="create_date"/>
+                            <field name="work_zone" readonly="state != 'open'"/>
+                            <field name="location" readonly="state != 'open'"/>
+                        </group>
+                        <group col="1">
+                            <field name="name" readonly="state != 'open'"/>
+                            <field name="injured_person" readonly="state != 'open'"/>
+                            <field name="residential_address" readonly="state != 'open'"/>
+                        </group>
+                    </group>
+                    <separator colspan="4"/>
+                    <group col="3" >
+                        <group col="1">
+                            <field name="birth_date" readonly="state != 'open'"/>
+                            <field name="relationship" readonly="state != 'open'"/>
+                            <field name="hr_incident_type_id" options="{'no_create': True}" widget="selection"
+                                   readonly="state != 'open'"/>
+                            <field name="hours_worked" widget="float_time" readonly="state != 'open'"/>
+                            <field name="lost_time_injury" readonly="state != 'open'"/>
+                        </group>
+                        <group col="1">
+                            <field name="sex" readonly="state != 'open'"/>
+                            <field name="hr_accident_employment_period_id" options="{'no_create': True}" widget="selection"
+                               readonly="state != 'open'"/>
+                            <field name="event_datetime" readonly="state != 'open'"/>
+                            <field name="hr_accident_event_mechanism_id" options="{'no_create': True}" widget="selection"
+                               readonly="state != 'open'"/>
+                            <field name="lost_time" readonly="state != 'open'"/>
+                        </group>
+                        <group col="1">
+                            <field name="occupation" readonly="state != 'open'"/>
+                            <field name="hr_accident_injury_treatment_id" options="{'no_create': True}" widget="selection"
+                               readonly="state != 'open'"/>
+                            <field name="shift" readonly="state != 'open'"/>
+                            <field name="hr_accident_event_agency_id" options="{'no_create': True}" widget="selection"
+                               readonly="state != 'open'"/>
+                            <field name="hr_accident_body_part_id" options="{'no_create': True}" widget="selection"
+                                   readonly="state != 'open'"/>
+                        </group>
+                    </group>
+                    <separator colspan="4"/>
+                    <group col="1">
+                        <field colspan="2" name="hr_accident_nature_ids" height="70" mode="list" readonly="state != 'open'">
+                            <list string="Nature of injury or disease">
+                                <field name="name"/>
+                            </list>
+                        </field>
+                        <field name="description" readonly="state != 'open'"/>
+                    </group>
+                    <separator colspan="4"/>
+                    <separator string="Analysis">
+                        <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                            What were the causes of the accident?
+                        </div>
+                        <group col="2">
+                            <group col="1">
+                                <field name="analysis" readonly="state != 'open'"/>
+                            </group>
+                            <group col="1">
+                                <field name="seriousness" colspan="2" readonly="state != 'open'"/>
+                                <field name="future_probability" colspan="2" readonly="state != 'open'"/>
+                            </group>
+                        </group>
+                    </separator>
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                        What action has or will be taken to prevent a recurrance?
+                    </div>
+                    <group col="2">
+                        <group col="1">
+                            <field name="corrective_action_ids" readonly="state != 'open'" colspan="2">
+                                <list string="Actions" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="done" string="'Done"/>
+                                </list>
+                            </field>
+                        </group>
+                        <group col="1">
+                            <field name="actioned_person" readonly="state != 'open'"/>
+                            <field name="actioned_date" readonly="state != 'open'"/>
+                            <field name="actioned_state" readonly="state != 'open'"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                        Treatment And Investigation Of The Accident:
+                    </div>
+                    <group col="4">
+                        <group col="2">
+                            <group col="1">
+                                <field name="treatment_description" readonly="state != 'open'"/>
+                                <field name="internal_investigator" readonly="state != 'open'"/>
+                            </group>
+                            <group col="1">
+                                <field name="medical_entity" readonly="state != 'open'"/>
+                                <field name="worksafe_advised" readonly="state != 'open'"/>
+                            </group>
+                        </group>
+                        <group  col="2">
+                            <group col="1">
+                                <field name="assisting_attendee" readonly="state != 'open'"/>
+                                <field name="investigation_date" readonly="state != 'open'"/>
+                            </group>
+                            <group col="1">
+                                <field name="first_aid_items" readonly="state != 'open'"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group col="2">
+                        <group col="1">
+                            <field name="environment_damage" readonly="state != 'open'"/>
+                            <field name="action_reqd" readonly="state != 'open'"/>
+                            <field name='hr_hazard_id' required="1" readonly="state != 'open'"/>
+                        </group>
+                        <group col="1">
+                            <field name="investigated" readonly="state != 'open'"/>
+                            <field name="hazard" readonly="state != 'open'"/>
+                        </group>
+                    </group>
+                    <group col="2"  >
+                        <field name="date" readonly="state != 'open'"/>
+                        <field name="company_id" options="{'no_create': True}" readonly="state != 'open'"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="accident_view_search" model="ir.ui.view">
+            <field name="name">hr.accident.accident.view.search</field>
+            <field name="model">hr.accident.accident</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search mission">
+                    <group col='15' colspan='4'>
+                        <field name="name"/>
+                        <field name="injured_person"/>
+                        <field name="relationship"/>
+                        <field name="hr_accident_injury_treatment_id"/>
+                        <field name="manager"/>
+                        <field name="date"/>
+                        <field name="state"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <menuitem id="menu_hr_accident"
+                  name="Incidents"
+                  parent="hr_hazard.menu_hr_health_and_safety"
+                  sequence="6"/>
+
+        <menuitem id="menu_hr_accident_accident"
+                  name="Incidents"
+                  parent="menu_hr_accident"
+                  action="open_view_accident_form"/>
+    </data>
+</odoo>

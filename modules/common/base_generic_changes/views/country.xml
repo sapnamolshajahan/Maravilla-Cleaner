@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_country_form" model="ir.ui.view">
+        <field name="name">Add Company Tax Name</field>
+        <field name="inherit_id" ref="base.view_country_form"/>
+        <field name="model">res.country</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="company_tax_name"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="country_action" model="ir.actions.act_window">
+        <field name="name">Countries</field>
+        <field name="res_model">res.country</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="country_menu" action="country_action" parent="base_data_menu"/>
+</odoo>

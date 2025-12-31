@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_xero_base" name="Xero Integration" sequence="80" parent="base.menu_administration" />
+
+    <record id="xero_import_type_tree" model="ir.ui.view">
+        <field name="name">xero.import.type.tree</field>
+        <field name="model">xero.import.type</field>
+        <field name="arch" type="xml">
+           <list string="Xero Import Types">
+                <field name="name"/>
+                <field name="date_from_visible"/>
+                <field name="function_name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="xero_import_type_action" model="ir.actions.act_window">
+        <field name="name">Xero Import Types</field>
+        <field name="res_model">xero.import.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+	<menuitem action="xero_import_type_action"
+              id="xero_import_type_menu"
+              parent="menu_xero_base"
+              sequence="10"/>
+
+    <record id="xero_import_form" model="ir.ui.view">
+        <field name="name">xero.import.form</field>
+        <field name="model">xero.import</field>
+        <field name="arch" type="xml">
+            <form string="Xero Import">
+                <group>
+                    <field name="xero_import_type"/>
+                    <field name="date_from_visible" invisible="1"/>
+                    <field name="date_from" invisible="date_from_visible == False"/>
+                </group>
+                <footer>
+                    <button name="run_import" class="oe_highlight" string="Run Import" type="object"/>
+                    <button special="cancel" class="oe_link" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="xero_import_action" model="ir.actions.act_window">
+        <field name="name">Import Data from Xero</field>
+        <field name="res_model">xero.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+	<menuitem action="xero_import_action"
+              id="xero_import_menu"
+              parent="menu_xero_base"
+              sequence="20"/>
+
+    <record id="xero_authenticate_form" model="ir.ui.view">
+        <field name="name">xero.authenticate.form</field>
+        <field name="model">xero.authenticate</field>
+        <field name="arch" type="xml">
+            <form string="Xero Authenticate">
+                    <group>
+                    </group>
+                    <footer>
+                        <button name="run_authenticate" class="oe_highlight" string="Run Authentication" type="object"/>
+                        <button special="cancel" class="oe_link" string="Cancel" />
+                    </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="xero_authenticate_action" model="ir.actions.act_window">
+        <field name="name">Authenticate with Xero</field>
+        <field name="res_model">xero.authenticate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+	<menuitem action="xero_authenticate_action"
+              id="xero_authenticate_menu"
+              parent="menu_xero_base"
+              sequence="30"/>
+
+    <record id="xero_refresh_token_form" model="ir.ui.view">
+        <field name="name">xero.refresh.token.form</field>
+        <field name="model">xero.refresh.token</field>
+        <field name="arch" type="xml">
+            <form string="Xero refresh Token">
+                    <group>
+                    </group>
+                    <footer>
+                        <button name="run_token_refresh" class="oe_highlight" string="Run Token Refresh" type="object"/>
+                        <button special="cancel" class="oe_link" string="Cancel" />
+                    </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="xero_refresh_token_action" model="ir.actions.act_window">
+        <field name="name">Refresh Xero Token</field>
+        <field name="res_model">xero.refresh.token</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+	<menuitem action="xero_refresh_token_action"
+              id="xero_refresh_token_menu"
+              parent="menu_xero_base"
+              sequence="40"/>
+
+</odoo>

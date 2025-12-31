@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_statement_view" model="ir.ui.view">
+        <field name="name">Partner Statements</field>
+        <field name="model">res.partner.statement</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+                <header>
+                    <button special="cancel" string="Cancel" colspan="2"/>
+                    <button name="print_statement" string="Print Statements" type="object" default_focus="1"
+                            class="btn-primary"/>
+                    <button name="email_statement" string="Email" type="object"/>
+                </header>
+
+                <group string="Run Parameters">
+                    <group>
+                        <field name="statement_currency" groups="base.group_multi_currency"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="type"/>
+                        <field name="zero_transactions"/>
+                        <field name="exclude_credit_balance"/>
+                        <field name="reconcile_offset"/>
+                    </group>
+                    <group>
+                        <field name="exclude_non_local" groups="base.group_multi_currency"/>
+                        <field name="run_as_task"/>
+                        <field name="zero_balance"/>
+                        <field name="groupdebtor"/>
+                    </group>
+                    <newline/>
+                    <newline/>
+                </group>
+                <group string="Aging Options">
+                    <group>
+                        <field name="aging"/>
+                    </group>
+                    <group invisible="aging == 'months'">
+                        <field name="date_from"/>
+                        <field name="days"/>
+                    </group>
+                    <group invisible="aging == 'days'">
+                        <field name="as_at_date"/>
+                    </group>
+                </group>
+                <newline/>
+                <separator string="Partners" colspan="4"/>
+                <group>
+                    <field name="print_all_clients"/>
+                    <field name="no_email_clients"/>
+                </group>
+                <field name="partner_ids" nolabel="1">
+                    <list>
+                        <field name="name" readonly="1"/>
+                        <field name="partner_statement_email" readonly="1"/>
+                        <field name="phone" readonly="1"/>
+                        <field name="city" readonly="1"/>
+                        <field name="company_id" readonly="1"/>
+                    </list>
+                </field>
+                <footer>
+                    <button string="Close" special="cancel"/>
+                </footer>
+            </form>account_reports_rec_and_pay_menu
+        </field>
+    </record>
+
+    <record id="action_res_partner_statement_view_report" model="ir.actions.act_window">
+        <field name="name">Partner Statements</field>
+        <field name="res_model">res.partner.statement</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="partner_statement_view"/>
+    </record>
+
+    <menuitem id="account_reports_rec_and_pay_menu"
+              name="Receivable and Payable Reports"
+              parent="account.account_reports_management_menu"
+              sequence="10"/>
+
+    <menuitem id="menu_res_partner_statement"
+              name="Partner Statements"
+              groups="account.group_account_manager,account.group_account_user,partner_reports.group_partner_reports_user"
+              parent="account_reports_rec_and_pay_menu"
+              sequence="50"
+              action="action_res_partner_statement_view_report"/>
+
+    <record id="partner_statement_download_view" model="ir.ui.view">
+        <field name="name">Download Report</field>
+        <field name="model">res.partner.statement</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group colspan="4">
+                    <field name="report_name" invisible="1"/>
+                    <field name="data" filename="report_name"/>
+                </group>
+                <footer/>
+            </form>
+        </field>
+    </record>
+
+</odoo>

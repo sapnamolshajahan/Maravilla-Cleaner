@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_three_columns" name="Three Columns">
+        <section class="s_features pt64 pb64 o_colored_level" data-snippet="s_features" data-name="Features">
+            <div class="container">
+                <div class="col-lg-12">
+                    <h3 style="text-align: center;"><strong><span class="o_text_highlight o_translate_inline o_text_highlight_bold_2 o_text_highlight_fill" style="--text-highlight-width: 3px; --text-highlight-color: #F9669D;"><font class="text-o-color-1">Everything you need​​</font></span></strong></h3>
+                    <p class="lead" style="text-align: center;">List and describe the key features of your solution or service.</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 px-2">
+                        <div class="o_colored_level border pt32 px-3 h-100" style="border-width: 1px !important; background-color: rgb(255, 245, 249); border-color: rgb(254, 77, 148) !important;">
+                            <img src="/theme_mediquick/static/src/img/img1.png" alt="" class="s_features_icon mb-3 img img-fluid o_we_custom_image rounded" data-mimetype="image/png" data-original-id="1541" data-original-src="/theme_mediquick/static/src/img/img1.png" data-mimetype-before-conversion="image/png" data-resize-width="70" loading="lazy"/>
+                            <div class="overflow-hidden">
+                                <h3 class="h5-fs"><strong>Asthma &amp;amp; COPD Management</strong></h3><p>Consistent performance and uptime ensure efficient, reliable service with minimal interruptions and quick response times.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 px-2">
+                        <div class="o_colored_level border pt32 px-3 h-100" style="border-width: 1px !important; background-color: rgb(255, 245, 249); border-color: rgb(254, 77, 148) !important;">                      
+                            <img src="/theme_mediquick/static/src/img/img2.png" alt="" class="s_features_icon mb-3 rounded img img-fluid o_we_custom_image" data-mimetype="image/png" data-original-id="1542" data-original-src="/theme_mediquick/static/src/img/img2.png" data-mimetype-before-conversion="image/png" data-resize-width="70" loading="lazy"/>
+                            <div class="overflow-hidden">
+                                <h3 class="h5-fs"><strong>Cardiac Rehabilitation</strong></h3><p>Speed and efficiency ensure tasks are completed quickly and resources are used optimally, enhancing productivity and satisfaction.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 px-2">
+                        <div class="o_colored_level border pt32 px-3 h-100" style="border-width: 1px !important; background-color: rgb(255, 245, 249); border-color: rgb(254, 77, 148) !important;">
+                            <img src="/theme_mediquick/static/src/img/img3.png" alt="" class="s_features_icon mb-3 rounded img img-fluid o_we_custom_image" data-mimetype="image/webp" data-original-id="1543" data-original-src="/theme_mediquick/static/src/img/img3.png" data-mimetype-before-conversion="image/png" data-resize-width="NaN" loading="lazy"/>
+                            <div class="overflow-hidden">
+                                <h3 class="h5-fs"><strong>Spine and Back Care</strong></h3><p>Growth capability is a system's ability to scale and adapt, meeting increasing demands and evolving needs for long-term success.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

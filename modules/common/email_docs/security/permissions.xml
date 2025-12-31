@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--
+			email.doc.type is a reference table for this module.
+			End-users should not be able to remove or add to the list,
+			although Administrators are allowed to alter the template.
+		  -->
+		<record id="access_manager_doctype" model="ir.model.access">
+			<field name="name">Email Doctype (Manager)</field>
+			<field name="model_id" ref="model_email_doc_type"/>
+			<field name="group_id" ref="base.group_system"/>
+			<field name="perm_read" eval="True" />
+			<field name="perm_write" eval="True" />
+			<field name="perm_create" eval="False" />
+			<field name="perm_unlink" eval="False" />
+		</record>
+		<record id="access_user_doctype" model="ir.model.access">
+			<field name="name">Email Doctype (User)</field>
+			<field name="model_id" ref="model_email_doc_type"/>
+			<field name="group_id" ref="base.group_user"/>
+			<field name="perm_read" eval="True" />
+			<field name="perm_write" eval="False" />
+			<field name="perm_create" eval="False" />
+			<field name="perm_unlink" eval="False" />
+		</record>
+
+		<record id="access_partner_document_email" model="ir.model.access">
+			<field name="name">Partner Document Email</field>
+			<field name="model_id" ref="model_partner_document_email"/>
+			<field name="perm_read" eval="True" />
+			<field name="perm_write" eval="True" />
+			<field name="perm_create" eval="True" />
+			<field name="perm_unlink" eval="True" />
+		</record>
+
+		<!-- Async email send wizard -->
+		<record id="access_async_email_send_all" model="ir.model.access">
+			<field name="name">Async email send for all users.</field>
+			<field name="model_id" ref="model_email_async_send" />
+			<field name="perm_read" eval="True" />
+			<field name="perm_write" eval="True" />
+			<field name="perm_create" eval="True" />
+			<field name="perm_unlink" eval="True" />
+		</record>
+
+		<!-- Bulk dispatch wizard -->
+		<record id="access_bulk_customer_invoice_dispatch" model="ir.model.access">
+			<field name="name">Bulk Customer Invoice Dispatch</field>
+			<field name="model_id" ref="model_bulk_customer_invoice_dispatch"/>
+			<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_create" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+		</record>
+		<record id="access_bulk_customer_invoice_line" model="ir.model.access">
+			<field name="name">Bulk Customer Invoice Line</field>
+			<field name="model_id" ref="model_bulk_customer_invoice_line"/>
+			<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_create" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+		</record>
+		<record id="access_bulk_invoice_dispatch" model="ir.model.access">
+			<field name="name">Bulk Invoice Dispatch</field>
+			<field name="model_id" ref="model_bulk_invoice_dispatch"/>
+			<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_create" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+		</record>
+		<record id="access_bulk_invoice_dispatch_line" model="ir.model.access">
+			<field name="name">Bulk Invoice Dispatch Line</field>
+			<field name="model_id" ref="model_bulk_invoice_dispatch_line"/>
+			<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_create" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+		</record>
+	</data>
+
+	<data noupdate="1">
+	    <record id="operations_email_docs_send_wizard_user" model="ir.rule">
+	        <field name="name">operations.email.docs.send.wizard.user</field>
+	        <field name="model_id" ref="model_email_async_send"/>
+	        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+	    </record>
+	</data>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="generic_partner_statement" model="ir.actions.report">
+        <field name="name">Partner Statement</field>
+        <field name="report_name">partner_reports.generic_partner_statement</field>
+        <field name="viaduct_helper">
+            odoo.addons.partner_reports.report.statement_helper.StatementHelper
+        </field>
+        <field name="report_file">partner_reports/report/statement-unpack.jrxml</field>
+        <field name="model">res.partner.statement</field>
+        <field name="binding_model_id" ref="model_res_partner_statement"/>
+        <field name="print_report_name">object.get_statement_report_filename()</field>
+    </record>
+
+    <record id="generic_partner_statement_email" model="ir.actions.report">
+        <field name="name">Partner Statement (Email)</field>
+        <field name="report_name">partner_reports.generic_partner_statement_email</field>
+        <field name="viaduct_helper">
+            odoo.addons.partner_reports.report.statement_helper.StatementHelper
+        </field>
+        <field name="report_file">partner_reports/report/statement-email-unpack.jrxml</field>
+        <field name="model">res.partner.statement.email</field>
+        <field name="binding_model_id" ref="model_res_partner_statement_email"/>
+        <field name="print_report_name">object.res_partner_statement_id.get_statement_report_filename()</field>
+    </record>
+
+    <record id="generic_detailed_atb" model="ir.actions.report">
+        <field name="name">Detailed Aged Trial Balance</field>
+        <field name="report_name">partner_reports.generic_detailed_atb</field>
+        <field name="viaduct_helper">
+            odoo.addons.partner_reports.report.detailed_atb_helper.DetailedAtbHelper
+        </field>
+        <field name="report_file">partner_reports/report/detailed-atb.jrxml</field>
+        <field name="model">res.partner.statement</field>
+        <field name="binding_model_id" ref="model_res_partner_statement"/>
+    </record>
+
+    <record id="generic_detailed_atb_forex" model="ir.actions.report">
+        <field name="name">Forex Detailed Aged Trial Balance</field>
+        <field name="report_name">partner_reports.generic_detailed_atb_forex</field>
+        <field name="viaduct_helper">
+            odoo.addons.partner_reports.report.detailed_atb_helper.DetailedAtbHelper
+        </field>
+        <field name="report_file">partner_reports/report/detailed-atb-forex.jrxml</field>
+        <field name="model">res.partner.statement</field>
+        <field name="binding_model_id" ref="model_res_partner_statement"/>
+    </record>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_picking_confirm_wizard" model="ir.ui.view">
+        <field name="name">stock.picking.confirm.wizard.form</field>
+        <field name="model">stock.picking.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirm Delivery Validation">
+                <sheet>
+                    <div class="o_form_label" style="text-align:center; margin:10px 0;">
+                        Please Check that customer has confirmed the delivery.
+                    </div>
+                    <footer>
+                        <button string="Confirm" type="object" name="action_confirm_picking" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="is_firm" readonly="1"/>
+                <field name="is_commercial" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

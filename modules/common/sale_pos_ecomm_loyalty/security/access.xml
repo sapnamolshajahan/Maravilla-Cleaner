@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="crm.access_res_partner" model="ir.model.access">
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+    </record>
+
+    <record id="group_account_invoice_report_readonly" model="res.groups">
+        <field name="name">Invoice Report Readonly</field>
+    </record>
+
+    <record id="group_purchase_order_draft_only" model="res.groups">
+        <field name="name">Purchase Order Draft Only</field>
+    </record>
+
+    <record id="access_invoice_report_readonly" model="ir.model.access">
+        <field name="name">Invoice Report Readonly</field>
+        <field name="model_id" ref="account.model_account_invoice_report"/>
+        <field name="group_id" ref="group_account_invoice_report_readonly"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="access_prezzy_redemption" model="ir.model.access">
+        <field name="name">Prezzy Redemption History</field>
+        <field name="model_id" ref="model_prezzy_redemption"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="access_prezzy_redemption_wizard" model="ir.model.access">
+        <field name="name">Prezzy Redemption History Wizard</field>
+        <field name="model_id" ref="model_prezzy_redemption_wizard"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

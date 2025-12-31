@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- wizard view -->
+    <record id="view_prezzy_redemption_wizard_form" model="ir.ui.view">
+        <field name="name">Prezzy Card Redemption Form</field>
+        <field name="model">prezzy.redemption.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Issue Prezzy Card">
+                <group>
+                    <field name="current_point_total" readonly="True" />
+                    <p>
+                        2000 points are required to redeem a Prezzy card.
+                    </p>
+                    <field name="amount_to_redeem" />
+                    <p invisible="amount_to_redeem == 2000" class="text-warning">
+                        WARNING: A number other than the required loyalty points have been specified. A card will be issued,
+                        but this amount of points will be deducted.
+                    </p>
+                    <field name="card_value_to_issue" />
+                    <field name="notes" />
+                </group>
+                <footer>
+                    <button
+                        string="Issue"
+                        type="object"
+                        name="redeem_card"
+                        class="oe_highlight"
+                        confirm="This will deduct the specified points amount. Are you sure?"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_issue_prezzy_card" model="ir.actions.act_window">
+        <field name="name">Prezzy Card Redemption</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prezzy.redemption.wizard</field>
+        <field name="binding_model_id" ref="model_res_partner" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_prezzy_redemption_wizard_form" />
+        <field name="target">new</field>
+    </record>
+</odoo>

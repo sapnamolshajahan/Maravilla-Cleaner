@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Deactivate base system reports -->
+    <record id="account.account_invoices" model="ir.actions.report">
+        <field name="binding_model_id" eval="False"/>
+    </record>
+    <record id="account.account_invoices_without_payment" model="ir.actions.report">
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <record id="basic_invoice_viaduct" model="ir.actions.report">
+        <field name="name">Invoice/Credit Note</field>
+        <field name="report_name">account_basic_invoice_reports.basic_invoice_viaduct</field>
+        <field name="viaduct_helper">
+            odoo.addons.account_basic_invoice_reports.reports.invoice_helper.BasicInvoiceHelper
+        </field>
+        <field name="report_file">account_basic_invoice_reports/reports/invoice-unpack.jrxml</field>
+        <field name="model">account.move</field>
+        <field name="binding_model_id" ref="model_account_move"/>
+        <field name="print_report_name">object.get_printed_report_name()</field>
+    </record>
+</odoo>

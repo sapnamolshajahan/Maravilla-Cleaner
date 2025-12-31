@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="access_stocktake" model="ir.model.access">
+		<field name="name">Stock Take</field>
+		<field name="model_id" ref="model_stocktake_data_entry"/>
+		<field name="group_id" ref="stock.group_stock_user"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_stocktake_control" model="ir.model.access">
+		<field name="name">Stock Take Control</field>
+		<field name="model_id" ref="model_stocktake_data_entry_control"/>
+		<field name="group_id" ref="stock.group_stock_user"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+	<record id="access_stocktake_line" model="ir.model.access">
+		<field name="name">Stock Take Line</field>
+		<field name="model_id" ref="model_stocktake_data_entry_line"/>
+        <field name="group_id" ref="stock.group_stock_user"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_stocktake_count_sheets" model="ir.model.access">
+		<field name="name">Stocktake Count Sheets</field>
+		<field name="model_id" ref="model_stocktake_count_sheet"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_stocktake_variance_report" model="ir.model.access">
+		<field name="name">stocktake.variance.report</field>
+		<field name="model_id" ref="model_stocktake_variance_report"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_stocktake_checking_report" model="ir.model.access">
+		<field name="name">stocktake.checking.report</field>
+		<field name="model_id" ref="model_stocktake_checking_report"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_stock_inventory" model="ir.model.access">
+		<field name="name">access.stock.inventory</field>
+		<field name="model_id" ref="model_stock_inventory"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_stock_inventory_line" model="ir.model.access">
+		<field name="name">access.stock.inventory.line</field>
+		<field name="model_id" ref="model_stock_inventory_line"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="access_stocktake_import_count" model="ir.model.access">
+		<field name="name">access.stocktake.import.count</field>
+		<field name="model_id" ref="model_stocktake_import_count"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+</odoo>

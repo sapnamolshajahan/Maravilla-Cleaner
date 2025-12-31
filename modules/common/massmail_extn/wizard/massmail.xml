@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_mass_mailing_list_create_form">
+        <field name="name">mail.mass_mailing.list.create.form</field>
+        <field name="model">mass.mail.list</field>
+        <field name="arch" type="xml">
+            <form string="Create Mailing List">
+                <sheet>
+                    <group>
+                        <label for="name" string="Mailing List"/>
+                        <div>
+                            <field name="name" nolabel="1"/>
+                        </div>
+                        <label for="mailing_model_id" string="Filtering Model" options="{'no_create': True}"/>
+                        <div>
+                            <field name="mailing_model_id" options="{'no_create': True}"/>
+                            <field name="mailing_model_name" invisible="1"/>
+                            <field name="mailing_model_real" invisible="1"/>
+                        </div>
+                        <label for="filter_id" string="Filter to Apply" options="{'no_create': True}"/>
+                        <div>
+                            <field name="filter_id" options="{'no_create': True}" required="True"/>
+                            <field name="mailing_domain" invisible="1"/>
+                        </div>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="build_list" string="Build List" type="object" class="oe_highlight"/>
+                    <button class="btn-default" special="cancel" string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_build_mail_list" model="ir.actions.act_window">
+        <field name="name">Build Mail List</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mass.mail.list</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_build_mail_list"
+              name="Build Mail List"
+              parent="mass_mailing.mass_mailing_menu_root"
+              sequence="20"/>
+
+    <menuitem id="menu_build_mail_list_wizard"
+              action="action_build_mail_list"
+              name="Build Mail List"
+              parent="menu_build_mail_list"
+              sequence="10"/>
+</odoo>
+	

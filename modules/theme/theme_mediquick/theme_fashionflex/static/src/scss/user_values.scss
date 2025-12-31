@@ -1,0 +1,11 @@
+$o-user-website-values: map-merge($o-user-website-values, o-map-omit((
+    'menu-gradient': 'NULL',
+    'logo-height': 3.75rem,
+    'footer-template': 'centered',
+    'font': 'Inter',
+    'google-fonts': ('Dancing Script'),
+    'google-local-fonts': null,
+    'uploaded-local-fonts': null,
+    'headings-font': 'Dancing Script',
+    // -- hook --
+)));

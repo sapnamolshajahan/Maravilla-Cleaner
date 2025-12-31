@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_risk_list">
+            <field name="name">hr.risk.list</field>
+            <field name="model">hr.risk</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Incident List">
+                    <field name="name"/>
+                    <field name="hazard_type_id"/>
+                    <field name="hazard_identified"/>
+                    <field name="risk_matrix"/>
+                    <field name="control_measure"/>
+                    <field name="controls"/>
+                    <field name="residual_risk_assessment"/>
+                    <field name="company_id" invisible="1"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_risk_form" model="ir.ui.view">
+            <field name="name">hr.risk.form</field>
+            <field name="model">hr.risk</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Risk">
+                    <group col="2">
+                        <group col="1">
+                            <field name="create_date"/>
+                            <field name="hazard_type_id"/>
+                            <field name="description"/>
+                        </group>
+                        <group col="1">
+                            <field name="name"/>
+                            <field name="hazard_identified"/>
+                            <field name="go_wrong"/>
+                        </group>
+                    </group>
+                    <separator colspan="4"/>
+                    <group col="3">
+                        <group col="1">
+                            <field name="who_harmed"/>
+                            <field name="consequence" required="1"/>
+                            <field name="controls"/>
+                        </group>
+                        <group col="1">
+                            <field name="how_harmed"/>
+                            <field name="likelihood" required="1"/>
+                        </group>
+                        <group col="1">
+                            <field name="location"/>
+                            <field name="risk_matrix"/>
+                        </group>
+                    </group>
+                    <separator colspan="4"/>
+                    <group col="2" name="measures">
+                        <group col="1">
+                            <field name="control_measure"/>
+                            <field name="further_action"/>
+                            <field name="review_date"/>
+                        </group>
+                        <group col="1">
+                            <field name="recovery_measure"/>
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                    <group colspan="4">
+                        <field colspan="4" name="hr_accident_ids" height="200" mode="list">
+                            <list string="Nature of injury or disease">
+                                <field name="description"/>
+                            </list>
+                        </field>
+                    </group>
+                    <separator colspan="4"/>
+                    <group col="1">
+                        <field name="company_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="risk_view_search" model="ir.ui.view">
+            <field name="name">hr.risk.view.search</field>
+            <field name="model">hr.risk</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <group col='15' colspan='4'>
+                        <field name="name"/>
+                        <field name="hazard_type_id"/>
+                        <field name="hazard_identified"/>
+                        <field name="description"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="open_hr_risk_form" model="ir.actions.act_window">
+            <field name="name">Risks</field>
+            <field name="res_model">hr.risk</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_risk_type_tree">
+            <field name="name">hr.risk.type.list</field>
+            <field name="model">hr.risk.type</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Risk Type Tree">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+        <record id="view_risk_type_form" model="ir.ui.view">
+            <field name="name">hr.risk.type.form</field>
+            <field name="model">hr.risk.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Risk Type">
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="risk_type_view_search" model="ir.ui.view">
+            <field name="name">hr.risk.type.view.search</field>
+            <field name="model">hr.risk.type</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Types">
+                    <group col='15' colspan='4'>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="open_view_risk_type_form" model="ir.actions.act_window">
+            <field name="name">Risk Type</field>
+            <field name="res_model">hr.risk.type</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_risk_type" name="Risk Type"
+                  action="open_view_risk_type_form" parent="hr_hazard.menu_hr_hazard_reporting_mgt"/>
+
+
+        <menuitem id="menu_hr_risk" name="Risks" parent="hr_hazard.menu_hr_health_and_safety"
+                  groups="hr.group_hr_manager,hr.group_hr_user,base.group_user"
+                  sequence="18"/>
+        <menuitem id="menu_hr_risk_risk" name="Risks"
+                  groups="hr.group_hr_manager,hr.group_hr_user,base.group_user"
+                  parent="menu_hr_risk" action="open_hr_risk_form"/>
+
+    </data>
+</odoo>

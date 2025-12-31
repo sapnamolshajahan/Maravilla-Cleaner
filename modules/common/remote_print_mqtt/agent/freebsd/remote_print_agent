@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# Startup file for remote_print_agent on FreeBSD.
+#
+# This file goes in /usr/local/etc/rc.d
+#
+# PROVIDE: remote_print_agent
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Symlink this script with other names to run multiple
+# instances of remote_print_agent with different configurations.
+# eg:
+#	# cp remote_print_agent /usr/local/etc/rc.d
+#	# cd /usr/local/etc/rc.d
+#	# ln -s remote_print_agent ${print_config1}
+#
+# Add the following lines in /etc/rc.conf to enable the agent:
+# ${print_config1}_enable="YES"
+# ${print_config1}_config="config1.rc" # default is "print-agent.rc"
+#
+# You may also customise:
+# ${print_config1}_user: process user, default is "print-agent"
+# ${print_config1}_workdir: working directory, default is "~print-agent"
+# ${print_config1}_logdir: log directory, default is "/var/log/remote-print"
+# ${print_config1}_logfile: log file, default is "agent.log"
+
+. /etc/rc.subr
+
+case $0 in
+/etc/rc*)
+	# during boot/shutdown $0 is /etc/rc (/etc/rc.shutdown),
+	# so get the name of the script from $_file
+	name=$_file
+	;;
+*)
+	name=$0
+	;;
+esac
+
+name=${name##*/}
+rcvar=${name}_enable
+
+load_rc_config $name
+
+start_precmd=remote_print_agent_precmd
+start_cmd=remote_print_agent_start
+
+eval "${rcvar}=\${${rcvar}:-'NO'}"
+eval "_agent_user=\${${name}_user:-'print-agent'}"
+eval "_agent_workdir=\${${name}_workdir:-'~${_agent_user}'}"
+eval "_agent_config=\${${name}_config:-'print-agent.rc'}"
+eval "_agent_logdir=\${${name}_logdir:-'/var/log/remote-print'}"
+eval "_agent_logfile=\${${name}_logfile:-'agent.log'}"
+
+pidfile="/var/run/${name}.pid"
+command="python3"
+
+remote_print_agent_precmd()
+{
+	touch ${pidfile}
+	chown ${_agent_user} ${pidfile}
+
+	if [ ! -d "${_agent_logdir}" ]
+	then
+		mkdir -p "${_agent_logdir}"
+		chown ${_agent_user} "${_agent_logdir}"
+	fi
+}
+
+remote_print_agent_start()
+{
+	(
+		eval cd ${_agent_workdir}
+		daemon -f -u ${_agent_user} ./${name}.py -pid ${pidfile} -log ${_agent_logdir}/${_agent_logfile} ${_agent_config}
+	)
+}
+
+run_rc_command "$1"

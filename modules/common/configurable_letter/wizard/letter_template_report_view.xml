@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_letter_template_report_wizard_form">
+        <field name="name">letter.template.report.wizard.form</field>
+        <field name="model">letter.template.report.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Letter Template">
+                <field name="model_name" invisible="1"/>
+                <group>
+                    <group string="Select render type" name="render_type_select">
+                        <field name="render_type" nolabel="1"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Select partner" name="partner_id_select">
+                        <field name="partner_id" nolabel="1"/>
+                    </group>
+                </group>
+
+                <group name="template_select" string="Select templates to use" invisible="body != False">
+                    <field name="template_ids" nolabel="1" colspan="2" options="{'no_create': True}"
+                           domain="[('model_id.model', '=', context.get('model_name'))]">
+                        <list>
+                            <field name="name"/>
+                            <field name="model_id"/>
+                        </list>
+                    </field>
+                </group>
+
+                <group name="title_editable" string="Title">
+                    <field name="title" nolabel="1" style="max-width: 1150px;  width: 800px"/>
+                </group>
+
+                <group name="signature" string="Signature" invisible="body != False">
+                    <field name="signature" nolabel="1" style="max-width: 2000px;  width: 800px"/>
+                </group>
+
+                <group name="template_body"
+                       string="Template Body"
+                       invisible="body == False"
+                >
+                    <field name="body" nolabel="1" style="max-width: 2000px;  width: 800px"/>
+                </group>
+
+                <footer>
+                    <div>
+                        <button name="generate_template" string="Generate Template" type="object" class="oe_highlight"
+                                invisible="body != False"/>
+
+                        <button name="button_send_by_email" string="Email" type="object" class="oe_highlight"
+                                invisible="body == False" style="margin-left:7px;"/>
+
+                        <button name="button_create_report" string="Edit/Print" type="object"
+                                invisible="body == False" style="margin-left:7px;"/>
+
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </div>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

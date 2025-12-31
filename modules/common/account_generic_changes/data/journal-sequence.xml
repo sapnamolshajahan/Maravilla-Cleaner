@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Define a default sequence for all Journals
+      -->
+    <record id="default_journal_sequence" model="ir.sequence">
+        <field name="name">Default Journal Sequence</field>
+        <field name="code">default.journal.seqeunce</field>
+        <field name="prefix">JOURNAL/</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

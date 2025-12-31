@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="lead_new_contact_form" model="ir.ui.view">
+        <field name="name">Add New Lead Contact</field>
+        <field name="model">crm.lead.new.partner</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="lead" invisible="1"/>
+                    <field name="name" required="1"/>
+                    <field name="position"/>
+                    <field name="email" widget="email"/>
+                    <field name="mobile"/>
+                    <field name="phone"/>
+                </group>
+                <footer>
+					<button class="oe_highlight" special="cancel" string="Cancel" colspan="2"/>
+					<button class="oe_highlight" name="action_save_close" string="Save &amp; Close" type="object"/>
+					<button class="oe_highlight" name="action_save_another" string="Save &amp; New" type="object"/>
+				</footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Access -->
+   	<record id="crm_lead_new_partner_access" model="ir.model.access">
+		<field name="name">CRM Lead New Partner</field>
+		<field name="model_id" ref="model_crm_lead_new_partner"/>
+		<field name="perm_read">True</field>
+		<field name="perm_write">True</field>
+		<field name="perm_create">True</field>
+		<field name="perm_unlink">True</field>
+	</record>
+</odoo>

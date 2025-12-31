@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+
+    <t t-name="account_immediate.StockReconciliationReport.EmptyLine">
+        <tr class="empty"><td colspan="3"/></tr>
+    </t>
+
+    <t t-name="account_immediate.StockReconciliationReport">
+        <div class="o_action account_report">
+            <ControlPanel>
+                <!-- Buttons bar -->
+                <!-- <t t-set-slot="control-panel-create-button">-->
+                <!--     <StockValuationReportButtonsBar/>-->
+                <!-- </t>-->
+                <!-- <t t-set-slot="control-panel-additional-actions">
+                    <AccountReportCogMenu/>
+                </t> -->
+
+                <!-- Filters -->
+                <t t-set-slot="layout-actions">
+                   <div class="d-flex gap-1 flex-wrap">
+                       <StockValuationReportFilters/>
+                   </div>
+                </t>
+            </ControlPanel>
+             <div class="o_content">
+                <div id="warnings" class="warnings d-print-none"/>
+                <div class="mx-auto fit-content w-print-100">
+                    <table class="table table-borderless table-hover w-print-100">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">Inventory Balance</td>
+                                <td><t t-out="data.inventory_balance"/></td>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Sale Orders</td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td>Dispatched Not Invoiced</td>
+                                <td><t t-out="data.so_dispatched_not_invoiced"/></td>
+                                <td><button class="btn btn-secondary" t-on-click="onClickExplainDispatchedNotInvoiced">Explain</button></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Purchase Orders</td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td>Received Not Invoiced</td>
+                                <td><t t-out="data.po_received_not_invoiced"/></td>
+                                <td><button class="btn btn-secondary" t-on-click="onClickExplainReceivedNotInvoiced">Explain</button></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Other Items</td>
+                                <td><t t-out="data.unexplained"/></td>
+                                <td><button class="btn btn-secondary" t-on-click="onClickExplainUnexplained">Explain</button></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td>Balance per General Ledger</td>
+                                <td><t t-out="data.balance_per_gl"/></td>
+                                <td/>
+                                <td/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

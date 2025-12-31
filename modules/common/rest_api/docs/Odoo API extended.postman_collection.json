@@ -1,0 +1,1170 @@
+{
+	"info": {
+		"_postman_id": "bd35c835-e3f6-4fc8-be97-e1b95a0b745d",
+		"name": "Odoo API Collection",
+		"description": "Basic endpoints for integration with online selling platforms.\nNote, that for information purposes only some fields available in Odoo are included in the example responses. It's a configurable thing in Odoo to select what fields you'd like to see in API.\n\nAlthough, we've left all the fields available in the sample response for GET invoice - so you can see there is a lot of information possible to include if needed. Also, any other fields could be created: as static db fields, as computed \"function\" fields, key:value dynamic fields.\n\nNote that URLs and auth tokens used in this collection are from a local environment.\nBy requrest, we can provide details for our demo Odoo instance, where it'd be possible to have a go with the working version of API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Odoo-Authorisation",
+						"value": "525ac247-ec9e-416f-a793-6cd731ee20ba",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8069/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				},
+				"description": "Login endpoint: exchange a permanent token for a temporary auth token"
+			},
+			"response": [
+				{
+					"name": "Login FAIL",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Odoo-Authorisation",
+								"value": "6bc71f56-5e9b-47d0-aaa8-11cf964932604",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "UNAUTHORIZED",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Odoo-Authorisation"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 06:33:45 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 06:33:45 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Unauthorised\",\n    \"message\": \"Token is invalid\"\n}"
+				},
+				{
+					"name": "Login SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Odoo-Authorisation",
+								"value": "6bc71f56-5e9b-47d0-aaa8-11cf96493260",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Odoo-Authorisation"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "106"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 06:49:34 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 06:49:34 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"uid\": 2,\n    \"access_token\": \"access_token_311a9201273682ca92b9ef01befdeb4e9214e9bd\",\n    \"expires_in\": \"86400\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Product Categories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"type": "text",
+						"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8069/api/v1/model/product.category?limit=5&domain=parent_id,=,1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"product.category"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "domain",
+							"value": "parent_id,=,1"
+						}
+					]
+				},
+				"description": "Get a list of product categories.\nNote: parent_id field determines parent/child relationship.\nOptional domain parameter is added to show how you could filter by parent."
+			},
+			"response": [
+				{
+					"name": "Product Categories",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"type": "text",
+								"value": "access_token_8fb70a9856048d4fc8ffb1e8d161553441e00b48"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/product.category?limit=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"product.category"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "160"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 06:30:13 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 06:30:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"All\",\n        \"parent_id\": \"\"\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Consumable\",\n        \"parent_id\": [\n            1,\n            \"All\"\n        ]\n    },\n    {\n        \"id\": 10,\n        \"name\": \"Deliveries\",\n        \"parent_id\": [\n            1,\n            \"All\"\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GET Product list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8069/api/v1/model/product.product?name_only=True&limit=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"product.product"
+					],
+					"query": [
+						{
+							"key": "name_only",
+							"value": "True"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET Products - response when model is not enabled in Odoo API (configurable by Odoo admin users)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_8fb70a9856048d4fc8ffb1e8d161553441e00b48",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/product.product?limit=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"product.product"
+							],
+							"query": [
+								{
+									"key": "name_only",
+									"value": "True",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "FORBIDDEN",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "93"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 06:34:10 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 06:34:10 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"model_not_allowed\",\n    \"message\": \"Model product.product is not available in the API\"\n}"
+				},
+				{
+					"name": "GET Product list SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/product.product?name_only=True&limit=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"product.product"
+							],
+							"query": [
+								{
+									"key": "name_only",
+									"value": "True"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "327"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 07:13:17 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 07:13:17 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 59,\n        \"list_price\": 1,\n        \"name\": \"Beef in Gravy Sauce 165g - Pouch\",\n        \"stock_available\": 150,\n        \"uom_name\": \"Units\"\n    },\n    {\n        \"id\": 62,\n        \"list_price\": 3.5,\n        \"name\": \"Beef in Gravy Sauce 165g\",\n        \"stock_available\": 0,\n        \"uom_name\": \"Units\"\n    },\n    {\n        \"id\": 44,\n        \"list_price\": 0.2,\n        \"name\": \"Screw\",\n        \"stock_available\": 0,\n        \"uom_name\": \"Units\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GET One Product by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8069/api/v1/model/product.product/59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"product.product",
+						"59"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET One Product by ID NO RESULTS FOUND",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/product.product/594444",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"product.product",
+								"594444"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 07:15:01 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 07:15:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				},
+				{
+					"name": "GET One Product by ID SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/product.product/59",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"product.product",
+								"59"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "122"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 07:14:32 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 07:14:32 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 59,\n        \"list_price\": 1,\n        \"name\": \"Beef in Gravy Sauce 165g - Pouch\",\n        \"stock_available\": 150,\n        \"uom_name\": \"Units\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GET Customers/Conacts list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"type": "text",
+						"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8069/api/v1/model/res.partner?name_only=True&limit=3&domain=customer,=,True",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"res.partner"
+					],
+					"query": [
+						{
+							"key": "name_only",
+							"value": "True"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "domain",
+							"value": "customer,=,True"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET Customers only search SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"type": "text",
+								"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/res.partner?name_only=True&limit=3&domain=customer,=,True",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"res.partner"
+							],
+							"query": [
+								{
+									"key": "name_only",
+									"value": "True"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "domain",
+									"value": "customer,=,True"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "671"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 07:17:49 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 07:17:49 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 14,\n        \"contact_address\": \"Azure Interior\\n4557 De Silva St\\n\\nFremont CA 94538\\nUnited States\",\n        \"email\": \"azure.Interior24@example.com\",\n        \"name\": \"Azure Interior\",\n        \"parent_name\": \"\",\n        \"phone\": \"(870)-931-0505\"\n    },\n    {\n        \"id\": 26,\n        \"contact_address\": \"Azure Interior\\n4557 De Silva St\\n\\nFremont CA 94538\\nUnited States\",\n        \"email\": \"brandon.freeman55@example.com\",\n        \"name\": \"Brandon Freeman\",\n        \"parent_name\": \"Azure Interior\",\n        \"phone\": \"(355)-687-3262\"\n    },\n    {\n        \"id\": 33,\n        \"contact_address\": \"Azure Interior\\n4557 De Silva St\\n\\nFremont CA 94538\\nUnited States\",\n        \"email\": \"colleen.diaz83@example.com\",\n        \"name\": \"Colleen Diaz\",\n        \"parent_name\": \"Azure Interior\",\n        \"phone\": \"(255)-595-8393\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "POST Contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"type": "text",
+						"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Test Name\", \"email\": \"test@gmail.com\", \"customer\": true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/api/v1/model/res.partner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"res.partner"
+					]
+				},
+				"description": "POST with a minimum set of requirements. A lot of other fields could be added if required - basically everything except fields that are computed in the background of Odoo."
+			},
+			"response": [
+				{
+					"name": "POST contact SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"type": "text",
+								"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Test Name\", \"email\": \"test@gmail.com\", \"customer\": true}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/res.partner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"res.partner"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "76"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 08:00:22 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 08:00:22 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"id\": 87,\n        \"model\": \"res.partner\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Invoices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"type": "text",
+						"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8069/api/v1/model/account.move?name_only=True&limit=3&order=id&domain=type,=,out_invoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"account.move"
+					],
+					"query": [
+						{
+							"key": "name_only",
+							"value": "True"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "order",
+							"value": "id"
+						},
+						{
+							"key": "domain",
+							"value": "type,=,out_invoice"
+						}
+					]
+				},
+				"description": "Note a lot of fields for invoice lines - as an example of a lot of potential fields that could be added.\nType out_invoice is to filter for customer invoices."
+			},
+			"response": [
+				{
+					"name": "GET Invoices SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"type": "text",
+								"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/account.move?name_only=True&limit=3&order=id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"account.move"
+							],
+							"query": [
+								{
+									"key": "name_only",
+									"value": "True"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "order",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "5477"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 08:06:00 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 08:06:00 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"invoice_address\": \"\",\n        \"invoice_line_ids\": [],\n        \"invoice_origin\": \"\",\n        \"invoice_payment_ref\": \"\",\n        \"name\": \"/\",\n        \"partner_id\": \"\",\n        \"ref\": \"Tax Return for June\"\n    },\n    {\n        \"id\": 2,\n        \"invoice_address\": \"\",\n        \"invoice_line_ids\": [],\n        \"invoice_origin\": \"\",\n        \"invoice_payment_ref\": \"\",\n        \"name\": \"/\",\n        \"partner_id\": \"\",\n        \"ref\": \"Tax Return for June\"\n    },\n    {\n        \"id\": 229,\n        \"invoice_address\": \"\",\n        \"invoice_line_ids\": [\n            {\n                \"id\": 700,\n                \"tax_line_id\": false,\n                \"attribute1\": false,\n                \"reconciled\": false,\n                \"reconcile_model_id\": false,\n                \"matched_debit_ids\": [],\n                \"tax_repartition_line_id\": false,\n                \"display_name\": \"/ [DESK0005] Customizable Desk (CONFIG) (Custom, White)\\n160x80cm, with large legs.\",\n                \"product_id\": [\n                    38,\n                    \"[DESK0005] Customizable Desk (CONFIG) (Custom, White)\"\n                ],\n                \"reconcile_id\": false,\n                \"tax_ids\": [],\n                \"internal_note\": false,\n                \"stock_move_id\": [\n                    327,\n                    \"Return of WH/OUT/00037/DESK0005: Customers>Stock\"\n                ],\n                \"is_landed_costs_line\": false,\n                \"payment_id\": false,\n                \"followup_line_id\": false,\n                \"reconcile_partial\": false,\n                \"product_type\": \"product\",\n                \"quantity\": 1,\n                \"forward_exchange_contract\": false,\n                \"balance\": 750,\n                \"attribute3\": false,\n                \"company_id\": [\n                    1,\n                    \"My Company (San Francisco)\"\n                ],\n                \"line_balance\": 750,\n                \"matched_credit_ids\": [],\n                \"asset_id\": false,\n                \"price_total\": 750,\n                \"account_internal_type\": \"other\",\n                \"always_set_currency_id\": [\n                    35,\n                    \"NZD\"\n                ],\n                \"analytic_line_ids\": [],\n                \"price_subtotal\": 750,\n                \"debit\": 750,\n                \"move_name\": \"/\",\n                \"partner_id\": [\n                    55,\n                    \"Countdown Supermarkets\"\n                ],\n                \"attribute2\": false,\n                \"followup_date\": false,\n                \"analytic_account_id\": false,\n                \"product_uom_id\": [\n                    1,\n                    \"Units\"\n                ],\n                \"price_unit\": 750,\n                \"currency_id\": false,\n                \"journal_id\": [\n                    9,\n                    \"Customer Invoices (NZD)\"\n                ],\n                \"shipment_line\": false,\n                \"cost_price\": 0,\n                \"net_tax_amount\": 0,\n                \"account_tax_id\": false,\n                \"tag_ids\": [],\n                \"statement_line_id\": false,\n                \"amount_residual\": 750,\n                \"tax_base_amount\": 0,\n                \"next_action_date\": false,\n                \"tax_audit\": \"\",\n                \"date_maturity\": false,\n                \"recompute_tax_line\": false,\n                \"discount\": 0,\n                \"tax_exigible\": true,\n                \"analytic_tag_ids\": [],\n                \"is_rounding_line\": false,\n                \"purchase_line_id\": false,\n                \"subscription_start_date\": false,\n                \"company_currency_id\": [\n                    35,\n                    \"NZD\"\n                ],\n                \"forward_exchange_rate\": 0,\n                \"write_uid\": [\n                    2,\n                    \"Mitchell Admin\"\n                ],\n                \"account_root_id\": [\n                    52054,\n                    \"46\"\n                ],\n                \"amount_currency\": 0,\n                \"create_uid\": [\n                    2,\n                    \"Mitchell Admin\"\n                ],\n                \"full_reconcile_id\": false,\n                \"subscription_id\": false,\n                \"display_type\": false,\n                \"account_id\": [\n                    152,\n                    \"46000 Miscellaneous Income\"\n                ],\n                \"sequence\": 10,\n                \"country_id\": [\n                    170,\n                    \"New Zealand\"\n                ],\n                \"currency_line_balance\": 0,\n                \"expected_pay_date\": false,\n                \"subscription_end_date\": false,\n                \"credit\": 0,\n                \"exclude_from_invoice_tab\": false,\n                \"ref\": \"\",\n                \"is_anglo_saxon_line\": false,\n                \"statement_id\": false,\n                \"sale_line_ids\": [\n                    107\n                ],\n                \"payment_order\": false,\n                \"move_attachment_ids\": [],\n                \"blocked\": false,\n                \"amount_residual_currency\": 0,\n                \"subscription_mrr\": 0,\n                \"move_id\": [\n                    229,\n                    \"/\"\n                ],\n                \"payment_lines\": [],\n                \"name\": \"[DESK0005] Customizable Desk (CONFIG) (Custom, White)\\n160x80cm, with large legs.\",\n                \"parent_state\": \"draft\",\n                \"tax_group_id\": false\n            },\n            {\n                \"id\": 701,\n                \"tax_line_id\": false,\n                \"attribute1\": false,\n                \"reconciled\": false,\n                \"reconcile_model_id\": false,\n                \"matched_debit_ids\": [],\n                \"tax_repartition_line_id\": false,\n                \"display_name\": \"/ The Poste\",\n                \"product_id\": [\n                    54,\n                    \"[Delivery_009] The Poste\"\n                ],\n                \"reconcile_id\": false,\n                \"tax_ids\": [],\n                \"internal_note\": false,\n                \"stock_move_id\": false,\n                \"is_landed_costs_line\": false,\n                \"payment_id\": false,\n                \"followup_line_id\": false,\n                \"reconcile_partial\": false,\n                \"product_type\": \"service\",\n                \"quantity\": -1,\n                \"forward_exchange_contract\": false,\n                \"balance\": -20,\n                \"attribute3\": false,\n                \"company_id\": [\n                    1,\n                    \"My Company (San Francisco)\"\n                ],\n                \"line_balance\": -20,\n                \"matched_credit_ids\": [],\n                \"asset_id\": false,\n                \"price_total\": -20,\n                \"account_internal_type\": \"other\",\n                \"always_set_currency_id\": [\n                    35,\n                    \"NZD\"\n                ],\n                \"analytic_line_ids\": [],\n                \"price_subtotal\": -20,\n                \"debit\": 0,\n                \"move_name\": \"/\",\n                \"partner_id\": [\n                    55,\n                    \"Countdown Supermarkets\"\n                ],\n                \"attribute2\": false,\n                \"followup_date\": false,\n                \"analytic_account_id\": false,\n                \"product_uom_id\": [\n                    1,\n                    \"Units\"\n                ],\n                \"price_unit\": 20,\n                \"currency_id\": false,\n                \"journal_id\": [\n                    9,\n                    \"Customer Invoices (NZD)\"\n                ],\n                \"shipment_line\": false,\n                \"cost_price\": 0,\n                \"net_tax_amount\": 0,\n                \"account_tax_id\": false,\n                \"tag_ids\": [],\n                \"statement_line_id\": false,\n                \"amount_residual\": -20,\n                \"tax_base_amount\": 0,\n                \"next_action_date\": false,\n                \"tax_audit\": \"\",\n                \"date_maturity\": false,\n                \"recompute_tax_line\": false,\n                \"discount\": 0,\n                \"tax_exigible\": true,\n                \"analytic_tag_ids\": [],\n                \"is_rounding_line\": false,\n                \"purchase_line_id\": false,\n                \"subscription_start_date\": false,\n                \"company_currency_id\": [\n                    35,\n                    \"NZD\"\n                ],\n                \"forward_exchange_rate\": 0,\n                \"write_uid\": [\n                    2,\n                    \"Mitchell Admin\"\n                ],\n                \"account_root_id\": [\n                    52049,\n                    \"41\"\n                ],\n                \"amount_currency\": 0,\n                \"create_uid\": [\n                    2,\n                    \"Mitchell Admin\"\n                ],\n                \"full_reconcile_id\": false,\n                \"subscription_id\": false,\n                \"display_type\": false,\n                \"account_id\": [\n                    145,\n                    \"41110 Sales Product #1\"\n                ],\n                \"sequence\": 10,\n                \"country_id\": [\n                    170,\n                    \"New Zealand\"\n                ],\n                \"currency_line_balance\": 0,\n                \"expected_pay_date\": false,\n                \"subscription_end_date\": false,\n                \"credit\": 20,\n                \"exclude_from_invoice_tab\": false,\n                \"ref\": \"\",\n                \"is_anglo_saxon_line\": false,\n                \"statement_id\": false,\n                \"sale_line_ids\": [],\n                \"payment_order\": false,\n                \"move_attachment_ids\": [],\n                \"blocked\": false,\n                \"amount_residual_currency\": 0,\n                \"subscription_mrr\": 0,\n                \"move_id\": [\n                    229,\n                    \"/\"\n                ],\n                \"payment_lines\": [],\n                \"name\": \"The Poste\",\n                \"parent_state\": \"draft\",\n                \"tax_group_id\": false\n            }\n        ],\n        \"invoice_origin\": \"WH/IN/00124\",\n        \"invoice_payment_ref\": \"\",\n        \"name\": \"/\",\n        \"partner_id\": \"Countdown Supermarkets\",\n        \"ref\": \"\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "POST Sale Quote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"type": "text",
+						"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"order_line\": [\n\t\t{   \n            \"name\": \"product_name\",\n\t\t\t\"product_id\": 26,\n\t\t\t\"product_uom\": 1\n\t\t}\n\t],\n\t\"company_id\": 1,\n\t\"partner_id\": 90,\n\t\"note\": \"Test Note\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/api/v1/model/sale.order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"sale.order"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "POST Sale Quote SUCCESS with ref number returns",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"type": "text",
+								"value": "access_token_c62273a8ffaf8673d3ed71fd7412780d5dde10fd"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"order_line\": [\n\t\t{   \n            \"name\": \"product_name\",\n\t\t\t\"product_id\": 26,\n\t\t\t\"product_uom\": 1\n\t\t}\n\t],\n\t\"company_id\": 1,\n\t\"partner_id\": 90,\n\t\"note\": \"Test Note\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/model/sale.order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"sale.order"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "93"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session_id=c351958d07b44982944739f7c8b97adef6830fc2; Expires=Wed, 23-Sep-2020 08:21:27 GMT; Max-Age=7776000; HttpOnly; Path=/"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.0 Python/3.6.9"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 08:21:27 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"id\": 85,\n        \"model\": \"sale.order\",\n        \"name\": \"S00091\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6731c590-2f9a-4ebb-a1f8-2e03b7c14557",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c4c5dbe9-80c5-4616-8adc-d8f228c0c6e5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

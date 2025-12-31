@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.model.access" id="access_sale_bduegt">
+		<field name="name">access.sale.budget</field>
+		<field name="model_id" ref="model_sale_budget_report"/>
+		<field name="group_id" ref="sales_team.group_sale_salesman"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record model="ir.model.access" id="access_sale_bduegt_report_run">
+		<field name="name">access.sale.budegt.report.run</field>
+		<field name="model_id" ref="model_sale_budget_report_run"/>
+		<field name="group_id" ref="sales_team.group_sale_salesman"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record model="ir.model.access" id="access_sale_budget_report_source">
+		<field name="name">access.sale.budget.report.source</field>
+		<field name="model_id" ref="model_sale_budget_report_source"/>
+		<field name="group_id" ref="sales_team.group_sale_salesman"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record model="ir.model.access" id="access_sale_budget_dashboard">
+		<field name="name">access.sale.budget.dashboard</field>
+		<field name="model_id" ref="model_sale_budget_dashboard"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+
+</odoo>

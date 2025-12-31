@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_analysis_type_tree" model="ir.ui.view">
+        <field name="name">product.analysis.type.list</field>
+        <field name="model">product.analysis.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_view_product_analysis_type" model="ir.actions.act_window">
+        <field name="name">Product Analysis Type</field>
+        <field name="res_model">product.analysis.type</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_product_analysis_type_tree"/>
+    </record>
+
+    <menuitem id="menu_product_analysis_type"
+              action="action_view_product_analysis_type"
+              parent="stock.menu_product_in_config_stock"/>
+
+    <record id="view_product_form_analysis_type" model="ir.ui.view">
+        <field name="name">product.form.anlysis.type</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="product_analysis" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

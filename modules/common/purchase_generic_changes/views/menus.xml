@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Re-order Quotations and Purchase Orders -->
+        <menuitem id="purchase.menu_purchase_form_action"
+                  action="purchase.purchase_form_action"
+                  parent="purchase.menu_procurement_management"
+                  sequence="1"/>
+
+        <menuitem id="purchase.menu_purchase_rfq"
+                  action="purchase.purchase_rfq"
+                  parent="purchase.menu_procurement_management"
+                  sequence="2"/>
+
+        <menuitem id="menu_purchase_suppliers_contacts"
+                  parent="purchase.menu_purchase_root"
+                  name="Suppliers &amp; Contacts" sequence="3"/>
+    </data>
+
+</odoo>

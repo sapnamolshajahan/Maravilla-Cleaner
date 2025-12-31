@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="view_company_form_rest_api">
+        <field name="name">rest.api.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="API Settings" name="api_rest_page_company">
+                    <group name="api_fields" string="API Settings">
+                        <group name="date_format_group" >
+                            <field name="date_format" />
+                             <field name="replace_false" string="False as blank"/>
+                        </group>
+
+                         <field name="api_fields">
+                            <list editable="bottom">
+                                <field name="model" options="{'no_create': True}"/>
+                                <field name="name"/>
+                                <field name="value"/>
+                                <field name="is_active"/>
+                            </list>
+                        </field>
+
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

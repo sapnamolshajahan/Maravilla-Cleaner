@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!--
+			Reference list of email.doc.type, users should not remove or add to this list
+
+			noupdate="0" stops end-user to change contents
+		  -->
+		<record id="doc_invoice" model="email.doc.type">
+			<field name="name">invoice</field>
+			<field name="model_name">account.move</field>
+			<field name="template" ref="template_invoice"/>
+		</record>
+		<record id="doc_credit" model="email.doc.type">
+			<field name="name">credit-note</field>
+			<field name="model_name">account.move</field>
+			<field name="template" ref="template_credit"/>
+		</record>
+		<record id="doc_marketing" model="email.doc.type">
+			<field name="name">marketing</field>
+			<field name="model_name">res.partner</field>
+			<field name="template" ref="template_marketing"/>
+		</record>
+	</data>
+</odoo>

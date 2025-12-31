@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_model_form_inherit" model="ir.ui.view">
+            <field name="model">ir.model</field>
+            <field name="inherit_id" ref="base.view_model_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                     <page string="API Settings" name="model_api_settings">
+                        <field name="id" invisible="1"/>
+                        <group name="allow_rest_api_model">
+                            <field name="allow_rest_api"/>
+                        </group>
+
+                        <group name="delete_domain_model" invisible="allow_rest_api == False">
+                            <field name="delete_domain"/>
+                        </group>
+
+                        <group name="include_computed_fields"
+                               string="Include Fields"
+                               invisible="allow_rest_api == False">
+                            <field name="include_fields_in_post_response"/>
+                        </group>
+
+                         <separator name="API Fields" invisible="allow_rest_api == False"/>
+
+                         <field name="api_fields"
+                                nolabel="1"
+                                invisible="allow_rest_api == False"
+                                options="{'no_create': True}"
+                                domain="[('model_id', '=', id)]">
+
+                            <list editable="bottom">
+                                 <field name="name" readonly="1"/>
+                                <field name="field_description" readonly="1"/>
+                                <field name="ttype" readonly="1"/>
+                                <field name="required" readonly="1"/>
+                                <field name="readonly" readonly="1"/>
+                                <field name="api_name" readonly="1"/>
+
+                                <button type="object"
+                                        icon="fa-plus"
+                                        string="Add API Mapping Name"
+                                        name="button_add_mapping_name"/>
+
+                                <field name="post_ref" readonly="1"/>
+
+                                <button type="object"
+                                        icon="fa-plus"
+                                        string="Add API POST Name"
+                                        name="button_add_post_ref"/>
+
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_model_tree_inherit" model="ir.ui.view">
+            <field name="model">ir.model</field>
+            <field name="inherit_id" ref="base.view_model_tree"/>
+            <field name="arch" type="xml">
+                <field name="transient" position="after">
+                    <field name="allow_rest_api"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

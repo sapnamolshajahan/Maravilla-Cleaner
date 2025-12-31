@@ -1,0 +1,10 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_hr_accident_employment_period","hr.accident.employment.period","model_hr_accident_employment_period",hr.group_hr_user,1,1,1,1
+"access_hr_accident_injury_treatment","hr.accident.injury.treatment","model_hr_accident_injury_treatment",hr.group_hr_user,1,1,1,1
+"access_hr_accident_event_mechanism","hr.accident.event.mechanism","model_hr_accident_event_mechanism",hr.group_hr_user,1,1,1,1
+"access_hr_accident_event_agency","hr.accident.event.agency","model_hr_accident_event_agency",hr.group_hr_user,1,1,1,1
+"access_hr_accident_body_part","hr.accident.body.part","model_hr_accident_body_part",hr.group_hr_user,1,1,1,1
+"access_hr_accident_nature","hr.accident.nature","model_hr_accident_nature",hr.group_hr_user,1,1,1,1
+"access_hr_accident_accident","hr.accident.accident","model_hr_accident_accident",hr.group_hr_user,1,1,1,1
+"access_hr_incident_type","hr.incident.type","model_hr_incident_type",hr.group_hr_user,1,1,1,1
+"access_hr_accident_corrective_action","hr.accident.corrective.action","model_hr_accident_corrective_action",hr.group_hr_user,1,1,1,1

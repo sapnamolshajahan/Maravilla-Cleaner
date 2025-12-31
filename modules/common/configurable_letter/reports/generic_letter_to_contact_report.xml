@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="letter_to_contact_generic_report_viaduct" model="ir.actions.report">
+        <field name="name">Letter to contact</field>
+        <field name="model">letter.template.report.wizard</field>
+        <field name="binding_model_id" ref="model_letter_template_report_wizard"/>
+        <field name="report_name">configurable_letter.letter_to_contact_generic_report_viaduct</field>
+        <field name="viaduct_helper">
+            odoo.addons.configurable_letter.reports.generic_letter_to_contact_helper.GenericLettercontact
+        </field>
+        <field name="report_file">configurable_letter/reports/generic-letter-to-contact-unpack.jrxml</field>
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+    </record>
+</odoo>

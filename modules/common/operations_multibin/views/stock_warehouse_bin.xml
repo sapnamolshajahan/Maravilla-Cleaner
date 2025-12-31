@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="stock_warehouse_bin_view">
+            <field name="name">stock.warehouse.bin.view</field>
+            <field name="model">stock.warehouse.bin</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Warehouse Bins" editable="top">
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="name" string="Bin"/>
+                    <field name="min"/>
+                    <field name="max"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Action and menu for bin entry -->
+        <record id="action_warehouse_bin_view" model="ir.actions.act_window">
+            <field name="name">Warehouse Stock Bins</field>
+            <field name="res_model">stock.warehouse.bin</field>
+            <field name="view_mode">list,form</field>
+            <field name="help">Enter Warehouse Bin Data</field>
+        </record>
+
+        <menuitem id="menu_warehouse_bin_view"
+                  name="Warehouse Stock Bins"
+                  action="action_warehouse_bin_view"
+                  parent="stock.menu_stock_inventory_control"
+                  sequence="100"/>
+    </data>
+</odoo>

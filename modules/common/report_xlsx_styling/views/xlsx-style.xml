@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Form-->
+    <record id="view_report_xlsx_style" model="ir.ui.view">
+        <field name="name">Report Excel Style Form</field>
+        <field name="model">report.xlsx.style</field>
+        <field name="arch" type="xml">
+            <form string="Styling">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="font_name"/>
+                        <field name="font_size"/>
+                        <field name="bold"/>
+                        <field name="italic"/>
+                        <field name="underline"/>
+                        <field name="strikeout"/>
+                    </group>
+                    <group>
+                        <field name="h_align"/>
+                        <field name="v_align"/>
+                        <field name="text_wrap"/>
+                        <field name="indent"/>
+                    </group>
+                    <group>
+                        <field name="border_full"/>
+                        <field name="border_top"/>
+                        <field name="border_bottom"/>
+                        <field name="border_right"/>
+                        <field name="border_left"/>
+                    </group>
+                    <group>
+                        <field name="border_full_style"/>
+                        <field name="border_top_style"/>
+                        <field name="border_bottom_style"/>
+                        <field name="border_right_style"/>
+                        <field name="border_left_style"/>
+                    </group>
+                    <group>
+                        <field name="foreground"/>
+                        <field name="background"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!--Tree-->
+    <record id="view_report_xlsx_style_tree" model="ir.ui.view">
+        <field name="name">Excel Styles Tree</field>
+        <field name="model">report.xlsx.style</field>
+        <field name="arch" type="xml">
+            <list string="Report Styles">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="font_name"/>
+                <field name="font_size"/>
+            </list>
+        </field>
+    </record>
+
+    <!--Action-->
+    <record id="action_report_xlsx_style" model="ir.actions.act_window">
+        <field name="name">Styles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.xlsx.style</field>
+        <field name="view_id" ref="view_report_xlsx_style_tree"/>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_report_xlsx_style"
+              name="Excel Styles"
+              parent="base.reporting_menuitem"
+              sequence="60"
+              action="action_report_xlsx_style"/>
+
+</odoo>

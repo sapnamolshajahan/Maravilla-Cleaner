@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_project_form" model="ir.ui.view">
+        <field name="name">crm.project.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_purchases" type="object"
+                        class="oe_stat_button" icon="fa-tasks"
+                        invisible="type == 'lead'">
+                    <div class="o_stat_info">
+                        <field name="purchase_count" class="o_stat_value"/>
+                        <span class="o_stat_text" invisible="purchase_count &lt; 2"> Purchases</span>
+                        <span class="o_stat_text" invisible="purchase_count &gt; 1"> Purchase</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

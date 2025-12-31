@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="commitment_report_access" model="ir.model.access">
+		<field name="name">Commitment Report</field>
+		<field name="model_id" ref="model_account_commitment_report"/>
+		<field name="group_id" ref="account.group_account_invoice"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+	<record id="detailed_commitment_report_access" model="ir.model.access">
+		<field name="name">Detailed Commitment Report</field>
+		<field name="model_id" ref="model_account_commitment_report_detailed"/>
+		<field name="group_id" ref="account.group_account_invoice"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_sale_target_form" model="ir.ui.view">
+            <field name="name">res.config.settings.sale.target</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="35"/>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//block[@id='connectors_setting_container']" position="after">
+                    <h2>Sale Targets</h2>
+                    <div class="row mt16 o_settings_container" name="sale_target_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="include_invoiced">
+                            <div class="o_setting_left_pane">
+                                <field name="include_invoiced"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="include_invoiced"/>
+                                <div class="text-muted">
+                                    Target actuals includes invoiced values
+                                </div>
+                                <div class="content-group">
+                                    <div id="include_invoiced"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="include_confirmed_orders">
+                            <div class="o_setting_left_pane">
+                                <field name="include_confirmed_orders"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="include_confirmed_orders"/>
+                                <div class="text-muted">
+                                    Target actuals includes confirmed sale orders
+                                </div>
+                                <div class="content-group">
+                                    <div id="picking_auto_sale_return_enabled"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="include_quote_orders">
+                            <div class="o_setting_left_pane">
+                                <field name="include_quote_orders"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="include_quote_orders"/>
+                                <div class="text-muted">
+                                    Target actuals includes quoted sale orders
+                                </div>
+                                <div class="content-group">
+                                    <div id="picking_auto_purchase_enabled"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

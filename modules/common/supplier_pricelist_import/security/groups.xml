@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+	<record id="group_supplier_pricelist_import" model="res.groups">
+		<field name="name">Supplier Pricelist Importer</field>
+	</record>
+</odoo>

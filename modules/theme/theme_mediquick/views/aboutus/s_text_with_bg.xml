@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_text_with_bg" name="Text With Background">
+        <section class="s_motto pb160 s_text_with_bg o_colored_level o_cc o_cc1 pt24" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/07&quot;,&quot;colors&quot;:{&quot;c1&quot;:&quot;#F9669D&quot;,&quot;c2&quot;:&quot;#2D3142&quot;,&quot;c3&quot;:&quot;#F3F2F2&quot;,&quot;c5&quot;:&quot;#30266D&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;,&quot;animated&quot;:true}" data-snippet="s_motto" data-name="Motto" style="background-color: rgb(255, 245, 249);">
+        <div class="o_we_shape o_web_editor_Floats_07" style="background-image: url(&quot;/web_editor/shape/web_editor%2FFloats%2F07.svg?c1=%23F9669D&amp;c2=%232D3142&amp;c3=%23F3F2F2&amp;c5=%2330266D&quot;);"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 o_colored_level">
+                        <h2><strong><font style="color: rgb(249, 102, 157);"><span class="o_text_highlight o_translate_inline o_text_highlight_scribble_1" style="--text-highlight-width: 4px;">Healthcare</span></font></strong> is the bridge between medical knowledge and patient well-being</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

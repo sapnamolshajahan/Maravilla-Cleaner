@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="hr_keys_status_action" model="ir.actions.act_window">
+            <field name="name">Key Statuses</field>
+            <field name="res_model">hr.key.status</field>
+            <field name="view_mode">list</field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_keys_status_tree">
+            <field name="name">hr.keys.status.tree</field>
+            <field name="model">hr.key.status</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Key List" editable='top'>
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+        <menuitem id="menu_keys_status"
+                  name="Key Status List"
+                  action="hr_keys_status_action"
+                  sequence="150"
+                  parent="hr_keys.menu_hr_key_config_root"/>
+    </data>
+</odoo>

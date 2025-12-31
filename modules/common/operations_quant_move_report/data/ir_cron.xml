@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record forcecreate="True" id="ir_cron_move_quant_fix" model="ir.cron">
+            <field name="name">Move Quant Fix</field>
+            <field name="model_id" ref="model_operations_moves_quants_fix"/>
+            <field name="state">code</field>
+            <field name="code">model.run_process()</field>
+            <field name="user_id" ref="base.user_admin" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="False" />
+        </record>
+    </data>
+</odoo>

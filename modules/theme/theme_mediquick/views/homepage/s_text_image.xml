@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_text_image" name="Left Content Right Image">
+        <section class="s_text_image pb80 o_colored_level pt0" data-snippet="s_text_image" data-name="Text - Image" style="background-color: rgb(255, 245, 249); position: relative;" 
+            data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/01&quot;,&quot;colors&quot;:{&quot;c1&quot;:&quot;#F9669D&quot;,&quot;c2&quot;:&quot;#30266D&quot;,&quot;c3&quot;:&quot;#FFF5F9&quot;,&quot;c4&quot;:&quot;#FFFFFF&quot;,&quot;c5&quot;:&quot;#F9669D&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;,&quot;animated&quot;:&quot;true&quot;}">
+            <div class="o_we_shape o_web_editor_Floats_01 o_we_animated" style="background-image: url(/theme_mediquick/static/src/img/Floats_01.svg?c1=%23F9669D&amp;c2=%2330266D&amp;c3=%23FFF5F9&amp;c4=%23FFFFFF&amp;c5=%23F9669D&quot;);"/>
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="13">
+                    <div class="o_colored_level o_grid_item g-col-lg-6 g-height-13 col-lg-6 o_grid_item_image" style="grid-area: 1 / 7 / 14 / 13; z-index: 2;"><img src="/theme_mediquick/static/src/img/Group1.png" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1555" data-original-src="/theme_mediquick/static/src/img/Group1.png" data-mimetype-before-conversion="image/png" data-resize-width="NaN" loading="lazy"/></div>
+                    <div class="o_colored_level o_grid_item g-col-lg-5 g-height-4 col-lg-5" style="z-index: 1; grid-area: 5 / 1 / 9 / 6;">
+                        <h2 class="h3-fs"><font class="text-o-color-1">About Dr.&amp;nbsp;</font>
+                            <strong><font class="text-o-color-1">John Allen</font></strong>
+                        </h2>
+                        <p>Dr. <strong>John Allen</strong> Dedicated to providing exceptional medical care with compassion and expertise. With years of experience and a commitment to patient well-being, Dr. John Allen ensures you receive the best treatment tailored to your needs.<br/><br/><br/></p>
+                        <p><a href="#" class="btn btn-secondary o_default_snippet_text">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

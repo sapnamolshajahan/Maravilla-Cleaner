@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="stock_reconcile_other_search_view" model="ir.ui.view">
+        <field name="name">stock.reconcile.other.search</field>
+        <field name="model">account.stock.reconcile.other</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product"/>
+                <group>
+                </group>
+                <group>
+                    <filter string='Product' name="productgroup" context="{'group_by': 'product'}"/>
+               </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_stock_reconcile_other_tree">
+        <field name="name">account.stock.reconcile.other.list</field>
+        <field name="model">account.stock.reconcile.other</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <list default_order="create_date desc">
+                <header>
+                    <button name="button_reconcile" type="object" string="Reconcile"/>
+                </header>
+                <field name="date"/>
+                <field name="product"/>
+                <field name="value_sent" sum="value_sent_total"/>
+                <field name="value_invoiced" sum="'value_invoiced_total"/>
+                <field name="difference" sum="'difference_total"/>
+                <field name="reconciled"/>
+                <field name="account_move"/>
+                <field name="source"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_stock_reconcile_other" model="ir.actions.act_window">
+            <field name="name">Reconcile Other</field>
+            <field name="res_model">account.stock.reconcile.other</field>
+            <field name="view_mode">list</field>
+            <field name="domain"></field>
+            <field name="search_view_id" ref="stock_reconcile_other_search_view"/>
+        </record>
+
+
+</odoo>

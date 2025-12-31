@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_cyclic_count,access_product_cyclic_count,model_product_cyclic_count,,1,1,1,1

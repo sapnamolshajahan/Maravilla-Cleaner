@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_order_sort" model="ir.ui.view" >
+            <field name="name">Sale Line Sort</field>
+            <field name="model">sale.order.sort</field>
+             <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form >
+                    <notebook >
+			            <page name='lines' string='Lines'>
+				            <field name="lines" nolabel="1" widget="one2many" mode="list">
+                            <list string="Update Lines" editable="top" create="false" delete="false">
+                                <field name="sequence" widget="handle"/>
+                                <field name="alt_seq" readonly="1"/>
+                                <field name="sale_order_line" readonly="1"/>
+                            </list>
+                        </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                    	<button name="update_sequence" string="Update Sequence" type="object" class="oe_highlight"/>
+                        <button class="btn-default" special="cancel" string="Close"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_order_form_sort_button" model="ir.ui.view">
+            <field name="name">Sales Order Form Sort Button</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_quotation_send']" position="after">
+                    <button name="action_sort_lines" string="Sort Lines" type="object" invisible="state != 'draft'"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

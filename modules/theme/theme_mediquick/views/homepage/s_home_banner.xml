@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_home_banner" name="Home Banner">
+        <section class="s_home_banner s_banner o_colored_level pt40 pb64 oe_img_bg o_bg_img_center o_bg_img_origin_border_box" data-snippet="s_banner" data-name="Banner" style="position: relative; background-image: url(/theme_mediquick/static/src/img/Background.png) !important;" data-mimetype="image/jpeg" data-original-id="1535" data-original-src="/theme_mediquick/static/src/img/Background.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="1920" data-quality="100">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="10">
+                    <div class="o_grid_item o_grid_item_image d-lg-block d-none o_snippet_mobile_invisible o_colored_level o_grid_item_image_contain g-height-10 g-col-lg-5 col-lg-5" style="z-index: 2; grid-area: 1 / 8 / 11 / 13;" data-invisible="1">
+                        <img src="/theme_mediquick/static/src/img/banner.png" alt="" class="img img-fluid o_we_custom_image mx-auto d-block rounded" data-mimetype="image/webp" data-original-id="1558" data-original-src="/theme_mediquick/static/src/img/banner.png" data-mimetype-before-conversion="image/png" data-resize-width="NaN" loading="lazy"/>
+                    </div>                  
+                    <div class="o_grid_item o_colored_level g-col-lg-6 g-height-6 col-lg-6" data-name="Box" style="z-index: 1; grid-area: 3 / 1 / 9 / 7;">
+                        <h1>
+                            <strong><font class="text-o-color-1">Advanced Treatment</font><br/>
+                            <span class="o_text_highlight o_translate_inline o_text_highlight_freehand_1" style="--text-highlight-width: 5px; --text-highlight-color: #30266D;"><font style="color: rgb(249, 102, 157);">Caring</font></span>
+                            &amp;nbsp;<font class="text-o-color-1">for Every Patient</font></strong>
+                        </h1>
+                        <p>Good health is a state of mental, physical and social well being and it does not just mean the absence of disease!</p>
+                        <p>
+                            <a class="btn btn-fill-custom rounded-circle" href="/contactus" style="border-width: 1px; border-style: solid; background-color: rgb(249, 102, 157);">Start Now <span class="fa fa-angle-right ms-2"/></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_unallocated_cash_report_wizard" model="ir.ui.view">
+        <field name="name">unallocated.cash.report.wizard.view</field>
+        <field name="model">unallocated.cash.report</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Unallocated Cash">
+                <field name="state" invisible="1"/>
+                <p invisible="state not in 'draft'">
+                    Generate an <b>Unallocated Cash Report</b> as an Excel file.
+                </p>
+                <group invisible="state not in 'done'">
+                    <field name="report_name" invisible="1"/>
+                    <field name="data" filename="report_name" invisible="state not in 'done'"/>
+                 </group>
+                <footer>
+                    <button special="cancel" string="Cancel"/>
+                    <button name="button_process" string="Generate Download" invisible="state not in 'draft'"
+                        type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_unallocated_cash_report_wizard" model="ir.actions.act_window">
+         <field name="name">Unallocated Cash Report</field>
+         <field name="res_model">unallocated.cash.report</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="view_mode">list,form</field>
+         <field name="view_id" ref="account_unallocated_cash_report_wizard"/>
+         <field name="target">new</field>
+   </record>
+
+    <menuitem name="Unallocated Cash Report"
+        action="action_unallocated_cash_report_wizard"
+        id="menu_unallocated_cash_report_wizard"
+        parent="account_generic_changes.account_reports_misc_menu"/>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <record id="email_template_fire_drill_reminder" model="mail.template">
+        <field name="name">Fire Drill Reminder Email</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="subject">Fire Drill Reminder</field>
+        <field name="email_from">${()|safe}</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="body_html" type="html">
+            <p>Hello ${object.name},</p>
+            <p>This is a reminder that fire drill is due</p>
+            <p>Thanks</p>
+        </field>
+    </record>
+</odoo>

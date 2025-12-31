@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Packing Slip" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0ca35c-13f9-4878-a0fb-13d1a7a75f7a">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<parameter name="stock-picking-id" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select
+  stock_picking.company_id "company-id",
+  stock_move.id "move-id"
+from
+  stock_picking, stock_move
+where stock_picking.id = $P{stock-picking-id}
+and picking_id = stock_picking.id
+order by
+  stock_move.id]]>
+	</queryString>
+	<field name="company-id" class="java.lang.Integer"/>
+	<field name="move-id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="215" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="120" height="40" uuid="23353eec-4c1b-40e2-8e9c-6204855fb7b2"/>
+				<imageExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("logo-path")]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="355" y="0" width="200" height="10" uuid="b21db88a-1cef-4cd0-9a90-73a81e8832b5"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("name")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="10" width="200" height="70" uuid="b3976158-2450-467e-8c29-388604d19757"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("address")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="60" width="200" height="25" uuid="185413f8-f5e0-47b4-8d4f-d23e75604249"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Packing Slip]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement x="10" y="105" width="250" height="100" uuid="faedebcf-10ef-4699-8286-46ce1699b5c3"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="100" width="50" height="10" uuid="6f0a97a1-d0a6-4ebe-ba02-3017335a55c4"/>
+				<textElement textAlignment="Left" markup="none">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Deliver To]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="120" width="200" height="12" uuid="a15f8b2b-6aac-485c-8e90-e15e159d2d60"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("deliver-name")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="132" width="200" height="60" uuid="a6862968-d896-4df8-a9c0-db8b73a5f67b"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("deliver-to")]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="335" y="90" width="220" height="110" forecolor="#CCCCCC" uuid="369205b2-bee3-46bf-8bf2-f9ed46eadd11"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="340" y="100" width="100" height="15" uuid="44468774-bf55-4a3a-bf91-f3d09eeb17f6"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Packing Slip No :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="115" width="100" height="15" uuid="e8cfd93b-c2ec-4dde-82a5-93c1dd69966f"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Code :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="130" width="100" height="15" uuid="2d4b2848-9af4-4d9a-a8e8-ec21e9be0060"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dispatch Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="145" width="100" height="15" uuid="0a9ae15f-d542-476a-b241-17bf19c87431"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Salesperson :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="160" width="100" height="15" uuid="17352af2-4ceb-4535-8df9-1af0353fa8e2"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Order Ref :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="175" width="100" height="15" uuid="93457b3c-2f6d-4b14-899e-df2b97ef1f9f"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Warehouse :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="100" width="105" height="15" uuid="16f3f485-5288-4920-9cc6-8533496f3aa4"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("name")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="115" width="105" height="15" uuid="774fb927-2b66-4841-81e1-874b94ee3dd5"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("customer-code")]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMM yyyy" isBlankWhenNull="true">
+				<reportElement x="440" y="130" width="105" height="15" uuid="7acf0084-c571-455f-8473-74da96ea51ff"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("despatch-date")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="145" width="105" height="15" uuid="209eb8cb-b04f-4070-8ccb-6f288fcc5abd"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("salesperson")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="160" width="105" height="15" uuid="f8f3655b-742e-4087-a351-870a6fc78e3d"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("customer-order-ref")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="175" width="105" height="15" uuid="992dcc22-db7c-4990-b1d1-c2e6c781786e"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("picking", $P{stock-picking-id})
+  .get ("warehouse")]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="15" backcolor="#CCCCCC" uuid="67775bed-ddd2-4a9b-aa75-45e61e43aecc">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="385" height="15" uuid="480e0de7-38f9-4398-8abc-652a88b463f8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="385" y="0" width="60" height="15" uuid="43921728-b39a-438e-9612-a89670e6e831"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordered]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="445" y="0" width="60" height="15" uuid="be50c130-e9c1-4ed3-8e9f-ad8884e106f5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Supplied]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="505" y="0" width="50" height="15" uuid="0c22fed1-3c69-4018-80a3-493138a65664"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UOM]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="1" height="5" forecolor="#CCCCCC" uuid="a08b9c9a-7d07-4718-929e-7398548ad3ae"/>
+			</line>
+			<line>
+				<reportElement x="554" y="15" width="1" height="5" forecolor="#CCCCCC" uuid="43565fa1-6ade-4e4c-9d1a-6ca46cd4ab9c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="385" height="15" isPrintWhenDetailOverflows="true" uuid="b7bb7e8c-1acf-48e5-8bbe-b070f1584de8"/>
+				<textElement>
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("description")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.000" isBlankWhenNull="true">
+				<reportElement x="385" y="0" width="60" height="15" isPrintWhenDetailOverflows="true" uuid="a3b49521-d952-499c-8a70-88d4960092e3"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("ordered")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.000" isBlankWhenNull="true">
+				<reportElement x="445" y="0" width="60" height="15" isPrintWhenDetailOverflows="true" uuid="69897609-2c2a-4efa-9dff-125192394219"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("supplied")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="505" y="0" width="50" height="15" isPrintWhenDetailOverflows="true" uuid="f5f4527b-b4af-4cd1-8561-5d18b682ec7e"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("uom")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="15" forecolor="#CCCCCC" uuid="2fdc5ca9-fde0-44d3-ab9c-941a7fda6e00"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="554" y="0" width="1" height="15" forecolor="#CCCCCC" uuid="e7b19569-0c8f-48f2-a1c8-1cd63e407b1c"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="1">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="141c4d3f-16ec-40b1-a6f4-7e472c8da505"/>
+				<graphicElement>
+					<pen lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

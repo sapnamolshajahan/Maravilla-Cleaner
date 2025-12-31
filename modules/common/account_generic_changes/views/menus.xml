@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- new menus branches -->
+    <menuitem id="account_additional_reports"
+              name="Additional Reports"
+              parent="account.menu_finance_reports"
+              sequence="4"/>
+
+
+    <menuitem id="account_reports_gl_menu"
+              name="General Ledger Reports"
+              parent="account_generic_changes.account_additional_reports"
+              sequence="20"/>
+
+    <menuitem id="account_reports_misc_menu"
+              name="Miscellaneous Reports"
+              parent="account_generic_changes.account_additional_reports"
+              sequence="30"/>
+
+</odoo>

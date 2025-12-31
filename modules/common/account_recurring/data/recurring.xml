@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Recurring Scheduled Task. -->
+    <record id="cron_recurring_journals" forcecreate="True" model="ir.cron">
+        <field name="name">Recurring Journals</field>
+        <field name="model_id" ref="model_account_recurring"/>
+        <field name="state">code</field>
+        <field name="code">model.run_recurring()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_left_content" name="Left Content Right Image">
+        <section class="s_banner pt96 pb96 o_colored_level" data-snippet="s_banner" data-name="Banner">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="10">
+                    <div class="o_grid_item g-col-lg-4 g-height-10 col-lg-4 o_colored_level" data-name="Box" style="z-index: 1; grid-area: 1 / 1 / 11 / 5;">
+                        <h1>Unleash your <strong>potential.</strong></h1>
+                        <p class="lead o_default_snippet_text"><br/>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.<br/><br/></p>
+                        <p>
+                            <a class="btn btn-custom bg-o-color-5 flat btn-lg" href="/contactus" style="border-width: 1px; border-style: solid;">Start Now <span class="fa fa-angle-right ms-2"/></a>
+                        </p>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-4 g-height-10 col-lg-4 d-lg-block d-none o_snippet_mobile_invisible o_colored_level" style="z-index: 2; grid-area: 1 / 9 / 11 / 13;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/17700.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1330" data-original-src="/web/image/1330-75304509/17700.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-2 g-height-5 col-lg-2 d-lg-block d-none o_snippet_mobile_invisible o_colored_level" style="z-index: 3; grid-area: 4 / 8 / 9 / 10;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/2420.jpg" alt="" class="img img-fluid mx-auto o_we_custom_image rounded" data-mimetype="image/webp" data-original-id="1331" data-original-src="/web/image/1331-e2640b72/2420.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

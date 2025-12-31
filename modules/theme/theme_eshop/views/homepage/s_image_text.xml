@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_image_text" name="Image Text">
+        <section class="s_image_text s_striped_top pt56 o_colored_level o_cc o_cc4 pb16" data-oe-shape-data="{'shape':'web_editor/Origins/04_001','colors':{'c3': '#FFFFFF'},'flip':['y'], 'showOnMobile':true}" data-snippet="s_striped_top" data-name="Striped Top">
+            <div class="o_we_shape o_web_editor_Origins_04_001 o_shape_show_mobile" style="background-image: url(&quot;/web_editor/shape/web_editor%2FOrigins%2F04_001.svg?c3=%23FFFFFF&amp;flip=y&quot;); background-position: 50% 100%;"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 pt24 pb24 order-lg-0 o_colored_level" style="order: 2;">
+                        <img src="/theme_eshop/static/src/img/image1.jpg" alt="" class="img img-fluid o_we_custom_image" data-mimetype="image/jpeg" data-original-id="1174" data-original-src="/theme_eshop/static/src/img/image1.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="550" data-quality="100" loading="lazy"/>
+                    </div>
+                    <div class="col-lg-6 pt24 pb24 order-lg-0 o_colored_level" style="order: 1;">
+                        <h1>Where Sound Meets Style. Elevate Every Moment.</h1>
+                        <p>From premium audio to next-gen electronics — redefine how you connect with your world.</p>
+                        <a class="btn btn-primary o_default_snippet_text mt-2" href="/contactus">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

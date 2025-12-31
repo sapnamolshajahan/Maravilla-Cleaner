@@ -1,0 +1,10 @@
+<odoo>
+    <record id="seq_tool_box_meeting" model="ir.sequence">
+        <field name="name">Tool Box Meeting</field>
+        <field name="code">tool.box.meeting</field>
+        <field name="prefix">TBM</field>
+        <field name="padding">4</field>
+        <field name="number_next_actual">1</field>
+        <field name="implementation">no_gap</field>
+    </record>
+</odoo>

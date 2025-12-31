@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Viaduct Test Report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="786" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" uuid="c46c463d-f039-4528-8ce9-7eeea73281a0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-report-ids" class="java.util.List">
+		<parameterDescription><![CDATA[List of res.company ids]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select id, name
+from res_company
+where $X{IN, id, viaduct-report-ids}
+order by id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<image hAlign="Left" onErrorType="Blank">
+				<reportElement x="0" y="0" width="120" height="40" uuid="56a5e26a-cdec-40e4-b59c-4abaf6c63a28"/>
+				<imageExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{id})
+  .get ("logo-path")]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="20" height="15" uuid="abdd3dfb-dbe1-4b20-8d64-54df6f831043"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="0" width="100" height="15" uuid="392f0ebd-1e27-470e-9dd7-8b2b49047aca"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="0" width="100" height="15" uuid="724b8780-a040-469c-9674-660c5c0e717d"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name (Viaduct)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="120" height="15" uuid="1c0254af-b8e7-4d2d-8b4e-a628abe9628e"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="160" height="15" uuid="43325bc9-55fe-4d48-b67a-5879f07074b2"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datetime (now)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="100" height="15" uuid="21cc6d96-20d8-4f4b-bb6c-cc6ed1d6229b"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Float class]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="60" height="15" uuid="af0e31b6-9ffc-4b58-baff-798bdb23fa86"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Error]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="20" height="15" uuid="f4e87501-07cb-4872-85f6-9eaeac8c545a"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="20" y="0" width="100" height="15" uuid="1e323be6-7e00-4a00-8104-ec54dcc4a416"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="120" y="0" width="100" height="15" uuid="3e7aacba-419b-41dd-916c-192b9abe1161"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{id})
+  .get ("name")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="dd-MMM-yyyy HH:mm">
+				<reportElement x="220" y="0" width="120" height="15" uuid="6e06130c-4a02-4709-a9a9-e417f3d1a7a3"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{id})
+  .get ("date")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="30" height="15" uuid="bd5dd1bc-a9fa-4730-b070-5fa650c00939"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("non-existent", $F{id})
+  .get ("key")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="500" y="0" width="100" height="15" uuid="6b5cc683-3237-4166-a3e4-ab77435162c4"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{id})
+  .get ("float")
+  .getClass ()
+  .getCanonicalName ()]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="dd-MMM-yyyy HH:mm:ss ">
+				<reportElement x="340" y="0" width="160" height="15" uuid="84a1d08f-5619-48fa-b639-764a8cbd8837"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{id})
+  .get ("now")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="630" y="0" width="30" height="15" uuid="354032cc-3431-447f-85df-64f28960c0bf"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{id})
+  .get ("none")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

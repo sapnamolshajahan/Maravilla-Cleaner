@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="alt_sale_view_inherit" model="ir.ui.view">
+        <field name="name">Sale Alternate Address</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="show_alt_delivery_address"/>
+                <label for="alt_street" string="Alt. Shipping Address" invisible="show_alt_delivery_address == False"/>
+                <div class="o_address_format" name="alternative_address"
+                     invisible="show_alt_delivery_address == False">
+                    <field name="alt_contact" placeholder="Contact Person.."
+                           class="o_address_street"/>
+                    <field name="alt_building" placeholder="Building/Unit/Flat/Complex"
+                           class="o_address_street"/>
+                    <field name="alt_street" placeholder="Street..."
+                           class="o_address_street"/>
+                    <field name="alt_street2" placeholder="Suburb"
+                           class="o_address_street"/>
+                    <field name="alt_city" placeholder="City"
+                           class="o_address_city"/>
+                    <field name="alt_state_id" class="o_address_state"
+                           placeholder="State" options="{&quot;no_open&quot;: True}"
+                           context="{'country_id': alt_country_id, 'zip': alt_zip}"/>
+                    <field name="alt_zip" placeholder="ZIP"
+                           class="o_address_zip"/>
+                    <field name="alt_country_id" placeholder="Country"
+                           class="o_address_country"
+                           options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                    <field name="alt_phone" placeholder="Phone"
+                           class="o_address_city"/>
+                    <field name="alt_email" placeholder="Email"
+                           class="o_address_city"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

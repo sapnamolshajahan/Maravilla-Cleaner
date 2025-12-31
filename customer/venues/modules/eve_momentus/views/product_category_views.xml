@@ -1,0 +1,37 @@
+<odoo>
+    <record id="view_product_category_form_inherit_momentus" model="ir.ui.view">
+        <field name="name">product.category.form.inherit.momentus</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <field name="use_description"/>
+                <field name="return_category"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_product_template_form_inherit_momentus" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.momentus</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Insert Internal Reference below Product Name -->
+            <xpath expr="//field[@name='brand_id']" position="after">
+                <field name="default_code" placeholder="Internal Reference"/>
+            </xpath>
+            <xpath expr="//field[@name='default_code']" position="after">
+                <field name="momentus_resource_code"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_stock_location_form_inherit_momentus" model="ir.ui.view">
+        <field name="name">stock.location.form.inherit.momentus</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="momentus_space_code"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

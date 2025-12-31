@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="access_pos_queue_manager" model="ir.model.access">
+        <field name="name">POS Queue Manager</field>
+        <field name="model_id" ref="model_pos_queue_escpos"/>
+        <field name="group_id" ref="point_of_sale.group_pos_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_pos_queue_user" model="ir.model.access">
+        <field name="name">POS Queue User</field>
+        <field name="model_id" ref="model_pos_queue_escpos"/>
+        <field name="group_id" ref="point_of_sale.group_pos_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="xero_account_form_view" model="ir.ui.view">
+		<field name="name">account.account.form.inherit</field>
+		<field name="model">account.account</field>
+		<field name="inherit_id" ref="account.view_account_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='group_id']" position="after">
+                <separator name="configuration" string="Xero Accounting"/>
+                 <field name="xero_account_id" readonly="1" help="Xero Account Id which gets generated automatically after creating account"/>
+				 <field name="enable_payments_to_account"/>
+				 <field name="xero_account_type" widget="selection"/>
+				 <field name="xero_description"/>
+				 <field name="xero_tax_type_for_accounts"/>
+            </xpath>
+		</field>
+	</record>
+
+	<record model="ir.actions.server" id="export_account_to_xero">
+        <field name="name">Export to XERO</field>
+        <field name="model_id" ref="account.model_account_account"/>
+		<field name="binding_model_id" ref="account.model_account_account"/>
+        <field name="state">code</field>
+        <field name="code">if records:
+               action = records.create_account_in_xero()
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="analytics_accounts_form_view">
+		<field name="name">analytics.accounts.form.view.inherit</field>
+		<field name="model">account.analytic.account</field>
+		<field name="inherit_id" ref="analytic.view_account_analytic_account_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                 <field name="xero_tracking_opt_id" readonly="1"/>
+                 <field name="is_active"/>
+            </xpath>
+		</field>
+	</record>
+
+	<record model="ir.actions.server" id="export_analytic_account_to_xero">
+        <field name="name">Export to XERO</field>
+        <field name="model_id" ref="analytic.model_account_analytic_account"/>
+        <field name="binding_model_id" ref="analytic.model_account_analytic_account"/>
+		<field name="state">code</field>
+        <field name="code">if records:
+               action = records.create_analytic_account_in_xero()
+        </field>
+    </record>
+</odoo>

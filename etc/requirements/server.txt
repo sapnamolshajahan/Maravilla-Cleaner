@@ -1,0 +1,8 @@
+#
+# Server requirements
+#
+# In general, we use the latest versions available
+# Version lockdowns are only required if incompatibilities arise
+#
+gevent
+greenlet

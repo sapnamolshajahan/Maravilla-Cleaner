@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+#set -x
+#
+# Upgrade a development database
+#
+PWD=$(pwd)
+VENV=$(basename $PWD)
+
+showUsage ()
+{
+  echo "Usage: $(basename $0) configfile dbname"
+}
+
+vWrapper ()
+{
+  for D in /usr/local/bin /usr/share/virtualenvwrapper
+  do
+   W="${D}/virtualenvwrapper.sh"
+   if [ -r ${W} ]
+   then
+    VWRAPPER=${W}
+    break
+   fi
+  done
+  if [ -z "${VWRAPPER}" ]
+  then
+   echo "ERROR: virtualenvwrapper.sh not found"
+   exit 1
+  fi
+  source ${VWRAPPER}
+}
+
+#
+# Determine Paths
+#
+DIRNAME=$(dirname ${0})
+RELEASE_BASE=$(realpath ${DIRNAME}/..)
+
+#
+# Validate arguments
+#
+if [ $# -ne 2 ]
+then
+  showUsage
+  exit 1
+fi
+
+#
+# Validate run environment
+#
+if [ ! -f odoo/odoo-bin ]
+then
+  echo "ERROR: need to run script from top-level"
+  exit 1
+fi
+
+#
+# Validate virtualenvs
+#
+if [ ! -d "${WORKON_HOME}" ]
+then
+  export WORKON_HOME="${HOME}/.virtualenvs"
+fi
+if [ ! -d "${WORKON_HOME}/${VENV}" ]
+then
+  echo "ERROR: ${WORKON_HOME}/${VENV} not found"
+  exit 1
+fi
+
+CONFIG="${1}"
+DBNAME="${2}"
+
+if [ -z "${CONFIG}" ]
+then
+  echo "Configuration file ${CONFIG} not found"
+  exit 1
+fi
+
+#
+# Run the upgrade
+#
+vWrapper
+workon ${VENV}
+odoo/odoo-bin -c ${CONFIG} -d ${DBNAME} -u all --stop-after-init --no-http

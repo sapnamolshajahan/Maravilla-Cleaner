@@ -1,0 +1,123 @@
+<odoo>
+
+    <record id="view_product_category_tree_inherit_documents" model="ir.ui.view">
+        <field name="name">product.category.tree.inherit.documents</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_list_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="parent_id" string="Parent Category"/>
+                <field name="document_ids" widget="many2many_tags" string="Documents"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_category_form_inherit_documents" model="ir.ui.view">
+        <field name="name">product.category.form.inherit.documents</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_documents"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-file-pdf-o"
+                        context="{'default_category_id': id}">
+                    <div class="o_stat_info">
+                        <field name="document_count" widget="statinfo" string="Documents"/>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Documents">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_category_documents"
+                                    string="Add Document"
+                                    type="object"
+                                    class="oe_stat_button btn btn-primary"
+                                    icon="fa-plus"/>
+                        </div>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_category_document_wizard_form" model="ir.ui.view">
+        <field name="name">category.document.wizard.form</field>
+        <field name="model">category.document.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Document">
+                <group>
+                    <field name="name"/>
+                    <field name="file" filename="filename"/>
+                </group>
+                <footer>
+                    <button string="Add" type="object" name="action_add_document" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_category_document_list" model="ir.ui.view">
+        <field name="name">product.category.document.list</field>
+        <field name="model">product.category.document</field>
+        <field name="arch" type="xml">
+            <list string="Documents">
+                <field name="name"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_category_document_kanban" model="ir.ui.view">
+        <field name="name">product.category.document.kanban</field>
+        <field name="model">product.category.document</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+                <field name="name"/>
+                <field name="create_date"/>
+                <field name="ir_attachment_id"/>
+                <templates>
+                    <t t-name="menu">
+                        <a t-if="widget.deletable" type="delete" class="dropdown-item">Delete</a>
+                        <a t-if="record.ir_attachment_id"
+                           t-att-href="'/web/content/' + record.ir_attachment_id.raw_value + '?download=true'"
+                           download=""
+                           class="dropdown-item">
+                            Download
+                        </a>
+                    </t>
+                    <t t-name="card">
+                        <div class="d-flex align-items-center p-2">
+                            <div class="me-3">
+                                <i class="fa fa-file-pdf-o fa-2x text-danger"/>
+                            </div>
+                            <div class="flex-grow-1">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div class="text-muted small">
+                                    Uploaded on
+                                    <field name="create_date" widget="datetime"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="action_product_category_documents" model="ir.actions.act_window">
+        <field name="name">Category Documents</field>
+        <field name="res_model">product.category.document</field>
+        <field name="view_mode">kanban,list</field>
+        <field name="view_id" ref="view_product_category_document_kanban"/>
+        <field name="domain">[('category_id', '=', active_id)]</field>
+    </record>
+
+</odoo>

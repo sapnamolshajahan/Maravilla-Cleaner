@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_extension" model="ir.ui.view">
+        <field name="name">purchase.order.form.extension</field>
+        <field name="model">purchase.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add the email wizard and print buttons. -->
+            <xpath expr="/form/header/button[@name='button_confirm']" position="after">
+                <button name="button_send_by_email" string="Send by Email" type="object"
+                        groups="base.group_user"/>
+                <button name="button_print_report" string="Print" type="object" groups="base.group_user"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

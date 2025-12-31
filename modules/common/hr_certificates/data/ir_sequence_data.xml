@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_hr_certificates" model="ir.sequence">
+            <field name="name">HR Certificate Sequence</field>
+            <field name="code">hr.certificates</field>
+            <field name="prefix">CERT/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

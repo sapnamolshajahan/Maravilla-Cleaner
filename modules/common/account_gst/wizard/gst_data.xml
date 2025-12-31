@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_gst_report_view" model="ir.ui.view">
+            <field name="name">GST Report</field>
+            <field name="model">account.gst.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="from_date" required="True"/>
+                            <field name="to_date" required="True"/>
+                        </group>
+                        <group>
+                            <field name="account_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        </group>
+                        <newline/>
+                        <group>
+                            <field name="output_type" readonly="1"/>
+                            <field name="detail"/>
+                        </group>
+                        <newline/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight"/>
+                        <button class="btn-default" special="cancel" string="Close"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_gst_report_download_view" model="ir.ui.view">
+            <field name="name">Download Report</field>
+            <field name="model">account.gst.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group colspan="4">
+                        <field name="report_name" invisible="1"/>
+                        <field name="data" filename="report_name"/>
+                    </group>
+                    <footer>
+                        <button special="cancel" string="Close" colspan="2" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_gst_report_view" model="ir.actions.act_window">
+            <field name="name">GST Report</field>
+            <field name="view_mode">form</field>
+            <field name="res_model">account.gst.report</field>
+            <field name="view_id" ref="account_gst_report_view"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem id="menu_account_gst_report"
+                  name="GST Report"
+                  groups="account.group_account_invoice"
+                  parent="account.account_reports_management_menu"
+                  sequence="100"
+                  action="action_account_gst_report_view"/>
+    </data>
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_production_product_report_view_tree" model="ir.ui.view">
+        <field name="name">mrp.production.product.report.tree</field>
+        <field name="model">mrp.production.product.report</field>
+        <field name="arch" type="xml">
+            <list string="Production to Product Analysis" create="false">
+                <field name="name"/>
+                <field name="date" widget="date"/>
+                <field name="production_product_id"/>
+                <field name="production_state" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="mrp_production_product_report_search" model="ir.ui.view">
+        <field name="name">mrp.production.product.report.search</field>
+        <field name="model">mrp.production.product.report</field>
+        <field name="arch" type="xml">
+            <search string="Production to Product Analysis">
+                <field name="date"/>
+                <filter string="Date" name="year" invisible="1" date="date" default_period="year"/>
+                <separator/>
+                <filter name="filter_date" date="date" default_period="month"/>
+                <separator/>
+                <field name="name"/>
+                <field name="production_product_id"/>
+                <field name="raw_material_product_id"/>
+                <group>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+                <group>
+                    <filter string="Product" name="Product" context="{'group_by':'production_product_id'}"/>
+                    <filter string="Status" name="status" context="{'group_by':'production_state'}"/>
+                    <filter string="Company" name="company" groups="base.group_multi_company"
+                            context="{'group_by':'company_id'}"/>
+                    <separator/>
+                    <filter string="Order Date" name="group_by_date_day" context="{'group_by':'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mrp_production_product_report" model="ir.actions.act_window">
+        <field name="name">Production to Product Analysis</field>
+        <field name="res_model">mrp.production.product.report</field>
+        <field name="view_mode">list</field>
+        <field name="view_id"></field>
+        <field name="search_view_id" ref="mrp_production_product_report_search"/>
+        <field name="context">{}</field>
+        <field name="help">This report performs analysis on manufacturing orders against key products</field>
+    </record>
+
+    <menuitem id="menu_mrp_production_product_report"
+              name="Production to Product Analysis"
+              parent="mrp.menu_mrp_reporting"
+              action="action_mrp_production_product_report"
+              sequence="40"/>
+
+</odoo>

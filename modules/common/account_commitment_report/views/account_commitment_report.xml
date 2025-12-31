@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="view_account_commitment_pivot" model="ir.ui.view">
+		<field name="name">Amount Commitment Pivot</field>
+		<field name="model">account.commitment.report</field>
+		<field name="arch" type="xml">
+			<pivot string="Commitment Analysis" disable_linking="True">
+				<field name="date_due" interval="month" type="col"/>
+				<field name="currency_id" type="row"/>
+				<field name="total_due" type="measure"/>
+				<field name="local_due" type="measure"/>
+			</pivot>
+		</field>
+	</record>
+
+	<record id="view_account_commitment_graph" model="ir.ui.view">
+		<field name="name">Account Commitment Graph</field>
+		<field name="model">account.commitment.report</field>
+		<field name="arch" type="xml">
+			<graph string="Commitment Analysis">
+				<field name="date_due" type="row"/>
+				<field name="local_due" type="measure"/>
+			</graph>
+		 </field>
+	</record>
+
+	<record id="view_account_commitment_tree" model="ir.ui.view">
+		<field name="name">Amount Commitment Tree</field>
+		<field name="model">account.commitment.report</field>
+		<field name="arch" type="xml">
+			<list string="Commitments">
+				<field name="partner_id" options="{'no_create': True}" />
+				<field name="company_id" options="{'no_create': True}" />
+				<field name="invoice_id" options="{'no_create': True}" />
+				<field name="purchase_order_id" options="{'no_create': True}" />
+				<field name="reference"/>
+				<field name="tr_date"/>
+				<field name="date_due" />
+				<field name="currency_id" options="{'no_create': True}"/>
+				<field name="total_due"/>
+				<field name="local_due" />
+				<field name="note" />
+			</list>
+		</field>
+	</record>
+
+	<record id="action_account_commitment_report_window" model="ir.actions.act_window">
+		<field name="name">Commitments Report</field>
+		<field name="res_model">account.commitment.report</field>
+		<field name="view_mode">pivot,graph,list,form</field>
+	</record>
+</odoo>

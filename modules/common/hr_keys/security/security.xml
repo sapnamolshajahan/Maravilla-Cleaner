@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.model.access" id="access_hr_key_description_manager">
+        <field name="name">hr.key.description.manager</field>
+        <field name="model_id" ref="model_hr_key_description"/>
+        <field name="group_id" ref="hr.group_hr_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="access_hr_key_description_user">
+        <field name="name">hr.key.description.user</field>
+        <field name="model_id" ref="model_hr_key_description"/>
+        <field name="group_id" ref="hr.group_hr_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record model="ir.model.access" id="access_hr_key_status_manager">
+        <field name="name">hr.key.status.manager</field>
+        <field name="model_id" ref="model_hr_key_status"/>
+        <field name="group_id" ref="hr.group_hr_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="access_hr_key_status_user">
+        <field name="name">hr.key.status.user</field>
+        <field name="model_id" ref="model_hr_key_status"/>
+        <field name="group_id" ref="hr.group_hr_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record model="ir.model.access" id="access_hr_key_manager">
+        <field name="name">hr.key.manager</field>
+        <field name="model_id" ref="model_hr_key"/>
+        <field name="group_id" ref="hr.group_hr_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="access_hr_key_user">
+        <field name="name">hr.key.user</field>
+        <field name="model_id" ref="model_hr_key"/>
+        <field name="group_id" ref="hr.group_hr_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+</odoo>

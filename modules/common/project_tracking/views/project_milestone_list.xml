@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_milestone_list_tree" model="ir.ui.view">
+        <field name="name">project.milestone.list.tree</field>
+        <field name="model">project.milestone.list</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="project_milestone_list_action" model="ir.actions.act_window">
+        <field name="name">Project Milestones</field>
+        <field name="res_model">project.milestone.list</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="project_milestone_list_menu"
+              action="project_milestone_list_action"
+              parent="project.menu_project_config"/>
+</odoo>

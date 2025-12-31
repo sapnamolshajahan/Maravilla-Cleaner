@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_batch_payment.action_print_batch_payment" model="ir.actions.report">
+            <field name="binding_model_id"/>
+        </record>
+
+        <record id="account_batch_payment_viaduct" model="ir.actions.report">
+            <field name="name">Batch Payment PDF</field>
+            <field name="report_name">account_batch_payment_report.account_batch_payment_viaduct</field>
+            <field name="report_file">account_batch_payment_report/reports/payment-order-unpack.jrxml</field>
+            <field name="model">account.batch.payment</field>
+            <field name="viaduct_helper">
+                odoo.addons.account_batch_payment_report.reports.payment_order_helper.PaymentOrderHelper
+            </field>
+            <field name="binding_model_id" ref="account_batch_payment.model_account_batch_payment"/>
+            <field name="print_report_name">object.name.replace('/', '_')</field>
+        </record>
+    </data>
+</odoo>

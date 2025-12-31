@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_edi_ftp_resend" model="ir.actions.server">
+        <field name="name">Send EDI Document FTP</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="binding_model_id" ref="model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_send_edi_ftp()</field>
+    </record>
+
+    <record id="action_edi_resend" model="ir.actions.server">
+        <field name="name">Resend EDI Document</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="binding_model_id" ref="model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_resend_edi()</field>
+    </record>
+
+    <record model="ir.ui.view" id="account_invoice_form_edi_confirmed">
+        <field name="name">Sale Invoice Edi Confirmed Form View</field>
+        <field name="model">account.move</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="edi_confirmed" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_invoice_tree_view_edi">
+        <field name="name">Invoice EDI fields (Tree)</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="edi_sent" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_invoice_form_view_edi">
+        <field name="name">Invoice EDI fields (Form)</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="edi_sent"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

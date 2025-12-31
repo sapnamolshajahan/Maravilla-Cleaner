@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="group_partner_reports_user" model="res.groups">
+            <field name="name">Partner Reports / User</field>
+        </record>
+
+        <record id="ar_ap_audit_xls_report" model="ir.model.access">
+            <field name="name">ar.ap.audit.xls.report</field>
+            <field name="model_id" ref="model_ar_ap_audit_xls_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="aged_trial_balance_currency_xls_report" model="ir.model.access">
+            <field name="name">aged.trial.balance.currency.xls.report</field>
+            <field name="model_id" ref="model_aged_trial_balance_currency_xls_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="detailed_aged_trial_balance_report" model="ir.model.access">
+            <field name="name">detailed.aged.trial.balance.report</field>
+            <field name="model_id" ref="model_detailed_aged_trial_balance_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="aged_trial_balance_xls_report" model="ir.model.access">
+            <field name="name">aged.trial.balance.xls.report</field>
+            <field name="model_id" ref="model_aged_trial_balance_xls_report"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="res_partner_open_invoice" model="ir.model.access">
+            <field name="name">res.partner.open.invoice</field>
+            <field name="model_id" ref="model_res_partner_open_invoice"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="res_partner_statement" model="ir.model.access">
+            <field name="name">res.partner.statement</field>
+            <field name="model_id" ref="model_res_partner_statement"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="res_partner_statement_lines" model="ir.model.access">
+            <field name="name">res.partner.statement.lines</field>
+            <field name="model_id" ref="model_res_partner_statement_lines"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="res_partner_statement_email" model="ir.model.access">
+            <field name="name">res.partner.statement.email</field>
+            <field name="model_id" ref="model_res_partner_statement_email"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

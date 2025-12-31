@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="forecast_data_tree" model="ir.ui.view">
+        <field name="name">forecast.data.tree</field>
+        <field name="model">forecast.data</field>
+        <field name="arch" type="xml">
+            <list string="Forecast Data Tree">
+                <field name="name"/>
+                <field name="generated"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="forecast_data_form" model="ir.ui.view">
+        <field name="name">forecast.data.form</field>
+        <field name="model">forecast.data</field>
+        <field name="arch" type="xml">
+            <form string="Forecast Data">
+                <header>
+                    <button name="button_generate_forecast" type="object" invisible="state != 'draft'" string="Generate Forecast" class="oe_highlight"/>
+                    <button name="button_purchase_create" type="object" invisible="state != 'open'" string="Create Purchase Orders"/>
+                    <button name="button_set_done" type="object"  invisible="state != 'open'" string="Set Done"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <h2 class="mt0">
+                    <field name="name" class="oe_inline"/>
+                </h2>
+                <group>
+                    <group>
+                        <field name="product_categories" readonly="state != 'draft'" options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="supplier" readonly="state != 'draft'" options="{'no_create': True}">
+                            <list>
+                                <field name="name"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="plot_type"/>
+                        <field name="generated"/>
+                    </group>
+                    <group>
+                        <field name="history_count"/>
+                        <field name="forecast_count"/>
+                        <field name="forecast_from"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Product Forecasts">
+                        <field name="lines" mode="list">
+                            <list string="Forecast lines" editable="bottom" create="false" delete="false" edit="true" default_order="product asc"
+                                  decoration-danger="(state_flag == '3')" decoration-warning="(state_flag == '4')" decoration-info="(state_flag == '2')">
+                                <field name="product" options="{'no_create': True}" readonly="1"/>
+                                <field name="state_flag" optional="show"/>
+                                <field name="template" invisible="1"/>
+                                <field name="supplierinfo"
+                                       readonly="purchase != False"
+                                       domain="[('product_tmpl_id', '=', template)]" options="{'no_create': True}" optional="show"/>
+                                <field name="currency" options="{'no_create': True}" readonly="1" optional="hide"/>
+                                <field name="buy_price" readonly="1" optional="hide"/>
+                                <field name="available" readonly="1" optional="show"/>
+                                <field name="on_order" readonly="1" optional="show"/>
+                                <field name="draft_sale" readonly="1" optional="show"/>
+                                <field name="draft_mo" readonly="1" optional="hide"/>
+                                <field name="method" readonly="1" optional="hide"/>
+                                <field name="cover" readonly="1" optional="show"/>
+                                <field name="delay" readonly="1" optional="hide"/>
+                                <field name="required_cover" readonly="1" optional="hide"/>
+                                <field name="forecast" readonly="1" optional="show"/>
+                                <field name="suggested_qty" readonly="1"/>
+                                <field name="order_qty"/>
+
+                                <field name="note" optional="hide"/>
+                                <field name="purchase" optional="hide"/>
+                                <field name="manufacturing" optional="hide"/>
+                                <button name="button_graph_demand" string="Graph" icon="fa-line-chart" type="object"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_demand_planning_main"
+              name="Demand Planning"
+              parent="purchase.menu_purchase_root" sequence="60"/>
+
+
+    <record model="ir.actions.act_window" id="action_forecast_data">
+        <field name="name">Forecast Data</field>
+        <field name="res_model">forecast.data</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_forecast_data"
+              name="Forecast Data"
+              parent="menu_demand_planning_main" sequence="10"
+              action="action_forecast_data"/>
+
+
+    <record id="forecast_data_line_tree" model="ir.ui.view">
+        <field name="name">forecast.data.line.tree</field>
+        <field name="model">forecast.data.line</field>
+        <field name="arch" type="xml">
+            <list string="Forecast Data Line Tree" create="false" edit="false">
+                <field name="forecast_data"/>
+                <field name="product"/>
+                <field name="state_flag" invisible="1"/>
+                <field name="template" invisible="1"/>
+                <field name="supplierinfo"/>
+                <field name="buy_price"/>
+                <field name="available"/>
+                <field name="on_order"/>
+                <field name="draft_sale"/>
+                <field name="draft_mo"/>
+                <field name="method"/>
+                <field name="cover"/>
+                <field name="forecast"/>
+                <field name="suggested_qty"/>
+                <field name="order_qty"/>
+                <field name="note"/>
+                <field name="purchase"/>
+                <field name="manufacturing"/>
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="forecast_data_line_search_view">
+        <field name="name">forecast.data.line.search</field>
+        <field name="model">forecast.data.line</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product"/>
+                <field name="forecast_data"/>
+            </search>
+        </field>
+    </record>
+
+<!--    <act_window id="action_forecast_line_data"-->
+<!--                name="Forecast Line Data"-->
+<!--                view_mode="list"-->
+<!--                res_model="forecast.data.line"/>-->
+
+    <record model="ir.actions.act_window" id="action_forecast_line_data">
+        <field name="name">Forecast Line Data</field>
+        <field name="res_model">forecast.data.line</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_forecast_line_data"
+              name="Forecast Line Data"
+              parent="menu_demand_planning_main" sequence="15"
+              action="action_forecast_line_data"/>
+
+
+    <record model="ir.ui.view" id="view_demand_graph">
+        <field name="name">Forecast Data Plot</field>
+        <field name="model">forecast.data.plot</field>
+        <field name="arch" type="xml">
+            <graph string="Product Demand Plot" type="bar" stacked="False">
+                <field name="month"/>
+                <field name="year"/>
+                <field name="actual_forecast" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_demand_pivot">
+        <field name="name">Forecast Data Plot Pivot</field>
+        <field name="model">forecast.data.plot</field>
+        <field name="arch" type="xml">
+            <pivot string="Product Demand Pivot" disable_linking="True">
+                <field name="year" type="col"/>
+                <field name="month_and_type" type="row"/>
+                <field name="actual_forecast" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="forecast_data_plot_tree" model="ir.ui.view">
+        <field name="name">forecast.data.plot.tree</field>
+        <field name="model">forecast.data.plot</field>
+        <field name="arch" type="xml">
+            <list string="Forecast Data Detail">
+                <field name="product"/>
+                <field name="month"/>
+                <field name="year"/>
+                <field name="actual_forecast"/>
+                <field name="forecasted"/>
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="forecast_data_plot_search_view">
+        <field name="name">forecast.data.plot.search</field>
+        <field name="model">forecast.data.plot</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product"/>
+            </search>
+        </field>
+    </record>
+
+<!--    <act_window id="action_forecast_data_line"-->
+<!--                name="Forecast Data Plot Lines"-->
+<!--                view_mode="pivot,graph,list"-->
+<!--                res_model="forecast.data.plot"/>-->
+
+     <record model="ir.actions.act_window" id="action_forecast_data_line">
+        <field name="name">Forecast Data Plot Lines</field>
+        <field name="res_model">forecast.data.plot</field>
+        <field name="view_mode">pivot,graph,list</field>
+    </record>
+
+    <menuitem id="menu_forecast_data_line"
+              name="Forecast Data Plot Lines"
+              parent="menu_demand_planning_main" sequence="20"
+              action="action_forecast_data_line"/>
+
+
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="sale_target_main_menu"
+              name="Sales Targets"
+              parent="sale.menu_sale_config"
+              sequence="30"/>
+
+    <record model="ir.ui.view" id="sale_target_list_view">
+        <field name="name">sale.target.tree</field>
+        <field name="model">sale.target</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Sale Targets" editable="bottom">
+                <field name="sale_target_year"/>
+                <field name="salesperson" options="{'no_create': True}"/>
+                <field name="target"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="sale_target_filter" model="ir.ui.view">
+        <field name="name">sale.target.filter</field>
+        <field name="model">sale.target</field>
+        <field name="arch" type="xml">
+            <search string="Search Targets">
+                <field name="sale_target_year"/>
+                <field name="salesperson"/>
+                <separator/>
+                <group>
+                    <filter string="Year" name="sale_target_year" context="{'group_by':'sale_target_year'}"/>
+                    <filter name="salesperson" string="Salesperson" context="{'group_by':'salesperson'}"/>
+                    <separator/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sale_target_action">
+        <field name="name">Sales Targets</field>
+        <field name="res_model">sale.target</field>
+        <field name="view_mode">list</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="sale_target_filter"/>
+    </record>
+
+    <menuitem id="sale_target_target_menu"
+              name="Sales Targets"
+              action="sale_target_action"
+              parent="sale_target_main_menu"
+              sequence="10"/>
+
+    <record model="ir.ui.view" id="sale_target_split_view">
+        <field name="name">sale.target.split.tree</field>
+        <field name="model">sale.target.split</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Sale Target Splits" editable="bottom">
+                <field name="sale_target_year"/>
+                <field name="from_date"/>
+                <field name="to_date"/>
+                <field name="work_days"/>
+                <field name="weighting"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="sale_target_split_filter" model="ir.ui.view">
+        <field name="name">sale.target.split.filter</field>
+        <field name="model">sale.target.split</field>
+        <field name="arch" type="xml">
+            <search string="Search Target Splits">
+                <field name="sale_target_year"/>
+                <separator/>
+                <group>
+                    <filter string="Year" name="sale_target_year" context="{'group_by':'sale_target_year'}"/>
+                    <separator/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sale_target_split_action">
+        <field name="name">Sales Target Splits</field>
+        <field name="res_model">sale.target.split</field>
+        <field name="view_mode">list</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="sale_target_split_filter"/>
+    </record>
+
+
+    <menuitem id="sale_target_target_split_menu"
+              name="Sales Target Splits"
+              action="sale_target_split_action"
+              parent="sale_target_main_menu"
+              sequence="20"/>
+
+</odoo>

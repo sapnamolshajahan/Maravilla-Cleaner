@@ -1,0 +1,13 @@
+[options]
+
+addons_path = odoo/addons,enterprise,maravilla_cleaner
+
+admin_passwd = p9v4-8gyv-jz38
+
+db_host = localhost
+db_user = demoodoo19
+db_password = odoo19
+
+log_level = debug
+
+data_dir = /tmp/data-dir/odoo19

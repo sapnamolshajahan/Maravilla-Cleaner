@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="quant_move_fix_form" model="ir.ui.view">
+        <field name="name">quant.move.fix.form</field>
+        <field name="model">operations.moves.quants.fix</field>
+        <field name="arch" type="xml">
+            <form string="Move -Quants Fix">
+                <p>
+                    Will create or adjust an existing quant so that aligns with done moves
+                </p>
+                <footer>
+                    <button name="run_process" string="Run Process" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_quant_move_fix" model="ir.actions.act_window">
+        <field name="name">Fix Quant Move Differences</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">operations.moves.quants.fix</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="action_quant_move_menu"
+        action="action_quant_move_fix"
+        parent="stock.menu_warehouse_config"
+        groups="stock.group_stock_manager"
+        sequence="150"/>
+</odoo>

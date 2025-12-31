@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_invoice_report_search_analysis" model="ir.ui.view">
+        <field name="inherit_id" ref="account.view_account_invoice_report_search" />
+        <field name="name">invoice.report.analysis.code</field>
+		<field name="model">account.invoice.report</field>
+		<field name="arch" type="xml">
+			<xpath expr="//filter[@name='category_product']" position="after">
+                <filter string="Analysis Code" name="product_analysis" context="{'group_by':'product_analysis'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

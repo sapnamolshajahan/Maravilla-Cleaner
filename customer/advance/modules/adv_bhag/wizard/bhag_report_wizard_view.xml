@@ -1,0 +1,33 @@
+<odoo>
+    <record id="view_bhag_report_wizard" model="ir.ui.view">
+        <field name="name">bhag.report.wizard.form</field>
+        <field name="model">bhag.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="BHAG Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="action_print_report"
+                            type="object"
+                            string="Print XLSX"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_bhag_report_wizard" model="ir.actions.act_window">
+        <field name="name">BHAG Report</field>
+        <field name="res_model">bhag.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_bhag_report"
+              name="BHAG Report"
+              parent="stock.menu_warehouse_report"
+              action="action_bhag_report_wizard"/>
+</odoo>
+

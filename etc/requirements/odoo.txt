@@ -1,0 +1,58 @@
+#
+# In general, we use the latest versions available
+# Version lockdowns are only required if incompatibilities arise
+#
+#
+# NOTE:
+# Server requirements removed from here and put in server.txt.
+# Run this file for development machines, but also run server.txt for servers.
+#
+#
+asn1crypto
+Babel
+cbor2
+chardet
+cryptography
+docutils
+freezegun
+geoip2
+idna
+Jinja2
+libsass
+lxml
+MarkupSafe
+num2words
+ofxparse
+openpyxl
+passlib
+phonenumbers
+Pillow
+polib
+psutil
+psycopg2
+pyopenssl
+PyPDF2
+pyserial
+python-dateutil
+python-ldap
+python-magic
+python-stdnum
+pytz
+pyusb
+qrcode
+reportlab
+requests
+rjsmin
+urllib3
+vobject
+Werkzeug==2.2.2
+xlrd
+XlsxWriter
+xlwt
+zeep
+
+#
+# Common module requirements
+#
+paho-mqtt
+redis

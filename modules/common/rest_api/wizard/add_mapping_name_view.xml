@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_add_api_mapping_wizard_form">
+        <field name="name">add.api.mapping.name.wizard.form</field>
+        <field name="model">add.api.mapping.name.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Add Mapping Name">
+                <group>
+                    <field name="odoo_field_name"/>
+                    <field name="odoo_field_api_name" invisible="odoo_field_api_name == False"/>
+                    <field name="api_name"/>
+                </group>
+                <footer>
+                    <div>
+                        <button name="button_add_mapping_name"
+                                string="Save" type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </div>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

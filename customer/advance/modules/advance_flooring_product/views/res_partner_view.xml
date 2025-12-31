@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+
+        <record id="view_partner_bank_details_form" model="ir.ui.view">
+            <field name="name">res.partner.bank.details.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@id='invoice_send_settings']" position="after">
+                    <group string="Bank Details" name="bank_details"
+                           groups="account.group_account_invoice,account.group_account_readonly">
+                        <field name="bank_name"/>
+                        <field name="bank_account_number"/>
+                        <field name="bank_branch"/>
+                        <field name="date_account_created"/>
+                        <field name="tax_code"/>
+                        <field name="tax_number"/>
+                        <field name="account_form"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_partner_form_inherit_sales_fields" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.sales.fields</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='sales_purchases']//group[@name='purchase']" position="after">
+                    <group string="Additional Sales Info" name="additional_sales_info">
+                        <field name="prompt_payment_terms_id"/>
+                        <field name="customer_prompt_payment_discount"/>
+                        <field name="customer_priority_id"/>
+                        <field name="customer_type_id"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

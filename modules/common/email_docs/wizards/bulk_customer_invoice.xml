@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="bulk_customer_dispatch_form" model="ir.ui.view">
+		<field name="name">Bulk Customer Invoice Dispatch</field>
+		<field name="model">bulk.customer.invoice.dispatch</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Email and Generate Invoices">
+                <group name="info" col="4">
+                    <p colspan="4">
+                        This will force bulk sending of invoices to selected customers; ignoring
+						the enable/disable flag on <i>Invoice</i> on <b>Email Document Types</b>.
+						However, invoices will <b>not</b> be sent to customers that have specifically
+						configured to ignore email-invoices on the <b>Document Emailing</b> tab.
+					</p>
+					<p colspan="4">
+						Email invoices will be generated on the task-queue.
+					</p>
+				</group>
+				<group>
+					<group>
+						<field name="from_date"/>
+						<field name="include_credits"/>
+					</group>
+					<group>
+						<field name="ignore_sent"/>
+					</group>
+				</group>
+				<group>
+					<field name="all_customers"/>
+					<field name="lines"  colspan="4" string="Select Specific Customers"
+						invisible="all_customers == True">
+						<list editable="bottom">
+							<field name="partner" domain="[
+								('is_company', '=', True),
+								('customer_rank', '>', 0),
+							]"/>
+						</list>
+					</field>
+				</group>
+				<footer>
+					<button name="button_generate" string="Generate" type="object" class="btn-primary"/>
+					<button special="cancel" string="Close" class="btn-default"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+   <record id="bulk_customer_invoice_dispatch_action" model="ir.actions.act_window">
+		<field name="name">Bulk Invoice Dispatch</field>
+		<field name="res_model">bulk.customer.invoice.dispatch</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<menuitem id="menu_bulk_customer_invoice_dispatch"
+		action="bulk_customer_invoice_dispatch_action"
+		parent="account.menu_finance_receivables"
+		sequence="50"/>
+</odoo>

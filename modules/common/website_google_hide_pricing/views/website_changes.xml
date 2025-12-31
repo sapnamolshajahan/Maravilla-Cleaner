@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hide_product_prices" inherit_id="website_sale.product_price"
+              name="Hide Price for Non logged in users">
+        <xpath expr="//div[contains(@class, 'css_non_editable_mode_hidden decimal_precision')]" position="attributes">
+            <attribute name="t-if">not request.env.user.id</attribute>
+            <attribute name="data-nosnippet">data-nosnippet</attribute>
+        </xpath>
+    </template>
+</odoo>

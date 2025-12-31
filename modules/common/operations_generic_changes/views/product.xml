@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_product_on_hand_form" model="ir.actions.act_window">
+        <field name="name">Product Stock On Hand</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.location</field>
+        <field name="context">{'search_default_in_location': 1, 'product_tmpl_id': active_id, 'warehouse_exclude_in_avail_stock': False}</field>
+    </record>
+
+    <record id="view_product_stock_quantities_extension" model="ir.ui.view">
+        <field name="name">Product Stock On Hand</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <button name="action_open_documents" position="before">
+                 <button name="%(action_product_on_hand_form)d" type='action' string='On Hand'/>
+            </button>
+        </field>
+    </record>
+</odoo>

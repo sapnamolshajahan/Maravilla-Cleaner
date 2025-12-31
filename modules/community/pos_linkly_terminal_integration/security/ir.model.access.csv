@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_linkly_wizard_message,Access Linkly Message Wizard,model_linkly_wizard_message,,1,1,1,1
+
+access_pin_pad_pairing_user,pin.pad.pairing,model_pin_pad_pairing,point_of_sale.group_pos_user,1,1,1,0
+access_pin_pad_pairing_manager,pin.pad.pairing,model_pin_pad_pairing,point_of_sale.group_pos_manager,1,1,1,1
+
+access_linkly_transaction_user,linkly.transaction,model_linkly_transaction,point_of_sale.group_pos_user,1,1,1,0
+access_linkly_transaction_manager,linkly.transaction,model_linkly_transaction,point_of_sale.group_pos_manager,1,1,1,1

@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Journal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0ca35c-13f9-4878-a0fb-13d1a7a75f7a">
+	<property name="ireport.zoom" value="1.1269722013523769"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dev-db.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Base" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<parameter name="move-id" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select
+  account_move.company_id "company-id",
+  account_move.id "move-id",
+  account_move_line.id "line-id"
+from
+  account_move,
+  account_move_line
+where account_move_line.move_id = $P{move-id}
+and account_move_line.move_id = account_move.id
+order by
+  sequence,
+  account_move_line.id]]>
+	</queryString>
+	<field name="company-id" class="java.lang.Integer"/>
+	<field name="move-id" class="java.lang.Integer"/>
+	<field name="line-id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image hAlign="Left" onErrorType="Blank">
+				<reportElement x="0" y="0" width="200" height="50" uuid="3c248cf9-6380-40ae-8561-74f9704f549f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("logo-path")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="800" height="30" uuid="88c49365-99e5-4274-a0b4-a9e23d518f24">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Journal Report]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="600" y="0" width="200" height="10" uuid="8b049691-8084-4f4d-a298-dd3d3a46a9aa">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("name")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="10" width="200" height="60" uuid="1b8c485a-ac66-4486-b2c3-c848ca7fe4b6">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("address")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="85" width="60" height="12" uuid="a924769d-a228-4845-baa3-b8b99278eb83">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Journal]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="60" y="85" width="140" height="12" isPrintWhenDetailOverflows="true" uuid="23696ccc-28f2-4231-bb15-4e4fec0df87b">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("journal")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="340" y="85" width="140" height="12" isPrintWhenDetailOverflows="true" uuid="230b98b9-c11c-42ea-9362-dcf572f5b157">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("date")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="640" y="85" width="140" height="12" isPrintWhenDetailOverflows="true" uuid="1b5e26c2-9641-4651-95fa-f8fdeaf69dd3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("reference")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="280" y="85" width="60" height="12" uuid="aa484dbe-162b-437c-900d-2dc90b0abc47">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="580" y="85" width="60" height="12" uuid="3f960cf9-19f6-40fc-8e6a-c9d70345f935">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Reference]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="0" y="60" width="200" height="20" isPrintWhenDetailOverflows="true" uuid="ec3ee765-8cae-4c3b-b2ea-a07bb9a3b391">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $F{move-id})
+  .get ("name")]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="15" backcolor="#CCCCCC" uuid="9ed0cc3f-3131-4326-91b7-676e966157b1">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="160" height="15" uuid="d228fcf4-4b00-4d64-bc1d-cdc25242048a">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Account]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="160" y="0" width="190" height="15" uuid="8cedeb37-66f5-4f7b-9a3f-41e9e6acb9b1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Label]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="350" y="0" width="100" height="15" uuid="81210c56-ca03-4452-8c02-9d10baad3617">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Analytic A/C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="450" y="0" width="100" height="15" uuid="75b24d2f-587d-473b-ac8c-a2e894c8ae88">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Currency]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="600" y="0" width="100" height="15" uuid="4ad2a6a6-b3ab-458a-83e8-0e3a86735b96">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Debit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="700" y="0" width="100" height="15" uuid="c948862d-da93-4d14-82ed-0b1a2cdaa96a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Credit]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Prevent">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="160" height="12" isPrintWhenDetailOverflows="true" uuid="7cc4ffb6-ece7-4630-bcd5-668f38fd0dc9">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("account")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="160" y="0" width="190" height="12" isPrintWhenDetailOverflows="true" uuid="633b4f60-e403-4c07-badc-fe9e03fa8433">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("name")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="600" y="0" width="100" height="12" isPrintWhenDetailOverflows="true" uuid="001e61b6-8a45-41cc-8bae-1bedb2efbd86">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("debit")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="700" y="0" width="100" height="12" isPrintWhenDetailOverflows="true" uuid="3194eaba-6525-4f2f-9bd7-2d8d54ff0873">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("credit")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="100" height="12" isPrintWhenDetailOverflows="true" uuid="cd7ab5b2-b36d-408c-8c78-bb9983c4630f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("amount-currency")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s #,##0.00;%s -#,##0.00",
+  $P{viaduct}
+    .helper ("line", $F{line-id})
+    .get ("currency-name"),
+  $P{viaduct}
+    .helper ("line", $F{line-id})
+    .get ("currency-name"))]]></patternExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="350" y="0" width="100" height="12" isPrintWhenDetailOverflows="true" uuid="0aa157e1-c0c2-47f9-a709-7f973321000e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("analytic-account")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="702" y="5" width="80" height="10" uuid="c99392da-64fa-4664-8d1c-3e67907f4045">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="782" y="5" width="20" height="10" uuid="09ad3f48-3a8e-4755-a189-65208bccad2d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Transparent" x="490" y="5" width="110" height="15" uuid="99c70fdf-5bfb-4ff8-baa9-0aabd8a37cc7">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="600" y="5" width="100" height="15" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#CCCCCC" uuid="c1f73e0f-4e75-4507-af37-1ef08362fc78">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $P{move-id})
+  .get ("debits")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s #,##0.00",
+  $P{viaduct}
+    .helper ("move", $F{move-id})
+    .get ("currency-name"))]]></patternExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="700" y="5" width="100" height="15" isPrintWhenDetailOverflows="true" uuid="d020fa8f-b9bd-4d23-8090-8054ee1e880f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("move", $P{move-id})
+  .get ("credits")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s #,##0.00",
+  $P{viaduct}
+    .helper ("move", $F{move-id})
+    .get ("currency-name"))]]></patternExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

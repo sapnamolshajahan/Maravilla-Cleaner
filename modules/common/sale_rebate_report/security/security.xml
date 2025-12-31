@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_rebate_report_access" model="ir.model.access">
+        <field name="name">sale.rebate.report.access</field>
+        <field name="model_id" ref="model_rebate_report"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="sale_rebate_report_xls_options" model="ir.model.access">
+        <field name="name">sale.rebate.report.xls.report.access</field>
+        <field name="model_id" ref="model_rebate_report_xls_export_options"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+"access_hr_hazard_type","hr.hazard.type","model_hr_hazard_type",hr.group_hr_user,1,1,0,0
+"access_hr_hazard","hr.hazard","model_hr_hazard",hr.group_hr_user,1,1,1,1
+"access_hr_hazard_harmed","hr.hazard.harmed","model_hr_hazard_harmed",hr.group_hr_user,1,1,0,0
+
+"access_hr_hazard_type_manager","hr.hazard.type","model_hr_hazard_type",hr_hazard.res_groups_hazard_manager,1,1,1,1
+"access_hr_hazard_harmed_manager","hr.hazard.harmed","model_hr_hazard_harmed",hr_hazard.res_groups_hazard_manager,1,1,1,1
+"access_hr_hazard_manager","hr.hazard","model_hr_hazard",hr_hazard.res_groups_hazard_manager,1,1,1,1
+
+"access_hr_hazard_type_user","hr.hazard.type","model_hr_hazard_type",hr_hazard.res_groups_hazard_user,1,1,0,0
+"access_hr_hazard_harmed_user","hr.hazard.harmed","model_hr_hazard_harmed",hr_hazard.res_groups_hazard_user,1,1,0,0
+"access_hr_hazard_user","hr.hazard","model_hr_hazard",hr_hazard.res_groups_hazard_user,1,1,0,0

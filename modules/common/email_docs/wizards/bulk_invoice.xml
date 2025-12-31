@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="bulk_invoice_dispatch_form" model="ir.ui.view">
+		<field name="name">Bulk Invoice Dispatch Form</field>
+		<field name="model">bulk.invoice.dispatch</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Email and Generate Invoices">
+                <group name="info" col="4">
+                    <p colspan="4">
+                        This will bulk-send the selected invoices; ignoring the enable/disable flag
+						on <i>Invoice</i> on <b>Email Document Types</b>. The invoices will be emailed
+						to the addresses listed the <b>Document Emailing</b> tab. Invoices will <b>not</b>
+						be sent to customers that have specifically configured to ignore email-invoices.
+					</p>
+					<p colspan="4">
+						Email invoices will be generated on the task-queue.
+					</p>
+				</group>
+				<field name="lines"  colspan="4" nolabel="1">
+					<list editable="bottom">
+						<field name="invoice" domain="[('move_type', 'in', ('out_invoice', 'out_refund'))]"/>
+						<field name="partner"/>
+					</list>
+				</field>
+				<footer>
+					<button name="button_generate" string="Generate" type="object" class="btn-primary"/>
+					<button special="cancel" string="Close" class="btn-default"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+</odoo>

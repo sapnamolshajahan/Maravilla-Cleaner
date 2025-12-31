@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="all_qualifications_report" model="ir.actions.report">
+            <field name="name">All Qualifications</field>
+            <field name="report_name">hr_qualification.all_qualifications_report</field>
+            <field name="report_file">hr_qualification/reports/all-qualifications.jrxml</field>
+            <field name="model">hr.employee.qualification</field>
+            <field name="group_ids" eval="[(4, ref('hr.group_hr_manager'))]"/>
+            <field name="binding_model_id" ref="model_hr_employee_qualification"/>
+        </record>
+
+        <record id="employee_qualifications_report" model="ir.actions.report">
+            <field name="name">Employee Qualifications</field>
+            <field name="report_name">hr_qualification.employee_qualifications_report</field>
+            <field name="report_file">hr_qualification/reports/employee-qualification.jrxml</field>
+            <field name="model">hr.employee.qualification</field>
+            <field name="group_ids" eval="[(4, ref('hr.group_hr_manager'))]"/>
+            <field name="binding_model_id" ref="model_hr_employee_qualification"/>
+        </record>
+    </data>
+</odoo>

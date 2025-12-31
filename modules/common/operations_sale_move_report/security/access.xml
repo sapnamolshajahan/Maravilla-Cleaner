@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="report_access" model="ir.model.access">
+		<field name="name">Sale Report Report</field>
+		<field name="model_id" ref="model_sale_move_report"/>
+		<field name="group_id" ref="stock.group_stock_user"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+</odoo>

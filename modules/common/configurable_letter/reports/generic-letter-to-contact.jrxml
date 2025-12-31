@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
+<!-- 2017-07-05T12:20:57 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="registration_generic_letter_to_practitioner_report" pageWidth="612" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="20" uuid="0292fd5c-792a-46f6-ab1a-78fceef8b2cd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true"  fontName="Arial" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-report-ids" class="java.util.List"/>
+	<parameter name="wizard-id" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select
+  body "body",
+  partner_id "partner-id"
+from
+  letter_template_report_wizard
+  where letter_template_report_wizard.id = $P{wizard-id}]]>
+	</queryString>
+	<field name="body" class="java.lang.String"/>
+	<field name="partner-id" class="java.lang.Integer"/>
+	<pageHeader>
+		<band height="150" splitType="Stretch">
+			<image hAlign="Right"  onErrorType="Blank">
+				<reportElement x="390" y="0" width="120" height="75"/>
+				<imageExpression><![CDATA[new ByteArrayInputStream (
+  java.util.Base64.getDecoder ().decode (
+    $P{viaduct}
+      .helper ("body", $P{wizard-id})
+      .get ("logo")
+      .toString ()
+      .replaceAll ("\\s", "")))]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="600">
+			<textField isStretchWithOverflow="true" pattern="dd MMMM yyyy">
+				<reportElement x="20" y="0" width="500" height="20" uuid="15cc4648-c029-4aba-9074-784a0ffd8df1"/>
+				<textElement markup="html">
+					<font  fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+	.helper("partner",$F{partner-id})
+	.get("current-date")]]>
+				</textFieldExpression>
+			</textField>
+
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="20" y="20" width="500" height="20" uuid="15cc4648-c029-4aba-9074-784a0ffd8df1"/>
+				<textElement textAlignment="Right" markup="html">
+					<font  fontName="Arial" size="12" />
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+	.helper("partner",$F{partner-id})
+	.get("address")]]>
+				</textFieldExpression>
+			</textField>
+
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="130" width="500" height="40" uuid="15cc4648-c029-4aba-9074-784a0ffd8df1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" />
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+	.helper("body",$P{wizard-id})
+	.get("title")]]>
+				</textFieldExpression>
+			</textField>
+
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="20" y="170" width="500" height="400" uuid="15cc4648-c029-4aba-9074-784a0ffd8df1"/>
+				<textElement markup="html">
+				    <font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+	.helper("body",$P{wizard-id})
+	.get("body")]]>
+				</textFieldExpression>
+			</textField>
+		</band>
+
+	</detail>
+	<pageFooter>
+		<band height="40">
+			<textField>
+				<reportElement x="16" y="0" width="500" height="20" uuid="15cc4648-c029-4aba-9074-784a0ffd8df1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" >
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+	  .helper("body",$P{wizard-id})
+	  .get("footer-text")]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

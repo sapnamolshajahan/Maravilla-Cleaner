@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- List View -->
+    <record id="view_eve_event_list" model="ir.ui.view">
+        <field name="name">eve.event.list</field>
+        <field name="model">eve.event</field>
+        <field name="arch" type="xml">
+            <list string="Momentus Events">
+                <field name="momentus_id"/>
+                <field name="name"/>
+                <field name="qty_uplift"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_eve_event_form" model="ir.ui.view">
+        <field name="name">eve.event.form</field>
+        <field name="model">eve.event</field>
+        <field name="arch" type="xml">
+            <form string="Momentus Event">
+                <sheet>
+                    <group>
+                        <field name="momentus_id"/>
+                        <field name="name"/>
+                        <field name="qty_uplift"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Action: Events -->
+    <record id="action_eve_event" model="ir.actions.act_window">
+        <field name="name">Events</field>
+        <field name="res_model">eve.event</field>
+        <field name="view_mode">list,form</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Momentus Event
+            </p>
+        </field>
+    </record>
+
+    <!-- Action: Import Event Data (Wizard) -->
+    <record id="action_eve_event_import" model="ir.actions.act_window">
+        <field name="name">Import Event Data</field>
+        <field name="res_model">eve.event.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <!-- Root menu under Inventory -->
+    <menuitem
+        id="menu_momentus_root"
+        name="Momentus"
+        parent="stock.menu_stock_root"
+        sequence="99"
+        groups="stock.group_stock_user"
+    />
+
+    <!-- Submenu: Events -->
+    <menuitem
+        id="menu_momentus_events"
+        name="Events"
+        parent="menu_momentus_root"
+        action="action_eve_event"
+        sequence="10"
+    />
+
+    <!-- Submenu: Import Event Data -->
+    <menuitem
+        id="menu_momentus_import"
+        name="Import Event Data"
+        parent="menu_momentus_root"
+        action="action_eve_event_import"
+        sequence="20"
+    />
+
+</odoo>

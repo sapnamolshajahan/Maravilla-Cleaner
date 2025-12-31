@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="stocktake_count_sheet_view" model="ir.ui.view">
+        <field name="name">Stocktake Count Sheets</field>
+        <field name="model">stocktake.count.sheet</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form col="3" string="Stocktake Count Sheets">
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px;" >
+                    This process will create a multi-page spreadsheet with the count sheets populated.
+                    For each page a Stocktake Data Entry record will be created with the same page number.
+                    **NOTE** EVERY TIME YOU RUN THIS REPORT ANY EXISTING COUNT SHEETS WILL BE DELETED EVEN IF THEY HAVE DATA
+                </div>
+                <group>
+                    <field name="stocktake_id"/>
+                    <field name="lines_per_page"/>
+                    <field name="include_counts"/>
+                    <field name="line_per_serial" />
+                    <field name="line_per_bin"/>
+                    <field name="print_serial" invisible="line_per_serial == False"/>
+                    <field name="populate_qty_data_entry" invisible="include_counts == False"/>
+                </group>
+                <group>
+                    <field name="report_name" invisible="1"/>
+                    <field name="data" filename="report_name"/>
+                 </group>
+                <footer>
+                    <button name="button_process" string="Run Report" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stocktake_count_sheet" model="ir.actions.act_window">
+        <field name="name">Create Count Sheets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stocktake.count.sheet</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_stocktake_count_sheet"
+        action="action_stocktake_count_sheet"
+        parent="menuitem_stocktake"
+        sequence="40"/>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="standard_picking_viaduct_for_bin" model="ir.actions.report">
+        <field name="name">Picking List (Bin)</field>
+        <field name="report_name">operations_multibin_picking_list.standard_picking_viaduct_for_bin</field>
+        <field name="viaduct_helper">
+            odoo.addons.operations_multibin_picking_list.reports.picking_helper_bin.PickingListHelper
+        </field>
+        <field name="report_file">operations_multibin_picking_list/reports/picking-list-bin-unpack.jrxml</field>
+        <field name="model">stock.picking</field>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="print_report_name">'Picking-{}'.format(object.name).replace('/', '-')</field>
+    </record>
+</odoo>

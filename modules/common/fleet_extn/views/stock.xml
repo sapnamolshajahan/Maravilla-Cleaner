@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_stock_move_fleet_tree" model="ir.ui.view">
+            <field name="name">stock.move.fleet.tree</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/list/field[@name='product_uom']" position="after">
+                    <field name="price_unit" groups="fleet.fleet_group_user"/>
+                    <field name="extended_cost" groups="fleet.fleet_group_user"/>
+                    <field name="fleet_id" groups="fleet.fleet_group_user"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

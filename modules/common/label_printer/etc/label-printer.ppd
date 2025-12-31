@@ -1,0 +1,26 @@
+*PPD-Adobe: "4.3"
+*%%%% Generic Plain Text pass-thru PPD
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageVersion: English
+*LanguageEncoding: ISOLatin1
+*PCFileName: "pwgrast.ppd"
+*Product: "(Generic Plain Text pass-thru')"
+*Manufacturer: "Generic"
+*ModelName: "Generic Plain Text Pass-Thru"
+*ShortNickName: "Generic Pass Thru Printer"
+*NickName: "Generic Pass Thru Printer"
+*PSVersion: "(3010.000) 0"
+*LanguageLevel: "3"
+*ColorDevice: False
+*DefaultColorSpace: RGB
+*FileSystem: False
+*Throughput: "1"
+*% Driver-defined attributes...
+*cupsVersion: 2.0
+*cupsModelNumber: 0
+*cupsManualCopies: True
+*cupsFilter: "text/plain 0 -"
+*cupsLanguages: "en"
+*InputSlot Default/Printer Default: "<</MediaPosition 0>>setpagedevice"
+*% End of of ppd

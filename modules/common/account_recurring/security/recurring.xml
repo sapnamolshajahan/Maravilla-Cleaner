@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="account_recurring" model="ir.model.access">
+		<field name="name">account.recurring</field>
+		<field name="model_id" ref="model_account_recurring"/>
+		<field name="group_id" ref="account.group_account_manager"/>
+		<field name="perm_read">True</field>
+		<field name="perm_write">True</field>
+		<field name="perm_create">True</field>
+		<field name="perm_unlink">True</field>
+	</record>
+
+	<record id="account_recurring_line" model="ir.model.access">
+		<field name="name">account.recurring.line</field>
+		<field name="model_id" ref="model_account_recurring_line"/>
+		<field name="group_id" ref="account.group_account_manager"/>
+		<field name="perm_read">True</field>
+		<field name="perm_write">True</field>
+		<field name="perm_create">True</field>
+		<field name="perm_unlink">False</field>
+	</record>
+</odoo>

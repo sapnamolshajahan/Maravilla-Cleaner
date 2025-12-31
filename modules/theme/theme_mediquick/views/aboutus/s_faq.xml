@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_faq" name="Faq">
+        <section class="s_faq_collapse pt32 pb32 o_colored_level s_faq" data-vcss="001" data-snippet="s_faq_collapse" data-name="FAQ Block">
+        <div class="container">
+            <div class="row align-items-start s_nb_column_fixed">
+                <div class="col-lg-4 pt16 o_colored_level">
+                    <h2><strong>Frequently asked questions</strong></h2>
+                    <p class="lead o_default_snippet_text">Here are some common questions about our company.</p>
+                </div>
+                <div class="col-lg-7 offset-lg-1 s_col_no_bgcolor" data-name="Accordion Box">
+                    <div data-name="Accordion" class="s_accordion">
+                        <div id="myCollapse" class="accordion-flush accordion">
+                            <div class="accordion-item position-relative z-1" data-name="Accordion Item">
+                                <button type="button" class="accordion-header accordion-button justify-content-between gap-2 bg-transparent h6-fs fw-bold text-decoration-none text-reset transition-none" data-bs-toggle="collapse" aria-expanded="true" id="accordion-button142731_1" data-bs-target="#myCollapseTab142731_1" aria-controls="myCollapseTab142731_1"><span class="flex-grow-1 o_default_snippet_text">What services does your company offer ?</span></button>
+                                <div class="accordion-collapse collapse show" data-bs-parent="#myCollapse" role="region" id="myCollapseTab142731_1" aria-labelledby="accordion-button142731_1">
+                                    <div class="accordion-body">
+                                        <p class="o_default_snippet_text">Our company specializes in consulting, product development, and customer support. We tailor our services to fit the unique needs of businesses across various sectors, helping them grow and succeed in a competitive market.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item position-relative z-1" data-name="Accordion Item">
+                                <button type="button" class="accordion-header accordion-button collapsed justify-content-between gap-2 bg-transparent h6-fs fw-bold text-decoration-none text-reset transition-none" data-bs-toggle="collapse" aria-expanded="false" id="accordion-button142731_2" data-bs-target="#myCollapseTab142731_2" aria-controls="myCollapseTab142731_2"><span class="flex-grow-1 o_default_snippet_text">How can I contact customer support ?</span></button>
+                                <div class="accordion-collapse collapse" data-bs-parent="#myCollapse" role="region" id="myCollapseTab142731_2" aria-labelledby="accordion-button142731_2">
+                                    <div class="accordion-body">
+                                        <p class="o_default_snippet_text">You can reach our customer support team by emailing info@yourcompany.example.com, calling +1 555-555-5556, or using the live chat on our website. Our dedicated team is available 24/7 to assist with any inquiries or issues.</p>
+                                        <p class="o_default_snippet_text">We’re committed to providing prompt and effective solutions to ensure your satisfaction.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item position-relative z-1" data-name="Accordion Item">
+                                <button type="button" class="accordion-header accordion-button collapsed justify-content-between gap-2 bg-transparent h6-fs fw-bold text-decoration-none text-reset transition-none" data-bs-toggle="collapse" aria-expanded="false" id="accordion-button142731_3" data-bs-target="#myCollapseTab142731_3" aria-controls="myCollapseTab142731_3"><span class="flex-grow-1 o_default_snippet_text">What is your return policy ?</span></button>
+                                <div class="accordion-collapse collapse" data-bs-parent="#myCollapse" role="region" id="myCollapseTab142731_3" aria-labelledby="accordion-button142731_3">
+                                    <div class="accordion-body">
+                                        <p class="o_default_snippet_text">We offer a 30-day return policy for all products. Items must be in their original condition, unused, and include the receipt or proof of purchase. Refunds are processed within 5-7 business days of receiving the returned item.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </template>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="carrier_label_printer" model="ir.ui.view">
+		<field name="name">Carrier Label Printer</field>
+		<field name="model">stock.warehouse</field>
+		<field name="inherit_id" ref="stock.view_warehouse"/>
+		<field name="arch" type="xml">
+			<xpath expr="//group" position="after">
+				<separator string="Carrier Label Printers"/>
+				<field name="carrier_label_printer_ids" nolabel="1">
+					<list string="Printers" editable="bottom">
+						<field name="name" />
+						<field name="printer_type"/>
+						<field name="default" />
+					</list>
+				</field>
+			</xpath>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--
+            Reference list of email.doc.type, users should not remove or add to this list
+
+            noupdate="1" allows end-user to change 'template' contents
+          -->
+        <record id="purchase_doc_type" model="email.doc.type">
+            <field name="name">purchase</field>
+            <field name="model_name">purchase.order</field>
+            <field name="template" ref="purchase.email_template_edi_purchase_done"/>
+            <field name="enabled" eval="False"/>
+        </record>
+    </data>
+</odoo>

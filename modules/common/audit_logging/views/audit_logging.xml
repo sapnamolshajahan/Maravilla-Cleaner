@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="list_audit_logging" model="ir.ui.view">
+            <field name="name">list.audit.logging</field>
+            <field name="model">audit.logging</field>
+            <field name="arch" type="xml">
+                <list string="Audit Logs">
+                    <field name="create_date"/>
+                    <field name="login"/>
+                    <field name="record_id"/>
+                    <field name="method"/>
+                    <field name="model"/>
+                    <field name="field"/>
+                    <field name="field_id"/>
+                    <field name="old_value"/>
+                    <field name="new_value"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="form_audit_logging" model="ir.ui.view">
+            <field name="name">form.audit.logging</field>
+            <field name="model">audit.logging</field>
+            <field name="arch" type="xml">
+                <form string="Audit Logs">
+                    <group>
+                        <field name="create_date"/>
+                        <field name="login"/>
+                        <field name="record_id" options="{'no_create': True}"/>
+                        <field name="model"/>
+                        <field name="field"/>
+                        <field name="field_id" options="{'no_create': True}"/>
+                        <field name="old_value"/>
+                        <field name="new_value"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_audit_logging_filter">
+            <field name="name">audit.logging.filter</field>
+            <field name="model">audit.logging</field>
+            <field name="arch" type="xml">
+                <search string="Audit Logging">
+                    <field name="model"/>
+                    <field name="field"/>
+                    <field name="login"/>
+                    <group>
+                        <filter string="Model" name="group_model" context="{'group_by': 'model'}"/>
+                        <filter string="Field" name="group_field" context="{'group_by': 'field'}"/>
+                        <filter string="Operation Type" name="group_method" context="{'group_by': 'method'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="action_audit_logging" model="ir.actions.act_window">
+            <field name="name">Audit Logging</field>
+            <field name="res_model">audit.logging</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_auditing_account" name="Auditing" parent="account.menu_finance_configuration"
+                  sequence="100"/>
+        <menuitem id="menu_audit_logging" name="Audit Logs"
+                  action="action_audit_logging" parent="menu_auditing_account" sequence="30"/>
+
+        <menuitem id="menu_auditing" name="Auditing" parent="base.menu_administration" sequence="100"/>
+        <menuitem id="menu_admin_audit_logging" name="Audit Logs"
+                  action="action_audit_logging" parent="menu_auditing" sequence="30"/>
+
+        <record id="list_audit_logging_group" model="ir.ui.view">
+            <field name="name">list.audit.logging.group</field>
+            <field name="model">audit.logging.group</field>
+            <field name="arch" type="xml">
+                <list string="Audit Log Group" editable="top">
+                    <field name="name"/>
+                    <field name="model_id" options="{'no_create': True}"/>
+                    <field name="field_id" options="{'no_create': True}"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="action_audit_logging_group" model="ir.actions.act_window">
+            <field name="name">Audit Report Grouping</field>
+            <field name="res_model">audit.logging.group</field>
+            <field name="view_mode">list</field>
+        </record>
+
+        <menuitem id="menu_audit_logging_group" name="Audit Report Groups"
+                  action="action_audit_logging_group" parent="menu_auditing" sequence="40"/>
+
+        <menuitem id="menu_audit_logging_group_admin" name="Audit Report Groups"
+                  action="action_audit_logging_group" parent="menu_auditing_account" sequence="40"/>
+
+    </data>
+</odoo>

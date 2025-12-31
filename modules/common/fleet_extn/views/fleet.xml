@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window" id="act_vehicle_purchase_lines">
+            <field name="domain">[('fleet_id', '=', active_id)]</field>
+            <field name="name">Purchase Lines</field>
+            <field name="view_id" ref="purchase_generic_changes.purchase_order_lines_tree"/>
+            <field name="view_mode">list</field>
+            <field name="res_model">purchase.order.line</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_vehicle_move_lines">
+            <field name="domain">[('fleet_id', '=', active_id)]</field>
+            <field name="name">Move Lines</field>
+            <field name="view_id" ref="stock.view_move_tree"/>
+            <field name="view_mode">list</field>
+            <field name="res_model">stock.move</field>
+        </record>
+
+        <record model="ir.ui.view" id="fleet_vehicle_form_extension">
+            <field name="name">fleet.vehicle.form.extension</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_accept_driver_change']" position="after">
+                    <button string="Purchase Lines" name="%(act_vehicle_purchase_lines)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-building-o"
+                            context="{}"
+                            help="show the purchase lines for this vehicle">
+                    </button>
+                    <button string="Move Lines" name="%(act_vehicle_move_lines)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-building-o"
+                            context="{}"
+                            help="show the move lines for this vehicle">
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='color']" position="after">
+                    <field name="registration_expiry_date"/>
+                    <field name="cert_of_compliance_date"/>
+                    <field name="payload_weight"/>
+                    <field name="tare_weight"/>
+                    <field name="iso_code"/>
+                    <field name="notes"/>
+                </xpath>
+                <xpath expr="//field[@name='driver_id']" position="before">
+                    <field name="employee_id"/>
+                </xpath>
+                <xpath expr="//field[@name='driver_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="fleet_vehicle_tree_view_extension">
+            <field name="name">fleet.vehicle.tree.view.extension</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='driver_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='driver_id']" position="after">
+                    <field name="employee_id"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="fleet_vehicle_search_view_extension">
+            <field name="name">fleet.vehicle.search.view.extension</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='log_drivers']" position="replace">
+                    <field name="employee_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="fleet_vehicle_kanban_view_extension">
+            <field name="name">fleet.vehicle.kanban.view.extension</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='driver_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='driver_id']" position="after">
+                    <field name="employee_id"/>
+                </xpath>
+
+                <xpath expr="//div[@t-if='record.driver_id.raw_value']" position="replace">
+                    <t t-if="record.employee_id.raw_value">
+                        <field name="employee_id"/>
+                    </t>
+                </xpath>
+            </field>
+        </record>
+
+        <!--rename fleet menu-->
+
+        <record model="ir.ui.menu" id="fleet.fleet_vehicles">
+            <field name="name">Vehicles</field>
+        </record>
+
+        <record model="ir.ui.menu" id="fleet.fleet_vehicle_menu">
+            <field name="name">Vehicles</field>
+        </record>
+
+    </data>
+</odoo>

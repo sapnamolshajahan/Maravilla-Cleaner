@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_picking_view_sale_order_button" model="ir.ui.view">
+        <field name="name">stock.picking.view.sale.order.button</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button type="object"
+                        name="action_view_sale_orders"
+                        class="oe_stat_button"
+                        icon="fa-usd"
+                        invisible="sales_count == 0"
+                        groups="base.group_user">
+                    <field name="sales_count" widget="statinfo" string="Sales"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

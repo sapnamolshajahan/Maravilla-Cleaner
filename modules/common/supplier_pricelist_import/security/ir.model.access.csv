@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_supplier_pricelist_import","access_supplier_pricelist_import","model_supplier_pricelist_import",supplier_pricelist_import.group_supplier_pricelist_import,1,1,1,1

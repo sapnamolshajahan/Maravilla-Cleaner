@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="group_financial_report_user" model="res.groups.privilege">
+        <field name="name">Financial Report User</field>
+        <field name="category_id" ref="base.module_category_accounting_accounting"/>
+    </record>
+
+    <record id="account_financial_report_lookup_rule" model="ir.rule">
+        <field name="name">Financial Report company rule</field>
+        <field name="model_id" ref="model_addin_financial_report"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="account_financial_report_chart_rule" model="ir.rule">
+        <field name="name">Financial Report Chart company rule</field>
+        <field name="model_id" ref="model_addin_report_chart"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!--
+        Access
+      -->
+    <record model="ir.model.access" id="access_report_general">
+        <field name="name">Addin Report User</field>
+        <field name="model_id" ref="model_addin_financial_report"/>
+        <field name="group_id" ref="group_financial_report_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record model="ir.model.access" id="access_report_column_general">
+        <field name="name">Addin Report User</field>
+        <field name="model_id" ref="model_addin_financial_report_column"/>
+        <field name="group_id" ref="group_financial_report_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record model="ir.model.access" id="access_chart_general">
+        <field name="name">Addin Report User</field>
+        <field name="model_id" ref="model_addin_report_chart"/>
+        <field name="group_id" ref="group_financial_report_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record model="ir.model.access" id="access_chart_column_general">
+        <field name="name">Addin Report User</field>
+        <field name="model_id" ref="model_addin_report_chart_page"/>
+        <field name="group_id" ref="group_financial_report_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record model="ir.model.access" id="access_report_account_general">
+        <field name="name">Addin Report User</field>
+        <field name="model_id" ref="model_addin_report_account_group"/>
+        <field name="group_id" ref="group_financial_report_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="access_report_name_general">
+        <field name="name">Addin Report User</field>
+        <field name="model_id" ref="model_addin_report_name"/>
+        <field name="group_id" ref="group_financial_report_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="addin_financial_report_download">
+        <field name="name">Wizard</field>
+        <field name="model_id" ref="model_addin_financial_report_download"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="addin_financial_report_download_line">
+        <field name="name">Wizard Line</field>
+        <field name="model_id" ref="model_addin_financial_report_download_line"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="addin_financial_report_download_column">
+        <field name="name">Wizard Column</field>
+        <field name="model_id" ref="model_addin_financial_report_download_column"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.model.access" id="addin_account_report_structure_wizard">
+        <field name="name">addin.account.report.structure.wizard</field>
+        <field name="model_id" ref="model_addin_report_structure"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="chartbuilder_balance_access" model="ir.model.access">
+        <field name="name">Addin Chartbuilder Scratchpad</field>
+        <field name="model_id" ref="model_addin_financial_chartbuilder_balance"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

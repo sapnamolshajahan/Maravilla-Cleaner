@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="standard_packing_viaduct" model="ir.actions.report">
+        <field name="name">Packing Slip</field>
+        <field name="report_name">operations_packing_slip_reports.standard_packing_viaduct</field>
+        <field name="viaduct_helper">
+            odoo.addons.operations_packing_slip_reports.reports.packing_slip_helper.PackingSlipHelper
+        </field>
+        <field name="report_file">operations_packing_slip_reports/reports/packing-slip-unpack.jrxml</field>
+        <field name="model">stock.picking</field>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="print_report_name">'Packing-{}'.format(object.name).replace('/', '-')</field>
+    </record>
+    <record id="priced_packing_viaduct" model="ir.actions.report">
+        <field name="name">Packing Slip (Priced)</field>
+        <field name="report_name">operations_packing_slip_reports.priced_packing_viaduct</field>
+        <field name="viaduct_helper">
+            odoo.addons.operations_packing_slip_reports.reports.packing_slip_helper.PackingSlipHelper
+        </field>
+        <field name="report_file">operations_packing_slip_reports/reports/priced-packing-slip-unpack.jrxml</field>
+        <field name="model">stock.picking</field>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="print_report_name">'Priced-Packing-{}'.format(object.name).replace('/', '-')</field>
+    </record>
+    <record id="unpriced_packing_viaduct" model="ir.actions.report">
+        <field name="name">Packing Slip (Unpriced)</field>
+        <field name="report_name">operations_packing_slip_reports.unpriced_packing_viaduct</field>
+        <field name="viaduct_helper">
+            odoo.addons.operations_packing_slip_reports.reports.packing_slip_helper.PackingSlipHelper
+        </field>
+        <field name="report_file">operations_packing_slip_reports/reports/unpriced-packing-slip-unpack.jrxml</field>
+        <field name="model">stock.picking</field>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="print_report_name">'Unpriced-Packing-{}'.format(object.name).replace('/', '-')</field>
+    </record>
+</odoo>

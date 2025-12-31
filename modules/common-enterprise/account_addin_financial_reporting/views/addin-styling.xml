@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Form-->
+    <record id="view_addin_styling" model="ir.ui.view">
+        <field name="name">Addin Styling Form</field>
+        <field name="model">addin.styling</field>
+        <field name="arch" type="xml">
+            <form string="Styling">
+                <group>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="dollar_rounding"/>
+                        <field name="no_rounding"/>
+                    </group>
+                    <group>
+                        <field name="default_text"/>
+                        <field name="default_line_value"/>
+                    </group>
+                    <group>
+                        <field name="title"/>
+                        <field name="parameters"/>
+                        <field name="chart"/>
+                    </group>
+                    <group>
+                        <field name="column"/>
+                        <field name="col_width_name"/>
+                        <field name="col_width_desc"/>
+                        <field name="col_width_value"/>
+                    </group>
+                    <group>
+                        <field name="code"/>
+                    </group>
+                </group>
+                <field name="group_styles">
+                    <list editable="bottom">
+                        <field name="name"/>
+                        <field name="header"/>
+                        <field name="account"/>
+                        <field name="footer"/>
+                        <field name="footer_cell"/>
+                    </list>
+                </field>
+            </form>
+        </field>
+    </record>
+
+    <!--Tree-->
+    <record id="view_addin_styling_list" model="ir.ui.view">
+        <field name="name">addin.styling.list</field>
+        <field name="model">addin.styling</field>
+        <field name="arch" type="xml">
+            <list string="Report Styles">
+                <field name="name"/>
+                <field name="title"/>
+                <field name="code"/>
+            </list>
+        </field>
+    </record>
+
+    <!--Action-->
+    <record id="action_addin_styling" model="ir.actions.act_window">
+        <field name="name">Styles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">addin.styling</field>
+        <field name="view_id" ref="view_addin_styling_list"/>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_addin_styling"
+              name="Styles"
+              parent="menu_addin_financial_reports_config_menu"
+              sequence="60"
+              action="action_addin_styling"/>
+
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_form_demand_view" model="ir.ui.view">
+        <field name="name">partner.supplier.demand.days</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="after">
+                <group name="demand_planning" string="Demand Planning">
+                    <field name="delay"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

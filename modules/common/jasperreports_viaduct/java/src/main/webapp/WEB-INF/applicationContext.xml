@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	Base Spring Configuration file.
+
+  -->
+<beans
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!--
+		Enable Annotations
+	  -->
+	<context:component-scan
+		base-package="nz.optimysme.viaduct">
+
+		<!-- exclude Spring Web stuff, this is handled by viaduct-servlet.xml -->
+		<context:exclude-filter
+			type="regex"
+			expression="nz.optimysme.viaduct.frontend"/>
+	</context:component-scan>
+</beans>

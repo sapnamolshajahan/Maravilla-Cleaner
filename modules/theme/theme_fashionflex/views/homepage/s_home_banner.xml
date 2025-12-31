@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_home_banner" name="Home - Banner">
+        <section class="s_banner pt96 pb96 o_colored_level" data-snippet="s_banner" data-name="Banner" style="position: relative; background-color: rgb(246, 233, 233);">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="21">
+                    <div class="o_grid_item o_colored_level g-height-6 g-col-lg-12 col-lg-12" data-name="Box" style="z-index: 1; grid-area: 1 / 1 / 7 / 13;">
+                        <h1 class="display-3" style="text-align: center;">Seamless 
+                            <span class="o_text_highlight o_translate_inline o_text_highlight_freehand_1" style="--text-highlight-width: 6px; --text-highlight-color: #FFB86B;">Furniture</span> With Natural Fabrics&amp;nbsp;<br/>Furniture &amp;amp; Décor
+                        </h1>
+                        <p class="lead" style="text-align: center;"><br/>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.<br/><br/></p>
+                        <p style="text-align: center;">
+                            ​​<a class="btn btn-custom bg-black flat btn-lg" href="/contactus" style="border-width: 1px; border-style: solid;">Start Now <span class="fa fa-angle-right ms-2"/></a>
+                        </p>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-height-14 g-col-lg-4 col-lg-4" style="z-index: 2; grid-area: 8 / 5 / 22 / 9;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/homepage_five_six_block_img_1.jpg" alt="" class="img img-fluid mx-auto o_we_custom_image rounded-circle" data-mimetype="image/webp" data-original-id="1302" data-original-src="/web/image/1302-087d4998/homepage_five_six_block_img_1.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    
+                    <div class="o_grid_item o_grid_item_image g-col-lg-2 d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-height-3 col-lg-2" style="z-index: 0; grid-area: 7 / 2 / 10 / 4;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/homepage_five_six_block_img_2.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/jpeg" data-original-id="1303" data-original-src="/web/image/1303-2d6184e3/homepage_five_six_block_img_2.jpg" data-mimetype-before-conversion="image/jpeg" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-2 d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-height-3 col-lg-2" style="z-index: 0; grid-area: 14 / 2 / 17 / 4;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/16931.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1307" data-original-src="/web/image/1307-84196c12/16931.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-2 d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-height-3 col-lg-2" style="z-index: 0; grid-area: 12 / 10 / 15 / 12;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/3773.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1306" data-original-src="/web/image/1306-21f9c8de/3773.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-2 d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-height-3 col-lg-2" style="z-index: 0; grid-area: 7 / 11 / 10 / 13;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/13364.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1305" data-original-src="/web/image/1305-0a17f301/13364.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

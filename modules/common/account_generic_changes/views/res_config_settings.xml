@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<odoo>
+	<record id="res_config_settings_account_generic" model="ir.ui.view">
+            <field name="name">res.config.settings.account_generic</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="account.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//block[@id='bank_cash']" position="after">
+                    <h2>Accounting Generic Changes</h2>
+                    <div class="row mt16 o_settings_container" name="account_generic_container">
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Supplier partner Check</span>
+                                <div class="text-muted">
+                                    If checked, the partner on a supplier invoice must match the supplier on the linked purchase order
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="supplier_partner_check" class="col-lg-3 o_light_label"/>
+                                        <field name="supplier_partner_check"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Journal Counts</span>
+                                <div class="text-muted">
+                                    If checked, journal counts on the partner form are set to zero to improve performance
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="journal_set_counts_zero" class="col-lg-3 o_light_label"/>
+                                        <field name="journal_set_counts_zero"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Invoice Total on Partner</span>
+                                <div class="text-muted">
+                                    If checked, invoiced total on the partner form are set to zero to improve performance
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="journal_set_counts_zero" class="col-lg-3 o_light_label"/>
+                                        <field name="journal_set_counts_zero"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Income Currency Exchange Account</span>
+                                <div class="text-muted">
+                                    Account income currency gains should be posted to
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="income_currency_exchange_account_id" class="col-lg-3 o_light_label"/>
+                                        <field name="income_currency_exchange_account_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Expense Currency Exchange Account</span>
+                                <div class="text-muted">
+                                    Account expense currency losses should be posted to
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="expense_currency_exchange_account_id" class="col-lg-3 o_light_label"/>
+                                        <field name="expense_currency_exchange_account_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Fiscal Lock Date</span>
+                                <div class="text-muted">
+                                    Set maximum date you want transactions to be able to dated to avoid typo issues
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label for="fiscal_year_last_lock_date" class="col-lg-3 o_light_label"/>
+                                        <field name="fiscal_year_last_lock_date"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+</odoo>

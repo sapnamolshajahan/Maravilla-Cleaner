@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <record id="view_users_form_inherit" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="API" name="api_rest_page_users">
+                        <separator string="API Auth Token"/>
+                          <button type="object"
+                                  string="Generate new API Auth Token"
+                                  confirm="This will generate a new API Auth Token that must be used for connecting to the odoo API.
+                                  Do you want to continue?"
+                                  name="button_generate_api_auth_token"/>
+                          <group>
+                              <field name="api_auth_token"/>
+                          </group>
+                          <field name="token_ids" nolabel="1">
+                              <list edit="false" create="false" delete="false">
+                                  <field name="token"/>
+                                  <field name="expires"/>
+                                  <field name="is_expired"/>
+                              </list>
+                          </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_server_remittance_advice_print" model="ir.actions.server">
+        <field name="name">Remittance Advice</field>
+        <field name="model_id" ref="model_account_payment"/>
+        <field name="state">code</field>
+        <field name="code">action = records.remittance_order_print()</field>
+    </record>
+    <record id="action_server_remittance_advice_email" model="ir.actions.server">
+        <field name="name">Email/Print Remittance Advice</field>
+        <field name="model_id" ref="model_account_payment"/>
+        <field name="state">code</field>
+        <field name="binding_model_id" ref="model_account_payment"/>
+        <field name="code">action = records.action_email_remittance_order()</field>
+    </record>
+
+</odoo>
+
+

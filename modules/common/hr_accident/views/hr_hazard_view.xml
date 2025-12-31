@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record id="view_hazard_form_accident" model="ir.ui.view">
+            <field name="name">view.hazard.form.accident</field>
+            <field name="model">hr.hazard</field>
+            <field name="inherit_id" ref="hr_hazard.view_hazard_form"/>
+            <field name="arch" type="xml">
+            <xpath expr="//group[@name='measures']" position="after">
+            	<group colspan="4">
+						<field colspan="4" name="hr_accident_ids" height="200" mode="list">
+							<list string="Nature of injury or disease">
+								<field name="description" />
+							</list>
+						</field>
+					</group>
+					<separator colspan="4" />
+			</xpath>
+			</field>
+            </record>
+	</data>
+</odoo>

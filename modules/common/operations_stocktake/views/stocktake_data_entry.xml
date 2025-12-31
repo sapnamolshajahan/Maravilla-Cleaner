@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_inventory_data_list_view" model="ir.ui.view">
+        <field name="name">stock.inventory.data.list.view</field>
+        <field name="model">stocktake.data.entry</field>
+        <field name="arch" type="xml">
+            <list string="Stocktake Data Entry">
+                <field name="inventory"/>
+                <field name="name"/>
+                <field name="notes"/>
+                <field name="location"/>
+                <field name="counter"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="stock_inventory_data_form_view" model="ir.ui.view">
+        <field name="name">Stock Take Data Form</field>
+        <field name="model">stocktake.data.entry</field>
+        <field name="arch" type="xml">
+            <form string="Stocktake Data Entry">
+                <header>
+                     <button name="action_reset" invisible="state !='done'" string="ReSet Sheet" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_colors='{"draft":"red","done":"blue"}'/>
+                </header>
+                <sheet>
+                <field name="inventory_locations" invisible="1"/>
+                <group>
+                    <group>
+                        <field name="inventory" options="{'no_create': True}" readonly="state != 'draft'"/>
+                        <field name="location" options="{'no_create': True}" domain="[('id', 'in', inventory_locations)]"/>
+                    </group>
+                    <group>
+                        <field name="name" readonly="state != 'draft'"/>
+                        <field name="counter" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <group>
+                    <field name="notes" colspan="4"/>
+                    </group>
+                <notebook>
+                    <page>
+                <field name="products" nolabel="1" widget="one2many_list" mode="list" readonly="state != 'draft'">
+                    <list editable="bottom">
+                        <field name="product_id" options="{'no_create': True}"/>
+                        <field name="serialised" invisible="1"/>
+                        <field name="quantity"/>
+                        <field name="production_lot_id"
+                               readonly="serialised != True"
+                            domain="[('product_id', '=', product_id)]"
+                            options="{'no_create': True}"/>
+                        <field name="end_production_lot"
+                            readonly="serialised != True"
+                            domain="[('product_id', '=', product_id)]"
+                            options="{'no_create': True}"/>
+                    </list>
+                </field>
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_stocktake_data_entry_search" model="ir.ui.view">
+        <field name="name">stocktake.dataentry.search</field>
+        <field name="model">stocktake.data.entry</field>
+        <field name="arch" type="xml">
+            <search string="Search Invoice">
+                <field name="inventory"/>
+                <field name="location"/>
+                <field name="counter"/>
+                <field name="name"/>
+                <filter name="state_draft" string="Draft" domain="[('state','=','draft')]"/>
+                <group>
+                    <filter name="group_by_inventory" string="Inventory" context="{'group_by':'inventory'}"/>
+                    <filter name="group_by_location" string="Location" context="{'group_by':'location'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="stock_product_list_view" model="ir.ui.view">
+        <field name="name">stock_product_list_view</field>
+        <field name="model">stocktake.data.entry.line</field>
+        <field name="arch" type="xml">
+            <list string="Products" editable="top">
+                <field name="product_id" options="{'no_create': True}"/>
+                <field name="quantity" on_change="onchange_quantity(product_id, quantity)"/>
+                <field name="stocktake_id" invisible="1"/>
+                <field name="production_lot_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="stock_product_form_view" model="ir.ui.view">
+        <field name="name">stock_product_form_view</field>
+        <field name="model">stocktake.data.entry.line</field>
+        <field name="arch" type="xml">
+            <form string="Products">
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="production_lot_id"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_inventory_data_list_action" model="ir.actions.act_window">
+        <field name="name">Stocktake Data Entry</field>
+        <field name="res_model">stocktake.data.entry</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="stock_inventory_data"
+        name="Count Sheet Entry"
+        action="stock_inventory_data_list_action"
+        parent="menuitem_stocktake"
+        sequence="20"/>
+
+    <record id="stock_inventory_data_line_list_view" model="ir.ui.view">
+        <field name="name">stock.inventory.data.line.list.view</field>
+        <field name="model">stocktake.data.entry.line</field>
+        <field name="arch" type="xml">
+            <list string="Stocktake Data Entry Lines" delete="false" create="false" edit="false">
+                <field name="stocktake_data_entry_control"/>
+                <field name="stocktake_id"/>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="serialised"/>
+                <field name="production_lot_id"/>
+                <field name="end_production_lot"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_stocktake_data_entry_line_search" model="ir.ui.view">
+        <field name="name">stocktake.dataentry.line.search</field>
+        <field name="model">stocktake.data.entry.line</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <field name="stocktake_id"/>
+                <field name="product_id"/>
+                <field name="name"/>
+                <group>
+                    <filter name="group_by_inventory" string="Inventory" context="{'group_by':'name'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+     <record id="stock_inventory_data_line_list_action" model="ir.actions.act_window">
+        <field name="name">Stocktake Data Entry Lines</field>
+        <field name="res_model">stocktake.data.entry.line</field>
+        <field name="view_mode">list</field>
+    </record>
+    <menuitem id="stock_inventory_data_line"
+        name="Stocktake Data Entry Line"
+        action="stock_inventory_data_line_list_action"
+        parent="menuitem_stocktake"
+        sequence="30"/>
+</odoo>

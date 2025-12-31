@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_sale_generic_form" model="ir.ui.view">
+            <field name="name">res.config.settings.sale.generic</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="35"/>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//setting[@id='proforma_configuration']" position="after">
+                            <div class="col-12 col-lg-6 o_setting_box" id="sale_line_low_price_warning">
+                                <div class="o_setting_left_pane">
+                                    <field name="sale_line_low_price_warning" widget="upgrade_boolean"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sale_line_low_price_warning"/>
+                                    <div class="text-muted">
+                                        If set, a low price warning will be triggered on Sale Order lines
+                                    </div>
+                                    <div class="content-group">
+                                        <div id="sale_line_low_price_warning"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="sale_line_low_stock_warning">
+                                <div class="o_setting_left_pane">
+                                    <field name="sale_line_low_stock_warning" widget="upgrade_boolean"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sale_line_low_stock_warning"/>
+                                    <div class="text-muted">
+                                        If set, a low stock warning will be triggered on Sale Order lines
+                                    </div>
+                                    <div class="content-group">
+                                        <div id="sale_line_low_stock_warning"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="sale_line_exclude_in_avail_stock">
+                                <div class="o_setting_left_pane">
+                                    <field name="sale_line_exclude_in_avail_stock" widget="upgrade_boolean"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sale_line_exclude_in_avail_stock"/>
+                                    <div class="text-muted">
+                                      If set, available at the local and company level will be calculated for each sale order line
+                                        when a product is selected.
+                                    </div>
+                                    <div class="content-group">
+                                        <div id="sale_line_exclude_in_avail_stock"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="sale_set_counts_zero">
+                                <div class="o_setting_left_pane">
+                                    <field name="sale_set_counts_zero" widget="upgrade_boolean"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sale_set_counts_zero"/>
+                                    <div class="text-muted">
+                                      If set, disables calculation of sales on Partner form (useful if partner has many 1000's of sales).
+                                    </div>
+                                    <div class="content-group">
+                                        <div id="sale_set_counts_zero"/>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="advance_invoice_rule">
+                                <div class="o_setting_left_pane">
+                                    <field name="advance_invoice_rule" widget="upgrade_boolean"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="advance_invoice_rule"/>
+                                    <div class="text-muted">
+                                      If set, ignores invoicing policy so a full invoice can be raised at any time
+                                    </div>
+                                    <div class="content-group">
+                                        <div id="advance_invoice_rule"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box" id="sale_company_only">
+                                <div class="o_setting_left_pane">
+                                    <field name="sale_company_only" widget="upgrade_boolean"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sale_company_only"/>
+                                    <div class="text-muted">
+                                      Forces a domain on sale orders so can only sell to partners with is_company = True, so not contacts.
+                                    </div>
+                                    <div class="content-group">
+                                        <div id="sale_company_only"/>
+                                    </div>
+                                </div>
+                            </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

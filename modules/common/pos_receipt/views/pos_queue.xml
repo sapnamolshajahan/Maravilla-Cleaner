@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_queue_tree" model="ir.ui.view">
+        <field name="name">ESC/POS Queues</field>
+        <field name="model">pos.queue.escpos</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+                <field name="escpos_profile"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_pos_queue" model="ir.actions.act_window">
+        <field name="name">ESC/POS Queues</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.queue.escpos</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_pos_queue" parent="point_of_sale.menu_point_config_product" action="action_pos_queue"/>
+</odoo>

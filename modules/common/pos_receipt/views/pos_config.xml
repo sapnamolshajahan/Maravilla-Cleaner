@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config" model="ir.ui.view">
+        <field name="name">POS Config Invoice Queue</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group name="remote_print_config" string="Remote Print Configuration">
+                    <field name="pos_receipt_queue"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!--
+        Add POS Config menuitems for ease of access.
+      -->
+    <menuitem id="menu_pos_config"
+              name="POS Configurations"
+              action="point_of_sale.action_pos_config_tree"
+              parent="point_of_sale.menu_point_config_product"/>
+</odoo>

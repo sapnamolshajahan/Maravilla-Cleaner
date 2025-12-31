@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_eve_event_user,eve.event.user,model_eve_event,stock.group_stock_user,1,1,1,0
+access_eve_event_manager,eve.event.manager,model_eve_event,stock.group_stock_manager,1,1,1,1
+access_eve_event_import_all,eve.event.import.all,model_eve_event_import,base.group_user,1,1,1,1

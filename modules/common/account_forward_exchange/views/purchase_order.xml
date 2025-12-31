@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="account_forward_exchange_po_form" model="ir.ui.view">
+        <field name="name">Account Forward Exchange Purchase Order Form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page id="fec_lines_tab" string="FEC Allocation" invisible="fec_mode != 'rbi'"
+                    groups="account_forward_exchange.group_fec_user">
+                    <group>
+                        <field name="fec_mode" invisible="1" />
+                        <field name="currency_rate" readonly="1" invisible="state == []"/>
+                    </group>
+                    <field name="fec_lines" mode="list" readonly="state in 'done'">
+                        <list editable="bottom" string="FEC Allocation">
+                            <control>
+                                <create name="add_fec_line" string="Add FEC" />
+                            </control>
+
+                            <field name="fec" options="{'no_create_edit': True}" domain="[('currency','=',parent.currency_id),
+                            ('state', '!=', 'complete')]"/>
+                            <field name="rate" />
+                            <field name="committed_costs" sum="Total FEC Committed"/>
+                            <field name="contract_amount" sum="Total FEC Amount"/>
+                            <field name="amount_allocated" sum="Total FEC Allocation"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

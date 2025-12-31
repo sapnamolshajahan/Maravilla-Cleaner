@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="theme_fashionflex_snippets" inherit_id="website.snippets">
+		<xpath expr="//t[@id='installed_snippets_hook']" position="after">
+			<t snippet-group="fashionflex" t-snippet="website.s_snippet_group" string="Fashionflex" t-thumbnail="/theme_fashionflex/static/src/img/Snippets_logo.jpg" />
+		</xpath>
+	</template> 
+	<template id="theme_fashionflex_snippets_addition" inherit_id="website.snippets">
+		<snippets id="snippet_structure" string="Structure">
+			<!-- Home Page Snippets  -->
+			<t t-snippet="theme_fashionflex.s_home_banner" group="fashionflex"/>
+			<t t-snippet="theme_fashionflex.s_product_list" group="fashionflex"/>
+			<t t-snippet="theme_fashionflex.s_striped_top" group="fashionflex"/>
+			<t t-snippet="theme_fashionflex.s_left_content" group="fashionflex"/>
+			<t t-snippet="theme_fashionflex.s_carousel_wrapper" group="fashionflex"/>
+
+			<!-- About Us snippets -->
+			<t t-snippet="theme_fashionflex.s_about_banner" group="fashionflex"/>
+			<t t-snippet="theme_fashionflex.s_numbers_showcase" group="fashionflex"/>
+			<t t-snippet="theme_fashionflex.s_unveil" group="fashionflex"/>
+			<t t-snippet="theme_fashionflex.s_contact_info" group="fashionflex"/>
+		</snippets>
+	</template>
+</odoo>

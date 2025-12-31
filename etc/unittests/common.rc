@@ -1,0 +1,24 @@
+[options]
+
+addons_path = odoo/addons,modules/common,modules/community
+
+log_level = error
+
+#
+# Odoo will open the http_port for tests, even with --no-http;
+# so each config needs to define unique ports per rc file
+# across *ALL* tested Odoo versions.
+#
+http_port = 9000
+gevent_port = 9001
+
+#
+# Default email sender
+#
+email_from = support@odooplus.nz
+
+[remote_print_mqtt]
+
+broker = mqtt://broker.emqx.io
+topic_base = remote_print_mqtt/unittests
+remote_public_keys = etc/unittests/remote_print_mqtt/public.pem

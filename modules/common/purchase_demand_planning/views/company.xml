@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="company_purchase_demand_config" model="ir.ui.view" >
+        <field name="name">Purchase Demand Cover</field>
+        <field name="inherit_id" ref="base_generic_changes.view_company_base_inherit_form"/>
+        <field name="model">res.company</field>
+        <field name="arch" type="xml">
+            <page name="company_parameters" position="inside">
+                <group col="2" colspan="2" string = "Demand Planning">
+                    <field name="purchase_demand_cover" />
+                    <field name="history_count" />
+                    <field name="forecast_count" />
+                    <field name="plot_type" />
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>

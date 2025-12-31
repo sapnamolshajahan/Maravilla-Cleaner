@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_product_list" name="Our Categories">
+        <section class="s_product_list pt64 pb64 o_colored_level" data-vcss="001" data-snippet="s_product_list" data-name="Items" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/12&quot;,&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;,&quot;animated&quot;:&quot;true&quot;}"><div class="o_we_shape o_web_editor_Floats_12 o_we_animated"/>
+            <div class="container">
+                <div class="row s_nb_column_fixed">
+                    <div class="col-lg-12">
+                        <h2 class="h3-fs" style="text-align: center;"><strong>What We<span class="o_text_highlight o_translate_inline o_text_highlight_freehand_1" style="--text-highlight-width: 3px; --text-highlight-color: #2453D4;"> Provide</span></strong></h2>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper ratio mb-0 ratio-4x3">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_eshop/static/src/img/Group1.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/webp" data-original-id="1105" data-original-src="/theme_eshop/static/src/img/Group1.png" data-mimetype-before-conversion="image/png" data-resize-width="NaN" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#" class="o_default_snippet_text">Mobile</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level o_card_img_top border" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper ratio mb-0 ratio-4x3">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_eshop/static/src/img/Group2.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/webp" data-original-id="1109" data-original-src="/theme_eshop/static/src/img/Group2.png" data-mimetype-before-conversion="image/png" data-resize-width="NaN" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#" class="o_default_snippet_text">Laptop</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card o_card_img_top card o_cc o_cc1 o_colored_level border" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper ratio ratio-4x3 mb-0">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_eshop/static/src/img/Group3.png" alt="" class="o_card_img card-img-top img img-fluid o_we_custom_image" data-mimetype="image/png" data-original-id="1110" data-original-src="/theme_eshop/static/src/img/Group3.png" data-mimetype-before-conversion="image/png" data-resize-width="197" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#" class="o_default_snippet_text">Camera</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper ratio ratio-4x3 mb-0">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_eshop/static/src/img/Group4.png" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/jpeg" data-original-id="1111" data-original-src="/theme_eshop/static/src/img/Group4.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="131" data-quality="100" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#">Radio</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card o_card_img_top card o_cc o_cc1 o_colored_level border" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper ratio ratio-4x3 mb-0">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_eshop/static/src/img/Group5.png" alt="" class="o_card_img card-img-top img img-fluid o_we_custom_image" data-mimetype="image/webp" data-original-id="1112" data-original-src="/theme_eshop/static/src/img/Group5.png" data-mimetype-before-conversion="image/png" data-resize-width="NaN" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#" class="o_default_snippet_text">Gaming</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-name="Card" class="col-lg-2 col-6">
+                        <div class="s_card o_card_img_top card o_cc o_cc1 o_colored_level border" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-width: 0px !important;">
+                            <figure class="o_card_img_wrapper ratio ratio-4x3 mb-0">
+                                <a aria-label="Link to product" href="#">
+                                    <img src="/theme_eshop/static/src/img/Group6.png" alt="" class="o_card_img card-img-top img img-fluid o_we_custom_image" data-mimetype="image/png" data-original-id="1113" data-original-src="/theme_eshop/static/src/img/Group6.png" data-mimetype-before-conversion="image/png" data-resize-width="131" loading="lazy"/>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h3 class="card-title h5-fs" style="text-align: center;"><a href="#" class="o_default_snippet_text">Speaker</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

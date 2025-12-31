@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="times_new_roman" model="report.xlsx.style.font">
+            <field name="name">Times New Roman</field>
+        </record>
+        <record id="calibri" model="report.xlsx.style.font">
+            <field name="name">Calibri</field>
+        </record>
+        <record id="arial" model="report.xlsx.style.font">
+            <field name="name">Arial</field>
+        </record>
+        <record id="courier_new" model="report.xlsx.style.font">
+            <field name="name">Courier New</field>
+        </record>
+        
+    </data>
+</odoo>

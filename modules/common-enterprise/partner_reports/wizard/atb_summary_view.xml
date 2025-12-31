@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="customer_atb_view" model="ir.ui.view">
+        <field name="name">Aged Trial Balance - Summary</field>
+        <field name="model">res.partner.statement</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+                <group>
+                    <group>
+                        <field name="statement_currency" groups="base.group_multi_currency"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="type"/>
+                        <field name="overdue_only"/>
+                    </group>
+                    <group>
+                        <field name="run_as_task"/>
+                        <field name="groupdebtor"/>
+                        <field name="reconcile_offset"/>
+                        <field name="in_credit"/>
+                    </group>
+                </group>
+                <newline/>
+                <separator string="Aging" colspan="4"/>
+                <group colspan="2" col="2">
+                    <field name="aging" colspan="4"/>
+                </group>
+                <group col="4" colspan="2">
+                    <group col="4" colspan="4" invisible="aging == 'months'">
+                        <field name="date_from" required="aging == 'days'"/>
+                        <field name="days" required="aging == 'days'"/>
+                    </group>
+                    <group col="4" colspan="4" invisible="aging == 'days'">
+                        <field name="as_at_date"/>
+                    </group>
+                </group>
+                <separator string="Partners" colspan="4"/>
+                <group>
+                    <field name="print_all_clients"/>
+                    <field name="partner_ids" colspan="4" rowspan="12" nolabel="1"/>
+                </group>
+                <footer>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    <button type="object" class="oe_highlight" name="print_atb"
+                            string="Print Summary Aged Trial Balance"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_res_partner_atb_view" model="ir.actions.act_window">
+        <field name="name">Summary Trial Balance</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">res.partner.statement</field>
+        <field name="view_id" ref="customer_atb_view"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="menu_res_res_partner_atb_view"
+            name="Summary Trial Balance"
+            groups="account.group_account_manager,account.group_account_user,partner_reports.group_partner_reports_user"
+            parent="account_reports_rec_and_pay_menu"
+            sequence="1"
+            action="action_res_partner_atb_view"/>
+</odoo>

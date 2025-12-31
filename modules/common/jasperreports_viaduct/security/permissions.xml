@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="resource_permission" model="ir.model.access">
+        <field name="name">Viaduct Resources</field>
+        <field name="model_id" ref="model_viaduct_resource"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="session_permission" model="ir.model.access">
+        <field name="name">Viaduct Sessions</field>
+        <field name="model_id" ref="model_viaduct_session"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="session_image_permission" model="ir.model.access">
+        <field name="name">Viaduct Session Images</field>
+        <field name="model_id" ref="model_viaduct_session_image"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

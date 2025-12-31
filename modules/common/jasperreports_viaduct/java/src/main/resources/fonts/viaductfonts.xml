@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!--
+    Droid fonts Family
+  -->
+  <bean id="droidSans" class="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+    <property name="name" value="Droid Sans"/>
+    <property name="normal" value="fonts/droid/DroidSans.ttf"/>
+    <property name="bold" value="fonts/droid/DroidSans-Bold.ttf"/>
+    <property name="pdfEmbedded" value="true"/>
+  </bean>
+  <bean id="droidSansMono" class="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+    <property name="name" value="Droid Sans Mono"/>
+    <property name="normal" value="fonts/droid/DroidSansMono.ttf"/>
+    <property name="pdfEmbedded" value="true"/>
+  </bean>
+  <bean id="droidSerif" class="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+    <property name="name" value="Droid Serif"/>
+    <property name="normal" value="fonts/droid/DroidSerif-Regular.ttf"/>
+    <property name="bold" value="fonts/droid/DroidSerif-Bold.ttf"/>
+    <property name="italic" value="fonts/droid/DroidSerif-Italic.ttf"/>
+    <property name="boldItalic" value="fonts/droid/DroidSerif-BoldItalic.ttf"/>
+    <property name="pdfEmbedded" value="true"/>
+  </bean>
+
+  <bean id="montserrat" class="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+    <property name="name" value="Montserrat"/>
+    <property name="normal" value="fonts/montserrat/Montserrat-Medium.ttf"/>
+    <property name="bold" value="fonts/montserrat/Montserrat-Bold.ttf"/>
+    <property name="italic" value="fonts/montserrat/Montserrat-Italic.ttf"/>
+    <property name="boldItalic" value="fonts/montserrat/Montserrat-BoldItalic.ttf"/>
+    <property name="pdfEmbedded" value="true"/>
+  </bean>
+
+  <bean id="avenir" class="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+    <property name="name" value="Avenir Next LT Pro"/>
+    <property name="normal" value="fonts/avenir/AvenirNextLTPro-Regular.otf"/>
+    <property name="bold" value="fonts/avenir/AvenirNextLTPro-Bold.otf"/>
+    <property name="boldItalic" value="fonts/avenir/AvenirNextLTPro-BoldCnIt.otf"/>
+    <property name="italic" value="fonts/avenir/AvenirNextLTPro-It.otf"/>
+    <property name="pdfEmbedded" value="true"/>
+  </bean>
+
+  <bean id="arial" class="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+    <property name="name" value="Arial"/>
+    <property name="normal" value="fonts/arial/arial.ttf"/>
+    <property name="bold" value="fonts/arial/arialbd.ttf"/>
+    <property name="italic" value="fonts/arial/ariali.ttf"/>
+    <property name="boldItalic" value="fonts/arial/arialbi.ttf"/>
+    <property name="pdfEncoding" value="Identity-H"/>
+    <property name="pdfEmbedded" value="true"/>
+  </bean>
+
+  <!--
+        Gilroy
+    -->
+  <bean id="gilroy" class="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+    <property name="name" value="Gilroy"/>
+    <property name="normal" value="fonts/gilroy/Gilroy-Regular.ttf"/>
+    <property name="bold" value="fonts/gilroy/Gilroy-Bold.ttf"/>
+    <property name="italic" value="fonts/gilroy/Gilroy-LightItalic.ttf"/>
+    <property name="boldItalic" value="fonts/gilroy/Gilroy-BoldItalic.ttf"/>
+    <property name="pdfEmbedded" value="true"/>
+  </bean>
+</beans>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_text" name="Text">
+        <section class="s_numbers_list pb80 s_text o_colored_level pt56 o_cc o_cc1" data-snippet="s_numbers_list" data-name="Numbers list" style="position: relative; background-color: rgb(255, 245, 249);" 
+            data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/12&quot;,&quot;colors&quot;:{&quot;c1&quot;:&quot;#F9669D&quot;,&quot;c2&quot;:&quot;#2D3142&quot;,&quot;c3&quot;:&quot;#F3F2F2&quot;,&quot;c5&quot;:&quot;#30266D&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;,&quot;animated&quot;:&quot;true&quot;}">
+            <div class="o_we_shape o_web_editor_Floats_12 o_we_animated" style="background-image: url(/theme_mediquick/static/src/img/Floats_02.svg?c1=%23F9669D&amp;c2=%232D3142&amp;c3=%23F3F2F2&amp;c5=%2330266D&quot;);"/>
+            
+            <div class="container">
+                <div class="row s_nb_column_fixed">
+                    <div class="col-lg-5 pb32 o_colored_level">
+                        <h2>Key Metrics of <strong><font style="color: rgb(249, 102, 157);">MediQuick</font></strong>&amp;nbsp;Excellence</h2>
+                        <p style="margin-bottom: 0px;"><br/>From improved patient outcomes and increased service reach to high satisfaction rates and enhanced care delivery, our key metrics reflect our commitment to advancing healthcare standards and delivering impactful, reliable medical services.</p><p><br/></p>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1 s_col_no_bgcolor" data-name="Numbers group">
+                        <div class="row">
+                            <div class="col-6 col-lg-6 pt16 pb16 o_colored_level" data-name="Number">
+                                <span class="h2-fs"><font style="color: rgb(249, 102, 157);">15%</font></span>
+                                <p class="o_default_snippet_text">Revenue Growth</p>
+                                <div class="s_hr pt16 pb40" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6 pt16 pb16 o_colored_level" data-name="Number">
+                                <span class="h2-fs"><font style="color: rgb(249, 102, 157);">$50M</font></span>
+                                <p class="o_default_snippet_text">Expected revenue</p>
+                                <div class="s_hr pt16 pb40" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6 pt16 pb16 o_colored_level" data-name="Number">
+                                <span class="h2-fs"><font class="text-o-color-1">85%</font></span>
+                                <p>User Retention</p>
+                                <div class="s_hr pt16 pb40" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6 pt16 pb16 o_colored_level" data-name="Number">
+                                <span class="h2-fs"><font class="text-o-color-1">100,000</font></span>
+                                <p class="o_default_snippet_text">Website visitors</p>
+                                <div class="s_hr pt16 pb40" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6 pt16 pb16 o_colored_level" data-name="Number">
+                                <span class="h2-fs"><font style="color: rgb(249, 102, 157);">20+</font></span>
+                                <p class="o_default_snippet_text">Projects deployed</p>
+                                <div class="s_hr pt16 pb40" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6 pt16 pb16 o_colored_level" data-name="Number">
+                                <span class="h2-fs"><font style="color: rgb(249, 102, 157);">4x</font></span>
+                                <p class="o_default_snippet_text">Inventory turnover</p>
+                                <div class="s_hr pt16 pb40" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_transaction_report_wizard" model="ir.ui.view">
+        <field name="name">account.transaction.report.wizard.view</field>
+        <field name="model">account.transaction.report</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Selection Criteria">
+                <field name="state" invisible="1"/>
+                <group invisible="state == 'done'">
+                    <group>
+                        <field name="from_date"/>
+                    </group>
+                    <group>
+                        <field name="to_date"/>
+                    </group>
+                </group>
+                <group invisible="state == 'done'">
+                    <field name="accounts" widget="many2many_tags" options="{'no_create': True}"/>
+                    <field name="tags" widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
+                <group invisible="state == 'init'">
+                    <field name="report_name" invisible="1"/>
+                    <field name="data" filename="report_name"/>
+                </group>
+                <footer >
+                    <button name="button_process" string="Create Report" type="object" class="oe_highlight"
+                        invisible="state == 'done'"/>
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_transaction_report_wizard" model="ir.actions.act_window">
+         <field name="name">Account Transactions Report</field>
+         <field name="res_model">account.transaction.report</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="account_transaction_report_wizard"/>
+         <field name="context">{}</field>
+         <field name="target">new</field>
+   </record>
+
+    <menuitem id="menu_account_trial_balance_wizard"
+        name="Account Transactions Report"
+        action="action_account_transaction_report_wizard"
+        parent="account_generic_changes.account_reports_gl_menu"
+        sequence="40"/>
+</odoo>
+

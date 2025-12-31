@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="hazard_substance_product_form_view">
+        <field name="name">hazard.substance.product.form.view</field>
+        <field name="model">product.template</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <div>
+                    <field name="hazard_substance"/>
+                    <label for="hazard_substance"/>
+                </div>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Hazardous Substance" invisible="hazard_substance == False">
+                    <group cols="4">
+                        <field name="hazard_substance"/>
+                        <field name="hazard_approval_nr"/>
+                        <field name="hazard_classifications"/>
+                        <field name="hazard_sds_issuing_date"/>
+                        <field name="hazard_storage_reqs"/>
+                        <field name="hazard_material_state"/>
+                        <field name="hazard_ppe_notes"/>
+                        <field name="hazard_document_1_filename" invisible="1"/>
+                        <field name="hazard_document_2_filename" invisible="1"/>
+                        <field name="hazard_document_3_filename" invisible="1"/>
+                        <field name="hazard_document_1" filename="hazard_document_1_filename"/>
+                        <field name="hazard_document_2" filename="hazard_document_2_filename"/>
+                        <field name="hazard_document_3" filename="hazard_document_3_filename"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hazard_substance_product_tree_view">
+        <field name="name">hr.hazard.product.template.tree.view</field>
+        <field name="model">product.template</field>
+        <field name="type">list</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <list string="Hazardous Substance" delete="false">
+                <field name="name" string="Product"/>
+                <field name="hazard_approval_nr"/>
+                <field name="hazard_classifications"/>
+                <field name="hazard_sds_issuing_date"/>
+                <field name="hazard_storage_reqs"/>
+                <field name="hazard_material_state"/>
+                <field name="hazard_location"/>
+                <field name="qty_available"/>
+                <field name="hazard_max_qty"/>
+                <field name="hazard_ppe_notes"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hazard_substance_product_tree_search" model="ir.ui.view">
+        <field name="name">HR hazard substance product tree view search</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <search string="Search Hazardous Substances">
+                <field name="name" string="Product"
+                       filter_domain="['|',('default_code','ilike',self),('name','ilike',self)]"/>
+                <field name="hazard_material_state"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hazard_substance_product" model="ir.actions.act_window">
+        <field name="name">Hazardous Substances</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('hazard_substance', '=', True)]</field>
+        <field name="view_id" ref="hazard_substance_product_tree_view"/>
+        <field name="search_view_id" ref="hazard_substance_product_tree_search"/>
+    </record>
+
+    <menuitem id="menu_hazard_substance_product"
+              groups="hr.group_hr_manager,hr.group_hr_user,base.group_user"
+              parent="hr_hazard.menu_hr_hazard"
+              action="action_hazard_substance_product"/>
+</odoo>

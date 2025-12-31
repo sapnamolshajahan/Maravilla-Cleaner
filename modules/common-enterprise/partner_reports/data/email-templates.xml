@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="template_partner_statement" model="mail.template">
+            <field name="name">Customer Statement: Email Docs</field>
+            <field name="model_id" ref="model_res_partner_statement_email"/>
+            <field name="subject">{{object.company_id.name}} Statement</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hi,
+                        <br/>
+                        <br/>
+                        Your statement is enclosed.
+                        <br/>
+                        Thank you.
+                        <br/>
+                        % if user and user.signature:
+                        {{user.signature | safe}}
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

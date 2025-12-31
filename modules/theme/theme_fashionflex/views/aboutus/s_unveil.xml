@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_unveil" name="Our Newest Products">
+        <section class="s_unveil pt64 pb64 o_colored_level" data-snippet="s_unveil" data-name="Unveil">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="13">
+                    <div class="o_grid_item g-height-3 g-col-lg-12 col-lg-12 o_colored_level" style="grid-area: 1 / 1 / 4 / 13; z-index: 1;">
+                        <h2 style="text-align: center;" class="o_default_snippet_text">Unveiling our newest products</h2>
+                        <p class="lead o_default_snippet_text" style="text-align: center;">Illustrate your services or your product’s main features.</p>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-4 g-height-5 d-lg-block d-none o_snippet_mobile_invisible o_colored_level col-lg-4" style="z-index: 2; grid-area: 6 / 1 / 11 / 5;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/1260.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1329" data-original-src="/web/image/1329-eca7f104/1260.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-4 g-height-5 col-lg-4 d-lg-block d-none o_snippet_mobile_invisible o_colored_level" style="z-index: 3; grid-area: 4 / 3 / 9 / 7;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/16931.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1307" data-original-src="/web/image/1307-84196c12/16931.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-4 o_colored_level g-height-6 col-lg-4" style="z-index: 4; grid-area: 7 / 4 / 13 / 8;">
+                        <img src="/theme_fashionflex/static/src/img/3773.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1306" data-original-src="/web/image/1306-21f9c8de/3773.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-4 d-lg-block d-none o_snippet_mobile_invisible o_colored_level g-height-6 col-lg-4" style="z-index: 5; grid-area: 5 / 8 / 11 / 12;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/13364.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1305" data-original-src="/web/image/1305-0a17f301/13364.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-col-lg-4 g-height-5 col-lg-4 d-lg-block d-none o_snippet_mobile_invisible o_colored_level" style="z-index: 6; grid-area: 9 / 9 / 14 / 13;" data-invisible="1">
+                        <img src="/theme_fashionflex/static/src/img/homepage_five_six_block_img_2.jpg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1303" data-original-src="/web/image/1303-2d6184e3/homepage_five_six_block_img_2.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

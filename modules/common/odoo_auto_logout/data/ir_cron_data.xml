@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="True">
+        <record id="logout_all_users" model="ir.cron">
+            <field name="name">Logout all Users at 2am Everyday</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="state">code</field>
+            <field name="code">model._logout_users()</field>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>days</field>
+            <field name="nextcall"
+                   eval="(DateTime.now().replace(hour=14, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="active">False</field>
+        </record>
+    </data>
+</odoo>

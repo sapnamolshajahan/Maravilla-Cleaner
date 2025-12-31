@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="action_server_import_sale_order_lines" model="ir.actions.server">
+            <field name="name">Import Sale Order Lines</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_sale_order"/>
+            <field name="code">action = model.action_import_sale_order_lines()</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_sale_order_line_import_form">
+            <field name="name">sale.order.line.import.form.view</field>
+            <field name="model">sale.order.line.import</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Sale Order Lines">
+                    <div class="alert alert-info" role="alert">
+                        <h5>Excel Format:</h5>
+                        <h5>Product Code | Quantity | Discount | Warehouse</h5>
+                        <span>Discount and Warehouse are optional. File must have a header row.</span>
+                        <br/>
+                    </div>
+                    <group colspan="4">
+                        <field name="order_id" colspan="2"/>
+                        <newline/>
+                        <group colspan="4" col="2">
+                            <field name="csv_file" readonly="state != 'draft'"/>
+                        </group>
+                        <field name="state" invisible="1"/>
+                        <footer colspan="4">
+                            <button special="cancel" string="Cancel" invisible="state != 'draft'" colspan="2"/>
+                            <button name="button_import_csv" invisible="state != 'draft'" type="object" string="Process" colspan="2"/>
+                            <button special="cancel" string="Close" invisible="state != 'done'" colspan="2"/>
+                        </footer>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

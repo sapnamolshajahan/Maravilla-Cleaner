@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_numbers_showcase" name="Numbers Showcase">
+        <section class="s_numbers_showcase pt80 pb80 o_colored_level" data-snippet="s_numbers_showcase" data-name="Numbers Showcase">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="8" style="gap: 24px;">
+                    <div class="o_grid_item g-col-lg-4 o_colored_level g-height-8 col-lg-4" style="--grid-item-padding-y: 16px; --grid-item-padding-x: 16px; grid-area: 1 / 1 / 9 / 5; z-index: 1;">
+                        <h2 class="o_default_snippet_text">Explore our<br/> key statistics</h2>
+                        <p><br/></p>
+                        <p class="lead o_default_snippet_text">Analyzing the numbers behind our success: an in-depth look at the key metrics driving our company's achievements.</p>
+                        <p><a href="#" class="btn btn-custom bg-o-color-5 flat" role="button" style="border-width: 1px; border-style: solid;">More details</a></p>
+                    </div>
+                    <div class="o_grid_item g-height-4 g-col-lg-4 col-lg-4 o_cc o_cc3 o_colored_level" style="--grid-item-padding-y: 32px; --grid-item-padding-x: 32px; grid-area: 1 / 5 / 5 / 9; z-index: 2;">
+                        <h3 class="display-3-fs o_default_snippet_text">12k</h3>
+                        <p><br/></p>
+                        <h4 class="o_default_snippet_text">Useful options</h4>
+                        <p class="o_default_snippet_text">Explore a vast array of practical and beneficial choices.</p>
+                    </div>
+                    <div class="o_grid_item g-height-4 g-col-lg-4 o_colored_level col-lg-4 o_cc o_cc5" style="--grid-item-padding-y: 32px; --grid-item-padding-x: 32px; grid-area: 1 / 9 / 5 / 13; z-index: 3; background-color: rgb(9, 0, 46);">
+                        <h3 class="display-3-fs"><font class="text-o-color-3">45%</font></h3>
+                        <p><br/></p>
+                        <h4><font class="text-o-color-3">More leads</font></h4>
+                        <p><font class="text-o-color-3">Boost your pipeline with an increase in potential leads.</font></p>
+                    </div>
+                    <div class="o_grid_item g-height-4 g-col-lg-8 col-lg-8 o_colored_level o_cc o_cc4" style="--grid-item-padding-y: 32px; --grid-item-padding-x: 32px; grid-area: 5 / 5 / 9 / 13; z-index: 4; background-color: rgb(249, 220, 200);">
+                        <h3 class="display-3-fs"><font class="text-o-color-1">8+</font></h3>
+                        <p><br/></p>
+                        <h4><font class="text-o-color-1">Amazing pages</font></h4>
+                        <p><font class="text-o-color-1">Discover outstanding and highly engaging web pages.</font></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Form views-->
+    <record id="letter_template_form" model="ir.ui.view">
+        <field name="name">Letter Templates</field>
+        <field name="model">letter.template</field>
+        <field name="arch" type="xml">
+            <form string="Letter Templates">
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="model_id"/>
+                    </group>
+                    <group>
+                        <field name="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--List Views-->
+    <record id="letter_template_tree" model="ir.ui.view">
+        <field name="name">Letter Templates</field>
+        <field name="model">letter.template</field>
+        <field name="arch" type="xml">
+            <list string="Letter Templates">
+                <field name="name"/>
+                <field name="model_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!--Search-->
+    <record id="letter_template_search_view" model="ir.ui.view">
+        <field name="name">letter.template.search</field>
+        <field name="model">letter.template</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model_id"/>
+                <field name="name"/>
+                <group>
+                    <filter string='Model' name='model_id' domain="[]" context="{'group_by' : 'model_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--Actions-->
+    <record id="letter_template_action_window" model="ir.actions.act_window">
+        <field name="name">Letter Templates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_id" ref="letter_template_tree"/>
+        <field name="view_mode">list,form</field>
+        <field name="res_model">letter.template</field>
+    </record>
+
+    <!-- Menu-->
+    <menuitem id="menu_letter_template_section"
+              name="Letter Templates"
+              parent="base.menu_custom"
+              sequence="40"/>
+
+    <menuitem name="Letter Templates"
+              id="letter_template_menu"
+              action="letter_template_action_window"
+              parent="menu_letter_template_section"
+              sequence="4"/>
+</odoo>

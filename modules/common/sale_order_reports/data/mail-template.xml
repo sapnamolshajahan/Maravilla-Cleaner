@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_proforma" model="mail.template">
+            <field name="name">Sales Order: ProForma Template</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">{{ object.company_id.name }}
+                {{ 'Quotation' if object.state in ['draft', 'sent'] else 'Order' }}
+                (Ref {{ object.name or 'n/a' }})
+            </field>
+            <field name="email_from">{{object.user_id.email_formatted or user.email_formatted}}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        {% set doc_name = 'quotation' if object.state in ['draft', 'sent'] else 'order' %}
+                        Hello,
+                        <br/>
+                        <br/>
+                        Your Pro forma invoice for {{doc_name}}
+                        <strong>{{object.name}}</strong>
+                        {% if object.origin %}
+                        (with reference: {{ object.origin }})
+                        {% endif %}
+                        amounting in <strong>{{format_amount(object.amount_total, object.pricelist_id.currency_id)}}
+                    </strong> is available.
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="report_template_ids" eval="[(4, ref('sale.action_report_saleorder'))]"/>
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

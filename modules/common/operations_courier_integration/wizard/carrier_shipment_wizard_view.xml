@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_shipment_wizard_form" model="ir.ui.view">
+        <field name="name">Shipment Wizard Form</field>
+        <field name="model">carrier.shipment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Submit shipment" delete="0" copy="0" create="0">
+                <field name="has_carrier_integration" invisible="1"/>
+                <group>
+                    <field name="picking_id"/>
+                    <field name="carrier" readonly="1"/>
+                </group>
+                <group col="4">
+                    <group col="2" colspan="2" string="Options">
+                        <field name="warehouse_id" invisible="1"/>
+                        <field name="services_request_iteration" invisible="1"/>
+                        <field name="self_id" invisible="1"/>
+                        <field name="show_services_button" invisible="1"/>
+                        <field name="alternate_address" invisible="1"/>
+                        <field name="is_ship_only" invisible="1"/>
+
+                        <group>
+                            <field name="is_signature_required" colspan="2"/>
+                            <field name="is_saturday_delivery" colspan="2"/>
+                        </group>
+                        <group>
+                            <field name="return_label" colspan="2"/>
+                            <field name="is_dangerous_goods" colspan="2"/>
+                        </group>
+                    </group>
+                    <group colspan="2" string="Delivery Instructions">
+                        <field name="delivery_instructions" widget="text" colspan="2" nolabel="1"/>
+                    </group>
+                </group>
+                <separator string="Show Address"/>
+                <group col="4">
+                    <field name="show_address" colspan="4"/>
+                    <h6 colspan="4" invisible="show_address == False or alternate_address != False">Note: Making changes
+                        here will update the partner's delivery address if successful
+                    </h6>
+                    <h6 colspan="4" invisible="show_address == False or alternate_address == False">Note: Making changes
+                        here will update the <b>alternate</b> delivery address on the <b>SO</b> if successful
+                    </h6>
+
+                    <separator string="Delivery Address"
+                               invisible="show_address == False or alternate_address != False"/>
+                    <div colspan="4" class="o_address_format"
+                         invisible="show_address == False or alternate_address != False">
+                        <field name="building" placeholder="Unit 1, level 9, Stark Tower" class="o_address_street"/>
+                        <field name="street" placeholder="Street..." class="o_address_street"/>
+                        <field name="street2" placeholder="Suburb" class="o_address_street"/>
+                        <field name="city" placeholder="City" class="o_address_city"/>
+                        <field name="state_id" class="o_address_state" placeholder="State"
+                               options="{&quot;no_open&quot;: True}" context="{'country_id': country_id, 'zip': zip}"/>
+                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="country_id" placeholder="Country" class="o_address_country"
+                               options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                    </div>
+                </group>
+
+                <group col="4">
+                    <separator string="Alternate Delivery Address"
+                               invisible="show_address == False or alternate_address == False"/>
+                    <div colspan="4" class="o_address_format"
+                         invisible="show_address == False or alternate_address == False">
+                        <field name="alt_building" placeholder="Unit 1, level 9, Stark Tower" class="o_address_street"/>
+                        <field name="alt_street" placeholder="Street..." class="o_address_street"/>
+                        <field name="alt_street2" placeholder="Suburb" class="o_address_street"/>
+                        <field name="alt_city" placeholder="City" class="o_address_city"/>
+                        <field name="alt_state_id" class="o_address_state" placeholder="State"
+                               options="{&quot;no_open&quot;: True}"
+                               context="{'country_id': alt_country_id, 'zip': alt_zip}"/>
+                        <field name="alt_zip" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="alt_country_id" placeholder="Country" class="o_address_country"
+                               options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                    </div>
+                </group>
+
+                <group col="4">
+                    <separator string="Package Details" colspan="4"/>
+                    <div name="pallet_details" col="2">Choose the pallet type to be used in this shipment if any</div>
+                    <group name="pallets" col="2" colspan="2">
+                        <field name="pallet_id" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="pallet_qty" readonly="pallet_id == False"/>
+                    </group>
+                    <field name="detail_ids" colspan="4" nolabel="1">
+                        <list string="Packages" editable="bottom">
+                            <control>
+                                <create name="add_package" string="Add a package"/>
+                            </control>
+                            <field name="box_id" width="150px"/>
+                            <field name="qty"/>
+                            <field name="weight"/>
+                        </list>
+                    </field>
+
+                    <button name="button_get_services" string="Request Services" type="object"
+                            class="oe_highlight" colspan="1"
+                            invisible="show_services_button == False"/>
+
+                    <field name="show_service_section" invisible="1"/>
+                    <group string="Available Services" colspan="4"
+                           invisible="show_service_section != True">
+                        <group>
+                            <div class="alert alert-info" role="alert" colspan="2" invisible="service_id != False">
+                                Please select a service from below
+                            </div>
+                        </group>
+                        <field name="service_id" nolabel="1" width="100%"
+                               domain="[
+									('ship_wizard','=', self_id),
+									('services_request_iteration', '=', services_request_iteration),
+								]"
+                               placeholder="Available services"
+                               options="{'no_open': True, 'no_create': True}" colspan="2"/>
+                    </group>
+                    <group name="printers" string="Printer" colspan="4">
+                        <field name="printer_id" domain="[('warehouse_id','=',warehouse_id)]"
+                               options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Ship"
+                            name="button_send_shipment"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="service_id == False or is_ship_only == False"/>
+
+                    <button string="Cancel"
+                            name="button_cancel_shipment"
+                            type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

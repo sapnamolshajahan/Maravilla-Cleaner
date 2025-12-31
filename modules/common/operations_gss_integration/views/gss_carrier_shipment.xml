@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="gss_carrier_shipment_form_view" model="ir.ui.view">
+		<field name="name">GSS Carrier Shipment</field>
+		<field name="model">gss.carrier.shipment</field>
+		<field name="mode">primary</field>
+		<field name="inherit_id" ref="operations_courier_integration.carrier_shipment_form_view"/>
+		<field name="arch" type="xml">
+			<form position="attributes">
+				<attribute name="string">GSS Carrier Shipment</attribute>
+			</form>
+		</field>
+	</record>
+</odoo>

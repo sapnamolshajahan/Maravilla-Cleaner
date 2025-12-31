@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="xero_import_form" model="ir.ui.view">
+        <field name="name">xero.import.form</field>
+        <field name="model">xero.import</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Xero AP or AR Import">
+                <div>
+                    File requirements: Excel .xls (not xlsx) file.
+                    Commits by line so if error check what has been processed and delete from input file before running again.
+                </div>
+                <br/>
+                <group>
+                    <field name="import_file"/>
+                    <field name="debit_account" options="{'no_create': True}" />
+                    <field name="credit_account" options="{'no_create': True}" />
+                    <field name="move_type"/>
+                    <field name="default_text"/>
+                    <field name="create_partner"/>
+                 </group>
+                <footer>
+                    <button name="button_import_file" string="Process File" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="xero_import_action" model="ir.actions.act_window">
+        <field name="name">xero.import.action</field>
+        <field name="res_model">xero.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="xero_import_menu"
+        name="Import Xero AR or AP"
+        action="xero_import_action"
+        parent="account.menu_finance_configuration"
+        sequence="50"/>
+
+</odoo>

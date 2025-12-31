@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="stock_reconcile_rni_search_view" model="ir.ui.view">
+        <field name="name">stock.reconcile.rni.search</field>
+        <field name="model">account.stock.reconcile.rni</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="purchase_order"/>
+                <field name="product"/>
+                <group>
+                </group>
+                <group>
+                    <filter string='Product' name="productgroup" context="{'group_by': 'product'}"/>
+                    <filter string='Purchase Order' name="salegroup" context="{'group_by': 'purchase_order'}"/>
+               </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_stock_reconcile_rni_tree">
+        <field name="name">account.stock.reconcile.rni.list</field>
+        <field name="model">account.stock.reconcile.rni</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <list default_order="create_date desc">
+                <header>
+                    <button name="button_reconcile" type="object" string="Reconcile"/>
+                </header>
+                <field name="date"/>
+                <field name="purchase_order"/>
+                <field name="pickings" widget="many2many_tags"/>
+                <field name="product"/>
+                <field name="qty_sent" />
+                <field name="value_sent" sum="value_sent_total"/>
+                <field name="qty_invoiced" string="On Hand"/>
+                <field name="value_invoiced" sum="'value_invoiced_total"/>
+                <field name="difference" sum="'difference_total"/>
+                <field name="account_moves" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_stock_reconcile_rni" model="ir.actions.act_window">
+            <field name="name">Reconcile RNI</field>
+            <field name="res_model">account.stock.reconcile.rni</field>
+            <field name="view_mode">list</field>
+            <field name="domain"></field>
+            <field name="search_view_id" ref="stock_reconcile_rni_search_view"/>
+        </record>
+
+
+</odoo>

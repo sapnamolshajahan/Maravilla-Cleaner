@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_hr_health_safety_policy" model="ir.sequence">
+        <field name="name">HR Health &amp; Safety Policy</field>
+        <field name="code">hr.health.safety.policy</field>
+        <field name="prefix">HSP</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+    </record>
+</odoo>

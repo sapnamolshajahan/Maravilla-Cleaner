@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="picking_form" model="ir.ui.view">
+        <field name="name">Packing Print Button</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(stock.action_report_delivery)d']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_report_delivery)d']" position="after">
+                <button name="do_print_delivery" type="object" string="Print" groups="base.group_user"
+                        invisible="is_locked == False or state != 'done'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_gss_dangerous_goods_preset_tree" model="ir.ui.view">
+            <field name="name">gss.dangerous.goods.preset.tree</field>
+            <field name="model">gss.dangerous.goods.preset</field>
+            <field name="arch" type="xml">
+                <list string="GSS Dangerous Goods Presets" editable="top">
+                    <field name="shipping_name"/>
+                    <field name="shipping_class"/>
+                    <field name="un_or_id"/>
+                    <field name="packing_group"/>
+                    <field name="subsidiary_risk"/>
+                    <field name="packing_qty_type"/>
+                    <field name="packing_instructions"/>
+                    <field name="authorization"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_gss_dangerous_goods_preset_search" model="ir.ui.view">
+            <field name="name">gss.dangerous.goods.preset.tree</field>
+            <field name="model">gss.dangerous.goods.preset</field>
+            <field name="arch" type="xml">
+                <search string="GSS Dangerous Goods Presets">
+                    <field name="shipping_name" />
+                </search>
+            </field>
+        </record>
+
+        <record id="gss_dangerous_goods_preset_action" model="ir.actions.act_window">
+            <field name="name">GSS Dangerous Goods Presets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gss.dangerous.goods.preset</field>
+            <field name="view_mode">list</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new GSS Dangerous Goods Preset.
+              </p>
+            </field>
+        </record>
+
+        <menuitem action="gss_dangerous_goods_preset_action"
+                  id="gss_dangerous_goods_preset_menu"
+                  parent="stock.menu_delivery"
+                  sequence="20"/>
+
+</odoo>

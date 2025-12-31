@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Financial Report Download -->
+        <record model="ir.ui.view" id="view_addin_financial_reports_download_form">
+            <field name="name">Financial Report Download</field>
+            <field name="model">addin.financial.report.download</field>
+            <field name="arch" type="xml">
+                <form string="Financial Report Download">
+                    <h1>
+                        <field name="report_id" colspan="4"/>
+                    </h1>
+                    <p colspan="4">
+                        The report will be emailed to you after it completes.
+                    </p>
+                    <field name="chart_name" invisible="1"/>
+                    <group>
+                        <field name="email"/>
+                        <field name="styling"/>
+                    </group>
+                    <footer>
+                        <button special="cancel" string="Cancel" type="object" class="btn-default"/>
+                        <button name="run_report" string="Run Report" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

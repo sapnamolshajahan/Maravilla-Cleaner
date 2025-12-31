@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- add a type fields to form -->
+    <record id="crm_stage_add_type" model="ir.ui.view">
+        <field name="name">crm.stage.add.type</field>
+        <field name="model">crm.stage</field>
+        <field name="inherit_id" ref="crm.crm_stage_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='team_ids']" position="after">
+                <field name="type"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- make partner lookup for customers and company rather than contacts. -->
+    <record id="quick_create_opportunity_form" model="ir.ui.view">
+        <field name="name">crm.form.extension</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[
+                    ('parent_id', '=', False)
+                    ]
+                </attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//form/group/div[2]" position="after">
+                <div class="d-flex align-items-center" colspan="2">
+                    <i class="fa fa-address-book" title="Primary Contact"/>
+                    <field name="primary_contact"
+                           nolabel="1"
+                           placeholder="Primary Contact"
+                           class="o_field_highlight w-100 mb-0"/>
+                </div>
+                <div class="d-flex align-items-center" colspan="2">
+                    <i class="fa fa-address-book"/>
+                    <field name="contact_ids"
+                           widget="many2many_tags"
+                           nolabel="1"
+                           placeholder="Contacts"
+                           class="o_field_highlight w-100 mb-0"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_case_leads_filter_addins" model="ir.ui.view">
+        <field name="name">crm.lead.search.lead.addins</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='filter_won_status_lost']" position="after">
+                <separator/>
+                <filter string="Created Last 7 days" name="created_past_week"
+                        domain="[
+                        ('create_date', '&gt;=', (context_today()-datetime.timedelta(days=7)).strftime('%Y-%m-%d'))
+                    ]"/>
+                <filter string="No action 30 days" name="no_activities_last_month"
+                        domain="[
+                        ('write_date', '&lt;=', (context_today()-datetime.timedelta(days=30)).strftime('%Y-%m-%d'))
+                    ]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="lead_form" model="ir.ui.view">
+        <field name="name">CRM Generic Form</field>
+        <field name="model">crm.lead</field>
+        <field eval="100" name="priority"/>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_restore']" position="before">
+                <button name="action_add_contact" type="object" string="New Contact"/>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[
+                    ('parent_id', '=', False)
+                    ]
+                </attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='lead']/group/group[2]/field[@name='website']"
+                   position="after">
+                <label for="fax" class="oe_inline"/>
+                <div class="o_row o_row_readonly">
+                    <field name="fax"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//notebook/page[1]" position="before">
+                <page string="Contacts">
+                    <field name="contact_ids" mode="list,kanban">
+                        <list string="Contacts" editable="top" default_order="lead_contact_sequence">
+                            <field name="lead_contact_sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="email" widget="email"/>
+                            <field name="function"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                        </list>
+                        <form string="Contact">
+                            <group>
+                                <field name="name"/>
+                                <field name="email" widget="email"/>
+                                <field name="function"/>
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                            </group>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

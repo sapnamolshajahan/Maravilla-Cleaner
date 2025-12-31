@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_three_image_block" name="Three Image Block">
+        <section class="s_masonry_block s_three_image_block pt48 pb48 o_colored_level" data-vcss="001" data-vxml="001" data-snippet="s_masonry_block" data-name="Masonry">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="4" style="gap: 16px;">
+                    <div class="o_grid_item o_grid_item_image g-height-4 rounded o_colored_level g-col-lg-4 col-lg-4" data-name="Block" style="z-index: 2; grid-area: 1 / 1 / 5 / 5;">
+                        <img src="/theme_eshop/static/src/img/Banner1.png" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/webp" data-quality="100" 
+                            data-original-id="927" data-original-src="/theme_eshop/static/src/img/Banner1.png" data-mimetype-before-conversion="image/webp" data-attachment-id="927"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-height-4 rounded o_colored_level g-col-lg-4 col-lg-4" data-name="Block" style="z-index: 4; grid-area: 1 / 5 / 5 / 9;">
+                        <img src="/theme_eshop/static/src/img/Banner2.png" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/jpeg" data-quality="100" data-original-id="928" 
+                            data-original-src="/theme_eshop/static/src/img/Banner2.png" data-mimetype-before-conversion="image/jpeg" data-attachment-id="928"/>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image g-height-4 rounded g-col-lg-4 col-lg-4 o_colored_level" data-name="Block" style="z-index: 5; grid-area: 1 / 9 / 5 / 13;">
+                        <img src="/theme_eshop/static/src/img/Banner3.png" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/jpeg" data-quality="100" data-original-id="928" 
+                            data-original-src="/theme_eshop/static/src/img/Banner3.png" data-mimetype-before-conversion="image/jpeg" data-attachment-id="928"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

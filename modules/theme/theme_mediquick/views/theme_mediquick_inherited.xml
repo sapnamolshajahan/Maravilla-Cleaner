@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="theme_mediquick_snippets" inherit_id="website.snippets">
+		<xpath expr="//t[@id='installed_snippets_hook']" position="after">
+			<t snippet-group="mediquick" t-snippet="website.s_snippet_group" string="Mediquick" t-thumbnail="/theme_mediquick/static/src/img/Snippets_logo.jpg" />
+		</xpath>
+	</template> 
+	<template id="theme_mediquick_snippets_addition" inherit_id="website.snippets">
+		<snippets id="snippet_structure" string="Structure">
+			<!-- Home Page Snippets  -->
+			<t t-snippet="theme_mediquick.s_home_banner" group="mediquick"/>
+			<t t-snippet="theme_mediquick.s_three_columns" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_choose_us" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_image_text" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_text_image" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_teams" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_gallery" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_contact_us" group="mediquick" />
+
+			<!-- About Us snippets -->
+			<t t-snippet="theme_mediquick.s_aboutus_banner" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_text_with_bg" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_product_list" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_image_texts" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_text" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_contact" group="mediquick" />
+			<t t-snippet="theme_mediquick.s_faq" group="mediquick" />
+
+			<!-- Contact Us snippets  -->
+			<t t-snippet="theme_mediquick.s_contactus" group="mediquick" />
+		</snippets>
+	</template>
+</odoo>

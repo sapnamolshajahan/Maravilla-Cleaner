@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+fleet_vehicle_model_access_right_vehicle_user,fleet_vehicle_model_access_vehicle_right,model_fleet_vehicle,fleet_group_vehicle_user,1,0,0,0
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="job_access" model="ir.model.access">
+		<field name="name">Print Jobs</field>
+		<field name="model_id" ref="model_remote_print_mqtt_job"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="job_queue_access" model="ir.model.access">
+		<field name="name">Job Queues</field>
+		<field name="model_id" ref="model_remote_print_mqtt_job_queue"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="job_token_access" model="ir.model.access">
+		<field name="name">Print Job Tokens</field>
+		<field name="model_id" ref="model_remote_print_mqtt_token_job"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+
+	<record id="queue_token_access" model="ir.model.access">
+		<field name="name">Print Job Tokens</field>
+		<field name="model_id" ref="model_remote_print_mqtt_token_queue"/>
+		<field name="perm_read" eval="True"/>
+		<field name="perm_write" eval="True"/>
+		<field name="perm_create" eval="True"/>
+		<field name="perm_unlink" eval="True"/>
+	</record>
+</odoo>

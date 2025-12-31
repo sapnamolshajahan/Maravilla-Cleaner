@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="extended_field_service_form" model="ir.ui.view">
+            <field name="name">Extended Field Service Form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="work_order"/>
+                    <field name="purchase_order"/>
+                    <field name="reference"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

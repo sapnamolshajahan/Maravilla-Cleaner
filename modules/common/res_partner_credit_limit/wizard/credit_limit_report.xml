@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="credit_limit_report_view" model="ir.ui.view">
+        <field name="name">Credit Limit Report</field>
+        <field name="model">credit.limit.report</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Report Options WebKit">
+                <field name="done" invisible="1"/>
+
+                <group invisible="done == True">
+                    <div>Click on 'Generate report' to extract the report.</div>
+                </group>
+
+                <group invisible="done == False">
+                    <field name="report_name" invisible="1"/>
+                    <field name="export_xls" filename="report_name"/>
+                </group>
+
+                <footer>
+                    <button name="generate_report" class="oe_highlight" string="Generate Report" type="object"
+                            invisible="done == True"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_credit_limit_report" model="ir.actions.act_window">
+        <field name="name">Credit Limit Report</field>
+        <field name="res_model">credit.limit.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="credit_limit_report_view"/>
+    </record>
+
+    <menuitem id="menu_credit_limit_report"
+              action="action_credit_limit_report"
+              parent="sale.menu_sale_report"
+              groups="res_partner_credit_limit.credit_config"/>
+
+</odoo>

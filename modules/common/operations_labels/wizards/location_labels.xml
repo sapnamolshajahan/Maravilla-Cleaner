@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="location_labels_form" model="ir.ui.view">
+        <field name="name">Stock Location Labels</field>
+        <field name="model">operations.labels.location.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="printer" required="True"/>
+                    <field name="label" required="True"
+                           options="{'no_create': True, 'no_open': True}"
+                           domain="[
+                            ('model', '=', 'stock.location'),
+                            ('state', '=', 'a-active'),
+                           ]"/>
+                    <field name="barcoded_only"/>
+                </group>
+                <field name="lines" readonly="True">
+                    <list>
+                        <field name="location"/>
+                        <field name="barcode"/>
+                    </list>
+                </field>
+                <footer>
+                    <button special="cancel" string="Cancel"/>
+                    <button string="Print" name="action_print" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--
+        Wizard Security
+      -->
+    <record id="labels_location_access" model="ir.model.access">
+        <field name="name">Location Labels Wizard</field>
+        <field name="model_id" ref="model_operations_labels_location_wizard"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="labels_location_line_access" model="ir.model.access">
+        <field name="name">Location Labels Wizard Line</field>
+        <field name="model_id" ref="model_operations_labels_location_wizard_line"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

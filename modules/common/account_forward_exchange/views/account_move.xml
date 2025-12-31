@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="account_forward_exchange_invoice_form" model="ir.ui.view">
+        <field name="name">Account Forward Exchange Invoice Form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_qr_code']" position="after">
+                    <field name="fec_mode" invisible="1" />
+            </xpath>
+            <xpath expr="//div[@name='journal_div']" position="inside">
+                <span class="oe_inline o_form_label mx-3"
+                                          groups="base.group_multi_currency"
+                                          invisible="currency_id == 'company_currency_id' or move_type == 'entry'"
+                                          > at rate </span>
+                    <field name="set_rate"
+                   groups="base.group_multi_currency"
+                       invisible="currency_id == 'company_currency_id' or move_type == 'entry'"
+                           readonly="state != 'draft'"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside" >
+                <page id="fec_lines_tab" string="FEC Allocation" groups="account_forward_exchange.group_fec_user"
+                     invisible="move_type not in ('in_invoice','in_refund') or fec_mode != 'ibr'">
+                    <group>
+                        <field name="currency_rate" readonly="1" invisible="fec_lines == []"/>
+                    </group>
+                    <field name="fec_lines" mode="list" readonly="state not in ('draft', 'cancel')">
+                        <list editable="bottom" string="FEC Allocation">
+                            <control>
+                                <create name="add_fec_line" string="Add FEC" />
+                            </control>
+
+                            <field name="fec" options="{'no_create_edit': True}" domain="[('currency','=',parent.currency_id),
+                                                                                        ('state', '!=', 'complete')]"/>
+                            <field name="rate" />
+                            <field name="committed_costs" sum="Total FEC Committed"/>
+                            <field name="contract_amount" sum="Total FEC Amount"/>
+                            <field name="amount_allocated" sum="Total FEC Allocation"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,22 @@
+This patch enables the ability to convert UnitTest results
+to XUnit files; which in turn can be reviewed by CI engines
+(eg: Jenkins)
+
+diff --git a/odoo/odoo/tests/loader.py b/odoo/odoo/tests/loader.py
+index 44e7a7a4f..36dae0b34 100644
+--- a/odoo/odoo/tests/loader.py
++++ b/odoo/odoo/tests/loader.py
+@@ -112,6 +112,13 @@ def run_suite(suite, global_report=None):
+     from ..modules import module
+     module.current_test = True
+ 
++    import os
++    xmlrun_out = os.getenv("XMLRUNNER_OUTPUT")
++    if xmlrun_out:
++        import xmlrunner
++        _discard = xmlrunner.XMLTestRunner(output=xmlrun_out).run(suite)
++        return OdooTestResult()  # return junk/unused value
++
+     results = OdooTestResult(global_report=global_report)
+     suite(results)
+ 

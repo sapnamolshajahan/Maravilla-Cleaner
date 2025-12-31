@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="stocktake_import_count_form" model="ir.ui.view">
+        <field name="name">Stocktake Import Count</field>
+        <field name="model">stocktake.import.count</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Stocktake Import Count">
+                <div>
+                    File requirements: Excel .xls file with columns "Default Code" and "Count"
+                </div>
+                <br/>
+                <group>
+                    <field name="import_file"/>
+                    <field name="stocktake" options="{'no_create': True}" />
+                    <field name="count_sheet"/>
+                 </group>
+                <footer>
+                    <button name="button_import_file" string="Import Count" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="stock_inventory_import_line_action" model="ir.actions.act_window">
+        <field name="name">stock.inventory.import.line.action</field>
+        <field name="res_model">stocktake.import.count</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="stock_inventory_import_line_menu"
+        name="Import Counts"
+        action="stock_inventory_import_line_action"
+        parent="menuitem_stocktake"
+        sequence="50"/>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="open_cashbox" model="label.printer.template">
+        <field name="name">POS Receipt Open Cashbox</field>
+        <field name="description">A small print-job instructing an EPSON POS Printer to pop the cashbox.</field>
+        <field name="flavour">escpos</field>
+        <field name="model">pos.config</field>
+        <field name="content"><![CDATA[{<ESC>}p{{"\x00\x02\x14"}}]]></field>
+    </record>
+</odoo>

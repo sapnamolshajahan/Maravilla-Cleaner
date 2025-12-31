@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="Payment Order (unpack)" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0"
+              rightMargin="0" topMargin="0" bottomMargin="0" uuid="c46c463d-f039-4528-8ce9-7eeea73281a0">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <style name="Base" isDefault="true" fontName="Noto Sans" fontSize="10" isBold="false" isItalic="false"
+           isUnderline="false" isStrikeThrough="false"/>
+    <parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+    <parameter name="viaduct-report-ids" class="java.util.List">
+        <parameterDescription><![CDATA[List of payment.order ids]]></parameterDescription>
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <parameter name="viaduct-directory" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[select id
+from account_batch_payment
+where $X{IN, id, viaduct-report-ids}
+order by id]]>
+    </queryString>
+    <field name="id" class="java.lang.Integer"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="15" splitType="Stretch">
+            <subreport runToBottom="true">
+                <reportElement x="0" y="0" width="595" height="15" uuid="c27583d0-bc3b-448a-a4f0-e2a440a15427"/>
+                <subreportParameter name="viaduct">
+                    <subreportParameterExpression><![CDATA[$P{viaduct}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="viaduct-directory">
+                    <subreportParameterExpression><![CDATA[$P{viaduct-directory}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="payment-order-id">
+                    <subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+                </subreportParameter>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{viaduct-directory} + "/payment-order.jasper"]]></subreportExpression>
+            </subreport>
+        </band>
+    </detail>
+</jasperReport>

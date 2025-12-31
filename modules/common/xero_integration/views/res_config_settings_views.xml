@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_xero_form" model="ir.ui.view">
+        <field name="name">res.config.settings.xero.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='contacts_settings']" position="before">
+                <div id="xero_div" >
+                    <block title="Xero Integration" id='xero_block'>
+                        <setting string="Credentials" name="xero_credentials">
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <label for="xero_client_id" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_client_id"/>
+                                    <label for="xero_client_secret" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_client_secret"/>
+                                    <label for="xero_redirect_url" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_redirect_url"/>
+                                    <label for="xero_auth_base_url" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_auth_base_url"/>
+                                    <label for="xero_tenant_id_url" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_tenant_id_url"/>
+                                    <label for="xero_access_token_url" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_access_token_url"/>
+                                    <label for="xero_tenant_name" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_tenant_name"/>
+                                    <label for="xero_country_name" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_country_name"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Export Options" name="xero_export_options">
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="export_invoice_without_product"/>
+                                    <label for="export_invoice_without_product"/>
+                                    <div class="text-muted">
+                                        Product description only for customer invoices exported.
+                                    </div>
+                                    <field name="export_bill_without_product"/>
+                                    <label for="export_bill_without_product"/>
+                                    <div class="text-muted">
+                                        Product description only for supplier invoices exported.
+                                    </div>
+                                    <field name="non_tracked_item"/>
+                                    <label for="non_tracked_item"/>
+                                    <div class="text-muted">
+                                        Stock products exported as non-tracked.
+                                    </div>
+                                    <label for="invoice_status" class="col-lg-4 o_light_label"/>
+                                    <field name="invoice_status"/>
+                                    <div class="text-muted">
+                                        Status for invoice transactions to be exported - Draft or Authorised
+                                    </div>
+                                    <label for="xero_integration_delay" class="col-lg-4 o_light_label"/>
+                                    <field name="xero_integration_delay"/>
+                                    <div class="text-muted">
+                                        Set a delay between sending documents for rate limiting.
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Accounts and Journals" name="xero_acc_journals">
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <label for="skip_emails" class="col-lg-4 o_light_label"/>
+                                    <field name="skip_emails"/>
+                                    <div class="text-muted">
+                                        Contacts with these email addresses will not by exported
+                                    </div>
+                                    <label for="revenue_default_account" class="col-lg-4 o_light_label"/>
+                                    <field name="revenue_default_account" options="{'no_create_edit': True, 'no_create': True}"/>
+                                    <div class="text-muted">
+                                        Default Account for revenue lines without a product
+                                    </div>
+                                    <label for="overpayment_journal" class="col-lg-4 o_light_label"/>
+                                    <field name="overpayment_journal" options="{'no_create_edit': True, 'no_create': True}"/>
+                                    <label for="prepayment_journal" class="col-lg-4 o_light_label"/>
+                                    <field name="prepayment_journal" options="{'no_create_edit': True, 'no_create': True}"/>
+                                    <label for="manual_journal" class="col-lg-4 o_light_label"/>
+                                    <field name="manual_journal" options="{'no_create_edit': True, 'no_create': True}"/>
+                                    <div class="text-muted">
+                                        Manual Journal - excludes Customer and Supplier Invoice and Bank or Cash Journals
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

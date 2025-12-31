@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="gss_delivery_carrier_form" model="ir.ui.view">
+        <field name="name">GoSweetSpot Delivery Carrier form</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="GoSweetSpot" string="GoSweetSpot" invisible="delivery_type != 'gss'">
+                    <group >
+                        <field name="gss_print_via_agent"/>
+                    </group>
+                    <group name="dg_presets" string="Dangerous Goods Presets" >
+                        <field name="gss_dg_hazchem_code_preset"/>
+                        <field name="gss_dg_cargo_aircraft_only_preset"/>
+                        <field name="gss_dg_road_transport_preset"/>
+                        <field name="gss_dg_radioactive_preset"/>
+                        <field name="gss_dg_additional_handling_info_preset"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

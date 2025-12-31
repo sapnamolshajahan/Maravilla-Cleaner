@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<title>JasperReports Viaduct 4</title>
+<head>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		JSONTest = function()
+			{
+				$.ajax (
+					{
+						url: "/jasperreports-viaduct4/api/",
+						type: "POST",
+						data: JSON.stringify (
+							{
+								format: "test",
+								jrxml: "non-existent.jrxml",
+								dbParams: {},
+								odooParams: {},
+								reportParams: {},
+							}),
+						contentType: "application/json",
+						success:
+							function (data, status)
+							{
+								$("#status").html (data.status);
+							},
+						error:
+							function (xhr, ajaxOptions, thrownError)
+							{
+								console.log (xhr.status);
+								console.log (thrownError);
+							}
+					});
+			};
+	</script>
+</head>
+<body>
+	<button type="button" onclick="JSONTest()">Test</button>
+	<div id="status"></div>
+</body>
+</html> 

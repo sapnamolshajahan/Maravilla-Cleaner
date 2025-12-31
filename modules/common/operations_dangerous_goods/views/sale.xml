@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sale_form" model="ir.ui.view">
+        <field name="name">Sale Form with Danger</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="dangerous_goods_type"/>
+                <field name="dg_expiry_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<menuitem id="commitment_reports_menu"
+		name="Commitments Reports"
+		parent="account_generic_changes.account_additional_reports"
+		sequence="50"/>
+
+
+	<menuitem id="account_commitment_report_menu"
+		action="action_account_commitment_report_window"
+		parent="commitment_reports_menu"/>
+
+   	<menuitem id="detailed_account_commitment_report_menu"
+		action="action_account_detailed_commitment_report_window"
+		parent="commitment_reports_menu"/>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <!-- List View for Product Brand -->
+    <record id="view_product_brand_list" model="ir.ui.view">
+        <field name="name">product.brand.list</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <list string="Product Brands">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="product_count"/>
+                <field name="member_ids"/>
+            </list>
+        </field>
+    </record>
+</odoo>

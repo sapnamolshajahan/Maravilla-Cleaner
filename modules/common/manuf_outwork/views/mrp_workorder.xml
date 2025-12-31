@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_workcenter_outwork" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form.offset</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="type"/>
+                <field name="partner" required="type == 'outwork'" invisible="type != 'outwork'"/>
+                <field name="product" required="type == 'outwork'" invisible="type != 'outwork'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_workorder_form_outwork" model="ir.ui.view">
+        <field name="name">mrp.workorder.view.form.offset</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='production_id']" position="after">
+                <field name="type"/>
+                <field name="product"/>
+                <field name="partner"/>
+                <field name="purchase_order"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

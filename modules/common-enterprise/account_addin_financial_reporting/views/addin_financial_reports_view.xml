@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Financial Report Presets -->
+        <record model="ir.ui.view" id="view_addin_financial_reports_list">
+            <field name="name">addin.financial.reports.list</field>
+            <field name="model">addin.financial.report</field>
+            <field name="arch" type="xml">
+                <list string="Financial Reports">
+                    <field name="name"/>
+                    <field name="chart_id"/>
+                    <field name="company_id"/>
+                    <field name="create_uid"/>
+                    <field name="create_date"/>
+                </list>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_addin_financial_reports_form">
+            <field name="name">addin.financial.reports.form</field>
+            <field name="model">addin.financial.report</field>
+            <field name="arch" type="xml">
+                <form string="Financial Reports">
+                    <header>
+                        <button name="run_report" string="Run Report" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet string="Profit and Loss">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                                /
+                                <field name="chart_id"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="company_id" options="{'no_create': True}"/>
+                                <field name="rounding"/>
+                                <field name="styling"/>
+                                <field name="include_draft"/>
+                            </group>
+                            <group>
+                                <field name="print_company_name"/>
+                                <field name="print_report_name"/>
+                                <field name="print_run_date"/>
+                                <field name="print_as_at_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Range and Date Selection">
+                                <field name="range_period_column_value"/>
+                                <field name="manual_end"/>
+                                <field name="date_end"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Report Columns">
+                                <field name="column_ids" nolabel="1" >
+                                    <list editable="bottom">
+                                        <field name="sequence"/>
+                                        <field name="column_type"/>
+                                        <field name="column_value"/>
+                                        <field name="budget_id"/>
+                                        <field name="variance_1_seq"/>
+                                        <field name="variance_2_seq"/>
+                                        <field name="period_count"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Description">
+                                <field name="description" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_addin_financial_reports_view" model="ir.actions.act_window">
+            <field name="name">Financial Reports</field>
+            <field name="res_model">addin.financial.report</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+
+        <menuitem id="menu_addin_financial_reports_menu"
+                  name="Financial Statements"
+                  parent="account.menu_finance_reports"
+                  sequence="100"
+                  groups="account.group_account_manager"/>
+
+        <menuitem id="menu_addin_financial_reports"
+                  name="Financial Reports"
+                  parent="menu_addin_financial_reports_menu"
+                  sequence="10"
+                  action="action_addin_financial_reports_view"/>
+
+        <menuitem id="menu_addin_financial_reports_config_menu"
+                  name="Financial Statements"
+                  parent="account.account_account_menu"
+                  sequence="100"
+                  groups="account.group_account_manager"/>
+
+    </data>
+</odoo>

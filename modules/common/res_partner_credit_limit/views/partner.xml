@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_form_view" model="ir.ui.view">
+        <field name="name">Partner with Credit Warnings</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="after">
+                <group name="over_credit" string="Over Credit">
+                    <field name="warning_type"/>
+                    <field name="credit_limit" invisible="warning_type == 'none'"
+                           groups="res_partner_credit_limit.credit_config"/>
+                    <field name="total_receivable" groups="res_partner_credit_limit.credit_config"/>
+                    <field name="credit_remaining" groups="res_partner_credit_limit.credit_config"/>
+                    <field name="over_credit" groups="res_partner_credit_limit.credit_config"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

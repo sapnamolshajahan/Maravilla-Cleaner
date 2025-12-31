@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Invoke Bulk Invoice Mailout with selected invoices
+      -->
+    <record id="create_bulk_invoice_mailout" model="ir.actions.server">
+        <field name="name">Bulk Invoice Dispatch</field>
+        <field name="group_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="binding_model_id" ref="model_account_move"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_bulk_invoice_wizard()
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_invoice_form_view_emailed">
+        <field name="name">Account Bulk Invoice Dispatch invoice form view</field>
+        <field name="model">account.move</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="sent" readonly="1" invisible="move_type not in ['out_invoice', 'out_refund']"/>
+            </xpath>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="account_invoice_tree_view_emailed">
+        <field name="name">Account Bulk Invoice Dispatch invoice tree view</field>
+        <field name="model">account.move</field>
+        <field name="type">list</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='status_in_payment']" position="before">
+                <field name="sent"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

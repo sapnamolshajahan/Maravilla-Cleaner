@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_partner_form_packing_slip_option" model="ir.ui.view">
+        <field name="name">res.partner.form.packing.slip.option</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_delivery_carrier_id']" position="before">
+                <field name="disable_auto_packing_slip"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

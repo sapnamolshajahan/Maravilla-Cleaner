@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_template_document_upload" model="ir.ui.view">
+        <field name="name">product.template.document.upload</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page string="Documents" name="documents">
+                    <button name="upload_product_document" class="btn-primary" type="object" string="Upload Document"/>
+                    <field name="product_doc_ids" widget="one2many" mode="list">
+                        <list string="Documents" editable="bottom" edit="0" create="0">
+                            <field name="document_name"/>
+                            <field name="document_desc"/>
+                            <field name="document_url"/>
+                            <button name="open_product_document" class="btn-primary" type="object" string="Open"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_product_form_inherited" model="ir.ui.view">
+        <field name="name">product.product.form.inherited</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sales']" position="after">
+                <group name="documents" string="Documents" colspan="2">
+                    <button name="upload_product_document" class="btn-primary" type="object" string="Upload Document"/>
+                    <br/>
+                    <div class="o_row">
+                        <field name="product_doc_ids" widget="one2many" mode="list">
+                            <list string="Documents" editable="bottom" edit="0" create="0">
+                                <field name="document_name"/>
+                                <field name="document_desc"/>
+                                <field name="document_url"/>
+                                <button name="open_product_document" class="btn-primary" type="object" string="Open"/>
+                            </list>
+                        </field>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

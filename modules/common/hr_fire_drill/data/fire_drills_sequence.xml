@@ -1,0 +1,10 @@
+<odoo>
+    <record id="seq_fire_drills" model="ir.sequence">
+        <field name="name">Fire Drills Sequence</field>
+        <field name="code">fire.drills.sequence</field>
+        <field name="prefix">FD</field>
+        <field name="padding">4</field>
+        <field name="number_next_actual">1</field>
+        <field name="implementation">no_gap</field>
+    </record>
+</odoo>

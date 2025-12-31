@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_milestone_form_ext" model="ir.ui.view">
+        <field name="name">project.milestone.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button"
+                        type="object" name="action_view_milestones" icon="fa-calendar"
+                        string="Milestones"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

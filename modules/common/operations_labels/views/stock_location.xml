@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- disable base location barcode print -->
+    <record id="stock.action_report_location_barcode" model="ir.actions.report">
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <record id="location_tree" model="ir.ui.view">
+        <field name="name">Stock Location Tree</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_tree2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="before">
+                <header>
+                    <button string="Print Labels" type="object" name="action_location_labels"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+</odoo>

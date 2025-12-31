@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_label_printer_tree" model="ir.ui.view">
+        <field name="name">Label Printer List</field>
+        <field name="model">label.printer</field>
+        <field name="arch" type="xml">
+            <list editable="top">
+                <field name="name"/>
+                <field name="queue"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_label_printer_tree" model="ir.actions.act_window">
+        <field name="name">Label Printers</field>
+        <field name="res_model">label.printer</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_label_printer_tree"/>
+    </record>
+
+    <menuitem id="menu_label_printer" parent="remote_print_mqtt.menu_remote_print" action="action_label_printer_tree"/>
+</odoo>

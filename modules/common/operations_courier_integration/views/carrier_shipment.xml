@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="carrier_shipment_form_view" model="ir.ui.view">
+		<field name="name">Carrier Shipment Form View</field>
+		<field name="model">carrier.shipment.abstract</field>
+		<field name="arch" type="xml">
+			<form string="Shipment">
+				<header>
+					<button name="action_refresh" string="Refresh Data" type="object" class="btn-primary"/>
+					<button name="action_reprint_labels" string="Reprint Labels" type="object" />
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button name="download_attached_labels" string="Download Labels" type="object" class="oe_stat_button" icon="fa-download" />
+					</div>
+					<div class="alert alert-info" role="alert" style="margin-bottom:0px;" invisible="is_return_for == False">
+						This is a return shipment for <field name="is_return_for" nolabel="1"/>
+					</div>
+					<div class="alert alert-warning" role="alert" style="margin-bottom:0px;" invisible="return_shipment_failed == False">
+						<h3>The booking of the return shipment linked to this shipment has failed. Please book the return shipment on the website.</h3>
+						<field name="return_shipment_failed" nolabel="1"/>
+					</div>
+					<group cols="4">
+						<group cols="2" colspan="2">
+							<field name="last_updated"/>
+							<field name="picking_id"/>
+							<field name="consignment_nr"/>
+							<field name="carrier"/>
+							<field name="tracking_url" widget="url"/>
+							<field name="return_shipment"/>
+							<field name="errors"/>
+							<field name="notifications"/>
+							<field name="delivery_status"/>
+						</group>
+						<group cols="2" colspan="2">
+							<field name="printer_id"/>
+						</group>
+					</group>
+					<group cols="4" string="Events">
+						<field name="delivery_events" widget="html" nolabel="1" colspan="2"/>
+					</group>
+				</sheet>
+				<div class="oe_chatter">
+
+				</div>
+			</form>
+		</field>
+	</record>
+</odoo>

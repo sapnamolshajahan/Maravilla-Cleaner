@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_account_journal_form">
+            <field name="name">account.journal.form.extension</field>
+            <field name="model">account.journal</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="short_description"/>
+                    <field name="entry_posted"/>
+                </field>
+
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="use_for_statement_bank_account"/>
+                    <field name="bank_account_for_invoice"/>
+                </xpath>
+
+                <xpath expr="//field[@name='refund_sequence']" position="replace"/>
+
+                <xpath expr="//page[@name='bank_account']" position="inside">
+                    <group name="journal_sequences_config" string="Sequence Configuration">
+                        <field name="sequence_id" />
+                        <field name="refund_sequence" />
+                        <field name="refund_sequence_id" invisible="refund_sequence == False"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_account_journal_tree" model="ir.ui.view">
+            <field name="name">account.journal.tree.extension</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="use_for_statement_bank_account" string="Statement Account"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Action reset to draft  -->
+        <record id="action_journal_reset" model="ir.actions.server">
+            <field name="name">Reset to Draft</field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="code">action=records.action_reset_journal()</field>
+        </record>
+
+
+    </data>
+</odoo>

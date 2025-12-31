@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="theme_eshop_snippets" inherit_id="website.snippets">
+		<xpath expr="//t[@id='installed_snippets_hook']" position="after">
+			<t snippet-group="eshop" t-snippet="website.s_snippet_group" string="Eshop" t-thumbnail="/theme_eshop/static/src/img/Snippet_logo.jpg" />
+		</xpath>
+	</template> 
+	<template id="theme_eshop_snippet_addition" inherit_id="website.snippets">
+		<snippets id="snippet_structure" string="Structure">
+			<t t-snippet="theme_eshop.s_home_banner" group="eshop"/>
+			<t t-snippet="theme_eshop.s_product_list" group="eshop"/>
+			<t t-snippet="theme_eshop.s_dynamic_snippet_one" group="eshop"/>
+			<t t-snippet="theme_eshop.s_image_block" group="eshop"/>
+			<t t-snippet="theme_eshop.s_dynamic_snippet_two" group="eshop"/>
+			<t t-snippet="theme_eshop.s_image_text" group="eshop"/>
+			<t t-snippet="theme_eshop.s_title_text" group="eshop"/>
+			<t t-snippet="theme_eshop.s_three_image_block" group="eshop"/>
+			<t t-snippet="theme_eshop.s_references" group="eshop"/>
+			<t t-snippet="theme_eshop.s_quotes_carousel" group="eshop"/>
+		</snippets>
+	</template>
+</odoo> 

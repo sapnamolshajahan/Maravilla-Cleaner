@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Purchase Order" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c46c463d-f039-4528-8ce9-7eeea73281a0">
+	<property name="ireport.zoom" value="1.5000000000000056"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<parameter name="purchase-order-id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="priced" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[Show Unit price or not]]></parameterDescription>
+	</parameter>
+	<parameter name="source-directory" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+  purchase_order.company_id "company-id",
+  purchase_order_line.id "line-id"
+from purchase_order, purchase_order_line
+where purchase_order.id = $P{purchase-order-id}
+and order_id = purchase_order.id
+order by
+  sequence,
+  purchase_order_line.id]]>
+	</queryString>
+	<field name="company-id" class="java.lang.Integer"/>
+	<field name="line-id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="230">
+			<textField>
+				<reportElement x="0" y="60" width="200" height="25" uuid="5ebf2343-1269-42d0-9cac-62f4d65f9c94"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("report-title")]]></textFieldExpression>
+			</textField>
+			<image hAlign="Left" onErrorType="Blank">
+				<reportElement x="0" y="0" width="120" height="40" uuid="18480efc-a7fe-4d7b-9232-e318f24087bd"/>
+				<imageExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("logo-path")]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="602" y="0" width="200" height="12" uuid="a2b13e6c-5f1c-4fd3-b74a-1a3fb384ea3b"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("name")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="602" y="10" width="200" height="65" uuid="1c3013b9-f7f3-4bd8-b488-a59c207a1dc1"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("address")]]></textFieldExpression>
+			</textField>
+			<rectangle radius="5">
+				<reportElement x="10" y="105" width="250" height="100" uuid="1580f55c-89d3-40f6-afc9-fcc073918793"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="100" width="50" height="10" uuid="4416635b-77c0-4736-9fd2-a7fda840ed0d"/>
+				<textElement textAlignment="Left" markup="none">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Supplier]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="120" width="210" height="12" uuid="b481566b-c034-465c-859f-c5fcc61ed610"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("supplier")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="132" width="210" height="60" uuid="554c999e-690c-4ef1-bfc5-6bdc9e37cbc8"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("supplier-address")]]></textFieldExpression>
+			</textField>
+			<rectangle radius="5">
+				<reportElement x="300" y="105" width="250" height="100" uuid="65dc84d2-9e53-40af-ae07-89443996dccd"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="310" y="100" width="50" height="10" uuid="eaee277e-d26f-42c5-9380-7fcc9dca4af7"/>
+				<textElement textAlignment="Left" markup="none">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Deliver To]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="120" width="210" height="12" uuid="2e944b87-45a0-4fb8-b06a-8e7aac9e530e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("delivery-name")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="132" width="210" height="60" uuid="be4b176b-b6aa-4553-b775-aae5c850ad94"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("delivery-address")]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="582" y="90" width="220" height="115" forecolor="#CCCCCC" uuid="9200c8cd-be17-4dbf-b4ed-fd65efa3a728"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="587" y="100" width="100" height="15" uuid="4ee5bf86-59b8-4735-9c95-87be67783e75"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order No :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="587" y="115" width="100" height="15" uuid="3d000b8a-7bd5-4478-b6de-121f86fcfcdd"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="587" y="130" width="100" height="15" uuid="f50a94fe-1916-4f4b-93f0-3d2093684c62"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Required By :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="587" y="145" width="100" height="15" uuid="500472cb-7fbb-4873-8051-de6335eee76c"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Initiator :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="687" y="100" width="105" height="15" uuid="fc4f2cb3-fe93-487a-9187-f121542da1f1"/>
+				<textElement textAlignment="Left">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("order-number")]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="687" y="115" width="105" height="15" uuid="f6daf271-05c5-4c21-a269-42de144b6247"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("order-date")]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="687" y="130" width="105" height="15" uuid="9641d4e0-f32b-451f-a91b-f557323d4b50"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("required-date")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="687" y="145" width="105" height="15" uuid="b9a5326c-10e9-4d7a-9a0f-1e93eb30de61"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("user")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="215" width="800" height="12" isRemoveLineWhenBlank="true" uuid="10124280-d801-4a65-bbdc-b7a30d9c1ec3"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("delivery-notes")]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="15" backcolor="#CCCCCC" uuid="f382aab7-7a93-4845-a225-dec55909fb14"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="100" height="15" uuid="31514004-4c23-475c-8bb7-9856b113a4b6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="100" y="0" width="250" height="15" uuid="06cd2c97-f63d-442a-a6dc-1ce2d92318b5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="350" y="0" width="110" height="15" uuid="c8579229-119a-4721-a03a-22666d1caed2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="140" height="15" uuid="402de5fe-64ca-479c-bddf-5cce65cfe672"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Supplier Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="100" height="15" uuid="2d6d3479-3bb4-4ab2-b829-549ee8217b3c">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="700" y="0" width="100" height="15" uuid="4cd8b5d6-2a54-4b28-b165-4caa135d71b0">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="1" height="5" forecolor="#CCCCCC" uuid="c895941d-359d-4f31-915d-1b017fc2b31d"/>
+			</line>
+			<line>
+				<reportElement x="801" y="15" width="1" height="5" forecolor="#CCCCCC" uuid="c32589d5-714c-4f46-ad2f-51a376e54884"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Prevent">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="100" height="15" isPrintWhenDetailOverflows="true" uuid="62bf4dbe-edbb-4a16-83c5-85ec269320a7"/>
+				<textElement>
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("code")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="100" y="0" width="250" height="15" isPrintWhenDetailOverflows="true" uuid="9c07b97b-3781-4197-bded-b32dc5245658"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("description")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="350" y="0" width="50" height="15" isPrintWhenDetailOverflows="true" uuid="d1645027-bad6-4dde-9709-6a01f8955db2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("quantity")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="400" y="0" width="60" height="15" uuid="0380d583-c784-4861-b183-9ef22f6e5dbc"/>
+				<textElement>
+					<font size="10"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("uom")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="460" y="0" width="140" height="15" isPrintWhenDetailOverflows="true" uuid="c6d6cc15-dd27-45b3-86ef-59cfd6f63d1a"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("supplier-code")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="600" y="0" width="100" height="15" uuid="2b93d1b2-8b95-4e21-b890-29fe65fcf72e">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("unit-price")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s %s",
+  $P{viaduct}
+    .helper ("purchase", $P{purchase-order-id})
+    .get ("currency-symbol"),
+  $P{viaduct}
+    .helper ("company", $F{company-id})
+    .get ("price-display"))]]></patternExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="700" y="0" width="100" height="15" uuid="46ae395e-e44b-45fd-89da-62905515b856">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("line", $F{line-id})
+  .get ("total")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s ###0.00",
+  $P{viaduct}
+    .helper ("purchase", $P{purchase-order-id})
+    .get ("currency-symbol"))]]></patternExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="15" forecolor="#CCCCCC" uuid="ad303b5a-2220-483d-ad76-4b147e7e30b5"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="801" y="0" width="1" height="15" forecolor="#CCCCCC" uuid="107c86f9-890b-4534-aaec-310543a785b1"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<line>
+				<reportElement x="0" y="0" width="802" height="1" forecolor="#CCCCCC" uuid="3f0f56e8-cbf5-44eb-968f-d8e7591800b7"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement positionType="Float" x="0" y="5" width="350" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="9a212bd9-9c23-47bf-a066-65e8c5bc9381"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format (
+  "Please quote Purchase Order %s on all documentation.",
+  $P{viaduct}
+    .helper ("purchase", $P{purchase-order-id})
+    .get ("order-number"))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="18" width="350" height="30" uuid="f9e92811-f6ba-4abd-9625-09ad77f0a8c9"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Order confirmation required, including any backordered lines and expected delivery date. Please advise as soon as possible.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="5" width="100" height="15" uuid="68c62573-816d-4253-8531-cb8cbd9d714c">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Untaxed Amount :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="20" width="100" height="15" uuid="3b1c5353-c407-4733-a410-09bb122c0b9d">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Taxes :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="35" width="100" height="15" uuid="38dfa83b-184f-4b4d-9ca8-44ce4a954542">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="700" y="5" width="100" height="15" uuid="ee29b068-3800-4eb2-b42f-32fe910d3679">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("total-untaxed")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s ###0.00",
+  $P{viaduct}
+    .helper ("purchase", $P{purchase-order-id})
+    .get ("currency-symbol"))]]></patternExpression>
+			</textField>
+			<textField>
+				<reportElement x="700" y="20" width="100" height="15" uuid="93435745-c06b-4bc4-9968-eee4457dc092">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("taxes")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s ###0.00",
+  $P{viaduct}
+    .helper ("purchase", $P{purchase-order-id})
+    .get ("currency-symbol"))]]></patternExpression>
+			</textField>
+			<textField>
+				<reportElement x="700" y="35" width="100" height="15" uuid="f7254878-df92-4425-bb23-e4b395b5f346">
+					<printWhenExpression><![CDATA[$P{priced}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("purchase", $P{purchase-order-id})
+  .get ("total")]]></textFieldExpression>
+				<patternExpression><![CDATA[String.format ("%s ###0.00",
+  $P{viaduct}
+    .helper ("purchase", $P{purchase-order-id})
+    .get ("currency-symbol"))]]></patternExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- if odoo fix up their view, this can be removed-->
+    <record id="general_journal_form" model="ir.ui.view">
+        <field name="name">general.journal.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="priority">29</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='header_left_group']" position="attributes">
+                <attribute name="invisible">move_type == 'entry'</attribute>
+            </xpath>
+            <xpath expr="//group[@id='header_right_group']" position="attributes">
+                <attribute name="invisible">move_type == 'entry'</attribute>
+            </xpath>
+        <xpath expr="//sheet/group[1]" position="inside">
+            <group id="header_left_group" invisible="move_type != 'entry'">
+                <field name="ref" />
+            </group>
+            <group id="header_right_group"  invisible="move_type != 'entry'">
+                <field name="date" string="Accounting Date" readonly="state != 'draft'"/>
+                <field name="journal_id" groups="account.group_account_readonly" options="{'no_create': True, 'no_open': True}"
+                                        readonly="posted_before == True"/>
+            </group>
+        </xpath>
+            <xpath expr="//page[@id='aml_tab']/field[@name='line_ids']/list/field[@name='name']" position="after">
+                    <field name="product_id" optional="show" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="name">Generic Mods</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date_due']" position="attributes">
+                <attribute name="context">{}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_date']" position="attributes">
+                <attribute name="invisible">False</attribute>
+            </xpath>
+            <xpath expr="//group[@name='sale_info_group']/field[@name='partner_bank_id']" position="attributes">
+                <attribute name="readonly">True</attribute>
+                <attribute name="invisible">move_type not in ('in_invoice', 'in_refund')</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('is_company', '=', True)]</attribute>
+                <attribute name="options">{'no_create': true}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='ref']" position="after">
+                    <label for="ref" string="Customer Reference"
+                        invisible="move_type not in ('out_invoice', 'out_refund')"
+                         />
+                    <field name="ref" nolabel="1" invisible="move_type not in ('out_invoice', 'out_refund')"/>
+                    <field name="invoice_address" options="{'no_create': True}"
+                           invisible="move_type not in ('out_invoice', 'out_refund')"
+                           domain="[('parent_id','=', partner_id)]"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='product_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='account_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='product_uom_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+                <xpath expr="//button[@name='action_reverse']" position="after">
+<!--                <button name="action_send_with_attachments"-->
+<!--                        string="Email Invoice with Attachments"-->
+<!--                        type="object"-->
+<!--                        groups="account.group_account_invoice"-->
+<!--                        invisible="move_type != 'out_invoice' or state != 'posted'"-->
+<!--                      />-->
+
+                <button name="action_export"
+                        string="Export"
+                        type="object"
+                        invisible="move_type != 'entry'"
+                   />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_all_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.all.ree</field>
+            <field name="model">account.move</field>
+            <field name="arch" type="xml">
+                <list string="Invoices"
+                      js_class="account_tree"
+                      sample="1">
+                    <header>
+                        <button name="action_register_payment" type="object" string="Register Payment"
+                            groups="account.group_account_user"
+                            invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund', 'out_receipt', 'in_invoice', 'in_refund','in_receipt')"/>
+                    </header>
+                    <field name="name" decoration-bf="1"/>
+                    <field name="partner_id" width="600px"/>
+                    <field name="invoice_source_email" invisible="1"/>
+                    <field name="invoice_date" optional="show" string="Transaction Date"/>
+                    <field name="invoice_date_due" widget="remaining_days" optional="show" invisible="payment_state in ('paid', 'in_payment', 'reversed')"/>
+                    <field name="invoice_origin" optional="hide" string="Source Document"/>
+                    <field name="payment_reference" optional="hide" />
+                    <field name="ref" optional="hide"/>
+                    <field name="invoice_user_id" optional="hide" string="Sales Person" widget="many2one_avatar_user"/>
+                    <field name="activity_ids" widget="list_activity" optional="show"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" optional="show"/>
+                    <field name="amount_untaxed_signed" string="Tax Excluded " sum="Total" optional="show"/>
+                    <field name="amount_tax_signed" string="Tax" sum="Total" optional="hide"/>
+                    <field name="amount_total_signed" string="Total" sum="Total" decoration-bf="1" optional="show"/>
+                    <field name="amount_residual_signed" string="Amount Due" sum="Amount Due" optional="hide"/>
+                    <field name="company_currency_id" invisible="1"/>
+                    <field name="state" widget="badge" decoration-success="state == 'posted'" decoration-info="state == 'draft'" optional="show"/>
+                    <field name="currency_id" optional="show"/>
+                    <field name="amount_total_in_currency_signed" optional="show"/>
+                    <field name="payment_state" widget="badge" decoration-danger="payment_state == 'not_paid'" decoration-warning="payment_state in ('partial', 'in_payment')" decoration-success="payment_state in ('paid', 'reversed')" invisible="payment_state == 'invoicing_legacy'"/>
+                    <field name="move_type" invisible="context.get('default_move_type', True)"/>
+                  </list>
+            </field>
+        </record>
+
+    <record id="action_move_out_all_type" model="ir.actions.act_window">
+            <field name="name">Invoice and Credit Notes</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_all_invoice_tree"/>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="domain">[('move_type', 'in', ['out_refund','out_invoice'])]</field>
+        </record>
+
+    <menuitem id="menu_action_move_out_all_type"
+              action="action_move_out_all_type"
+              parent="account.menu_finance_receivables"
+              sequence="3"/>
+
+    <record id="action_move_in_all_type" model="ir.actions.act_window">
+            <field name="name">Invoice and Credit Notes</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_all_invoice_tree"/>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="domain">[('move_type', 'in', ['in_refund','in_invoice'])]</field>
+        </record>
+
+    <menuitem id="menu_action_move_in_all_type"
+              action="action_move_in_all_type"
+              parent="account.menu_finance_payables"
+              sequence="3"/>
+
+    <record id="account.action_account_moves_journal_sales" model="ir.actions.act_window">
+            <field name="domain">[('display_type', 'not in', ('line_section', 'line_note')),('journal_id.type', '=', 'sale')]</field>
+    </record>
+
+    <record id="account.action_account_moves_journal_purchase" model="ir.actions.act_window">
+            <field name="domain">[('display_type', 'not in', ('line_section', 'line_note')),('journal_id.type', '=', 'purchase')]</field>
+    </record>
+
+    <record id="account.action_account_moves_journal_bank_cash" model="ir.actions.act_window">
+            <field name="domain">[('display_type', 'not in', ('line_section', 'line_note')),('journal_id.type', 'in', ('bank','cash'))]</field>
+    </record>
+
+    <record id="account.action_account_moves_journal_misc" model="ir.actions.act_window">
+            <field name="domain">[('display_type', 'not in', ('line_section', 'line_note')),('journal_id.type', '=', 'general')]</field>
+    </record>
+
+    <record id="view_rec_and_pay_line_tree" model="ir.ui.view">
+        <field name="name">account.rec.pay.move.line.list</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <list string="AR and AP Transactions" create="false">
+                <field name="date"/>
+                <field name="move_id" string="Invoice Number"/>
+                <field name="journal_id" options='{"no_open":True}'/>
+                <field name="name"/>
+                <field name="account_type" column_invisible="1"/>
+                <field name="company_id" column_invisible="1"/>
+
+                <button name="action_display_invoice"
+                        string="Source"
+                        icon="fa-external-link-square"
+                        type="object"
+                        />
+
+                <field name="ref" string="Reference" optional="hide"/>
+                <field name="account_id" options='{"no_open":True}' optional="show"/>
+                <field name="debit" sum="Total Debit"/>
+                <field name="credit" sum="Total Credit"/>
+                <field name="balance" string="Debit-Credit" sum="Total Balance" optional="show"/>
+                <field name="amount_residual" sum="Total Residual"/>
+                <field name="currency_id" readonly="False" groups="base.group_multi_currency" optional="show"/>
+                <field name="amount_currency" readonly="False" groups="base.group_multi_currency"
+                       sum="Total Amount Currency" optional="show"/>
+                <field name="amount_residual_currency" sum="Currency Line Balance" groups="base.group_multi_currency"
+                       optional="show"/>
+                <field name="payment_id"/>
+                <field name="blocked" string='On Hold' readonly="False"/>
+                <field name="reconciled" readonly="1"/>
+                <field name="matching_number" readonly="1"/>
+                <field name="analytic_distribution" groups="analytic.group_analytic_accounting" optional="show"/>
+                <field name="date_maturity"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

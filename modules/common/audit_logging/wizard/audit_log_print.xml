@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_audit_print" model="ir.ui.view">
+            <field name="name">Audit Log Report Wizard</field>
+            <field name="model">audit.log.print</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Report">
+                    <group colspan="4" col="4" string="Configuration">
+                        <field name="start"/>
+                        <field name="finish"/>
+                        <field name="model_ids" widget='many2many_tags' options="{'no_create': True}"/>
+                        <field name="output_type"/>
+                        <field name="run_as_task"/>
+                    </group>
+
+                    <footer>
+                        <div>
+                            <button name="print_report"
+                                    invisible="run_as_task == True"
+                                    string="Print" type="object"
+                                    class="oe_highlight" colspan="2"/>
+
+                            <button name="print_report"
+                                    invisible="run_as_task == False"
+                                    string="Submit" type="object"
+                                    class="oe_highlight" colspan="2"/>
+                            or
+                            <button special="cancel" string="Cancel" class="oe_link"/>
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_audit_print" model="ir.actions.act_window">
+            <field name="name">Print Audit Trail</field>
+            <field name="res_model">audit.log.print</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_audit_print"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+                id="menu_audit_log_print"
+                parent="menu_auditing"
+                name="Print Audit Trail"
+                action="action_audit_print"/>
+
+        <record id="audit_report_download_view" model="ir.ui.view">
+            <field name="name">Download Report</field>
+            <field name="model">audit.log.print</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group colspan="4">
+                        <field name="report_name" invisible="1"/>
+                        <field name="data" filename="report_name"/>
+                    </group>
+                    <footer>
+                        <button special="cancel" string="Close" colspan="2" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

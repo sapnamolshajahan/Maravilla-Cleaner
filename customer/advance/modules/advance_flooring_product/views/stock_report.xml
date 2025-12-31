@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_stock_report_list_inherit" model="ir.ui.view">
+        <field name="name">stock.report.list.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='outgoing_qty']" position="after">
+                <field name="reordering_min_qty" string="Min Qty"/>
+                <field name="reordering_max_qty" string="Max Qty"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

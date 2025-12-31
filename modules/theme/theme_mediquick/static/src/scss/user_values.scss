@@ -1,0 +1,10 @@
+$o-user-website-values: map-merge($o-user-website-values, o-map-omit((
+    'headings-font': 'Poppins',
+    'font': 'Poppins',
+    'google-fonts': ('Poppins'),
+    'google-local-fonts': null,
+    'uploaded-local-fonts': null,
+    'footer-gradient': 'NULL',
+    'logo-height': 3.75rem,
+    // -- hook --
+)));

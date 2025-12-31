@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="stock_reconcile_dni_search_view" model="ir.ui.view">
+        <field name="name">stock.reconcile.dni.search</field>
+        <field name="model">account.stock.reconcile.dni</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sale_order"/>
+                <field name="product"/>
+                <group>
+                </group>
+                <group>
+                    <filter string='Product' name="productgroup" context="{'group_by': 'product'}"/>
+                    <filter string='Sale Order' name="salegroup" context="{'group_by': 'sale_order'}"/>
+               </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_stock_reconcile_dni_tree">
+        <field name="name">account.stock.reconcile.dni.list</field>
+        <field name="model">account.stock.reconcile.dni</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <list default_order="create_date desc">
+                 <header>
+                    <button name="button_reconcile" type="object" string="Reconcile"/>
+                </header>
+                <field name='date'/>
+                <field name="sale_order"/>
+                <field name="pickings" widget="many2many_tags"/>
+                <field name="product"/>
+                <field name="qty_sent" />
+                <field name="value_sent" sum="value_sent_total"/>
+                <field name="qty_invoiced" />
+                <field name="value_invoiced" sum="'value_invoiced_total"/>
+                <field name="difference" sum="'difference_total"/>
+                <field name="account_moves" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_stock_reconcile_dni" model="ir.actions.act_window">
+            <field name="name">Reconcile DNI</field>
+            <field name="res_model">account.stock.reconcile.dni</field>
+            <field name="view_mode">list</field>
+            <field name="domain"></field>
+            <field name="search_view_id" ref="stock_reconcile_dni_search_view"/>
+        </record>
+
+    <menuitem id="menu_action_stock_account_report_stock_dni"
+                name="Stock DNI"
+                action="action_stock_reconcile_dni"
+                parent="account_reports.account_audit_inventory_entries_menu"
+                sequence="50"/>
+
+
+</odoo>

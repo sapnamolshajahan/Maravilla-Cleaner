@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Employee Qualifications" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a979b9e7-42c8-4320-a608-4ee9c0b11c4e">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base Style" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct" isForPrompting="false"/>
+	<parameter name="viaduct-report-ids" class="java.util.List" isForPrompting="false">
+		<parameterDescription><![CDATA[List of hr.employee ids]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="viaduct-directory" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select
+  date_from "date-from",
+  date_expiry "date-expiry",
+  hr_employee.id "employee-id",
+  hr_employee_qualification.notes,
+  resource_resource.name "employee-name",
+  hr_qualification_qualification.name "qualification",
+  hr_qualification_status.name "status"
+from
+  hr_employee_qualification,
+  hr_qualification_qualification,
+  hr_qualification_status,
+  hr_employee,
+  resource_resource
+where $X{IN, hr_employee.id, viaduct-report-ids}
+and hr_employee_qualification.employee_id = hr_employee.id
+and hr_qualification_qualification.id = qualification_id
+and hr_qualification_status.id = status_id
+and resource_resource.id = hr_employee.resource_id
+order by resource_resource.name, resource_resource.id, date_from]]>
+	</queryString>
+	<field name="date-from" class="java.sql.Date"/>
+	<field name="date-expiry" class="java.sql.Date"/>
+	<field name="employee-id" class="java.lang.Integer"/>
+	<field name="notes" class="java.lang.String">
+		<fieldDescription><![CDATA[Notes]]></fieldDescription>
+	</field>
+	<field name="employee-name" class="java.lang.String"/>
+	<field name="qualification" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<group name="employee">
+		<groupExpression><![CDATA[$F{employee-id}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="85" y="0" width="150" height="15" uuid="f3c4649c-2007-40ad-b88f-30043aac35d1"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{employee-name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="80" height="15" uuid="b8c4b2dd-96e6-477f-927a-80bfa9290411"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Employee:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="5"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="26f55c33-0bfe-42e8-bff1-e72ee09924aa"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee Qualifications Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="10">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="0" width="100" height="10" uuid="89287de7-2e38-49ec-a34c-435111c6fd05"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="12" uuid="48838828-3e8d-4b2c-b01b-f0e07ee35169"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="80" height="12" uuid="9588889e-2c2c-4394-9266-27e21f2165c6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expiry]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="120" height="12" uuid="0c2c471c-d832-4a8e-85a7-416309b64a13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qualification]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="60" height="12" uuid="704021b2-b72e-4532-adc0-f1f3e84e6c15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="80" height="12" uuid="8824b3f1-59fa-44a5-98ed-49fb61cd33e0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notes]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12">
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="0" y="0" width="80" height="12" uuid="d0621b89-33b3-4dff-bff5-0d5669d91181"/>
+				<textFieldExpression><![CDATA[$F{date-from}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="80" y="0" width="80" height="12" uuid="de00715a-9a8a-40c5-af9a-209406e9bf08"/>
+				<textFieldExpression><![CDATA[$F{date-expiry}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="180" y="0" width="120" height="12" isPrintWhenDetailOverflows="true" uuid="0efe7310-0983-4179-b4a2-9e77e5b260ed"/>
+				<textElement>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qualification}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="60" height="12" uuid="1600deda-81ff-4a20-bf93-ba430a67d926"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="360" y="0" width="195" height="12" isPrintWhenDetailOverflows="true" uuid="c5ccf21a-2206-45a4-b800-911bf207518a"/>
+				<textFieldExpression><![CDATA[$F{notes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="10">
+			<textField>
+				<reportElement x="500" y="0" width="20" height="10" uuid="8c704553-3e51-4ad2-8aeb-95aaa4b9daea"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="520" y="0" width="5" height="10" uuid="b944a36a-317b-4446-81c5-dfee2041772d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="525" y="0" width="30" height="10" uuid="8024cda9-b30d-4d1d-acbb-1556809c00e5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

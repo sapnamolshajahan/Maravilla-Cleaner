@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Xero Integration',
+    'version': '19.0.1.0.1',
+    'category': 'Settings',
+    'description': """Base Xero integration module. Assumes all transactions are based on Odoo apart from receipts imports""",
+    'author': 'OptimySME Limited',
+    "license": "Other proprietary",
+    'website': 'http://www.optimysme.co.nz',
+    'depends': [
+        'stock',
+        'account',
+        'base',
+        'product',
+        'sale',
+        'purchase',
+        'point_of_sale'
+    ],
+    'data': [
+        'views/account_account.xml',
+        'views/account_move.xml',
+        'views/account_payment.xml',
+        'views/connection_successful_view.xml',
+        'views/maintain_logs.xml',
+        'views/product_template.xml',
+        'views/res_config_settings_views.xml',
+        'views/res_partner.xml',
+        'views/res_partner_category.xml',
+        'views/tax.xml',
+        'views/warehouse.xml',
+        'views/xero_integrate.xml',
+        'security/security.xml',
+        'data/ir_cron.xml',
+        'data/xero_account_account.xml',
+        'data/xero_import_type.xml',
+        'wizard/connection_successfull_view.xml'
+    ],
+    'demo': [],
+    'installable': True,
+    'active': False,
+}

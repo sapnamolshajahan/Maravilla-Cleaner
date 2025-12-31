@@ -1,0 +1,1117 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Odoo API",
+		"_postman_id": "08fa4e0c-f200-9ffe-a0b1-0ece5f4d60e0",
+		"description": "NOTE: base URL http://localhost:11269 should be replaces with actual Odoo URL.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"url": "http://localhost:11269/api/v1/login",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Odoo-Authorisation",
+						"value": "fa1982ba-f10b-4a5c-aace-3eb9ce385632",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get auth_token using Odoo-Authorisation generated for each user"
+			},
+			"response": [
+				{
+					"id": "df0cb1b6-50d1-42b0-9bb9-cd9e3272d255",
+					"name": "Login success",
+					"originalRequest": {
+						"url": "http://localhost:11269/api/v1/login",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Odoo-Authorisation",
+								"value": "fa1982ba-f10b-4a5c-aace-3eb9ce385632",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Odoo-Authorisation",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "123",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:43:36 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 66,
+					"body": "{\"uid\": 1, \"company\": 1, \"access_token\": \"access_token_b032562f84967c90b5ad19c2d9008d3181fc4642\", \"expires_in\": \"86400\"}"
+				}
+			]
+		},
+		{
+			"name": "GET Sale Order by its ID",
+			"request": {
+				"url": "http://localhost:11269/api/v1/model/sale.order/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get sale order for by its ID"
+			},
+			"response": [
+				{
+					"id": "31950a01-a81e-4639-83d3-9acc9641e991",
+					"name": "GET Sale Order by its ID",
+					"originalRequest": {
+						"url": "http://localhost:11269/api/v1/model/sale.order/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "1591",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:44:05 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 211,
+					"body": "[{\"id\": 1, \"client_order_ref\": false, \"date_order\": \"2019-08-07 04:23:37\", \"margin\": 8.0, \"name\": \"SO001\", \"order_line\": [{\"id\": 1, \"order_id\": [1, \"SO001\"], \"name\": \"Test Product 1\", \"sequence\": 10, \"invoice_lines\": [], \"invoice_status\": \"no\", \"price_subtotal\": 10.0, \"price_tax\": 0.0, \"price_total\": 10.0, \"price_reduce\": 10.0, \"tax_id\": [], \"price_reduce_taxinc\": 10.0, \"price_reduce_taxexcl\": 10.0, \"discount\": 0.0, \"product_id\": [1, \"[Delivery] Free delivery charges\"], \"product_uom_qty\": 1.0, \"product_uom\": [1, \"Unit(s)\"], \"qty_delivered\": 0.0, \"qty_to_invoice\": 0.0, \"qty_invoiced\": 0.0, \"salesman_id\": [1, \"Administrator\"], \"currency_id\": [1, \"EUR\"], \"company\": [1, \"My Company\"], \"order_partner_id\": [10, \"Customer\"], \"analytic_tag_ids\": [], \"is_downpayment\": false, \"state\": \"draft\", \"customer_lead\": 0.0, \"amt_to_invoice\": 0.0, \"amt_invoiced\": 0.0, \"layout_category_id\": false, \"layout_category_sequence\": 0, \"margin\": 8.0, \"purchase_price\": 2.0, \"product_packaging\": false, \"route_id\": false, \"move_ids\": [], \"is_delivery\": false, \"low_stock_alert_trigger\": false, \"notes\": false, \"price_changed\": false, \"stock_available\": 0.0, \"price_unit\": 10.0, \"discount_original\": 0.0, \"price_unit_original\": 0.0, \"stock_moves\": [], \"create_uid\": [1, \"Administrator\"], \"create_date\": \"2019-08-07 04:23:44\", \"write_uid\": [1, \"Administrator\"], \"write_date\": \"2019-08-28 03:40:52\", \"product_updatable\": true, \"product_image\": false, \"qty_delivered_updateable\": false, \"product_qty\": 1.0, \"display_name\": \"SO001 - Test Product 1\", \"__last_update\": \"2019-08-28 03:40:52\"}], \"origin\": false}]"
+				}
+			]
+		},
+		{
+			"name": "GET Detailed Sale Order",
+			"request": {
+				"url": {
+					"raw": "http://localhost:11269/api/v1/model/sale.order/1?detailed=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11269",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"sale.order",
+						"1"
+					],
+					"query": [
+						{
+							"key": "detailed",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "01928f8d-8393-4737-a570-6f21a3db3942",
+					"name": "GET Detailed Sale Order",
+					"originalRequest": {
+						"url": {
+							"raw": "http://localhost:11269/api/v1/model/sale.order/1?detailed=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "11269",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"sale.order",
+								"1"
+							],
+							"query": [
+								{
+									"key": "detailed",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "1591",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:44:20 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 380,
+					"body": "[{\"id\": 1, \"client_order_ref\": false, \"date_order\": \"2019-08-07 04:23:37\", \"margin\": 8.0, \"name\": \"SO001\", \"order_line\": [{\"id\": 1, \"order_id\": [1, \"SO001\"], \"name\": \"Test Product 1\", \"sequence\": 10, \"invoice_lines\": [], \"invoice_status\": \"no\", \"price_subtotal\": 10.0, \"price_tax\": 0.0, \"price_total\": 10.0, \"price_reduce\": 10.0, \"tax_id\": [], \"price_reduce_taxinc\": 10.0, \"price_reduce_taxexcl\": 10.0, \"discount\": 0.0, \"product_id\": [1, \"[Delivery] Free delivery charges\"], \"product_uom_qty\": 1.0, \"product_uom\": [1, \"Unit(s)\"], \"qty_delivered\": 0.0, \"qty_to_invoice\": 0.0, \"qty_invoiced\": 0.0, \"salesman_id\": [1, \"Administrator\"], \"currency_id\": [1, \"EUR\"], \"company\": [1, \"My Company\"], \"order_partner_id\": [10, \"Customer\"], \"analytic_tag_ids\": [], \"is_downpayment\": false, \"state\": \"draft\", \"customer_lead\": 0.0, \"amt_to_invoice\": 0.0, \"amt_invoiced\": 0.0, \"layout_category_id\": false, \"layout_category_sequence\": 0, \"margin\": 8.0, \"purchase_price\": 2.0, \"product_packaging\": false, \"route_id\": false, \"move_ids\": [], \"is_delivery\": false, \"low_stock_alert_trigger\": false, \"notes\": false, \"price_changed\": false, \"stock_available\": 0.0, \"price_unit\": 10.0, \"discount_original\": 0.0, \"price_unit_original\": 0.0, \"stock_moves\": [], \"create_uid\": [1, \"Administrator\"], \"create_date\": \"2019-08-07 04:23:44\", \"write_uid\": [1, \"Administrator\"], \"write_date\": \"2019-08-28 03:40:52\", \"product_updatable\": true, \"product_image\": false, \"qty_delivered_updateable\": false, \"product_qty\": 1.0, \"display_name\": \"SO001 - Test Product 1\", \"__last_update\": \"2019-08-28 03:40:52\"}], \"origin\": false}]"
+				}
+			]
+		},
+		{
+			"name": "GET Sale Orders for Partner",
+			"request": {
+				"url": {
+					"raw": "http://localhost:11269/api/v1/model/sale.order?domain=partner_id,=,10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11269",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"sale.order"
+					],
+					"query": [
+						{
+							"key": "domain",
+							"value": "partner_id,=,10",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get sale orders for partner"
+			},
+			"response": [
+				{
+					"id": "b6495c8c-775e-49e2-b755-12fe2a60987f",
+					"name": "GET Sale Orders for Partner",
+					"originalRequest": {
+						"url": {
+							"raw": "http://localhost:11269/api/v1/model/sale.order?domain=partner_id,=,10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "11269",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"sale.order"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "partner_id,=,10",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "1139",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:44:57 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 161,
+					"body": "[{\"id\": 11, \"client_order_ref\": false, \"date_order\": \"2019-08-28 03:25:57\", \"margin\": 0.0, \"name\": \"SO017\", \"order_line\": [], \"origin\": false}, {\"id\": 10, \"client_order_ref\": false, \"date_order\": \"2019-08-28 03:25:27\", \"margin\": 0.0, \"name\": \"SO016\", \"order_line\": [], \"origin\": false}, {\"id\": 9, \"client_order_ref\": false, \"date_order\": \"2019-08-28 03:21:06\", \"margin\": 0.0, \"name\": \"SO015\", \"order_line\": [], \"origin\": false}, {\"id\": 8, \"client_order_ref\": false, \"date_order\": \"2019-08-28 03:17:10\", \"margin\": 0.0, \"name\": \"SO008\", \"order_line\": [], \"origin\": false}, {\"id\": 7, \"client_order_ref\": false, \"date_order\": \"2019-08-28 01:27:43\", \"margin\": 0.0, \"name\": \"SO007\", \"order_line\": [], \"origin\": false}, {\"id\": 5, \"client_order_ref\": false, \"date_order\": \"2019-08-28 01:25:31\", \"margin\": 0.0, \"name\": \"SO005\", \"order_line\": [], \"origin\": false}, {\"id\": 4, \"client_order_ref\": false, \"date_order\": \"2019-08-28 01:25:03\", \"margin\": 0.0, \"name\": \"SO004\", \"order_line\": [], \"origin\": false}, {\"id\": 1, \"client_order_ref\": false, \"date_order\": \"2019-08-07 04:23:37\", \"margin\": 8.0, \"name\": \"SO001\", \"order_line\": [1], \"origin\": false}]"
+				}
+			]
+		},
+		{
+			"name": "GET Sale Order by its name",
+			"request": {
+				"url": {
+					"raw": "http://localhost:11269/api/v1/model/sale.order?domain=name,=,SO001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11269",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"sale.order"
+					],
+					"query": [
+						{
+							"key": "domain",
+							"value": "name,=,SO001",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Search sale orders by name"
+			},
+			"response": [
+				{
+					"id": "e21ef0a9-756a-4fa2-96a0-4c9c4b47bd8b",
+					"name": "GET Sale Order by its name",
+					"originalRequest": {
+						"url": {
+							"raw": "http://localhost:11269/api/v1/model/sale.order?domain=name,=,SO001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "11269",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"sale.order"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "name,=,SO001",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "143",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:45:09 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 83,
+					"body": "[{\"id\": 1, \"client_order_ref\": false, \"date_order\": \"2019-08-07 04:23:37\", \"margin\": 8.0, \"name\": \"SO001\", \"order_line\": [1], \"origin\": false}]"
+				}
+			]
+		},
+		{
+			"name": "Search Sale Orders",
+			"request": {
+				"url": {
+					"raw": "http://localhost:11269/api/v1/model/sale.order?limit=2&fields=name,amount_untaxed&order=amount_untaxed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11269",
+					"path": [
+						"api",
+						"v1",
+						"model",
+						"sale.order"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "fields",
+							"value": "name,amount_untaxed",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "order",
+							"value": "amount_untaxed",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Getting sale orders using params ilke limit, fields (to return), order by some values"
+			},
+			"response": [
+				{
+					"id": "8e49eea2-8793-4c8d-b19f-deab1bb69621",
+					"name": "Search Sale Orders",
+					"originalRequest": {
+						"url": {
+							"raw": "http://localhost:11269/api/v1/model/sale.order?limit=2&fields=name,amount_untaxed&order=amount_untaxed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "11269",
+							"path": [
+								"api",
+								"v1",
+								"model",
+								"sale.order"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "fields",
+									"value": "name,amount_untaxed",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "order",
+									"value": "amount_untaxed",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "104",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:45:20 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 127,
+					"body": "[{\"id\": 11, \"name\": \"SO017\", \"amount_untaxed\": 0.0}, {\"id\": 10, \"name\": \"SO016\", \"amount_untaxed\": 0.0}]"
+				}
+			]
+		},
+		{
+			"name": "Create a basic Sale Order",
+			"request": {
+				"url": "http://localhost:11269/api/v1/model/sale.order",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"partner_id\": 10, \"order_line\": []}"
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "db92d5ef-3e55-4167-8271-1569155acf0a",
+					"name": "Create a basic Sale Order",
+					"originalRequest": {
+						"url": "http://localhost:11269/api/v1/model/sale.order",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"partner_id\": 10, \"order_line\": []}"
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, POST, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "33",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:45:35 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 432,
+					"body": "{\"id\": 13, \"model\": \"sale.order\"}"
+				}
+			]
+		},
+		{
+			"name": "DELETE Sale Order",
+			"request": {
+				"url": "http://localhost:11269/api/v1/model/sale.order/12",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Delete Sale Order by its ID"
+			},
+			"response": [
+				{
+					"id": "8b44cc99-69cf-4ed7-8f73-1b7b22b9f78f",
+					"name": "DELETE Sale Order",
+					"originalRequest": {
+						"url": "http://localhost:11269/api/v1/model/sale.order/13",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, PUT, DELETE, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "66",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:45:46 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 153,
+					"body": "{\"success\": \"Record 13 successfully deleted for model sale.order\"}"
+				}
+			]
+		},
+		{
+			"name": "POST attachment",
+			"request": {
+				"url": "http://localhost:11269/api/v1/model/sale.order/11/attachment",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"attachments\": [{\"data\": \"base64 string\", \"name\": \"test.pdf\"}]}"
+				},
+				"description": "POST attachment to sale order.\nAccepts base64 strings for files."
+			},
+			"response": [
+				{
+					"id": "fb21cd64-4de5-4de4-b37c-4932b3ccb508",
+					"name": "POST attachment",
+					"originalRequest": {
+						"url": "http://localhost:11269/api/v1/model/sale.order/11/attachment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"attachments\": [{\"data\": \"base64 string\", \"name\": \"test.pdf\"}]}"
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "POST, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "33",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:45:55 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 202,
+					"body": "{\"id\": 11, \"model\": \"sale.order\"}"
+				}
+			]
+		},
+		{
+			"name": "Update line ",
+			"request": {
+				"url": "http://localhost:11269/api/v1/model/sale.order.line/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": 1, \"product_id\": 1}"
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "8ea8b92c-ba4d-436b-b77d-baa9d657edc7",
+					"name": "Update line ",
+					"originalRequest": {
+						"url": "http://localhost:11269/api/v1/model/sale.order.line/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "access_token_b032562f84967c90b5ad19c2d9008d3181fc4642",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\": 1, \"product_id\": 1}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Content-Type, Accept, Access-Token, access_token, Origin, X-Requested-With",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, PUT, DELETE, OPTIONS",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "55",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Wed, 28 Aug 2019 03:46:03 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.7.4",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 119,
+					"body": "\"Updated sale.order.line record with ID 1 successfully\""
+				}
+			]
+		}
+	]
+}

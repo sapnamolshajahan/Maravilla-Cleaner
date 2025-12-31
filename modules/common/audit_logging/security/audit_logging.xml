@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.model.access" id="audit_logging_all">
+            <field name="name">audit.logging.all</field>
+            <field name="model_id" ref="model_audit_logging"/>
+            <field name="perm_read">True</field>
+            <field name="perm_write">False</field>
+            <field name="perm_create">True</field>
+            <field name="perm_unlink">False</field>
+        </record>
+
+        <record model="ir.model.access" id="audit_logging_group">
+            <field name="name">audit.logging.group</field>
+            <field name="model_id" ref="model_audit_logging_group"/>
+            <field name="group_id" ref="account.group_account_manager"/>
+            <field name="perm_read">True</field>
+            <field name="perm_write">True</field>
+            <field name="perm_create">True</field>
+            <field name="perm_unlink">True</field>
+        </record>
+
+        <record model="ir.model.access" id="audit_logging_report_group">
+            <field name="name">audit.logging.report.group</field>
+            <field name="model_id" ref="model_audit_log_print"/>
+            <field name="group_id" ref="account.group_account_manager"/>
+            <field name="perm_read">True</field>
+            <field name="perm_write">True</field>
+            <field name="perm_create">True</field>
+            <field name="perm_unlink">True</field>
+        </record>
+
+        <record model="ir.model.access" id="audit_logging_report">
+            <field name="name">audit.logging.report</field>
+            <field name="model_id" ref="model_audit_log_report"/>
+            <field name="group_id" ref="account.group_account_manager"/>
+            <field name="perm_read">True</field>
+            <field name="perm_write">True</field>
+            <field name="perm_create">True</field>
+            <field name="perm_unlink">True</field>
+        </record>
+
+        <record model="ir.model.access" id="audit_logging_report_line">
+            <field name="name">audit.logging.report.line</field>
+            <field name="model_id" ref="model_audit_log_report_line"/>
+            <field name="group_id" ref="account.group_account_manager"/>
+            <field name="perm_read">True</field>
+            <field name="perm_write">True</field>
+            <field name="perm_create">True</field>
+            <field name="perm_unlink">True</field>
+        </record>
+
+    </data>
+</openerp>

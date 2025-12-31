@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--
+		Access for Test Models.
+		Make sure this file is enabled in __manifest__.py
+	  -->
+	<record id="localhost_category_access" model="ir.model.access">
+		<field name="name">Localhost Product Template</field>
+		<field name="model_id" ref="model_localhost_product_category"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="remote1_category_access" model="ir.model.access">
+		<field name="name">Localhost Product Template</field>
+		<field name="model_id" ref="model_remote1_product_category"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+	<record id="remote_dummy_model" model="ir.model.access">
+		<field name="name">Dummy Model</field>
+		<field name="model_id" ref="model_dummy_model"/>
+		<field name="perm_read" eval="True" />
+		<field name="perm_write" eval="True" />
+		<field name="perm_create" eval="True" />
+		<field name="perm_unlink" eval="True" />
+	</record>
+
+</odoo>

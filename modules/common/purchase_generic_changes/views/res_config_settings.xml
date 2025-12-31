@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_purchase_generic" model="ir.ui.view">
+        <field name="name">res.config.settings.purchase.generic</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="35"/>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='matrix_setting_container']" position="after">
+                <div class="row mt16 o_settings_container" name="purchase_generic_container">
+                    <setting id="purchase_incoterm_settings" string="Purchase Incoterm"
+                             help="Default Purchase Incoterms">
+                        <field name="purchase_incoterm"/>
+                    </setting>
+                    <setting id="hide_drop_ship_fields_settings" string="Dropship Options"
+                             help="Hide Drop Ship option on the purchase order form">
+                        <field name="hide_drop_ship_fields"/>
+                    </setting>
+                    <setting id="hide_alt_address_fields_settings" string="Alternate Ship Address Options"
+                             help="Hide Alternate Ship Address option on the purchase order form">
+                        <field name="hide_alt_address_fields"/>
+                    </setting>
+                    <setting id="hide_delivery_notes_fields_settings" string="Delivery Notes Options"
+                             help="Hide delivery notes field on the purchase order form">
+                        <field name="hide_delivery_notes_fields"/>
+                    </setting>
+                    <setting id="purchase_set_counts_zero_settings" string="Show Counts on Partner Smart Button" help="Show counts of invoices and purchase orders on supplier form - set to no for better
+                                performance">
+                        <field name="purchase_set_counts_zero"/>
+                    </setting>
+                    <setting id="purchase_company_only_settings" string="Force Company Only Domain on Purchase"
+                             help="If set, cannot purchase from a contact.">
+                        <field name="purchase_company_only"/>
+                    </setting>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_template_form_changes" model="ir.ui.view">
+        <field name="name">management.mail.template.extended.form</field>
+        <field name="model">mail.template</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mail.email_template_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='body_html']" position="before">
+                <group>
+                    <button name="merge_content_and_design"
+                            string="Render Template"
+                            type="object"
+                            invisible="design_template == False"
+                            class="oe_highlight"/>
+                </group>
+                <separator string="Rendered Template:   "/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--Search Extension-->
+    <record id="generic_mail_templates_search" model="ir.ui.view">
+        <field name="name">mail.templates.search</field>
+        <field name="model">mail.template</field>
+        <field name="arch" type="xml">
+
+            <search>
+                <field name="name"/>
+                <group>
+                    <filter name="design" string='Design' domain="[]" context="{'group_by' : 'design_template'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--In Action Menu-->
+    <!--Update Many Templates-->
+    <record id="action_render_template_designs" model="ir.actions.server">
+        <field name="name">Render Templates</field>
+        <field name="model_id" ref="model_mail_template"/>
+        <field name="binding_model_id" ref="model_mail_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.merge_content_and_design()</field>
+    </record>
+
+
+    <!--Another Menu with email templates that are utilising generic designs-->
+    <record id="generic_mail_templates_action" model="ir.actions.act_window">
+        <field name="name">Mail Templates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mail.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="generic_mail_templates_search"/>
+        <field name="domain">[('design_template', '!=', False)]</field>
+    </record>
+
+    <menuitem name="Mail Templates (Generic Design)"
+              id="generic_mail_templates_menu"
+              action="generic_mail_templates_action"
+              parent="menu_mail_template_design_section"
+              sequence="2"/>
+</odoo>

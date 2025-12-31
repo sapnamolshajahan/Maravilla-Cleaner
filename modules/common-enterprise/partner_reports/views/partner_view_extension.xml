@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_individual_res_partner_statement_view" model="ir.actions.act_window">
+        <field name="name">Partner Statement</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">res.partner.statement</field>
+        <field name="view_id" ref="partner_statement_view"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="context">{'default_partner_ids': active_ids}</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_partner_form_statement_new" model="ir.ui.view">
+        <field name="name">Partner Statement Box</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="action"
+                        name="%(action_individual_res_partner_statement_view)d"
+                        groups="account.group_account_manager,account.group_account_user,partner_reports.group_partner_reports_user"
+                        invisible="is_company == False"
+                        icon="fa-calculator"
+                        string="Statement"/>
+            </div>
+        </field>
+    </record>
+
+</odoo>

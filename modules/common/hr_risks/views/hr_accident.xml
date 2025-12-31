@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_risk_form_accident" model="ir.ui.view">
+            <field name="name">view.risk.form.accident</field>
+            <field name="model">hr.accident.accident</field>
+            <field name="inherit_id" ref="hr_accident.view_accident_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='hr_hazard_id']" position="after">
+                    <field name="hr_risk_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

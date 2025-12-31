@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field name="context">{'fully_received': False}</field>
+    </record>
+
+    <record id="purchase.action_purchase_order_report_all" model="ir.actions.act_window">
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_user_id': 1}</field>
+    </record>
+
+
+    <record id="purchase_order_view_search_ext" model="ir.ui.view">
+        <field name="name">PO Search Not Received</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <filter name="not_received" string="Not Fully Received" domain="[('fully_received', '=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="purchase_reporting"
+              action="purchase.action_purchase_order_report_all"
+              name="Purchase Analysis"
+              parent="purchase.purchase_report"
+              sequence="10"
+              groups="purchase.group_purchase_manager"/>
+
+    <record id="purchase_order_tree_extension_generic" model="ir.ui.view">
+        <field name="name">Purchase Tree Generic Changes</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="fully_received"/>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_ref']" position="replace"/>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref"/>
+            </xpath>
+
+            <xpath expr="//field[@name='date_planned']" position="attributes">
+                <attribute name="string">Scheduled Date</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="purchase_order_form_generic" model="ir.ui.view">
+        <field name="name">purchase.order.form.generic</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='products']/field[@name='order_line']/list/field[@name='product_uom_id']"
+                   position="attributes">
+                <attribute name="options">{'no_create': True, 'no_edit': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_address_id"/>
+                <field name="delivery_address_desc"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">['|', ('customer_rank', '=', 0),
+                                          ('supplier_rank', '>', 0),
+                                          ('is_company', '=', True),
+                                          ]</attribute>
+                <attribute name="options">{'no_create': True, 'no_edit': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='name']" position="after">
+                <field name="account" options="{'no_create': True, 'no_edit': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_id']" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_edit': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="purchase_order_form_extension_generic" model="ir.ui.view">
+        <field name="name">purchase.order.form.generic</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
+        <field name="arch" type="xml">
+
+            <!-- Relocate some fields -->
+            <xpath expr="//field[@name='picking_type_id']" position="replace"/>
+            <xpath expr="//field[@name='payment_term_id']" position="replace"/>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="payment_term_id" readonly="invoice_status == 'invoiced' or state == 'done'"
+                       options="{'no_open': True, 'no_create': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="hide_drop_ship_fields" invisible="1"/>
+                <field name="hide_alt_address_fields" invisible="1"/>
+                <field name="hide_delivery_notes_fields" invisible="1"/>
+                <field name="picking_type_id"
+                       domain="[('code','=','incoming')]"
+                       options="{'no_create': True}"
+                       context="{'special_shortened_wh_name': True}"
+                       groups="stock.group_stock_multi_locations"/>
+                <field name="dest_address_id"
+                       domain="['|', ('is_company', '=', True),('type', '=', 'delivery')]"
+                       options="{'no_open': True, 'no_create': True}"
+                       required="default_location_dest_id_usage == 'customer'"
+                       invisible="hide_drop_ship_fields == True"/>
+                <field name="alternate_shipping_address" invisible="hide_drop_ship_fields == True"/>
+                <field name="delivery_notes" invisible="hide_delivery_notes_fields == True"/>
+
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="History" name="page_history">
+                    <group string="Invoices">
+                        <field colspan="4" name="invoice_ids" nolabel="1">
+                            <list decoration-info="state == 'draft'"
+                                  decoration-muted="state == 'cancel'"
+                                  string="Invoice">
+                                <field name="invoice_date"/>
+                                <field name="name"/>
+                                <field name="partner_id" groups="base.group_user"/>
+                                <field name="journal_id" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                                <field name="user_id"/>
+                                <field name="invoice_date_due"/>
+                                <field name="invoice_origin"/>
+                                <field name="currency_id"/>
+                                <field name="amount_residual" sum="Residual Amount"/>
+                                <field name="amount_untaxed" sum="Untaxed Amount"/>
+                                <field name="amount_total" sum="Total Amount"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group string="Packings">
+                        <field colspan="2" name="picking_ids" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_lines_tree" model="ir.ui.view">
+        <field name="name">Purchase Lines</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+            <list string="Purchase Order Lines" create="false">
+                <field name="order_id"/>
+                <field name="partner_id" string="Vendor"/>
+                <field name="product_id"/>
+                <field name="price_unit"/>
+                <field name="product_qty"/>
+                <field name="product_uom_id" groups="uom.group_uom"/>
+                <field name="price_subtotal" widget="monetary"/>
+                <field name="date_planned" widget="date"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_purchase_lines_tree" model="ir.actions.act_window">
+        <field name="res_model">purchase.order.line</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="purchase_order_lines_tree"/>
+    </record>
+
+    <menuitem id="menu_purchase_order_line_view"
+              action="action_purchase_lines_tree"
+              name="Purchase Lines"
+              parent="purchase.menu_procurement_management"
+              sequence="101"/>
+
+
+</odoo>

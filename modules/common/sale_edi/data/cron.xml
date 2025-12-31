@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_itm_edi_confirmation" model="ir.cron">
+        <field name="name">Invoice: Check FTP for EDI confirmations</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="code">model.check_edi_confirmations()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+    </record>
+
+    <record id="ir_cron_buildlink_edi_confirmation" model="ir.cron">
+        <field name="name">Invoice: Check Buildlink SFTP for EDI confirmations</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="code">model.check_sftp_edi_confirmations()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+    </record>
+
+    <record id="ir_cron_itm_edi_not_confirmed_email_send" model="ir.cron">
+        <field name="name">Invoice: Send notifications for unconfirmed EDI invoices</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="active">False</field>
+        <field name="code">model.check_unconfirmed_edi_invoices()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+    </record>
+</odoo>

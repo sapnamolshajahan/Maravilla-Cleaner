@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Remittance Advice" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0ca35c-13f9-4878-a0fb-13d1a7a75f7a">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-report-ids" class="java.util.List">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<parameter name="all-partners" class="java.lang.Boolean" isForPrompting="false">
+		<parameterDescription><![CDATA[Print All Partners]]></parameterDescription>
+	</parameter>
+	<parameter name="partner-ids" class="java.util.List" isForPrompting="false">
+		<parameterDescription><![CDATA[List of res.partner ids]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+  account_payment.id "payment-id",
+  account_payment.company_id "company-id",
+  account_payment.id "payment-line-id",
+  account_payment.partner_id "customer-id"
+from
+  account_payment
+where $X{IN, account_payment.id, viaduct-report-ids}
+and
+(
+  $P{all-partners} or
+  $X{IN, account_payment.partner_id, partner-ids}
+)
+order by
+  account_payment.partner_id,
+  account_payment.id]]>
+	</queryString>
+	<field name="payment-id" class="java.lang.Integer"/>
+	<field name="company-id" class="java.lang.Integer"/>
+	<field name="payment-line-id" class="java.lang.Integer"/>
+	<field name="customer-id" class="java.lang.Integer"/>
+	<variable name="amount-sum" class="java.math.BigDecimal" resetType="Group" resetGroup="Customer" calculation="Sum">
+		<variableExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("paid-amount")]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="Customer" isStartNewPage="true" isResetPageNumber="true">
+		<groupExpression><![CDATA[String.format ("%d/%d", $F{payment-id}, $F{customer-id})]]></groupExpression>
+		<groupHeader>
+			<band height="236">
+				<image hAlign="Left" isUsingCache="false" onErrorType="Blank">
+					<reportElement x="0" y="0" width="260" height="80" uuid="40fab0a0-1e61-48d3-ad48-c21994fef6bb">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<imageExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("logo-path")]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="355" y="0" width="200" height="10" uuid="f3664c03-bc2e-4707-8139-1344f85324c3">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{viaduct}.helper ("company", $F{company-id}).get ("name")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="355" y="10" width="200" height="70" isPrintWhenDetailOverflows="true" uuid="5050e694-dc32-4850-89c5-c55bb69ad176">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("address")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="85" width="555" height="15" uuid="13037baf-78cb-4480-8acb-4a224bbd9749">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Remittance Advice]]></text>
+				</staticText>
+				<rectangle radius="5">
+					<reportElement x="10" y="110" width="250" height="100" uuid="d365a52e-6634-4330-8f6b-786c2d0553e4">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</rectangle>
+				<staticText>
+					<reportElement mode="Opaque" x="30" y="105" width="50" height="10" uuid="7544a9d8-0451-4bcc-b5da-d61c8f0bbfa3">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left" markup="none">
+						<font size="8" isBold="true"/>
+						<paragraph leftIndent="3"/>
+					</textElement>
+					<text><![CDATA[Payment]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="30" y="120" width="210" height="12" uuid="5c476e77-4ea0-44c0-a397-fe0c5de22ad1"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("customer", $F{customer-id})
+  .get ("name")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="30" y="132" width="210" height="60" uuid="d0812ab8-8fb2-4650-8ccd-dcebc173dceb">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("customer", $F{customer-id})
+  .get ("address")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="355" y="140" width="100" height="15" uuid="afb1d9d1-9256-4e03-a117-ef16164993d9"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date :]]></text>
+				</staticText>
+				<textField pattern="dd MMM yyyy" isBlankWhenNull="true">
+					<reportElement x="455" y="140" width="100" height="15" uuid="427bad29-d9e1-44ab-b0bc-dd81c45efd0c">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font size="12"/>
+						<paragraph leftIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $F{payment-id})
+  .get ("date")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="355" y="155" width="100" height="15" uuid="0d1b93fe-0375-4e76-a6cb-261ef5d18e8b"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reference :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="455" y="155" width="100" height="15" uuid="0ebef90f-63f0-4483-95b8-9066961cb9bb">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font size="12"/>
+						<paragraph leftIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $F{payment-id})
+  .get ("reference")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="355" y="170" width="100" height="15" uuid="e4028637-0a59-4182-854d-233242af35a1"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[GST No :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="455" y="170" width="100" height="15" uuid="a37509cf-2b44-48f5-9e33-a3a551305637">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font size="12"/>
+						<paragraph leftIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("company", $F{company-id})
+  .get ("gst")]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="0" y="220" width="555" height="15" backcolor="#CCCCCC" uuid="d7aa874c-1d1e-4a89-a588-b0b47d139f49">
+						<property name="local_mesure_unity" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="0" y="220" width="285" height="15" uuid="fc40d342-1791-4581-9430-4d2a44a6622a">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+						<paragraph leftIndent="3"/>
+					</textElement>
+					<text><![CDATA[Reference]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="285" y="220" width="90" height="15" uuid="510f4894-be90-40a2-907e-854d9a4a0cd6">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Invoice Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="375" y="220" width="80" height="15" uuid="4e9938d8-76ba-4aaa-8063-8c0d8c8cc70c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Invoiced]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="455" y="220" width="100" height="15" uuid="9a70521b-b6d9-4c61-b152-1cd329e5b472">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+						<paragraph rightIndent="3"/>
+					</textElement>
+					<text><![CDATA[Paid]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="35">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<textField>
+					<reportElement x="420" y="15" width="135" height="15" isRemoveLineWhenBlank="true" uuid="d572adff-17a0-4070-b547-253e8ecc1358">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{amount-sum}]]></textFieldExpression>
+					<patternExpression><![CDATA[String.format ("%s %s #,##0.00",
+  $P{viaduct}
+    .helper ("payment", $F{payment-id})
+    .get ("currency-name"),
+  $P{viaduct}
+    .helper ("payment", $F{payment-id})
+    .get ("currency-symbol"))]]></patternExpression>
+				</textField>
+				<staticText>
+					<reportElement x="330" y="15" width="90" height="15" uuid="d72598c7-dab6-423d-8a85-98c842d53ef5">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total :]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField pattern="###0.0">
+				<reportElement x="0" y="0" width="285" height="12" isRemoveLineWhenBlank="true" uuid="644bd389-addb-4fe6-a6e4-75906ef6a380">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("your-reference")]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy" isBlankWhenNull="true">
+				<reportElement x="285" y="0" width="90" height="12" isRemoveLineWhenBlank="true" uuid="066bb7eb-43b5-4d98-85e1-101b128da103">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("invoice-date")]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ ###,##0.00" isBlankWhenNull="true">
+				<reportElement x="375" y="0" width="80" height="12" isRemoveLineWhenBlank="true" uuid="77c3e852-95c1-4b37-8528-173e072ab0e0">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("invoice-amount")]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ ###,##0.00">
+				<reportElement x="455" y="0" width="100" height="12" isRemoveLineWhenBlank="true" uuid="aa6d418e-d102-4dfc-9344-6a7aad2c575f">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("paid-amount")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

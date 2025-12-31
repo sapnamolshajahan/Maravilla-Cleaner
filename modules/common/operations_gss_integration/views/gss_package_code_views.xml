@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_gss_package_code_tree" model="ir.ui.view">
+            <field name="name">gss.package.code.tree</field>
+            <field name="model">gss.package.code</field>
+            <field name="arch" type="xml">
+                <list string="GSS Package Codes" editable="top">
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_gss_package_code_search" model="ir.ui.view">
+            <field name="name">gss.package.code.search</field>
+            <field name="model">gss.package.code</field>
+            <field name="arch" type="xml">
+                <search string="GSS Package Codes">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+
+        <record id="view_gss_package_code_action" model="ir.actions.act_window">
+            <field name="name">GSS Package Codes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gss.package.code</field>
+            <field name="view_mode">list</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new GSS Package Code.
+              </p>
+            </field>
+        </record>
+
+        <menuitem action="view_gss_package_code_action"
+                  id="view_gss_package_code_menu"
+                  parent="stock.menu_delivery"
+                  sequence="25"/>
+
+</odoo>

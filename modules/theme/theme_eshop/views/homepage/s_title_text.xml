@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_title_text" name="Title Text">
+        <section class="s_title_text">
+            <section class="s_title o_colored_level pt24 pb24" data-vcss="001" data-snippet="s_title" data-name="Title">
+                <div class="container s_allow_columns">
+                    <h3 style="text-align: center;">
+                        <strong>GX Pro Gaming Headset</strong><br/>
+                    </h3>
+                </div>
+            </section>
+            <section class="s_masonry_block pt48 pb48 o_colored_level" data-vcss="001" data-vxml="001" data-snippet="s_masonry_block" data-name="Masonry">
+                <div class="container">
+                    <div class="row o_grid_mode" data-row-count="6" style="gap: 16px;">
+                        <div class="o_grid_item o_grid_item_image text-center rounded-4 o_colored_level g-col-lg-4 g-height-6 col-lg-4" data-name="Block" style="z-index: 1; grid-area: 1 / 5 / 7 / 9;">
+                            <h3>
+                                <img src="/theme_eshop/static/src/img/Center_img.png" alt="" class="img img-fluid mx-auto o_we_custom_image" data-mimetype="image/png" data-original-id="1177" data-original-src="/theme_eshop/static/src/img/Center_img.png" data-mimetype-before-conversion="image/png" data-resize-width="648" style="width: 100% !important;" loading="lazy"/>
+                            </h3>
+                        </div>
+                        <div class="o_grid_item g-col-lg-4 o_colored_level g-height-1 col-lg-4" style="z-index: 6; grid-area: 2 / 1 / 3 / 5;">
+                            <h4><strong>🎧 Exceptional Sound Quality</strong><br/></h4><p></p>
+                        </div>
+                        <div class="o_grid_item o_colored_level g-col-lg-4 g-height-1 col-lg-4" style="z-index: 7; grid-area: 3 / 1 / 4 / 5;">
+                            <p>&amp;nbsp;Immerse yourself in crystal-clear audio with powerful bass and sharp treble — perfect for music, movies, and gaming.</p></div>
+                        <div class="o_grid_item g-col-lg-4 o_colored_level g-height-1 col-lg-4" style="z-index: 8; grid-area: 2 / 9 / 3 / 13;">
+                            <h4><strong>🎤 Noise-Cancelling Microphone</strong><br/></h4><p></p>
+                        </div>
+                        <div class="o_grid_item g-col-lg-4 o_colored_level g-height-1 col-lg-4" style="z-index: 7; grid-area: 3 / 9 / 4 / 13;">
+                            <p style="margin-bottom: 0px;">Enjoy clear communication with a built-in noise-isolating mic that blocks out background noise during calls or gameplay.</p>
+                        </div>
+                        <div class="o_grid_item g-col-lg-4 o_colored_level g-height-1 col-lg-4" style="z-index: 8; grid-area: 5 / 1 / 6 / 5;">
+                            <h4><strong>🎮 All-Day Comfort</strong><br/></h4><p></p>
+                        </div>
+                        <div class="o_grid_item g-col-lg-4 o_colored_level g-height-1 col-lg-4" style="z-index: 7; grid-area: 6 / 1 / 7 / 5;">
+                            <p>&amp;nbsp;Ergonomically designed with cushioned ear cups and an adjustable headband for long listening sessions without fatigue.</p>
+                        </div>
+                        <div class="o_grid_item g-col-lg-4 o_colored_level g-height-1 col-lg-4" style="z-index: 8; grid-area: 5 / 9 / 6 / 13;">
+                            <h4><strong>🔌 Plug &amp;amp; Play Compatibility</strong><br/></h4><p></p>  
+                        </div>
+                        <div class="o_grid_item g-col-lg-4 o_colored_level g-height-1 col-lg-4" style="z-index: 7; grid-area: 6 / 9 / 7 / 13;">
+                            <p>&amp;nbsp;Seamlessly works with PCs, consoles, and mobile devices — no setup required, just connect and play.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="base.res_partner_1" model="res.partner">
+        <field name="over_credit" eval="True"/>
+    </record>
+    <record id="base.res_partner_2" model="res.partner">
+        <field name="over_credit" eval="True"/>
+    </record>
+    <record id="base.res_partner_3" model="res.partner">
+        <field name="over_credit" eval="True"/>
+    </record>
+    <record id="base.res_partner_4" model="res.partner">
+        <field name="over_credit" eval="True"/>
+    </record>
+</odoo>

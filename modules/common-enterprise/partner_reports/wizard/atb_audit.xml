@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="atb_audit_view" model="ir.ui.view">
+        <field name="name">AR and AP Audit</field>
+        <field name="model">res.partner.statement</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+                <separator string="Always runs as at now for all partners" colspan="4"/>
+                <group colspan="4" col="6">
+                    <field name="statement_currency" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="as_at_date"/>
+                    <newline/>
+                    <field name="run_as_task"/>
+                    <field name="groupdebtor" invisible="1"/>
+                    <field name="reconcile_offset" invisible="1"/>
+                    <newline/>
+                </group>
+                <footer>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    <button type="object" class="oe_highlight" name="print_audit_atb" string="Print Audit"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_atb_audit_view" model="ir.actions.act_window">
+        <field name="name">AR and AP Audit Report</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">res.partner.statement</field>
+        <field name="view_id" ref="atb_audit_view"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="menu_res_res_partner_atb_audit_view"
+            name="AR and AP Audit Report"
+            groups="account.group_account_manager,account.group_account_user,partner_reports.group_partner_reports_user"
+            parent="account_reports_rec_and_pay_menu"
+            sequence="1"
+            action="action_atb_audit_view"/>
+</odoo>

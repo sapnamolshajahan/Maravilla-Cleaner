@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_image_texts" name="Image Text">
+        <section class="s_image_text_overlap s_image_texts o_colored_level pb72 pt32" data-snippet="s_image_text_overlap" data-name="Image - Text Overlap" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Origins/14_001&quot;,&quot;colors&quot;:{&quot;c3&quot;:&quot;#FFF5F9&quot;,&quot;c4&quot;:&quot;#FFFFFF&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;}">
+            <div class="o_we_shape o_web_editor_Origins_14_001" style="background-image: url(&quot;/web_editor/shape/web_editor%2FOrigins%2F14_001.svg?c3=%23FFF5F9&amp;c4=%23FFFFFF&quot;);"/>
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="9">
+                    <div class="o_grid_item o_grid_item_image order-lg-0 g-col-lg-7 g-height-9 col-lg-7 o_colored_level" style="grid-area: 1 / 1 / 10 / 8; --grid-item-padding-y: 0; z-index: 1; order: 2;">
+                        <img src="/theme_mediquick/static/src/img/left-image.png" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="1618" data-original-src="/theme_mediquick/static/src/img/left-image.png" data-mimetype-before-conversion="image/jpeg" data-resize-width="NaN" loading="lazy"/>
+                    </div>
+                    <div class="o_grid_item order-lg-0 g-col-lg-6 g-height-7 col-lg-6 rounded o_colored_level o_cc o_cc5" style="grid-area: 2 / 7 / 9 / 13; --grid-item-padding-y: 56px; --grid-item-padding-x: 40px; z-index: 2; order: 1; background-color: rgb(249, 102, 157);">
+                        <h2 class="h3-fs">Services we offer</h2>
+                        <p>
+                            At <strong><font class="text-o-color-1">MediQuick</font></strong>, we offer a comprehensive range of medical services designed to support your health at every stage of life. From preventive care and diagnostics to advanced treatments and telehealth consultations, our services are built to deliver quality, convenience, and compassion.
+                        </p>
+                        <p class="o_default_snippet_text">Start with the customer – find out what they want and give it to them.</p>
+                        <p><a href="#" class="btn btn-secondary o_default_snippet_text">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_momentus_stock_config_form" model="ir.ui.view">
+            <field name="name">momentus.stock.config.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//block[@name='barcode_setting_container']" position="after">
+                    <block title="Momentus Settings" name="momentus_setting_container">
+                        <setting string="Default Qty Uplift"
+                                 help="Default percentage increase to apply to Momentus event quantities. This value is applied to all imported events unless overridden per event.">
+                            <field name="qty_uplift" widget="percentage"/>
+                        </setting>
+                    </block>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

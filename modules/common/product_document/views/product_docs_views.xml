@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_docs_form" model="ir.ui.view">
+        <field name="name">product.docs.form</field>
+        <field name="model">product.docs</field>
+        <field name="arch" type="xml">
+            <form string="Product Document">
+                <sheet>
+                    <group>
+                        <field name="document_name"/>
+                        <field name="document_desc"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="document_att" filename="file_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

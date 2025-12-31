@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Add Menu for base-data -->
+    <menuitem id="base_data_menu" name="Base Data" parent="base.menu_custom"/>
+
+    <record id="base.menu_apps" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('base.group_erp_manager'))]"/>
+    </record>
+</odoo>

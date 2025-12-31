@@ -1,0 +1,45 @@
+<odoo>
+    <record id="paperformat_sale_custom" model="report.paperformat">
+        <field name="name">Sale Custom Format</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+    </record>
+
+    <record id="action_report_sale_order_confirm" model="ir.actions.report">
+        <field name="name">Sale Order Confirm</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_flooring_sale.report_sale_order_document</field>
+        <field name="report_file">advance_flooring_sale.report_sale_order_document</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="advance_flooring_sale.paperformat_sale_custom"/>
+    </record>
+
+    <record id="action_report_packing_slip" model="ir.actions.report">
+        <field name="name">Packing Slip</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_flooring_sale.report_packing_slip_document</field>
+        <field name="report_file">advance_flooring_sale.report_packing_slip_document</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="advance_flooring_sale.paperformat_sale_custom"/>
+    </record>
+
+    <record id="action_report_invoice_doc" model="ir.actions.report">
+        <field name="name">Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_flooring_sale.report_tax_invoice_document</field>
+        <field name="report_file">advance_flooring_sale.report_tax_invoice_document</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="advance_flooring_sale.paperformat_sale_custom"/>
+    </record>
+</odoo>

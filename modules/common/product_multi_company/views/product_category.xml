@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record model="ir.ui.view" id="product_category_form_multicompany">
+		<field name="name">product.category.form.multicompany</field>
+		<field name="model">product.category</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="product.product_category_form_view" />
+		<field name="arch" type="xml">
+			<xpath expr="//group[@name='first']" position="after">
+				<group name="company" col="2">
+                    <field name="company_id" options="{'no_open': True, 'no_create': True}" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

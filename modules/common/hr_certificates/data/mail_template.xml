@@ -1,0 +1,22 @@
+<odoo>
+    <record id="email_template_certificate_expiry" model="mail.template">
+        <field name="name">Certificate Expiry Reminder</field>
+        <field name="model_id" ref="model_hr_certificates"/>
+        <field name="subject">Certificate Renewal Reminder: ${object.name}</field>
+        <field name="email_from">${(object.responsible_manager_id.work_email or user.email)|safe}</field>
+        <field name="email_to">${object.responsible_manager_id.work_email}</field>
+        <field name="body_html" type="html">
+            <p>Dear ${object.responsible_manager_id.name or 'Manager'},</p>
+            <p>The certificate for employee <b>${object.employee_id.name}</b> is due for renewal.
+            </p>
+            <p>
+                <b>Certificate Type:</b>
+                ${object.certificate_type_id.name or 'N/A'}
+                <br/>
+                <b>End Date:</b>
+                ${object.end_date or 'N/A'}
+            </p>
+            <p>Please take the necessary action to renew it.</p>
+        </field>
+    </record>
+</odoo>

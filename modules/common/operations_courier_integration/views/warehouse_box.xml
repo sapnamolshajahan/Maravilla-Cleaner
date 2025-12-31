@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="warehouse_box_tree_view" model="ir.ui.view">
+		<field name="name">Warehouse box tree view</field>
+		<field name="model">stock.warehouse.box</field>
+		<field name="arch" type="xml">
+			<list string="Boxes">
+				<field name="name" />
+				<field name="type" />
+				<field name="height" />
+				<field name="width" />
+				<field name="length" />
+				<field name="default_kgs" />
+				<field name="is_pallet" />
+				<field name="hire_type_account" readonly="is_pallet == False"/>
+			</list>
+		</field>
+	</record>
+
+    <record id="warehouse_box_form_view" model="ir.ui.view">
+        <field name="name">Warehouse box form view</field>
+        <field name="model">stock.warehouse.box</field>
+        <field name="arch" type="xml">
+            <form string="Boxes">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="height"/>
+                            <field name="width"/>
+                            <field name="length"/>
+                            <field name="default_kgs"/>
+                            <field name="is_pallet"/>
+                        </group>
+                        <group>
+                            <field name="hire_type_account" readonly="is_pallet == False"/>
+                            <field name="hire_company" readonly="is_pallet == False"/>
+                            <field name="hire_type" readonly="is_pallet == False"/>
+                            <field name="equipment_type" readonly="is_pallet == False"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stock_warehouse_box" model="ir.actions.act_window">
+        <field name="name">Boxes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.warehouse.box</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_stock_warehouse_box"
+              name="Boxes"
+              parent="stock.menu_stock_config_settings"
+              action="action_stock_warehouse_box"/>
+</odoo>

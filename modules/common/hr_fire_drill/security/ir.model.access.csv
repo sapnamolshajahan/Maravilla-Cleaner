@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fire_drills,access_fire_drills,model_fire_drills,,1,1,1,1
+access_next_fire_drill,access_next_fire_drill,model_next_fire_drill,,1,1,1,1

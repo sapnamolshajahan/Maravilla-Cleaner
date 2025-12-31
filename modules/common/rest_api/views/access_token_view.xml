@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+       <record id="view_api_access_token" model="ir.ui.view">
+            <field name="model">api.access_token</field>
+            <field name="name">api.access_token.form</field>
+            <field name="arch" type="xml">
+                <form string="Access Token">
+                    <group string="Token">
+                        <group>
+                            <field name="token"/>
+                        </group>
+                    </group>
+                    <group string="Token Details">
+                        <group>
+                            <field name="user"/>
+                        </group>
+                    </group>
+                    <group string="Expiration">
+                         <group>
+                            <field name="is_expired"/>
+                            <field name="expires"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+       </record>
+    </data>
+</odoo>

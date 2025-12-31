@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <record id="form_linkly_wizard_message" model="ir.ui.view">
+        <field name="name">EFTPOS Message wizard</field>
+        <field name="model">linkly.wizard.message</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Message">
+                <field name="text" nolabel="1" readonly="1" widget="html" />
+                <footer>
+                    <button special="cancel" class="oe_highlight" string="Close" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

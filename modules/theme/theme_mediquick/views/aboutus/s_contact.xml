@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_contact" name="Contact Us">
+        <section class="s_cta_box pt80 o_colored_level pb0" data-snippet="s_cta_box" data-name="Box Call to Action" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Origins/11_001&quot;,&quot;colors&quot;:{&quot;c3&quot;:&quot;#FFF5F9&quot;,&quot;c4&quot;:&quot;#FFFFFF&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;}">
+            <div class="o_we_shape o_web_editor_Origins_11_001" style="background-image: url(&quot;/web_editor/shape/web_editor%2FOrigins%2F11_001.svg?c3=%23FFF5F9&amp;c4=%23FFFFFF&quot;);"/>
+            <div class="container">
+                <div class="s_card o_card_img_horizontal flex-lg-row-reverse card o_colored_level o_cc o_cc4" data-snippet="s_card" data-vxml="001" data-name="Card" style="--card-spacer-x: 64px; --card-spacer-y: 64px; border-width: 0px !important; background-color: rgb(249, 102, 157);">
+                    <figure class="o_card_img_wrapper ratio ratio-1x1 mb-0">
+                        <img class="o_card_img rounded-end" src="/web/image/website.s_cta_box_default_image" alt="" loading="lazy" data-mimetype="image/jpeg" data-original-id="949" data-original-src="/website/static/src/img/snippets_demo/s_cta_box_default_image.jpg" data-mimetype-before-conversion="image/jpeg"/>
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">50,000+ healthcare providers trust <font class="text-o-color-1"><strong>MediQuick</strong></font>&amp;nbsp;to streamline operations and enhance patient care.</h2>
+                        <p class="card-text o_default_snippet_text">Join us and make your company a better place.<br/><br/></p>
+                        <a class="btn btn-lg btn-secondary o_default_snippet_text" href="/contactus">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

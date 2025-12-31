@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+    <record id="operations_adjustment_reason_tree" model="ir.ui.view">
+        <field name="name">operations_adjustment_reason</field>
+        <field name="model">operations.adjustment.reason</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" create="1" edit="1">
+                <header>
+<!--                    <button name="action_reset" type="object" string="Clear"/>-->
+                </header>
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_operations_adjustment_reason" model="ir.actions.act_window">
+        <field name="name">Operations Adjustment Reasons</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">operations.adjustment.reason</field>
+        <field name="view_id" ref="operations_adjustment_reason_tree"/>
+    </record>
+
+    <menuitem action="action_operations_adjustment_reason"
+              id="menu_operations_adjustment_reason"
+              name="Adjustment Reason"
+              parent="stock.menu_warehouse_config"/>
+    </data>
+</odoo>

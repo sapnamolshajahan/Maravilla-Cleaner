@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<!--
+			Reference list of email.doc.type, users should not remove or add to this list
+
+			noupdate="1" allows end-user to change 'template' contents
+		  -->
+		<record id="doc_statement" model="email.doc.type">
+			<field name="name">partner-statement</field>
+			<field name="model_name">res.partner.statement.email</field>
+			<field name="template" ref="template_partner_statement"/>
+		</record>
+	</data>
+</odoo>

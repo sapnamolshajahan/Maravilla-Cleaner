@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="company_purchase_reorder_view" model="ir.ui.view" >
+        <field name="name">res.company.purchase.reorder</field>
+        <field name="inherit_id" ref="base_generic_changes.view_company_base_inherit_form"/>
+        <field name="model">res.company</field>
+        <field name="arch" type="xml">
+            <page name="company_parameters" position="inside">
+                <group col="2" colspan="2" string = "Purchase Reorder">
+                    <field name="default_warehouse" />
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>

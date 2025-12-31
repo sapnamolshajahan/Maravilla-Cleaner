@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_firm"/>
+                <field name="is_commercial"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="proposal_no"/>
+                <field name="project_name"/>
+            </xpath>
+            <xpath expr="//button[@name='action_open_discount_wizard']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='client_order_ref']" position="attributes">
+                <attribute name="string">Customer PO</attribute>
+            </xpath>
+            <xpath expr="(//field[@name='date_order'])[2]" position="replace">
+                <field name="date_only" nolabel="1" invisible="state in ['draft', 'sent']"
+                       readonly="state in ['cancel', 'sale']"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_form_inherit_date_only" model="ir.ui.view">
+        <field name="name">sale.order.form.date.only.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_generic_changes.sale_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='commitment_date']" position="replace">
+                <field name="commitment_date_only" string="Delivery Date" readonly="state == 'cancel' or locked"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

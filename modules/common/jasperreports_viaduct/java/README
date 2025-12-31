@@ -1,0 +1,21 @@
+General Notes
+=============
+
+Maven Targets
+-------------
+	package cargo:run   run Tomcat App Server locally.
+	eclipse:eclipse     create Eclipse artifacts
+
+JasperReports
+-------------
+Requirements for each Viaduct-enabled report:
+	Scriptlet class:
+		nz.co.solnetsolutions.viaduct.ViaductScriptlet
+
+	Parameters (all strings):
+		host		   default=localhost
+		port		   default=8069
+		database
+		user
+		password
+		viaduct-helper

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="import_type_account" model="xero.import.type">
+            <field name="name">Accounts and Analytic Accounts (Tracking Categories)</field>
+            <field name="date_from_visible">False</field>
+            <field name="function_name">import_accounts</field>
+        </record>
+
+        <record id="import_type_tax" model="xero.import.type">
+            <field name="name">Taxes</field>
+            <field name="date_from_visible">False</field>
+            <field name="function_name">import_tax</field>
+        </record>
+
+        <record id="import_type_product" model="xero.import.type">
+            <field name="name">Products</field>
+            <field name="date_from_visible">False</field>
+            <field name="function_name">import_products</field>
+        </record>
+
+        <record id="import_type_contact_groups" model="xero.import.type">
+            <field name="name">Contact Groups</field>
+            <field name="date_from_visible">False</field>
+            <field name="function_name">import_contact_groups</field>
+        </record>
+
+        <record id="import_type_contacts" model="xero.import.type">
+            <field name="name">Contacts</field>
+            <field name="date_from_visible">False</field>
+            <field name="function_name">import_customers</field>
+        </record>
+
+        <record id="import_type_sale_orders" model="xero.import.type">
+            <field name="name">Sale Orders</field>
+            <field name="date_from_visible">True</field>
+            <field name="function_name">import_sale_order</field>
+        </record>
+
+        <record id="import_type_purchase_orders" model="xero.import.type">
+            <field name="name">Purchase Orders</field>
+            <field name="date_from_visible">True</field>
+            <field name="function_name">import_purchase_order</field>
+        </record>
+
+        <record id="import_type_customer_invoices" model="xero.import.type">
+            <field name="name">Customer Invoices</field>
+            <field name="date_from_visible">True</field>
+            <field name="function_name">import_invoice</field>
+        </record>
+
+        <record id="import_type_customer_credit" model="xero.import.type">
+            <field name="name">Customer Credit Notes</field>
+            <field name="date_from_visible">True</field>
+            <field name="function_name">import_credit_notes</field>
+        </record>
+
+        <record id="import_type_payment" model="xero.import.type">
+            <field name="name">Payments and Receipts</field>
+            <field name="date_from_visible">True</field>
+            <field name="function_name">import_payments</field>
+        </record>
+
+        <record id="import_type_prepayment" model="xero.import.type">
+            <field name="name">Pre-Payments</field>
+            <field name="date_from_visible">True</field>
+            <field name="function_name">import_prepayments</field>
+        </record>
+
+        <record id="import_type_overpayment" model="xero.import.type">
+            <field name="name">Over-Payments</field>
+            <field name="date_from_visible">True</field>
+            <field name="function_name">import_overpayments</field>
+        </record>
+
+    </data>
+</odoo>

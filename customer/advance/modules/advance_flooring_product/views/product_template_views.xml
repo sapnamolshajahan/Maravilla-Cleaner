@@ -1,0 +1,59 @@
+<odoo>
+    <record id="view_product_template_form_inherit_custom_fields" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.custom.fields</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='group_standard_price']" position="after">
+                <group string="Product Details">
+                    <field name="colour_id"/>
+                    <field name="product_group_id"/>
+                    <field name="size_id"/>
+                    <field name="category_id"/>
+                </group>
+            </xpath>
+            <xpath expr="//div[@class='oe_title']/h1" position="after">
+                <group string="Quotation Description" name="description">
+                    <field colspan="2" name="quotation_description" nolabel="1"
+                           placeholder="This note is added to sales orders and invoices."/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view_inherit_custom" model="ir.ui.view">
+        <field name="name">product.template.tree.inherit.custom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list//field[@name='name']" position="after">
+                <field name="description_sale" string="Quotation Description"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_search_view_inherit_custom" model="ir.ui.view">
+        <field name="name">product.template.search.inherit.custom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="description_sale" string="Quotation Description"/>
+                <field name="seller_ids" string="Vendor"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_template_list_purchasable_inherit" model="ir.ui.view">
+        <field name="name">product.template.list.purchasable.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="account.product_template_list_view_purchasable_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='default_code']" position="before">
+                <field name="seller_ids" widget="many2many_tags" options="{'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

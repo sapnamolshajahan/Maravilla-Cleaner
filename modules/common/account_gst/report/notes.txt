@@ -1,0 +1,28 @@
+use the gst control accounts as the basis for the report
+
+note - each tax type on an invoice creates a separate account_move_line
+
+for each account_mmove_line:
+	get the move_id.line_ids
+	for line in line_ids:
+		if line.invoice_id:
+			do build_invoice_line
+		else:
+			for move lines sum debit - credit, tax amount by nz_tax_type
+			add to dictionary
+			
+
+build_invoice_line
+	from invoice_id link to account_invoice_tax and get by tax amount for this tax type (from source account_move_line)
+	by invoice_line
+		get tax from invoice_line_tax and use line amount to prorate tax_amount for this line
+		get line amount excl tax from line
+	
+	check that the pro-ration adds to the total amount from the account_move_line and deal with any rounding issues
+	
+	Report
+	
+	Tax Type
+	
+	Date	Invoice #	Amount excl GST		GST		Amount Incl GST
+	

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_queue_job_form" model="ir.ui.view">
+        <field name="name">queue.job.form</field>
+        <field name="model">queue.job</field>
+        <field name="inherit_id" ref="queue_job.view_queue_job_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='worker_pid']" position="after">
+                <field name="suppress_success_notification"/>
+                <field name="suppress_error_notification"/>
+            </xpath>
+            <xpath expr="//button[@name='requeue']" position="replace">
+                <button class="oe_highlight" invisible="state not in ['failed']" name="requeue" string="Requeue Job"
+                        type="object"/>
+            </xpath>
+            <xpath expr="//button[@name='button_done']" position="replace">
+                <button class="oe_highlight"
+                        invisible="state not in ['wait_dependencies','pending','enqueued','failed']" name="button_done"
+                        string="Set to 'Done'" type="object"/>
+            </xpath>
+            <xpath expr="//button[@name='button_cancelled']" position="replace">
+                <button class="oe_highlight" invisible="state not in ['pending','enqueued','failed']"
+                        name="button_cancelled" string="Cancel job" type="object"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

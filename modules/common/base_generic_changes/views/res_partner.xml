@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="partner_tree_generic" model="ir.ui.view">
+        <field name="name">partner.form.generic</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="known_as" optional="show"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="partner_form_generic" model="ir.ui.view">
+        <field name="name">Partner Form Generic</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='website']" position="before">
+                <field name="fax"/>
+                <field name="known_as"/>
+            </xpath>
+
+            <!-- Contact sub-form -->
+            <xpath expr="//field[@name='child_ids']/form//field[@name='name'][last()]" position="after">
+                <field name="known_as"/>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='phone']" position="after">
+                <field name="fax"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

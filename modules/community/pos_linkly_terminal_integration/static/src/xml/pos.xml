@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_linkly_terminal_integration.PaymentScreenPaymentLines" t-inherit="point_of_sale.PaymentScreenPaymentLines" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('paymentline')]" position="inside">
+            <t t-if="line.payment_status and line.payment_status == 'done'">
+                <t t-if="line.payment_method_id and line.payment_method_id.use_payment_terminal == 'linkly'">
+                    <div class="d-flex justify-content-end">
+                        <i class="fa fa-print cursor-pointer" aria-hidden="true" style="padding: 10px 10px 10px 10px;
+                            border: 1px solid gray;background: gray;color: white;"  t-on-click="()=>this.clickWkLinklyReprint(line)"></i>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </t> 
+    <t t-name="pos_linkly_terminal_integration.PaymentScreenBack" t-inherit="point_of_sale.PaymentScreenBack" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('button back')]" position="replace">
+            <button class="button back back-button validation btn btn-light btn-lg w-50 py-3 lh-lg "
+                t-on-click="() => this.clickBackPaymentPage()">
+                <span class="back_text">Back</span>
+            </button>
+        </xpath>    
+    </t>
+</templates>

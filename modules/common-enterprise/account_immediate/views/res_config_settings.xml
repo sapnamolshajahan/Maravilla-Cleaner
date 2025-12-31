@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_immediate_settings" model="ir.ui.view">
+        <field name="name">account.immediate.company.config</field>
+        <field name="model">res.config.settings</field>
+        <field name="type">form</field>
+        <field name="priority" eval="1000"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <h2>Immediate Accounting Defaults</h2>
+                <div class="row mt16 o_settings_container" name="immediate_accounting_container">
+                    <div class="col-12 col-lg-6 o_setting_box" id="max_writeoff">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Maximum Write-Off Amount</span>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                                  aria-label="Values set here are company-specific." role="img"/>
+                            <div class="text-muted">
+                                Maximum automatic write-off amount for immediate accounting auto-reconcile process.
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="max_writeoff" class="col-lg-3 o_light_label"/>
+                                    <field name="max_writeoff" context="{'active_test': False}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box" id="write_off_journal">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Adjustment Journal</span>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                                  aria-label="Values set here are company-specific." role="img"/>
+                            <div class="text-muted">
+                                Immediate accounting adjustment journal to be used
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="write_off_journal" class="col-lg-3 o_light_label"/>
+                                    <field name="write_off_journal" options="{'no_create_edit': True, 'no_open': True}"
+                                           context="{'active_test': False}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

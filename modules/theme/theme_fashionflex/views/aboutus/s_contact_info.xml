@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_contact_info" name="Contact Info">
+        <section class="s_contact_info pt48 pb64 o_cc o_cc1 o_colored_level" data-snippet="s_contact_info" data-name="Contact Info">
+            <div class="container">
+                <div class="row o_grid_mode" data-row-count="11">
+                    <div class="o_grid_item g-col-lg-6 g-height-5 col-lg-6 col-10 offset-1 order-lg-0 o_colored_level" style="order: 2;--grid-item-padding-x: 0px; --grid-item-padding-y: 24px; grid-area: 1 / 1 / 6 / 7; z-index: 1;" data-name="Title block">
+                        <h2 class="o_default_snippet_text">Contact Us</h2>
+                        <p class="lead o_default_snippet_text">We'd love to hear from you! If you have any questions, feedback, or need assistance, please feel free to reach out to us using the contact details provided. Our team is here to help and will respond as soon as possible. Thank you for getting in touch!</p>
+                    </div>
+                    <div class="o_grid_item g-col-lg-6 g-height-2 col-lg-6 col-10 offset-1 order-lg-0 o_colored_level" style="order: 3; --grid-item-padding-x: 0px; --grid-item-padding-y: 16px; grid-area: 6 / 1 / 8 / 7; z-index: 2;" data-name="Info block">
+                        <h3 class="h5-fs o_default_snippet_text">
+                            <i class="fa fa-fw fa-envelope-o" role="presentation"/>
+                            Email
+                        </h3>
+                        <p>
+                            &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<a href="mail-to:info@yourcompany.example.com" title="Send an email" class="o_default_snippet_text">info@yourcompany.example.com</a>
+                        </p>
+                    </div>
+                    <div class="o_grid_item g-col-lg-6 g-height-2 col-lg-6 col-10 offset-1 order-lg-0 o_colored_level" style="order: 4; --grid-item-padding-x: 0px; --grid-item-padding-y: 16px; grid-area: 8 / 1 / 10 / 7; z-index: 3;" data-name="Info block">
+                        <h3 class="h5-fs o_default_snippet_text">
+                            <i class="fa fa-fw fa-phone" role="presentation"/>
+                            Phone
+                        </h3>
+                        <p>
+                            &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<a href="tel:+1555-555-5556" title="Call Customer Service" class="o_default_snippet_text">+1555-555-5556</a>
+                        </p>
+                    </div>
+                    <div class="o_grid_item g-col-lg-6 g-height-2 col-lg-6 col-10 offset-1 order-lg-0 o_colored_level" style="order: 5; --grid-item-padding-x: 0px; --grid-item-padding-y: 16px; grid-area: 10 / 1 / 12 / 7; z-index: 4;" data-name="Info block">
+                        <h3 class="h5-fs o_default_snippet_text">
+                            <i class="fa fa-fw fa-building-o" role="presentation"/>
+                            Office
+                        </h3>
+                        <p class="o_default_snippet_text">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;3575 Fake Buena Vista Avenue</p>
+                    </div>
+                    <div class="o_grid_item o_grid_item_image offset-1 order-lg-0 o_colored_level g-height-11 col-lg-6 g-col-lg-5 col-lg-5" style="order: 1; --grid-item-padding-x: 0px; --grid-item-padding-y: 0px; grid-area: 1 / 8 / 12 / 13; z-index: 5;" data-name="Image block">
+                        <img src="/theme_fashionflex/static/src/img/photo-1555529771-835f59fc5efe.jpg" alt="" class="img img-fluid rounded o_we_custom_image" data-mimetype="image/jpeg" data-original-id="1351" data-original-src="/web/image/1351-18621ef2/photo-1555529771-835f59fc5efe.jpg" data-mimetype-before-conversion="image/jpeg" loading="lazy"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_stock_reconcile_dni_pos_tree">
+        <field name="name">account.stock.reconcile.dni.pos.list</field>
+        <field name="model">account.stock.reconcile.dni</field>
+         <field name="inherit_id" ref="account_immediate.view_stock_reconcile_dni_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order']" position="after">
+                <field name="pos_order"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="template_invoice" model="mail.template">
+            <field name="name">Invoice: Email Docs</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject">{{object.company_id.name}} (Ref {{object.name or 'n/a'}})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello,
+                        <br/><br/>
+                        Your invoice <strong t-out="object.name">Invoice Ref</strong> amounting to
+                        <strong t-out="format_amount(object.amount_total, object.currency_id)">0.00</strong>
+                        is attached.<br/><br/>
+                        Thank you.<br/>
+                        <t t-if="user and user.signature" t-out="user.signature">
+                            Signature
+                        </t>
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="template_credit" model="mail.template">
+            <field name="name">Credit: Email Docs</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject">{{object.company_id.name}} (Ref {{object.name or 'n/a'}})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello,
+                        <br/><br/>
+                        Your credit <strong t-out="object.name">Credit Ref</strong> amounting to
+                        <strong t-out="format_amount(object.amount_total, object.currency_id)">0.00</strong>
+                        is attached.<br/><br/>
+                        Thank you.<br/>
+                        <t t-if="user and user.signature" t-out="user.signature">
+                            Signature
+                        </t>
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="template_marketing" model="mail.template">
+            <field name="name">Marketing: Email Docs</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">{{object.company_id.name}} (Ref {{object.name or 'n/a'}})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello,
+                        Thank you.<br/>
+                        <t t-if="user and user.signature" t-out="user.signature">
+                            Signature
+                        </t>
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

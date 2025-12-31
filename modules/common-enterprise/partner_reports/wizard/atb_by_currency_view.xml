@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="atb_by_currency_view" model="ir.ui.view">
+        <field name="name">Aged Trial Balance - By Currency</field>
+        <field name="model">res.partner.statement</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+                <group colspan="4" col="6">
+                    <field name="company_id" invisible="1"/>
+                    <field name="type"/>
+                    <newline/>
+                    <field name="run_as_task"/>
+                    <field name="reconcile_offset"/>
+                    <newline/>
+                </group>
+                <separator string="Aging" colspan="4"/>
+                <group colspan="2" col="2">
+                    <field name="aging" colspan="4"/>
+                </group>
+                <group col="4" colspan="2">
+                    <group col="4" colspan="4" invisible="aging == 'months'">
+                        <field name="date_from" required="aging == 'days'"/>
+                        <field name="days" required="aging == 'days'"/>
+                    </group>
+                    <group col="4" colspan="4" invisible="aging == 'days'">
+                        <field name="as_at_date"/>
+                    </group>
+                </group>
+                <separator string="Partners" colspan="4"/>
+                <group>
+                    <field name="print_all_clients"/>
+                    <field name="partner_ids" colspan="4" rowspan="12" nolabel="1"/>
+                </group>
+                <footer>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    <button type="object" class="oe_highlight" name="print_atb_by_currency"
+                            string="Print Trial Balance by Currency"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_res_partner_atb_by_currency_view" model="ir.actions.act_window">
+        <field name="name">ATB by Currency</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">res.partner.statement</field>
+        <field name="view_id" ref="atb_by_currency_view"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="menu_res_partner_atb_by_currency"
+            name="ATB by Currency"
+            groups="account.group_account_manager,account.group_account_user,partner_reports.group_partner_reports_user"
+            parent="account_reports_rec_and_pay_menu"
+            sequence="1"
+            action="action_res_partner_atb_by_currency_view"/>
+</odoo>

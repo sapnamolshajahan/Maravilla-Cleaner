@@ -1,0 +1,17 @@
+#
+# Example systemd script
+#
+[Unit]
+Description=Remote Print Agent for Customer
+
+[Service]
+Type=simple
+User=customer
+ExecStart=/opt/customer/remote-print-agent/remote-print-agent.bash \
+        --workon /opt/customer/virtualenvs odoo14 \
+        print-production.rc \
+        /var/log/odoo/remote-print-production
+
+[Install]
+WantedBy=multi-user.target
+

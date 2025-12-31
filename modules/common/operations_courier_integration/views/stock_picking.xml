@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="operations_courier_integration_stock_picking_form" model="ir.ui.view">
+        <field name="name">Operations Courier Integration Stock Picking form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <field name="has_carrier_integration" invisible="1"/>
+                <field name="ship_after_validation" invisible="1"/>
+                <button name="action_validate_and_ship"
+                    string="Validate and Ship"
+                    groups="base.group_user"
+                    type="object"
+                    invisible="has_carrier_integration == False or ship_after_validation == True"
+                    class="oe_highlight"/>
+            </div>
+            <div name="button_box" position="inside">
+                <button name="action_ship_only"
+                    string="Ship via Courier"
+                    groups="base.group_user"
+                    type="object"
+                    invisible="has_carrier_integration == False or carrier_shipment != False or ship_after_validation == False"
+                    class="oe_highlight"/>
+            </div>
+
+            <div name="button_box" position="inside">
+                <button name="button_download_courier_labels"
+                        string="Download Shipping Labels"
+                        groups="base.group_user"
+                        type="object"
+                        invisible="has_carrier_integration == False or state != 'done'"/>
+            </div>
+
+			<xpath expr="//button[@name='cancel_shipment']" position="attributes">
+<!--				<attribute name="attrs"></attribute>-->
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+            <xpath expr="//button[@name='send_to_shipper']" position="attributes">
+<!--				<attribute name="attrs"></attribute>-->
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+            <xpath expr="//page[@name='note']" position="after">
+                <page name="carrier_shipment_page" string="Carrier Shipment"
+                      invisible="picking_type_code != 'outgoing' or has_carrier_integration == False">
+                    <group cols="2">
+                        <field name="carrier_shipment"/>
+                        <field name="carrier_shipping_cost"/>
+                        <field name="carrier_price" string="Invoice Shipping Cost" readonly="1"/>
+                        <field name="carrier_shipment_tracking_url" widget="url"
+                               invisible="carrier_shipment_tracking_url == False"/>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//button[@name='button_download_courier_labels']" position="after">
+                <button name="button_reprint_courier_labels"
+                        string="Reprint Shipping Labels"
+                        groups="base.group_user"
+                        type="object"
+                        invisible="has_carrier_integration == False or carrier_shipment == False"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<odoo>
+    <record id="pos_payment_method_view_form_inherit_pos_linkly" model="ir.ui.view">
+        <field name="name">pos.payment.method.form.inherit.linkly</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='use_payment_terminal']" position="after">
+                <field name="linkly_test_mode" invisible="use_payment_terminal != 'linkly'" required="use_payment_terminal == 'linkly'" />
+                
+                <field name="posName" invisible="use_payment_terminal != 'linkly'" required="use_payment_terminal == 'linkly'"/>
+                <field name="posVersion" password="True" invisible="use_payment_terminal != 'linkly'" required="use_payment_terminal == 'linkly'"/>
+                <field name="posId" password="True" invisible="use_payment_terminal != 'linkly'" required="use_payment_terminal == 'linkly'"/>
+                <field name="posVendorId" password="True" invisible="use_payment_terminal != 'linkly'" required="use_payment_terminal == 'linkly'"/>                
+                <field name="secret" password="True" invisible="1"/>
+
+                <button name="generate_pin_pad_pairing_request" string="Pin Pad Pairing" type="object"
+                    class="oe_highlight" invisible="use_payment_terminal != 'linkly'"/>
+            </xpath>
+            <xpath expr="//field[@name='split_transactions']" position="attributes">
+                <attribute name="invisible">use_payment_terminal == 'linkly'</attribute>
+            </xpath>            
+        </field>
+    </record>
+</odoo>

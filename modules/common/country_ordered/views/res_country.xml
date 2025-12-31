@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+	<record id="view_country_form_set_order" model="ir.ui.view">
+		<field name="name">Add Country Display Sequence</field>
+		<field name="inherit_id" ref="base.view_country_form"/>
+		<field name="model">res.country</field>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='code']" position="after">
+				<field name="sequence" />
+			</xpath>
+		</field>
+	</record>
+</odoo>

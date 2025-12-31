@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <!-- Employee Certificates -->
+        <record id="view_hr_certificates_list" model="ir.ui.view">
+            <field name="name">hr.certificates.list</field>
+            <field name="model">hr.certificates</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="certificate_type_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="notification_date"/>
+                    <field name="responsible_manager_id"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_hr_certificates_form" model="ir.ui.view">
+            <field name="name">hr.certificates.form</field>
+            <field name="model">hr.certificates</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_done" type="object" string="Done"
+                                invisible="state not in 'draft'" class="btn-primary"/>
+                        <button name="action_draft" type="object" string="Reset To Draft"
+                                invisible="state not in 'done'" class="btn-secondary"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="employee_id" options="{'no_create':True}" readonly="state in 'done'"/>
+                                <field name="certificate_type_id" options="{'no_create':True}" readonly="state in 'done'"/>
+                                <field name="upload" filename="upload_filename" readonly="state in 'done'"/>
+                            </group>
+                            <group>
+                                <field name="start_date" readonly="state in 'done'"/>
+                                <field name="end_date" readonly="state in 'done'"/>
+                                <field name="notification_date" readonly="state in 'done'"/>
+                                <field name="responsible_manager_id" options="{'no_create':True}" readonly="state in 'done'"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_certificates" model="ir.actions.act_window">
+            <field name="name">HR Certificates</field>
+            <field name="res_model">hr.certificates</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem id="menu_hr_certificate_root"
+                  name="Certificates"
+                  parent="hr_hazard.menu_hr_health_and_safety"
+                  sequence="99"/>
+
+        <menuitem id="menu_hr_certificate_type"
+                  name="Certificates"
+                  parent="menu_hr_certificate_root"
+                  action="action_hr_certificates"/>
+
+    </data>
+</odoo>

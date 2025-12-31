@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        A test report.
+        - report_name: name of ViaductHelperClass
+        - report_file: must have jrxml file
+      -->
+    <record id="viaduct_test_report" model="ir.actions.report">
+        <field name="name">Viaduct Test Report</field>
+        <field name="report_name">jasperreports_viaduct.viaduct_test_report</field>
+        <field name="viaduct_helper">
+            odoo.addons.jasperreports_viaduct.reports.viaduct_test_helper.ViaductTestHelper
+        </field>
+        <field name="report_file">jasperreports_viaduct/reports/viaduct-test-report.jrxml</field>
+        <field name="model">res.company</field>
+        <field name="binding_model_id" ref="base.model_res_company"/>
+    </record>
+</odoo>

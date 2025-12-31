@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="supplierinfo_tree" model="ir.ui.view" >
+        <field name="name">Supplier Purchase Demand</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+        <field name="model">product.supplierinfo</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_end']" position="after">
+                <field name="purchase_demand_cover"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="supplierinfo_form" model="ir.ui.view" >
+        <field name="name">Supplier Purchase Demand</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="model">product.supplierinfo</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_code']" position="after">
+                <label for="purchase_demand_cover"/>
+                <div>
+                    <field name="purchase_demand_cover" class="oe_inline"/> days
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_product_normal_indent_form">
+        <field name="name">indent.product.normal.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position='after'>
+                <field name="indent_product" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="stocktake_checking_report_form" model="ir.ui.view">
+        <field name="name">Stocktake Checking Report</field>
+        <field name="model">stocktake.checking.report</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Stocktake Checking Report">
+                <group>
+                    <field name="stocktake_id" options="{'no_create': True}"/>
+                    <field name="report_name" invisible="1"/>
+                    <field name="data" filename="report_name"/>
+                 </group>
+                <footer>
+                    <button name="button_process" string="Run Report" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stocktake_checking_report" model="ir.actions.act_window">
+         <field name="name">Stocktake Checking Report</field>
+         <field name="res_model">stocktake.checking.report</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="stocktake_checking_report_form"/>
+         <field name="context">{}</field>
+         <field name="target">new</field>
+   </record>
+
+    <menuitem id="menu_stocktake_checking_report"
+              name="Stocktake Checking Report"
+            action="action_stocktake_checking_report"
+            parent="menuitem_stocktake"
+            sequence="110"/>
+
+
+</odoo>

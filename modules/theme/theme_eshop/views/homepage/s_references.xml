@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_references" name="References">
+        <section class="s_references pt80 o_colored_level o_cc o_cc1 pb0" data-snippet="s_references" data-name="References" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/13&quot;,&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;,&quot;animated&quot;:&quot;true&quot;}">
+            <div class="o_we_shape o_web_editor_Floats_13 o_we_animated"/>
+            <div class="container">
+                <div class="row s_nb_column_fixed align-items-stretch">
+                    <div class="col-12 col-lg-12 o_colored_level pb0">
+                        <h2 style="text-align: center;">Trusted by Leading Brands Around the Globe</h2>
+                        <p class="lead" style="text-align: center; margin-bottom: 0px;"><br/></p>
+                        <p class="lead" style="text-align: center; margin-bottom: 0px;">We proudly collaborate with innovative brands and trusted partners worldwide&amp;nbsp;<br/>delivering quality, performance, and value through every product.</p>
+                        <p style="text-align: center;"><br/></p>
+                    </div>
+                    <div class="col-6 col-lg-2 pt16 pb16 o_colored_level">
+                        <img src="/web/image/website.s_reference_demo_image_1" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/png" data-original-id="892" data-original-src="/website/static/src/img/snippets_demo/s_references_1.png" data-mimetype-before-conversion="image/png"/>
+                    </div>
+                    <div class="col-6 col-lg-2 pt16 pb16 o_colored_level">
+                        <img src="/web/image/website.s_reference_demo_image_2" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/png" data-original-id="893" data-original-src="/website/static/src/img/snippets_demo/s_references_2.png" data-mimetype-before-conversion="image/png"/>
+                    </div>
+                    <div class="col-6 col-lg-2 pt16 pb16 o_colored_level">
+                        <img src="/web/image/website.s_reference_demo_image_3" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/png" data-original-id="894" data-original-src="/website/static/src/img/snippets_demo/s_references_3.png" data-mimetype-before-conversion="image/png"/>
+                    </div>
+                    <div class="col-6 col-lg-2 pt16 pb16 o_colored_level">
+                        <img src="/web/image/website.s_reference_demo_image_4" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/png" data-original-id="895" data-original-src="/website/static/src/img/snippets_demo/s_references_4.png" data-mimetype-before-conversion="image/png"/>
+                    </div>
+                    <div class="col-6 col-lg-2 pt16 pb16 o_colored_level">
+                        <img src="/web/image/website.s_reference_demo_image_5" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/png" data-original-id="896" data-original-src="/website/static/src/img/snippets_demo/s_references_5.png" data-mimetype-before-conversion="image/png"/>
+                    </div>
+                    <div class="col-6 col-lg-2 pt16 pb16 o_colored_level">
+                        <img src="/web/image/website.s_reference_default_image_6" class="img img-fluid mx-auto" alt="" loading="lazy" data-mimetype="image/png" data-original-id="897" data-original-src="/website/static/src/img/snippets_demo/s_references_6.png" data-mimetype-before-conversion="image/png"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

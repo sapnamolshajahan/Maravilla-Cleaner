@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Create stub data for test-framework
+      -->
+    <record id="test_account_account" model="account.account">
+        <field name="name">Test Account</field>
+        <field name="code">100001</field>
+        <field name="account_type">liability_current</field>
+    </record>
+
+</odoo>

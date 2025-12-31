@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Detailed Aged Trial Balance Forex" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0ca35c-13f9-4878-a0fb-13d1a7a75f7a">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true" fontName="Droid Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<parameter name="viaduct-report-ids" class="java.util.List">
+		<parameterDescription><![CDATA[List of res.partner.statement ids]]></parameterDescription>
+	</parameter>
+	<parameter name="currency" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="order-by" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+  res_partner_statement.id "statement-id",
+  res_currency.name "currency",
+  res_partner_statement_lines.id "line-id",
+  transaction_partner_id,
+  invoice_number,
+  res_partner_statement_lines.date,
+  period0,
+  period1,
+  period2,
+  period3,
+  period4,
+  balance,
+  res_partner.ref,
+  res_partner.name
+from
+  res_partner_statement,
+  res_partner_statement_lines
+  left outer join res_currency on
+    currency_id = res_currency.id,
+  res_partner
+where $X{IN, res_partner_statement.id, viaduct-report-ids}
+and res_partner_statement_id = res_partner_statement.id
+and res_partner.id = transaction_partner_id
+and currency_id = $P{currency}
+order by
+  $P{order-by},
+  res_partner_statement_lines.date,
+  res_partner_statement_lines.id]]>
+	</queryString>
+	<field name="statement-id" class="java.lang.Integer"/>
+	<field name="currency" class="java.lang.String">
+		<fieldDescription><![CDATA[Currency]]></fieldDescription>
+	</field>
+	<field name="line-id" class="java.lang.Integer"/>
+	<field name="transaction_partner_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Partner]]></fieldDescription>
+	</field>
+	<field name="invoice_number" class="java.lang.String">
+		<fieldDescription><![CDATA[Invoice Number]]></fieldDescription>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[Date End]]></fieldDescription>
+	</field>
+	<field name="period0" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Period 0]]></fieldDescription>
+	</field>
+	<field name="period1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Period 1]]></fieldDescription>
+	</field>
+	<field name="period2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Period 2]]></fieldDescription>
+	</field>
+	<field name="period3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Period 3]]></fieldDescription>
+	</field>
+	<field name="period4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[Period 4]]></fieldDescription>
+	</field>
+	<field name="balance" class="java.math.BigDecimal"/>
+	<field name="ref" class="java.lang.String">
+		<fieldDescription><![CDATA[Ref.]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String"/>
+	<variable name="partner-period-0" class="java.math.BigDecimal" resetType="Group" resetGroup="partner" calculation="Sum">
+		<variableExpression><![CDATA[$F{period0}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="partner-period-1" class="java.math.BigDecimal" resetType="Group" resetGroup="partner" calculation="Sum">
+		<variableExpression><![CDATA[$F{period1}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="partner-period-2" class="java.math.BigDecimal" resetType="Group" resetGroup="partner" calculation="Sum">
+		<variableExpression><![CDATA[$F{period2}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="partner-period-3" class="java.math.BigDecimal" resetType="Group" resetGroup="partner" calculation="Sum">
+		<variableExpression><![CDATA[$F{period3}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="partner-period-4" class="java.math.BigDecimal" resetType="Group" resetGroup="partner" calculation="Sum">
+		<variableExpression><![CDATA[$F{period4}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="partner-balance" class="java.math.BigDecimal" resetType="Group" resetGroup="partner" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="total-period-0" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{period0}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="total-period-1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{period1}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="total-period-2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{period2}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="total-period-3" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{period3}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="total-period-4" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{period4}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="total-balance" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="partner" isReprintHeaderOnEachPage="true" keepTogether="true">
+		<groupExpression><![CDATA[$F{transaction_partner_id}]]></groupExpression>
+		<groupHeader>
+			<band height="12">
+				<textField>
+					<reportElement x="0" y="0" width="380" height="12" uuid="d9d57f08-a627-4ba4-a516-5e90934963bd"/>
+					<textElement>
+						<font size="10" isBold="true" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(
+  $F{ref} == null || $F{ref}.trim ().length () == 0 ?
+  "" :
+  String.format ("(%s) ", $F{ref})
+) +
+$F{name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<staticText>
+					<reportElement x="280" y="0" width="100" height="12" uuid="ba1cdc3b-148a-497c-b6de-168f9b4daf60"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Partner Total]]></text>
+				</staticText>
+				<textField pattern="#,##0.00">
+					<reportElement x="380" y="0" width="70" height="12" uuid="a19002cf-bb8b-4e1d-a4cf-2566813ace2d"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{partner-period-4}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="450" y="0" width="70" height="12" uuid="a1f6ee2d-ecd9-447a-9022-eff1d6c09218"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{partner-period-3}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="520" y="0" width="70" height="12" uuid="38ce4bce-ffca-4ff3-8a68-45cc71f52a82"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{partner-period-2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="590" y="0" width="70" height="12" uuid="01cff4b7-da70-4b6f-9109-9b0ee8a6994f"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{partner-period-1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="660" y="0" width="70" height="12" uuid="f3b98e1e-308d-4d1a-bac5-8962f84dfa92"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{partner-period-0}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="730" y="0" width="70" height="12" uuid="1a84fc19-7a92-494e-991d-a45911afe270"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{partner-balance}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="15" uuid="6b6a5d15-a478-4b4a-b63f-78a448418415"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detailed Aged Trial Balance]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="15" width="802" height="15" uuid="3ddef556-0e5d-4735-b751-8aafc0878bd7"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("statement", $F{statement-id})
+  .get ("period")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="30" width="100" height="12" uuid="e6222f05-fca5-4095-9e74-60a811053032"/>
+				<textElement textAlignment="Justified">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{currency}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="50" height="12" uuid="f1e8bbf4-6eef-4cb8-8b8d-eaf8aa64f5f8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Currency :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="13">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="12" uuid="9d2ab698-b301-4ddf-83a8-e2a135751dd1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partner]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="80" height="12" uuid="326c5479-a8f3-4f29-8c5b-81087346fc27"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Ref]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="60" height="12" uuid="f9acd26c-eeaf-42c4-8ef4-5fbf6882912c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="70" height="12" uuid="92815176-b166-4bb7-9088-124239e747a4"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="70" height="12" uuid="c2d3f64c-2b37-4da2-be7a-583192f688b4"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[120+ days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="70" height="12" uuid="02fd29c3-7efa-4d60-80d1-6eaeef6ff59a"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[90 days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="0" width="70" height="12" uuid="7ef8f319-376b-46f8-9f80-04cb44b74a27"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[60 days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="590" y="0" width="70" height="12" uuid="292c9811-b6f9-43f3-a1e5-323565307c18"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[30 days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="660" y="0" width="70" height="12" uuid="eca064b9-b174-4dd3-b421-bdcadb9fd320"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Current days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="730" y="0" width="70" height="12" uuid="1bf559c6-ca18-48d6-9291-3b15411fa88a"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="12" width="802" height="1" uuid="974f44a0-ba98-4825-b762-c2e435955ced"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Prevent">
+			<textField isBlankWhenNull="true">
+				<reportElement x="140" y="0" width="80" height="12" uuid="1c0b7f61-fe99-497c-9334-8d47e0737cc2"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_number}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="220" y="0" width="60" height="12" uuid="49cd6b3e-87b6-4875-8564-d71f31c007a3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="380" y="0" width="70" height="12" uuid="2fa85a22-5ea5-41c4-b32f-dc4819e8b715"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{period4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="450" y="0" width="70" height="12" uuid="dca1dacb-7720-4e22-886a-e5adc86262c9"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{period3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="520" y="0" width="70" height="12" uuid="c9a0b005-d1bc-4eeb-81e3-a93667c54283"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{period2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="590" y="0" width="70" height="12" uuid="4d774b45-00d9-4ec7-a1c7-18ee8b70800d"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{period1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="660" y="0" width="70" height="12" uuid="87d72b9d-6666-4ba3-9eb1-2282f37d7d16"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{period0}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="730" y="0" width="70" height="12" uuid="1d9c2b4a-0a12-4f19-a4fe-e7494bf1d405"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{balance}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="15">
+			<textField pattern="#,##0.00">
+				<reportElement x="380" y="0" width="70" height="12" uuid="4c5b3173-382b-4a9a-8483-2ae6d99919fe"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total-period-4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="450" y="0" width="70" height="12" uuid="f7ba5432-fc11-4e9e-875f-6fb668233b6c"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total-period-3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="520" y="0" width="70" height="12" uuid="fe1f0bfa-c104-410c-ae9e-c32d2e30e757"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total-period-2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="590" y="0" width="70" height="12" uuid="60bb7040-875b-4a4c-9695-de9be8b57e04"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total-period-1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="660" y="0" width="70" height="12" uuid="f5471180-b13a-453b-bfc6-d87ee7a9d9c4"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total-period-0}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="0" width="100" height="12" uuid="56ecdf53-c5c9-4210-a25f-746ad9392e5e"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Report Total]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="730" y="0" width="70" height="12" uuid="40acc3cd-cf32-47ab-9350-10879ca39f32"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total-balance}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_purchase_done_form" model="ir.ui.view">
+            <field name="name">Purchase Done Form</field>
+            <field name="model">purchase.done</field>
+            <field name="arch" type="xml">
+                <form string="Set Purchase Order to Done">
+                    <sheet>
+                        <group>
+                            <field name="purchase_id" options="{'no_create': True}"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <div>
+                            <button name="set_done" string="Process" type="object" class="oe_highlight"/>
+                            <button special="cancel" string="Cancel" class="oe_link"/>
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_purchase_done">
+            <field name="name">Set Purchase Order Done</field>
+            <field name="res_model">purchase.done</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_purchase_done"
+                  id="menu_purchase_order_done_view"
+                  name="Set Purchase Order Done"
+                  groups="account.group_account_invoice"
+                  parent="purchase.menu_procurement_management"
+                  sequence="110"/>
+    </data>
+</odoo>

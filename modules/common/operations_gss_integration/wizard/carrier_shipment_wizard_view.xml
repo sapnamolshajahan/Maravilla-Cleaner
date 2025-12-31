@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_shipment_wizard_form" model="ir.ui.view" >
+			<field name="name">Operations Courier Integration Stock Picking form</field>
+			<field name="model">carrier.shipment.wizard</field>
+			<field name="inherit_id" ref="operations_courier_integration.view_shipment_wizard_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='is_dangerous_goods']" position="after">
+					<field name="hazchem_code" invisible="is_dangerous_goods == False" required="is_dangerous_goods == True"/>
+					<field name="total_qty" invisible="is_dangerous_goods == False" required="is_dangerous_goods == True"/>
+					<field name="total_kg" invisible="is_dangerous_goods == False" required="is_dangerous_goods == True"/>
+					<field name="box_size" invisible="is_dangerous_goods == False" required="is_dangerous_goods == True"/>
+					<field name="handling_info" invisible="is_dangerous_goods == False"/>
+					<field name="dangerous_goods_ids" colspan="3" invisible="is_dangerous_goods == False">
+						<list editable="bottom" colspan="2">
+							<field name="dangerous_goods_preset_item" options="{'no_create': True}"/>
+							<field name="un_or_id" required="True"/>
+							<field name="shipping_name" required="True"/>
+							<field name="shipping_class" required="True"/>
+							<field name="subsidiary_risk" />
+							<field name="packing_group" />
+							<field name="packing_qty_type" />
+							<field name="packing_instructions" />
+							<field name="authorization" />
+						</list>
+					</field>
+				</xpath>
+
+				<xpath expr="//field[@name='detail_ids']" position="after">
+					<field name="shipment_model" invisible="1"/>
+                    <group name="box_customizations"
+						   colspan="4" col="4" invisible="shipment_model != 'gss.carrier.shipment()'">
+						<group>
+							<field name="custom_boxes" />
+						</group>
+						<field name="custom_box_ids" colspan="4" nolabel="1" invisible="custom_boxes == 'False'">
+	                        <list editable="bottom">
+	                            <field name="package_name" width="150px" required="1"/>
+								<field name="weight" required="True"/>
+	                            <field name="width" required="True"/>
+	                            <field name="height" required="True"/>
+	                            <field name="length" required="True"/>
+	                        </list>
+	                    </field>
+                    </group>
+				</xpath>
+			</field>
+		</record>
+    </data>
+</odoo>

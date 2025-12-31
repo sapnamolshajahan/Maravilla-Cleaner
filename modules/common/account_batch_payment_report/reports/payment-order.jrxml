@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Payment Order" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0ca35c-13f9-4878-a0fb-13d1a7a75f7a">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Base" isDefault="true" fontName="Arial" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="viaduct" class="nz.optimysme.viaduct.Viaduct"/>
+	<parameter name="viaduct-directory" class="java.lang.String"/>
+	<parameter name="payment-order-id" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString>
+<![CDATA[
+select
+  payment_order.id "payment-id",
+  journal.company_id "company-id",
+  payment_order.name "reference",
+  payment_order.state,
+  payment_line.id "payment-line-id"
+from
+  account_batch_payment payment_order
+  join account_journal journal on journal.id = payment_order.journal_id,
+  account_payment payment_line,
+  res_partner
+where payment_order.id = $P{payment-order-id}
+and payment_line.batch_payment_id = payment_order.id
+and res_partner.id = payment_line.partner_id
+order by res_partner.name
+]]>
+	</queryString>
+	<field name="payment-id" class="java.lang.Integer"/>
+	<field name="company-id" class="java.lang.Integer"/>
+	<field name="reference" class="java.lang.String">
+		<fieldDescription><![CDATA[Reference]]></fieldDescription>
+	</field>
+	<field name="state" class="java.lang.String"/>
+	<field name="payment-line-id" class="java.lang.Integer"/>
+	<variable name="amount-sum" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[new BigDecimal (
+  (Double) $P{viaduct}
+    .helper ("payment_line", $F{payment-line-id})
+    .get ("amount"))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="partner-subtotal" class="java.math.BigDecimal" resetType="Group" resetGroup="partner_group" calculation="Sum">
+		<variableExpression><![CDATA[new BigDecimal (
+  (Double) $P{viaduct}
+    .helper ("payment_line", $F{payment-line-id})
+    .get ("amount"))]]></variableExpression>
+	</variable>
+	<group name="partner_group">
+		<groupExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("partner")]]></groupExpression>
+		<groupFooter>
+			<band height="50">
+				<staticText>
+					<reportElement x="360" y="10" width="60" height="17" uuid="001999fe-7bf7-404b-9ba9-65a018356989"/>
+					<textElement textAlignment="Left">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Subtotal:]]></text>
+				</staticText>
+				<textField pattern="$ #,##0.00">
+					<reportElement x="420" y="10" width="135" height="17" uuid="681fe2d1-c645-41f8-9872-42dd76a3ce96"/>
+					<textElement textAlignment="Right">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{partner-subtotal}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="155" splitType="Stretch">
+			<image hAlign="Left" onErrorType="Blank">
+				<reportElement x="20" y="20" width="135" height="135" uuid="d19bd92c-d983-4a9b-b14c-6cc00c2961f0"/>
+				<imageExpression><![CDATA[new ByteArrayInputStream (
+  java.util.Base64.getDecoder ().decode (
+    $P{viaduct}
+      .helper ("company", $F{company-id})
+      .get ("logo")
+      .toString ()
+      .replaceAll ("\\s", "")))]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="350" y="10" width="200" height="55" uuid="8e020992-6149-4275-9d2d-11d408cb087a"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{viaduct}.helper ("company", $F{company-id}).get ("address")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="65" width="550" height="25" uuid="a1e34166-7f95-424a-874f-5fb631c14dca"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Order / Payment]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="100" width="210" height="15" uuid="2183bcaa-9439-471e-bd16-e05ca073347a"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("bank-account")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="70" y="115" width="210" height="40" uuid="2095e3ea-f55a-415d-a767-306782b4cff3"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("bank-address")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="100" width="60" height="15" uuid="ad42a6e9-18e0-4aef-a58d-cc07bf8b04d8"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Reference :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="100" width="135" height="15" uuid="15cc4648-c029-4aba-9074-784a0ffd8df1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{reference}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="100" width="70" height="15" uuid="ca150a55-8123-4be5-8c2c-04c17d66d766"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Bank A/C :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="-5" width="90" height="15" uuid="9e33e024-8b88-4f2b-8dc8-baf01c49d25e"/>
+				<textElement textAlignment="Left">
+					<font size="10" isBold="true" isItalic="false"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Creation Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="-5" width="105" height="15" uuid="3a328fe3-f0a6-4d73-9b65-1f83bbae94f8"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("date-created")]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="15" uuid="f1622691-db0a-431c-a9c7-8b6ccf0410e4">
+					<printWhenExpression><![CDATA["inbound".equals ($P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("payment-type"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="15" uuid="f1622691-db0a-431c-a9c7-8b6ccf0410e4">
+					<printWhenExpression><![CDATA["outbound".equals ($P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("payment-type"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="120" height="15" uuid="8cedeb37-66f5-4f7b-9a3f-41e9e6acb9b1"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bank Account]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="195" height="15" uuid="354590d2-5955-449e-aa63-5baa5cd598d3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Ref]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="0" width="70" height="15" uuid="c92d934d-0cf5-4630-b4f5-cc0c09c3bfec"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="290" y="0" width="195" height="15" uuid="fdbccb0c-5876-4883-ab11-955a03a761e4"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("customer-reference")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="160" height="15" isPrintWhenDetailOverflows="true" uuid="fa90788b-c147-4fac-a099-126efc694a34"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("partner")]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="485" y="0" width="70" height="15" uuid="e4165cba-a8b6-4184-bf38-5e06465d4b37"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("amount")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="170" y="0" width="120" height="15" isPrintWhenDetailOverflows="true" uuid="fb4371b1-df1b-4fb1-9757-3355fc5fa90c"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment_line", $F{payment-line-id})
+  .get ("customer-bank-account")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="94">
+			<textField pattern="$ #,##0.00">
+				<reportElement style="Base" x="420" y="1" width="135" height="17" uuid="96d88cfd-1add-4f6a-a961-24b30a9a25ac"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{amount-sum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="1" width="60" height="17" uuid="826c71c6-637c-4638-9a59-6231188cf78e"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total :]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="0" width="555" height="1" uuid="9b2b4bd3-39a9-41d6-9d03-a1bff24be16a"/>
+				<graphicElement>
+					<pen lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="25" width="90" height="15" uuid="333fd059-4e21-401f-9e34-aa1b9135771f"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Checksum :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="25" width="200" height="15" uuid="b221479e-0cd5-4932-a767-5f05d0b5a7f8"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("checksum")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="90" height="15" uuid="2b4dae30-6608-48dc-b8d6-40924abf5b45"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Action On :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="40" width="105" height="15" uuid="7f8fe336-9698-45b0-9535-6fb60234bb76"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("date-action")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="55" width="90" height="15" uuid="73cc30ce-efec-4c16-b1e6-3dd0a7151a5a"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[Execution Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="55" width="105" height="15" uuid="c66b60d3-75ab-4cbc-b020-6bd4aa906c89"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{viaduct}
+  .helper ("payment", $P{payment-order-id})
+  .get ("date-done")]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
