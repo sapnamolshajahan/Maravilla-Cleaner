@@ -1,0 +1,62 @@
+#!/bin/sh
+#set -x
+#
+# Update the link to the latest version
+#
+
+# Check configuration
+CONFIG_SH="release-config.sh"
+if [ ! -r ${CONFIG_SH} ]
+then
+	echo "ERROR: ${CONFIG_SH} not found. Create a link to customer's ${CONFIG_SH}"
+	exit 1
+fi
+. ./${CONFIG_SH}
+
+if [ -z "${RELEASE_PREFIX}" ]
+then
+	echo "ERROR: RELEASE_PREFIX undefined in ${CONFIG_SH}"
+	exit 1
+fi
+
+# Check args
+if [ $# -ne 1 ]
+then
+        echo "Usage: $(basename $0) link"
+        exit 1
+fi
+LINKNAME=${1}
+if [ ! -L ${LINKNAME} ]
+then
+        echo "ERR: ${LINKNAME} is not a symbolic link"
+        exit 1
+fi
+
+REL_D="releases/"
+if [ ! -d ${REL_D} ]
+then
+	# Transition shim.
+	# removed once all customers have a ~/releases/ directory
+	REL_D=""
+fi
+
+#
+# Determine current and latest version
+#
+CURRENT_V=$(realpath ${LINKNAME} | sed -e "s|.*${RELEASE_PREFIX}||")
+LAST_V=$(ls -d ${REL_D}${RELEASE_PREFIX}* | sed -e "s|.*${RELEASE_PREFIX}||" | sort --version-sort | tail -1)
+
+if [ "${LAST_V}" = "${CURRENT_V}" ]
+then
+	echo "INFO: No update required"
+	exit 0
+fi
+
+#
+# Link
+#
+LATEST="${REL_D}${RELEASE_PREFIX}${LAST_V}"
+rm -f ${LINKNAME}
+echo "INFO: Removed link ${LINKNAME}"
+ln -s ${LATEST} ${LINKNAME}
+echo "INFO: Linked ${LINKNAME}, target: ${LATEST}"

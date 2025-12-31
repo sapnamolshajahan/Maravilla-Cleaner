@@ -1,0 +1,67 @@
+#!/bin/sh
+#set -x
+#
+# Update the rc-link to the latest version
+#
+
+# Check configuration
+CONFIG_SH="release-config.sh"
+if [ ! -r ${CONFIG_SH} ]
+then
+	echo "ERROR: ${CONFIG_SH} not found. Create a link to customer's ${CONFIG_SH}"
+	exit 1
+fi
+. ./${CONFIG_SH}
+
+if [ -z "${RELEASE_RC_PREFIX}" ]
+then
+	echo "ERROR: RELEASE_RC_PREFIX undefined in ${CONFIG_SH}"
+	exit 1
+fi
+
+# Check args
+if [ $# -ne 1 ]
+then
+        echo "Usage: $(basename $0) link"
+        exit 1
+fi
+
+RC_D="etc"
+RC_F="${1}.rc"
+REL_D="releases"
+
+LINKNAME="${RC_D}/${RC_F}"
+if [ ! -L ${LINKNAME} ]
+then
+        echo "ERR: ${LINKNAME} is not a symbolic link"
+        exit 1
+fi
+
+#
+# Determine current and latest link versions
+#
+CURRENT_V=$(realpath ${LINKNAME} | sed -e "s|.*/${RELEASE_RC_PREFIX}\(.*\)/${RC_F}|\1|")
+LAST_V=$(ls -d ${REL_D}/${RELEASE_RC_PREFIX}* | sed -e "s|.*/${RELEASE_RC_PREFIX}||" | sort --version-sort | tail -1)
+if [ "${LAST_V}" = "${CURRENT_V}" ]
+then
+	echo "INFO: No update required"
+	exit 0
+fi
+
+#
+# Ensure configuration file exists
+#
+LATEST="${RELEASE_RC_PREFIX}${LAST_V}"
+if [ ! -r ${REL_D}/${LATEST}/${RC_F} ]
+then
+	echo "ERROR: ${REL_D}/${LATEST}/${RC_F} missing"
+	exit 1
+fi
+
+#
+# Link
+#
+rm -f ${LINKNAME}
+echo "INFO: Removed link ${LINKNAME}"
+ln -s ../${REL_D}/${LATEST}/${RC_F} ${LINKNAME}
+echo "INFO: Linked ${LINKNAME}, target: ${LATEST}"

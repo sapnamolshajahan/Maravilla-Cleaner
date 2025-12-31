@@ -1,0 +1,118 @@
+#!/bin/sh
+#set -x
+#
+# Script to refresh the UAT database
+# and tweak the data to prevent inadvertant prints and emails
+#
+# Check configuration
+CONFIG_SH="release-config.sh"
+if [ ! -r ${CONFIG_SH} ]
+then
+	echo "ERROR: ${CONFIG_SH} not found. Create a link to customer's ${CONFIG_SH}"
+	exit 1
+fi
+. ./${CONFIG_SH}
+
+if [ $# -eq 1 ]
+then
+	if [ ! -f ${1} ]
+	then
+		echo "Usage: ${0} db-file"
+		exit 1
+	fi
+	DB_FILE="${1}"
+fi
+
+# Make sure UAT is stopped
+systemctl stop odoo-${RELEASE_CUSTOMER}-uat
+
+locate_rc ()
+{
+	TAG=${1}
+	CUSTOMER=${2}
+	CUST_HOME=$(eval echo ~${CUSTOMER})
+
+	for C in "${CUST_HOME}/etc/${TAG}.rc" "${TAG}/customer/${CUSTOMER}/${1}.rc"
+	do
+		if [ -r ${C} ]
+		then
+			echo ${C}
+			return
+		fi
+	done
+	echo ""
+}
+
+#
+# Source and Destination
+#
+SRC_DB="${RELEASE_CUSTOMER}"
+SRC_USER="${RELEASE_CUSTOMER}"
+
+DST_DB="${RELEASE_CUSTOMER}-uat"
+DST_USER="${RELEASE_CUSTOMER}-uat"
+JOBS="2"
+
+#
+# Extract UAT and Production hosts
+#
+SRC_RC=$(locate_rc production ${RELEASE_CUSTOMER})
+DST_RC=$(locate_rc uat ${RELEASE_CUSTOMER})
+
+if [ -z "${SRC_RC}" ]
+then
+	echo "ERROR: production rc not found"
+	exit 1
+fi
+if [ -z "${DST_RC}" ]
+then
+	echo "ERROR: uat rc not found"
+	exit 1
+fi
+
+SRC_HOST=$(egrep '^db_host *=' ${SRC_RC} | awk '{print $3}')
+DST_HOST=$(egrep '^db_host *=' ${DST_RC} | awk '{print $3}')
+
+dropdb --if-exists -h ${DST_HOST} -U ${DST_USER} ${DST_DB}
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+createdb -h ${DST_HOST} -U ${DST_USER} ${DST_DB}
+
+if [ -z "${DB_FILE}" ]
+then
+        # Streamed restoration
+        pg_dump -h ${SRC_HOST} --no-owner -U ${SRC_USER} ${SRC_DB} |
+        psql -h ${DST_HOST} --quiet -U ${DST_USER} ${DST_DB}
+else
+	pg_restore -h ${DST_HOST} -j${JOBS} --no-owner -U ${DST_USER} -d ${DST_DB} ${DB_FILE}
+fi
+
+#
+# UAT Data fixes
+#
+FIXES_SQL="uat/customer/${RELEASE_CUSTOMER}/uat-refresh-fixes.sql"
+if [ -f ${FIXES_SQL} ]
+then
+	psql -h ${DST_HOST} -U ${DST_USER} -f ${FIXES_SQL} ${DST_DB}
+else
+	# Default fixes
+	psql -h ${DST_HOST} -U ${DST_USER} ${DST_DB} << EOF
+update ir_config_parameter set
+  value = 'uat/' || value
+where key = 'database.uuid';
+delete from ir_config_parameter where key = 'web.base.url.freeze';
+update ir_mail_server set
+  smtp_host = 'localhost',
+  smtp_port = 25999;
+update fetchmail_server set
+  state = 'draft',
+  active = false;
+update ir_cron set active = false;
+delete from queue_job;
+delete from account_online_link;
+EOF
+fi
+
+echo "Please re-start odoo-${RELEASE_CUSTOMER}-uat"

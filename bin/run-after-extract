@@ -1,0 +1,110 @@
+#!/bin/sh
+#set -x
+#
+# Little things to do once the extract has been done
+#
+CONFIG_SH="release-config.sh"
+if [ ! -r ${CONFIG_SH} ]
+then
+	echo "ERROR: ${CONFIG_SH} not found. Create a link to customer's ${CONFIG_SH}"
+	exit 1
+fi
+. ./${CONFIG_SH}
+
+REL_SHIM="releases/"
+if [ ! -d ${REL_SHIM} ]
+then
+	# Transition shim.
+	# Remove when all customers have a "releases" directory
+	REL_SHIM=""
+fi
+
+remove_old_releases ()
+{
+		DIR=$(basename ${1})
+		PREFIX=${2}
+		RELS=$(basename ${3})
+
+		if [ ! -d ${DIR} ]
+		then
+			echo "WARN: ${DIR} non-existent"
+			return
+		fi
+		if [ ! -d ${RELS} ]
+		then
+			echo "WARN: ${RELS} non-existent"
+			return
+		fi
+
+        # Find the oldest linked release
+        LINKED=""
+        for F in ${DIR}/*
+        do
+                if [ -L ${F} ]
+                then
+                        ACTUAL=$(readlink ${F} | grep ${PREFIX} | sed -e "s/.*\(${PREFIX}[0-9.]*\).*/\1/")
+                        if [ -n "${ACTUAL}" ]
+                        then
+                                LINKED="${LINKED} ${RELS}/${ACTUAL}"
+                        fi
+                fi
+        done
+        LINKED=$(echo ${LINKED} | xargs)        # normalise
+        if [ -n "${LINKED}" ]
+        then
+                OLDEST=$(ls -d ${LINKED} | sort --version-sort | head -n 1)
+                VERCOUNT=$(ls -d ${RELS}/${PREFIX}* |
+                                sort --version-sort |
+                                nl -s ::: |
+                                grep "${OLDEST}$" |
+                                cut -f 1 -d :)
+
+        else
+                VERCOUNT=$(ls -d ${RELS}/${PREFIX}* | wc -l)
+        fi
+
+        OVERCOUNT="$((${VERCOUNT} - ${RELEASE_KEEP}))"
+        if [ ${OVERCOUNT} -gt 0 ]
+        then
+                ls -d ${RELS}/${PREFIX}* |
+                        sort --version-sort |
+                        head -n ${OVERCOUNT} |
+                        xargs rm -r
+        fi
+}
+
+remove_old_releases . ${RELEASE_PREFIX} ./${REL_SHIM}
+remove_old_releases etc ${RELEASE_RC_PREFIX} ./${REL_SHIM}
+
+if [ -z "${REL_SHIM}" ]
+then
+	chown -R ${RELEASE_USER}:${RELEASE_GROUP} ${REL_SHIM}${RELEASE_PREFIX}*
+	chmod -R og-w,og+r ${REL_SHIM}${RELEASE_PREFIX}*
+else
+	chown -R ${RELEASE_USER}:${RELEASE_GROUP} ${REL_SHIM}
+	chmod -R og-w,og+r ${REL_SHIM}
+fi
+
+# Remove uneeded stuff
+for STUFF in docs etc ${RELEASE_CLEANUP}
+do
+	rm -rf ${REL_SHIM}${RELEASE_PREFIX}*/${STUFF}
+done
+
+# Remove foreign customer modules
+for C in ${REL_SHIM}${RELEASE_PREFIX}*/customer/*
+do
+        BASE=$(basename ${C})
+        OK=""
+        for M in ${RELEASE_MODULES}
+        do
+                if [ "${M}" = "${BASE}" ]
+                then
+                        OK="y"
+                fi
+        done
+        if [ -z "${OK}" ]
+        then
+                rm -r ${C}
+        fi
+done

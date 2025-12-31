@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+#set -x
+#
+# Invoke odoo-shell on a customer database
+# 
+VENV="odoo19"
+
+showUsage ()
+{
+	echo "Usage: $(basename $0) configfile dbname"
+}
+
+vWrapper ()
+{
+	for D in /usr/local/bin /usr/share/virtualenvwrapper
+	do
+		W="${D}/virtualenvwrapper.sh"
+		if [ -r ${W} ]
+		then
+				VWRAPPER=${W}
+				break
+		fi
+	done
+	if [ -z "${VWRAPPER}" ]
+	then
+		echo "ERROR: virtualenvwrapper.sh not found"
+		exit 1
+	fi
+	source ${VWRAPPER}
+}
+
+#
+# Determine Paths
+#
+DIRNAME=$(dirname ${0})
+RELEASE_BASE=$(realpath ${DIRNAME}/..)
+
+#
+# Validate arguments
+#
+if [ $# -lt 2 ]
+then
+	showUsage
+	exit 1
+fi
+
+#
+# Release configuration
+#
+CONFIG_SH="${HOME}/release-config.sh"
+if [ ! -r ${CONFIG_SH} ]
+then
+	echo "ERROR: ${CONFIG_SH} not found."
+	echo '- Create a link to the customer release-config.sh from ${HOME}'
+	exit 1
+fi
+. ${CONFIG_SH}
+
+#
+# Validate virtualenvs
+#
+WORKON_HOME="$(eval echo ~${RELEASE_USER}/virtualenvs)"
+if [ ! -d "${WORKON_HOME}/${VENV}" ]
+then
+	echo "ERROR: ${WORKON_HOME}/${VENV} not found"
+	exit 1
+fi
+
+for C in "${HOME}/etc/${1}.rc" "${RELEASE_BASE}/customer/${RELEASE_CUSTOMER}/${1}.rc"
+do
+	if [ -r ${C} ]
+	then
+		CONFIG=${C}
+	fi
+done
+if [ -z "${CONFIG}" ]
+then
+	echo "ERROR: Configuration file ${1}.rc not found"
+	exit 1
+fi
+shift
+
+#
+# Validate run environment
+#
+if [ ${RELEASE_USER} != $(id -un) ]
+then
+	echo "ERROR: need to run upgrade as '${RELEASE_USER}'"
+	exit 1
+fi
+if [ ! -f bin/odoo-upgrade ]
+then
+	echo "ERROR: need to run script from top-level"
+	exit 1
+fi
+
+#
+# Run the upgrade
+#
+export WORKON_HOME
+vWrapper
+workon ${VENV}
+
+DBNAME=${1}
+
+odoo/odoo-bin shell -c ${CONFIG} -d ${DBNAME} --no-http

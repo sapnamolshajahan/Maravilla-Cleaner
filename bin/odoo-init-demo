@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+#set -x
+#
+# Create a new database with demo data
+#
+VENV="odoo19"
+COUNTRY_CODE="NZ"
+
+showUsage ()
+{
+	echo "Usage: $(basename $0) configfile dbname module[,module1,module2..]"
+}
+
+vWrapper ()
+{
+	for D in /usr/local/bin /usr/share/virtualenvwrapper
+	do
+		W="${D}/virtualenvwrapper.sh"
+		if [ -r ${W} ]
+		then
+			VWRAPPER=${W}
+			break
+		fi
+	done
+	if [ -z "${VWRAPPER}" ]
+	then
+		echo "ERROR: virtualenvwrapper.sh not found"
+		exit 1
+	fi
+	source ${VWRAPPER}
+}
+
+#
+# Determine Paths
+#
+DIRNAME=$(dirname ${0})
+RELEASE_BASE=$(realpath ${DIRNAME}/..)
+
+#
+# Validate arguments
+#
+if [ $# -ne 3 ]
+then
+	showUsage
+	exit 1
+fi
+
+#
+# Validate virtualenvs
+#
+if [ ! -d "${WORKON_HOME}/${VENV}" ]
+then
+	echo "ERROR: WORKON_HOME/${VENV} does not exist"
+	exit 1
+fi
+
+#
+# Validate configuration file
+#
+if [ ! -r "${1}" ]
+then
+	exit "ERROR: ${1} does not exist"
+	exit 1
+fi
+CONFIG="${1}"
+DBNAME="${2}"
+BUNDLE="${3}"
+
+vWrapper
+workon ${VENV}
+odoo/odoo-bin -c ${CONFIG} -d ${DBNAME} -i ${BUNDLE} --stop-after-init --no-http
+
+# Update country-relate fields
+DBUSER=$(egrep '^db_user *=' ${CONFIG} | awk '{print $3}')
+psql -U ${DBUSER} ${DBNAME} << EOF
+update res_company set
+  currency_id = res_country.currency_id
+from res_country 
+where res_country.code = '${COUNTRY_CODE}';
+
+update res_partner set
+  country_id =
+    (
+      select id
+      from res_country
+      where res_country.code = '${COUNTRY_CODE}'
+	)
+from res_company
+where res_partner.id = partner_id;
+EOF

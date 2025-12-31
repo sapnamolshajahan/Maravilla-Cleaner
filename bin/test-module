@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+#set -x
+#
+# Run tests for a module
+# - interactive mode
+# - intended for the developer
+# 
+VENV="odoo19"
+TESTS_D="tests-output"
+COVERAGE_DATA="${TESTS_D}/data"
+COVERAGE_HTML="${TESTS_D}/html"
+
+export XMLRUNNER_OUTPUT="${TESTS_D}/xmlrunner"
+
+showUsage ()
+{
+	echo "Usage: $(basename $0) config module [test-db]"
+	cat << EOF
+  config: path to configuration file
+  module: module to test
+  test-db: database to use; if none, a one-use db will be created, then removed
+EOF
+}
+
+vWrapper ()
+{
+	for D in /usr/local/bin /usr/share/virtualenvwrapper
+	do
+		W="${D}/virtualenvwrapper.sh"
+		if [ -r ${W} ]
+		then
+				VWRAPPER=${W}
+				break
+		fi
+	done
+	if [ -z "${VWRAPPER}" ]
+	then
+		echo "ERROR: virtualenvwrapper.sh not found"
+		exit 1
+	fi
+	source ${VWRAPPER}
+}
+
+#
+# Determine Paths
+#
+DIRNAME=$(dirname ${0})
+RELEASE_BASE=$(realpath ${DIRNAME}/..)
+
+#
+# Validate arguments
+#
+if [ $# -lt 2 -o $# -gt 3 ]
+then
+	showUsage
+	exit 1
+fi
+
+#
+# Validate virtualenvs
+#
+if [ -z "${WORKON_HOME}" ]
+then
+	WORKON_HOME="${HOME}/virtualenvwrapper"
+fi
+if [ ! -d "${WORKON_HOME}/${VENV}" ]
+then
+	echo "ERROR: ${WORKON_HOME}/${VENV} not found"
+	exit 1
+fi
+
+if [ ! -r "${1}" ]
+then
+	echo "ERROR: Configuration file ${1} not found"
+	exit 1
+fi
+
+CONFIG="${1}"
+MODULE="${2}"
+TESTDB="${3}"
+
+#
+#
+MODULE_DIR=$(find * -type d -name ${MODULE})
+for MD in $(find * -type d -name ${MODULE})
+do
+	if [ -r "${MD}/__manifest__.py" ]
+	then
+		MODULE_DIR=${MD}
+		break
+	fi
+done
+if [ -z "${MODULE_DIR}" ]
+then
+	echo "ERROR: Module '${MODULE}' not found"
+	exit 1
+fi
+
+is_module_installed ()
+{
+	psql --username=${1} --tuples-only << EOF
+select count(*)
+from ir_module_module
+where name = '${2}'
+and state = 'installed';
+EOF
+}
+
+INIT_MODULE="--init=${MODULE}"	# default
+
+#
+# Determine database to use
+#
+DBUSER=$(grep '^db_user' ${CONFIG} | awk '{ print $3; }')
+if [ -z "${TESTDB}" ]
+then
+	DBNAME="${DBUSER}-$$"
+else
+	DBNAME="${TESTDB}"
+	INSTALLED=$(is_module_installed ${DBNAME} ${MODULE})
+	if [ ${INSTALLED} -gt 0 ]
+	then
+		INIT_MODULE=""
+	fi
+fi
+
+# Clean up old guff
+rm -rf ${TESTS_D}
+mkdir -p ${TESTS_D}
+
+#
+# Run the tests
+#
+export WORKON_HOME
+vWrapper
+workon ${VENV}
+echo "Running test on module=${MODULE}"
+coverage run \
+	--branch \
+	--include=${MODULE_DIR}/'**/*.py' \
+	--omit='*/__manifest__.py,*/tests/*.py' \
+	--data-file=${COVERAGE_DATA} \
+	odoo/odoo-bin \
+		--config=${CONFIG} --database=${DBNAME} \
+		${INIT_MODULE} --test-tags=/${MODULE} \
+		--stop-after-init --no-http
+coverage html --data-file=${COVERAGE_DATA} --directory="${COVERAGE_HTML}"
+
+if [ -z "${TESTDB}" ]
+then
+	dropdb --force --if-exists --username=${DBUSER} ${DBNAME}
+	echo "INFO: removed db=${DBNAME}"
+fi
